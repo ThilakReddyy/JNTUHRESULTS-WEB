@@ -3,12 +3,12 @@ const HomeInfo = ()=>
 
     return (
     <>
-        <small class="font-serif mt-1 block text-left text-[#808080] ml-[13%] mt-4">
+        <div class="font-serif mt-1 block text-left text-[#808080] ml-[13%] mt-4 text-[55%] md:text-[80%]">
             It does consider the RCRV Results
-        </small>
-        <small class="font-serif mt-1 block text-left text-[#808080] ml-[13%] mb-4">
+        </div>
+        <div class="font-serif mt-1 block text-left text-[#808080] ml-[13%] mb-4 text-[55%] md:text-[80%]">
         It only works above R18 Regulation
-        </small>
+        </div>
     </>
     )
 }

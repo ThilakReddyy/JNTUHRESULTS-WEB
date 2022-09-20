@@ -7,7 +7,6 @@ const HomePage = () => {
     return (
         <>
           <HomeNav />
-          <Hr />
           <br/>
           <HomeSingle />
           <HomeInfo/>

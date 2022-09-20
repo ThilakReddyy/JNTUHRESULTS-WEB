@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+table{
+    border: 1px solid black;
+    border-collapse: separate;
+    border-spacing:2px;
+    width:100%;
+    border-bottom-width: 1px;
+}
+th{
+    border: 1px solid black;
+    border-collapse: separate;
+    border-spacing:2px;
+}
