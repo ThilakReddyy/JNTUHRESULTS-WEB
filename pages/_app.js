@@ -4,7 +4,7 @@ function MyApp({ Component, pageProps }) {
   return <>
           <Head>
         <title>JNTUH B.Tech Results</title>
-        <link id="dynamic-favicon" rel='icon' href='/favicon-light.png' />
+        <link id="favicondark" rel='icon' href='/favicon-black.png' />
         <meta
           property='og:url'
           content='https://jntuhresults.vercel.app/'
@@ -27,18 +27,7 @@ function MyApp({ Component, pageProps }) {
             dangerouslySetInnerHTML={{
               __html: `
               if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    console.log("dark mode");
-                    document.head = document.head || document.getElementsByTagName('head')[0];
-                    var link = document.createElement('link'),
-                    oldLink = document.getElementById('dynamic-favicon');
-                    link.id = 'dynamic-favicon';
-                    link.rel = 'shortcut icon';
-                    link.href = '/favicon-black.png';
-                    if (oldLink) {
-                      document.head.removeChild(oldLink);
-                    }
-                    document.head.appendChild(link);
-              
+                    console.log("dark Mode");         
                 }
                 else
                 {
