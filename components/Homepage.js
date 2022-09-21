@@ -6,13 +6,11 @@ import HomeFooter from './HomeFooter'
 const HomePage = () => {
     return (
         <>
-          <HomeNav />
           <br/>
           <HomeSingle />
           <HomeInfo/>
           <Hr />
           <Hr />
-          
           <HomeFooter />
         </>
     )
