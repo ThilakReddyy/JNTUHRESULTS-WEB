@@ -22,6 +22,19 @@ const Header=()=>{
             'https://user-images.githubusercontent.com/64121161/168486734-5d799aed-6110-47aa-8338-a0aa3c70e963.png'
           }
         />
+        <Script
+        async src="https://www.googletagmanager.com/gtag/js?id=G-6CR1W425NE"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'GA_MEASUREMENT_ID');
+        `}
+      </Script>
         <script
             dangerouslySetInnerHTML={{
               __html: `
