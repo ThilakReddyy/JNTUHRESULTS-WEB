@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+
 
 const SingleResults=({query})=>
 {
@@ -8,14 +8,14 @@ const SingleResults=({query})=>
   return(
     <div className="m-2 text-[45%] sm:text-[60%] md:text-[80%] lg:text-[100%]">
         {Object.keys(Results).map((val,ind)=>{return <>
-            <div id='1'>
-              <table className="w-[100%]">
-                <tbody>
-                  <tr>
-                    <th>{val} Results</th>
-                  </tr>
-                </tbody>
-              </table>
+              <div id='1'>
+                <table className="w-[100%]">
+                  <tbody>
+                    <tr>
+                      <th>{val} Results</th>
+                    </tr>
+                  </tbody>
+                </table>
               <table className="w-[100%]">
                 <tbody>
                   <tr>
@@ -31,7 +31,7 @@ const SingleResults=({query})=>
                     <th>GRADE</th>
                     <th>CREDITS</th>
                   </tr>
-                    {Object.keys(Results[val]).map(function(item,index,arr)
+                    {Object.keys(Results[val]).map(function(item,index)
                     {
                         if(item!='CGPA' & item!='total' & item!='credits') 
                         {

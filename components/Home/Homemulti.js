@@ -1,10 +1,23 @@
 import React, { useState } from "react";
+import { useRouter } from 'next/router'
+import axios from 'axios';
+import MultiResults from "../Multi/MultiResults";
+import Loading from "../Loading/Loading";
 
 const Homemulti = ({homepage}) => {
-    const submits=()=>
+    const router = useRouter();
+    const submits=async()=>
     {
-        console.log(code)
-        console.log(htno1.slice(0,8)==htno2.slice(0,8))
+        if((htno1.length!=10 || htno2.length!=10 || code=="") || (htno1.slice(0,8)!=htno2.slice(0,8)) || (htno1.slice(8,10)>htno2.slice(8,10)))
+        {
+            alert("Please give the correct information!!")
+        }
+        else
+        {
+            homepage(<Loading />)
+            const response=await axios.get('https://jntuhresults.up.railway.app/api/multi?from='+htno1+'&to='+htno2+'&code='+code,{mode:'cors'});
+            homepage(<MultiResults query={response.data}/>)
+        }
     }
     const inputEvent=(event)=>
     {

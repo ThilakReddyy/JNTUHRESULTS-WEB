@@ -16,7 +16,7 @@ export default single;
 export async function getServerSideProps(context) {
     const htno=context.query.htno;
     console.log("called")
-    const response=await axios.get('http://127.0.0.1:8000/api/single?htno='+htno);
+    const response=await axios.get('https://jntuhresults.up.railway.app/api/single?htno='+htno);
 
     return {
         props: {query: await response.data}, // will be passed to the page component as props
