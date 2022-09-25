@@ -22,7 +22,7 @@ const HomeSingle = ({ homepage }) => {
         homepage(<><div className="text-[300%]">{response.status} | 404 page Not Found</div></>)
       }
       else {
-        // router.push('/single?htno=' + htno)
+        router.push('?' + htno, undefined, { shallow: true })
         homepage(<SingleResults query={response.data} />)
       }
     }

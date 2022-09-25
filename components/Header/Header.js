@@ -32,6 +32,11 @@ const Header=()=>{
                 {
                   console.log("light mode");
                 }
+                addEventListener('popstate', (event) => { });
+                onpopstate = (event) => {
+                  console.log("pressed");
+                  window.location.reload();
+                 };
                   `,
             }}
           >    
