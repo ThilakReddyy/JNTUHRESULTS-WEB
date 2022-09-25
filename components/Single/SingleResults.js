@@ -1,5 +1,3 @@
-
-
 const SingleResults=({query})=>
 {
   const Results=query['Results'];
