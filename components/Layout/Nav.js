@@ -12,7 +12,7 @@ const Nav = ()=>
     return (
     <>
         <div className="mx-[12.5%]  flex">
-            <Link href="/">
+            <Link href="https://jntuhresults.vercel.app/">
                 <a >
                     <img src='./logo.png' className="w-[60px]  sm:w-[120px]"/>
                    
