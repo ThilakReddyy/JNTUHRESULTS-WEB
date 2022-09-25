@@ -12,9 +12,9 @@ const Nav = ()=>
     return (
     <>
         <div className="mx-[12.5%]  flex">
-            <Link href="https://jntuhresults.vercel.app/">
+            <Link href="/">
                 <a >
-                    <img src='./logo.png' className="w-[60px]  sm:w-[120px]"/>
+                    <img src='./logo.png' onClick="window.location.reload()" className="w-[60px]  sm:w-[120px]"/>
                    
                 </a>
             </Link>

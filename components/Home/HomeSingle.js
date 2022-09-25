@@ -13,20 +13,20 @@ const HomeSingle = ({ homepage }) => {
     }
     else {
       setWarning()
+      homepage(<Loading />)
+      const response = await axios.get('https://jntuhresults.up.railway.app/api/single?htno=' + htno, { mode: 'cors' });
+      if (response.status == 500) {
+        homepage(<><div className="text-[300%]">{response.status} | Server Error</div></>)
+      }
+      else if (response.status == 404 || response.status == 400) {
+        homepage(<><div className="text-[300%]">{response.status} | 404 page Not Found</div></>)
+      }
+      else {
+        // router.push('/single?htno=' + htno)
+        homepage(<SingleResults query={response.data} />)
+      }
     }
-    homepage(<Loading />)
-    const response = await axios.get('https://jntuhresults.up.railway.app/api/single?htno=' + htno, { mode: 'cors' });
-    if (response.status == 500) {
-      homepage(<><div className="text-[300%]">{response.status} | Server Error</div></>)
-    }
-    else if (response.status == 404 || response.status == 400) {
-      homepage(<><div className="text-[300%]">{response.status} | 404 page Not Found</div></>)
-    }
-    else {
-      // router.push('/single?htno=' + htno)
-      // console.log("calling")
-       homepage(<SingleResults query={response.data}/>)
-    }
+
   }
   const inputEvent = (event) => {
     event.target.value = event.target.value.toUpperCase();
