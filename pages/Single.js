@@ -1,30 +1,23 @@
-import HomeNav from '../components/HomeNav';
-import SingleResults from '../components/SingleResults';
-import {useRouter} from 'next/router';
+import SingleResults from '../components/Single/SingleResults';
+
 import axios from 'axios';
-const Single=({query})=>
+const single=({query})=>
 {
-    console.log(query)
-    console.log("yes")
+    
     return(
         <>
+        
         <SingleResults query={query}/>
         </>
     )
 }
-export default Single;
+export default single;
 
 export async function getServerSideProps(context) {
     const htno=context.query.htno;
-    console.log(htno);
-    const response=await axios.get('http://jntuhresults.herokuapp.com/allResults?htno='+htno);
-    console.log()
-    if(response.status!=200){
-       return
-       {
-        props:{query : 'server error'}
-       } 
-    }
+    console.log("called")
+    const response=await axios.get('http://127.0.0.1:8000/api/single?htno='+htno);
+
     return {
         props: {query: await response.data}, // will be passed to the page component as props
       }

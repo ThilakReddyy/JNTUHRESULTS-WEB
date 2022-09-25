@@ -1,24 +1,22 @@
-import temp from "./temp"
 import { useRouter } from 'next/router'
 
 const SingleResults=({query})=>
 {
- console.log(query);
   const Results=query['Results'];
   const Details=query['Details'];
 
   return(
-    <div class="m-2 text-[45%] sm:text-[60%] md:text-[80%] lg:text-[100%]">
+    <div className="m-2 text-[45%] sm:text-[60%] md:text-[80%] lg:text-[100%]">
         {Object.keys(Results).map((val,ind)=>{return <>
             <div id='1'>
-              <table class="w-[100%]">
+              <table className="w-[100%]">
                 <tbody>
                   <tr>
                     <th>{val} Results</th>
                   </tr>
                 </tbody>
               </table>
-              <table class="w-[100%]">
+              <table className="w-[100%]">
                 <tbody>
                   <tr>
                     {Object.keys(Details).map((value,index)=>{return <><th>{value}</th><th>{Details[value]}</th></>})}
@@ -35,7 +33,7 @@ const SingleResults=({query})=>
                   </tr>
                     {Object.keys(Results[val]).map(function(item,index,arr)
                     {
-                        if(item!='CGPA') 
+                        if(item!='CGPA' & item!='total' & item!='credits') 
                         {
                           return  <><tr>
                                       <th>{Results[val][item]['subject_name']}</th>

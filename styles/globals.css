@@ -13,3 +13,11 @@ th{
     border-collapse: separate;
     border-spacing:2px;
 }
+.control-dots,.carousel-status
+{
+    visibility: hidden;
+}
+.control-arrow:hover
+{
+    background: none;
+}

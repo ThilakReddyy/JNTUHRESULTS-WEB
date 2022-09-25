@@ -1,12 +1,13 @@
 import '../styles/globals.css'
-import Header from '../components/Header'
-import HomeNav from '../components/HomeNav'
+import Layout from '../components/Layout/Layout';
 function MyApp({ Component, pageProps }) {
-  return <>
-      <Header />
-      <HomeNav />
-      <Component {...pageProps} />
-      </>
+
+
+    return( <>
+      <Layout >
+        <Component {...pageProps}/> 
+      </Layout>
+      </>)
 }
 
 export default MyApp
