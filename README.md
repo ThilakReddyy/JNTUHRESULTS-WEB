@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ThilakReddyy/JNTUHRESULTS-WEB/main/public/favicon-black.png?token=GHSAT0AAAAAABX5OI2JTQJBUIDC6TKFRFCGYZQTF2Q" alt="JNTUH B.TECH RESULTS" width="100">
+  <img src="https://raw.githubusercontent.com/ThilakReddyy/JNTUHRESULTS-WEB/main/public/favicon-black.png#gh-dark-mode-only" alt="JNTUH B.TECH RESULTS" width="100">
+  <img src="https://raw.githubusercontent.com/ThilakReddyy/JNTUHRESULTS-WEB/main/public/favicon-light.png#gh-light-mode-only" alt="JNTUH B.TECH RESULTS" width="100">
   <br>  
   ▲ Vercel    |     Next.js
 </p>
