@@ -11,17 +11,18 @@ const Header = () => {
           content='https://jntuhresults.vercel.app/'
         />
         <meta property='og:type' content='website' />
-        <meta property='og:title' content='JNTUH B.Tech Results' />
+        <meta property='og:title' content='JNTUH Results' />
         <meta name='twitter:card' content='summary' />
-        {/* <meta name="viewport" content="width=1024"></meta> */}
+        <meta property="twitter:title" content="JNTUH Results" />
         <meta
           property='og:description'
           content='You can find the Results of your entire B Tech semesters here of Jawaharlal Nehru Technological University, Hyderabad (JNTUH).'
         />
+        <meta property="twitter:description" content="JNTUH Results, JNTUH B.Tech Results, JNTUH Results Enginnering, JNTUH Engineering Results "></meta>
         <meta
           property='og:image'
           content={
-            'https://user-images.githubusercontent.com/64121161/168486734-5d799aed-6110-47aa-8338-a0aa3c70e963.png'
+            'https://raw.githubusercontent.com/ThilakReddyy/JNTUHRESULTS-WEB/main/public/favicon-black.png'
           }
         />
 
