@@ -1,10 +1,12 @@
 import Link from "next/link";
+import HomeBanner from "./HomeBanner";
 
 const HomeFooter = ()=>
 {
 
     return (
     <>
+
         <p className="mt-1 block text-left mx-[12%] text-center mb-4 text-[65%] sm:text-[100%]">
             Made with ❤ by &nbsp;
             <Link href="https://github.com/ThilakReddyy/" >
@@ -21,6 +23,8 @@ const HomeFooter = ()=>
                 </a>
             </Link>
         </p>
+        <HomeBanner />
+
     </>      
     )
 }
