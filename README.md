@@ -25,12 +25,6 @@ To get started, just clone the repository and run `npm install && npm run dev`:
     npm install
     npm run dev
 
-## Thanks
-
-- [▲ Vercel](https://vercel.com/) for fast deployments served from the edge, hosting our website, downloads, and updates.
-- [Next.js](https://nextjs.org/) for development framework created by Vercel enabling React-based web applications with server-side rendering and generating static websites
-
-
 ## Building and deploying in production
 
 If you wanted to run this site in production, you should install modules then build the site with `npm run build` and run it with `npm start`:
