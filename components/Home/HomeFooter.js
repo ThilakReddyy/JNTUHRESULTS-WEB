@@ -23,7 +23,7 @@ const HomeFooter = ()=>
                 </a>
             </Link>
         </p>
-        <HomeBanner />
+        {/* <HomeBanner /> */}
 
     </>      
     )
