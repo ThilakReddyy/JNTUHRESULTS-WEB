@@ -14,17 +14,38 @@ const HomeSingle = ({ homepage }) => {
     else {
       setWarning()
       homepage(<Loading />)
-      const response = await axios.get('https://jntuhresults.up.railway.app/api/single?htno=' + htno, { mode: 'cors' });
-      if (response.status == 500) {
-        homepage(<><div className="text-[300%]">{response.status} | Server Error</div></>)
+      try
+      {
+        const response = await axios.get('https://jntuhresults.up.railway.app/api/single?htno=' + htno, { mode: 'cors' });
+        console.log(response.status)
+        if (response.status == 500) {
+          homepage(<><div className="text-[300%]">{response.status} | Server Error</div></>)
+        }
+        else if (response.status == 404 || response.status == 400) {
+          console.log("ok")
+          homepage(<><div className="text-[300%]">{response.status} | 404 page Not Found</div></>)
+        }
+        else {
+          // router.push('?' + htno, undefined, { shallow: true })
+          homepage(<SingleResults query={response.data} />)
+        }
       }
-      else if (response.status == 404 || response.status == 400) {
-        homepage(<><div className="text-[300%]">{response.status} | 404 page Not Found</div></>)
+      catch
+      {
+        homepage(<><div
+          style={{
+            marginTop: 100,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <p>500 | Please try again later</p>
+        </div></>)
+
       }
-      else {
-        // router.push('?' + htno, undefined, { shallow: true })
-        homepage(<SingleResults query={response.data} />)
-      }
+      
     }
 
   }
