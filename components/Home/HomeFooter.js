@@ -1,9 +1,14 @@
 import Link from "next/link";
 import HomeBanner from "./HomeBanner";
+import React,{useState} from 'react';
 
 const HomeFooter = ()=>
 {
-
+    const closeBanner=()=>{
+        
+       setHomeBanner(<></>)
+    }
+    const [homeBanner,setHomeBanner]=useState(<HomeBanner closeBanner={closeBanner}/>)
     return (
     <>
 
@@ -23,7 +28,8 @@ const HomeFooter = ()=>
                 </a>
             </Link>
         </p>
-        {/* <HomeBanner /> */}
+        {homeBanner}
+        
 
     </>      
     )
