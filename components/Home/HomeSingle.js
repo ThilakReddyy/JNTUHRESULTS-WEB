@@ -17,12 +17,12 @@ const HomeSingle = ({ homepage }) => {
       try
       {
         const response = await axios.get(url+'/api/single?htno=' + htno, { mode: 'cors' });
-        console.log(response.status)
+        // console.log(response.status)
         if (response.status == 500) {
           homepage(<><div className="text-[300%]">{response.status} | Server Error</div></>)
         }
         else if (response.status == 404 || response.status == 400) {
-          console.log("ok")
+          console.log("400")
           homepage(<><div className="text-[300%]">{response.status} | 404 page Not Found</div></>)
         }
         else {

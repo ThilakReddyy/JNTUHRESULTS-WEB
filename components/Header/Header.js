@@ -30,11 +30,11 @@ const Header = () => {
           dangerouslySetInnerHTML={{
             __html: `
               if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    console.log("dark Mode");         
+                    // console.log("dark Mode");         
                 }
                 else
                 {
-                  console.log("light mode");
+                  // console.log("light mode");
                 }
                 addEventListener('popstate', (event) => { });
                 onpopstate = (event) => {

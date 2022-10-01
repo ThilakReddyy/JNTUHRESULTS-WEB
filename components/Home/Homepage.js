@@ -29,7 +29,6 @@ const Home=({homepage})=>{
 const HomePage = () => {
   const homepage=(value )=>
   {
-    console.log(value)
     setHome(value)
   }
   const [home,setHome]=useState(<Home homepage={homepage}/>)
