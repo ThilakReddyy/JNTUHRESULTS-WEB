@@ -3,10 +3,10 @@ import axios from 'axios';
 import SingleResults from "../Single/SingleResults";
 import Loading from "../Loading/Loading";
 import { useRouter } from 'next/router'
+import url from "../api/api"
 
 const HomeSingle = ({ homepage }) => {
   const router = useRouter();
-
   const submit = async () => {
     if (htno.length != 10) {
       setWarning("The Hall Ticket Should be 10 digits")
@@ -16,7 +16,7 @@ const HomeSingle = ({ homepage }) => {
       homepage(<Loading />)
       try
       {
-        const response = await axios.get('https://jntuhresults.up.railway.app/api/single?htno=' + htno, { mode: 'cors' });
+        const response = await axios.get(url+'/api/single?htno=' + htno, { mode: 'cors' });
         console.log(response.status)
         if (response.status == 500) {
           homepage(<><div className="text-[300%]">{response.status} | Server Error</div></>)

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import axios from 'axios';
 import MultiResults from "../Multi/MultiResults";
 import Loading from "../Loading/Loading";
-
+import url from "../api/api";
 const Homemulti = ({homepage}) => {
     const router = useRouter();
     const submits=async()=>
@@ -15,7 +15,7 @@ const Homemulti = ({homepage}) => {
         else
         {
             homepage(<Loading />)
-            const response=await axios.get('https://jntuhresults.up.railway.app/api/multi?from='+htno1+'&to='+htno2+'&code='+code,{mode:'cors'});
+            const response=await axios.get(url+'/api/multi?from='+htno1+'&to='+htno2+'&code='+code,{mode:'cors'});
             homepage(<MultiResults query={response.data}/>)
         }
     }
