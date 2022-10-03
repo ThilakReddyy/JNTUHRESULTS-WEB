@@ -33,7 +33,7 @@ const MultiResults = ({ query }) => {
                                 Object.keys(Result['Results']).map(function (exam_code) {
                                     return (
                                         Object.keys(Result['Results'][exam_code]).map(function (subject_code) {
-                                            if (subject_code != 'CGPA') {
+                                            if (subject_code != 'CGPA' & subject_code!='total' & subject_code!='credits') {
                                                 return <><tr>
                                                     <th>{Result['Results'][exam_code][subject_code]['subject_name']}</th>
                                                     <th>{Result['Results'][exam_code][subject_code]['subject_code']}</th>

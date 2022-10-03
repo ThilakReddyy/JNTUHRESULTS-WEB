@@ -8,9 +8,15 @@ const HomeBanner = ({closeBanner}) => {
                 <button className="absolute right-[11.7%] sm:right-[11%]" onClick={closeBanner}>
                     [x]
                 </button>
-                <div className="py-[7%]">
-                    <small>This is a lite version of JNTUH Results</small>
-                    <img src='./logo.png' href="https://jntuh-results-stats.vercel.app/" className="w-[60px]  sm:w-[120px]"/>
+                <div className="py-[7%] px-[2%]">
+                    <div>This is a lite version of &nbsp;
+                        <Link href="https://jntuhresults.vercel.app/">
+                            <strong>
+                                JNTUH Results
+                            </strong>
+                        </Link>
+                    </div>
+                    <img src='./logo.png' href="https://jntuhresults.vercel.app/" className="w-[60px]  sm:w-[120px]"/>
                     
                     <div>Check out the full Version of JNTUH RESULTS 
                         <Link href="https://jntuh-results-stats.vercel.app/">
