@@ -24,7 +24,7 @@ const Header = () => {
         <meta
           property='og:image'
           content={
-            'https://raw.githubusercontent.com/ThilakReddyy/JNTUHRESULTS-WEB/main/public/favicon-black.png'
+            'https://raw.githubusercontent.com/ThilakReddyy/JNTUHRESULTS-WEB/main/public/FrontPage.png'
           }
         />
 
