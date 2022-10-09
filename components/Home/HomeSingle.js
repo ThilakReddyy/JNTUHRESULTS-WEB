@@ -27,7 +27,7 @@ const HomeSingle = ({ homepage }) => {
         }
         else {
           homepage(<SingleResults query={response.data} />)
-          // router.push('/Single?htno=' + htno, undefined, { shallow: true })
+          router.push('/Single?htno=' + htno, undefined, { shallow: true })
         }
       }
       catch
