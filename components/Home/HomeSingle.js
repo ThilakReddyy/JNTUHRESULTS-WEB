@@ -79,6 +79,7 @@ const HomeSingle = ({ homepage }) => {
           <br />
         </center>
       </div>
+      
     </>
   )
 }

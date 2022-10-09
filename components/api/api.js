@@ -1,4 +1,6 @@
 
 const url="https://jntuhresults.up.railway.app"
-// const url="http://localhost:8000"
+// const url="http://jntuhresults.herokuapp.com"
+
+
 export default url
