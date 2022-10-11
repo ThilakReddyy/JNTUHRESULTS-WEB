@@ -1,6 +1,6 @@
 
-const url="https://jntuhresults.up.railway.app"
-const urlr="https://jntuhresults.herokuapp.com"
+const urlr="https://jntuhresults.up.railway.app"
+const url="https://jntuhresults.herokuapp.com"
 
 
 export default url
