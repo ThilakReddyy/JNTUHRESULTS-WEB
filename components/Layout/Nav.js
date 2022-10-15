@@ -18,7 +18,7 @@ const Nav = ()=>
                    
                 </a>
             </Link>
-            <Link href='https://github.com/ThilakReddyy/'>
+            <Link href='https://github.com/ThilakReddyy/JNTUHRESULTS-WEB'>
                 <a className="absolute right-[12.5%] mt-2 sm:mt-4">
                     <img src='./github.png' className="w-[12.5px] sm:w-[25px]"/>
                 </a>
