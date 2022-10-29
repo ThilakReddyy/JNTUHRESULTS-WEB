@@ -1,7 +1,7 @@
 import Link from "next/link";
 import HomeBanner from "./HomeBanner";
 import React,{useState} from 'react';
-
+import Script from "next/script";
 const HomeFooter = ()=>
 {
     const closeBanner=()=>{
@@ -28,7 +28,9 @@ const HomeFooter = ()=>
                 </a>
             </Link>
         </p>
-        {homeBanner}
+        {/* {homeBanner} */}
+        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5512897194230969"
+     crossorigin="anonymous"></Script>
         
 
     </>      
