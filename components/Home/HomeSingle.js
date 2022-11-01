@@ -17,6 +17,7 @@ const HomeSingle = ({ homepage }) => {
       try
       {
         const response = await axios.get(url+'/api/single?htno=' + htno, { mode: 'cors' });
+        
         // console.log(response.status)
         if (response.status == 500) {
           homepage(<><div className="text-[300%]">{response.status} | Server Error</div></>)
