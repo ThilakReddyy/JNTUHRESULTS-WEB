@@ -21,3 +21,8 @@ th{
 {
     background: none;
 }
+@media print {
+    .printi, .scroller {
+        display: none;
+    }
+}
