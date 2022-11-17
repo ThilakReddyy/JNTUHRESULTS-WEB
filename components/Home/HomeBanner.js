@@ -27,7 +27,7 @@ const HomeBanner = ({ closeBanner }) => {
                     <div>Check out the another Version of JNTUH RESULTS
                         <a>
                             <Link href="https://jntuh-results-stats.vercel.app/">
-                                <strong > here</strong>
+                                <strong className="hover:cursor-pointer"> here</strong>
                             </Link>
                         </a>
                     </div>

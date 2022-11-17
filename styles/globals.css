@@ -21,3 +21,10 @@ th{
 {
     background: none;
 }
+
+/* @media rule allows you to specify different style for different media(eg.printer)*/
+@media print {
+    .printi, .scroller {
+        display: none;
+    }
+}
