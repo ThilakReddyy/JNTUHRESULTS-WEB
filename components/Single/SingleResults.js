@@ -9,7 +9,7 @@ const SingleResults = ({ query }) => {
 
   return (
     <>
-      <PrintButton />
+      
       <div className="m-2 text-[45%] sm:text-[60%] md:text-[80%] lg:text-[100%]">
         {Object.keys(Results).map((val) => {
           if (val != 'Total') {
