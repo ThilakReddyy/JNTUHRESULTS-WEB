@@ -10,12 +10,12 @@ const HomeBanner = ({ closeBanner }) => {
                 </button>
                 <div className="py-[7%] px-[2%]">
 
-                    <div>This is a newer version of &nbsp;
+                    <div>Discover the TS 10th class results in a quicker manner&nbsp;
                     <br/>
                         <a>
-                            <Link href="https://jntuhresults.vercel.app/">
+                            <Link href="https://tssscresult.vercel.app/">
                                 <strong>
-                                    JNTUH Results
+                                    TS-SSC Results
                                 </strong>
                             </Link>
                         </a>
@@ -24,13 +24,13 @@ const HomeBanner = ({ closeBanner }) => {
                     <small>Get your Results with your CGPA in a second</small>
                     <br />
                     <br />
-                    <div>Check out the another Version of JNTUH RESULTS
-                        <a>
-                            <Link href="https://jntuh-results-stats.vercel.app/">
-                                <strong className="hover:cursor-pointer"> here</strong>
-                            </Link>
-                        </a>
-                    </div>
+//                     <div>Check out the another Version of JNTUH RESULTS
+//                         <a>
+//                             <Link href="https://jntuh-results-stats.vercel.app/">
+//                                 <strong className="hover:cursor-pointer"> here</strong>
+//                             </Link>
+//                         </a>
+//                     </div>
                 </div>
             </center>
         </>
