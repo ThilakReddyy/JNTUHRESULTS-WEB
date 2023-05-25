@@ -4,12 +4,12 @@ import { Analytics } from '@vercel/analytics/react';
 function MyApp({ Component, pageProps }) {
 
 
-    return( <>
-      <Layout >
-        <Component {...pageProps}/> 
-      </Layout>
-      <Analytics/>
-      </>)
+  return (<>
+    <Layout >
+      <Component {...pageProps} />
+    </Layout>
+    <Analytics />
+  </>)
 }
 
 export default MyApp

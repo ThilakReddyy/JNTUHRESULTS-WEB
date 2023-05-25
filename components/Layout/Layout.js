@@ -1,12 +1,12 @@
 import Header from "../Header/Header";
-import Nav from "./Nav";
+import NavBar from "../NavBar/NavBar"
 
-const Layout=({children})=>{
+const Layout = ({ children }) => {
     return (
         <>
-        <Header />
-        <Nav />
-        {children}
+            <Header />
+            <NavBar />
+            {children}
         </>
     );
 }

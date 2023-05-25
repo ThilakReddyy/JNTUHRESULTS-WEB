@@ -1,30 +1,114 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-table{
-    border: 1px solid black;
-    border-collapse: separate;
-    border-spacing:2px;
-    width:100%;
-    border-bottom-width: 1px;
-}
-th{
-    border: 1px solid black;
-    border-collapse: separate;
-    border-spacing:2px;
-}
-.control-dots,.carousel-status
-{
-    visibility: hidden;
-}
-.control-arrow:hover
-{
-    background: none;
+
+:root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
 }
 
-/* @media rule allows you to specify different style for different media(eg.printer)*/
-@media print {
-    .printi, .scroller {
-        display: none;
+@media (prefers-color-scheme: dark) {
+    :root {
+        --foreground-rgb: 255, 255, 255;
+        --background-start-rgb: 0, 0, 0;
+        --background-end-rgb: 0, 0, 0;
     }
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    top: 0px;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-fade-in {
+    animation-name: fade-in;
+    animation-duration: 1.5s;
+}
+
+
+table {
+    border: 1px solid black;
+    border-collapse: separate;
+    border-spacing: 2px;
+    width: 100%;
+    border-bottom-width: 1px;
+
+}
+
+th {
+    border: 1px solid black;
+    border-collapse: separate;
+    border-spacing: 2px;
+    height: 20px;
+}
+
+@media (max-width: 768px) {
+    .async-select-nav-selected {
+        z-index: 1;
+    }
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    font-family: cursive;
+}
+
+.loading div {
+    animation-name: word-loading;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: normal;
+
+}
+
+@keyframes word-loading {
+    0% {
+        margin: 0;
+        color: white;
+    }
+
+    100% {
+        margin: 0;
+        color: transparent;
+    }
+
+
+}
+
+.d {
+    color: black;
+    animation-play-state: paused;
+}
+
+.dot {
+    animation-delay: .5s;
+
+}
+
+.dot2 {
+    animation-delay: 1s;
+}
+
+.dot3 {
+    animation-delay: 1.5s;
+}
+
+.headertext {
+    background: -webkit-linear-gradient(#9c5d5d, #000000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

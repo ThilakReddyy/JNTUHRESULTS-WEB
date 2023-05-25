@@ -13,7 +13,7 @@ const Header = () => {
           property='og:url'
           content='https://jntuhresults.vercel.app/'
         />
-        
+
         <meta property='og:type' content='website' />
         <meta property='og:title' content='JNTUH Results' />
         <meta name='twitter:card' content='summary' />
@@ -22,7 +22,7 @@ const Header = () => {
           property='og:description'
           content='You can find the Results of your entire B Tech semesters here of Jawaharlal Nehru Technological University, Hyderabad (JNTUH).'
         />
-        
+
         <meta property="twitter:description" content="JNTUH Results, JNTUH B.Tech Results, JNTUH Results Enginnering, JNTUH Engineering Results "></meta>
         <meta
           property='og:image'
