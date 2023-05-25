@@ -42,15 +42,15 @@ const AcademicReportPage = () => {
     }
     const [htno, setHtno] = useState("");
     const [warning, setWarning] = useState("");
-    return (<div className='pt-[75px]'>
+    return (<div>
         <br />
-        <div className={`${reportForm ? 'block' : 'hidden'} md:my-[50px]`}>
+        <div className={`${reportForm ? 'block' : 'hidden'} md:my-[50px] pt-[75px]`}>
             <AcademicReportForm warning={warning} setHtno={setHtno} submit={submit} />
         </div>
-        <div className={loading ? 'block' : 'hidden'}>
+        <div className={`${loading ? 'block' : 'hidden'} pt-[75px]`}>
             <Loading />
         </div>
-        <div className={`${(!reportForm && !loading) ? 'block' : 'hidden'}`}>
+        <div className={`${(!reportForm && !loading) ? 'block' : 'hidden'} pt-[50px]`}>
             <AcademicReportResult query={result} />
         </div>
 
