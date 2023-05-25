@@ -15,6 +15,7 @@
     "aos": "^2.3.4",
     "axios": "^0.27.2",
     "cross-env": "^7.0.3",
+    "js-cookie": "^3.0.5",
     "next": "12.3.0",
     "react": "^18.2.0",
     "react-autocomplete": "^1.8.1",
