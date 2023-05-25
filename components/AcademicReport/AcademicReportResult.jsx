@@ -8,7 +8,7 @@ const AcademicReportResult = ({ query }) => {
             <div className="m-2 text-[45%] sm:text-[60%] md:text-[80%] lg:text-[100%]">
                 <table className="w-[100%] my-2">
                     <tbody>
-                        <tr className='w-max bg-gray-200'>
+                        <tr className='w-max bg-gray-200 md:bg-gray-300'>
                             {Object.keys(Details).map((value, index) => { return <><th>{value}</th></> })}
 
                         </tr>
@@ -23,7 +23,7 @@ const AcademicReportResult = ({ query }) => {
                             <div id='1'>
                                 <table className="w-[100%]">
                                     <tbody>
-                                        <tr className="bg-gray-400">
+                                        <tr className="bg-gray-400 md:bg-white">
                                             <th>{val} Results</th>
                                         </tr>
                                     </tbody>
@@ -31,7 +31,7 @@ const AcademicReportResult = ({ query }) => {
 
                                 <table>
                                     <tbody>
-                                        <tr className="w-max bg-gray-200">
+                                        <tr className="w-max bg-gray-200 md:bg-gray-300">
                                             <th>SUBJECT_CODE</th>
                                             <th>SUBJECT_NAME</th>
                                             <th>GRADE</th>

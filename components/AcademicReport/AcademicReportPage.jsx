@@ -15,7 +15,7 @@ const AcademicReportPage = () => {
             setWarning("")
             SetLoading(true);
             setReportForm(false);
-            const url = "https://jntuhresults.up.railway.app/api/single?htno=" + htno
+            const url = "https://jntuhresults.up.railway.app/api/academicresult?htno=" + htno
             try {
                 const response = await axios.get(url, { mode: 'cors' });
                 if (response.status == 200) {
