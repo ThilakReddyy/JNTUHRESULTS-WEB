@@ -15,13 +15,14 @@ const HomePage = () => {
     });
   }, []);
   return (<>
-    <div className=" md:block bg-gradient-to-b from-red-500 to-blue-700">
+    <div className="md:block bg-gradient-to-b from-red-500 to-blue-700">
       <div className="h-screen flex justify-center items-center p-8">
         <center className='md:flex headertext font-montser text-[35px] md:text-[50px] lg:text-[70px] xl-[90px] 2xl:text-[120px] md:drop-shadow-md animate-fade-in text-gray-900 leading-tight'>
-          JNTUH RESULTS
+          Welcome to JNTUH RESULTS
         </center>
       </div>
     </div>
+
 
     <div className='md:hidden'>
 

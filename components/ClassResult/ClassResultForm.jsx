@@ -7,6 +7,8 @@ const ClassReportForm = ({ setSchoolCode, warning, submit }) => {
     const [collegeOption, setCollegeOption] = useState(null);
     const [semesterOption, setSemesterOption] = useState(null);
     const [regulationOption, setRegulationOption] = useState(null);
+    const [degreeOption, setDegreeOption] = useState(null);
+    const [branchOption, setBranchOption] = useState(null);
     const [fontSize, setFontSize] = useState(10);
 
     const handleSetCollegeOption = (event) => {
@@ -20,7 +22,15 @@ const ClassReportForm = ({ setSchoolCode, warning, submit }) => {
 
     const handleRegulationChange = (event) => {
         setRegulationOption(event.target.value)
-        console.log(collegeOption, semesterOption, regulationOption)
+        console.log(collegeOption, degreeOption, semesterOption, regulationOption)
+    };
+
+    const handleDegreeOptionChange = (event) => {
+        setDegreeOption(event.target.value)
+    }
+
+    const handleBranchOptionChange = (event) => {
+        setBranchOption(event.target.value)
     }
     useEffect(() => {
         const handleResize = () => {
@@ -42,14 +52,13 @@ const ClassReportForm = ({ setSchoolCode, warning, submit }) => {
 
     return (
         <>
-            <div className="w-[66%] mx-[17%]">
+            <div className="w-[75%] mx-[12.5%] md:w-[66%] md:mx-[17%]">
                 <div className="mx-[0.25%] border-black shadow-2xl border-[3px] rounded-md">
                     <center className="py-[35px]">
-                        <br />
+
                         <h2 className="leading-normal font-semibold mx-1 text-[1xl] sm:text-2xl">
                             Class Performance
                         </h2>
-                        <br />
                         <br />
                         <div className="px-[10%] md:px-[30%] text-xs ">
                             <select
@@ -77,7 +86,62 @@ const ClassReportForm = ({ setSchoolCode, warning, submit }) => {
                                 }
 
                             </select>
-
+                            <select
+                                value={degreeOption}
+                                onChange={handleDegreeOptionChange}
+                                className="w-[100%] py-[4px] border border-[#CCCCCC] mt-[5px] rounded-sm h-[35px] text-center"
+                                style={{ fontSize: `${fontSize}px`, color: '#808080' }}
+                            >
+                                <option value="" disabled selected>
+                                    Enter the Degree...
+                                </option>
+                                <option value="A">B.Tech</option>
+                                <option value="R">B.Pharmacy</option>
+                            </select>
+                            <select
+                                value={regulationOption}
+                                onChange={handleRegulationChange}
+                                className="w-[100%] py-[4px] border border-[#CCCCCC] mt-[5px] rounded-sm h-[35px] text-center"
+                                style={{ fontSize: `${fontSize}px`, color: '#808080' }}
+                            >
+                                <option value="" disabled selected>
+                                    Enter the Year...
+                                </option>
+                                <option value="18">2018-2022</option>
+                                <option value="19">2019-2023</option>
+                                <option value="20">2020-2024</option>
+                                <option value="21">2021-2025</option>
+                                <option value="22">2022-2026</option>
+                                <option value="23">2023-2027</option>
+                            </select>
+                            <select
+                                value={branchOption}
+                                onChange={handleBranchOptionChange}
+                                className="w-[100%] py-[4px] border border-[#CCCCCC] mt-[5px] rounded-sm h-[35px] text-center"
+                                style={{ fontSize: `${fontSize}px`, color: '#808080' }}
+                            >
+                                <option value="" disabled selected>
+                                    Enter the Branch Name...
+                                </option>
+                                <option value="21">Aeronautical Engineering</option>
+                                <option value="11">BioMedical Engineering</option>
+                                <option value="08">Chemical Engineering</option>
+                                <option value="01">Civil Engineering</option>
+                                <option value="56">Computer Engineering (Software Engineering) Technology</option>
+                                <option value="05">Computer Science &amp; Engineering</option>
+                                <option value="66">Computer Science and Engineering (Artificial Intelligence and Machine Learning)</option>
+                                <option value="62">Computer Science and Engineering (Cyber Security) Technology</option>
+                                <option value="67">Computer Science and Engineering (Datascience)</option>
+                                <option value="69">Computer Science and Engineering (IoT)</option>
+                                <option value="02">Electrical &amp; Electronics Engineering</option>
+                                <option value="04">Electronics &amp; Communication Engineering</option>
+                                <option value="19">Electronics &amp; Computer Engineering</option>
+                                <option value="13">Electronics &amp; Control Engineering</option>
+                                <option value="10">Electronics &amp; Instrumentation Engineering</option>
+                                <option value="12">Information Technology</option>
+                                <option value="22">Instrumentation &amp; Control Engineering</option>
+                                <option value="03">Mechanical Engineering</option>
+                            </select>
                             <select
                                 value={semesterOption}
                                 onChange={handleSemesterChange}
@@ -96,22 +160,7 @@ const ClassReportForm = ({ setSchoolCode, warning, submit }) => {
                                 <option value="4-1">IV Year I Semester</option>
                                 <option value="4-2">IV Year II Semester</option>
                             </select>
-                            <select
-                                value={regulationOption}
-                                onChange={handleRegulationChange}
-                                className="w-[100%] py-[4px] border border-[#CCCCCC] mt-[5px] rounded-sm h-[35px] text-center"
-                                style={{ fontSize: `${fontSize}px`, color: '#808080' }}
-                            >
-                                <option value="" disabled selected>
-                                    Enter the Year...
-                                </option>
-                                <option value="18">2018-2022</option>
-                                <option value="19">2019-2023</option>
-                                <option value="20">2020-2024</option>
-                                <option value="21">2021-2025</option>
-                                <option value="22">2022-2026</option>
-                                <option value="23">2023-2027</option>
-                            </select>
+
                         </div>
                         <br />
                         <p className="text-[60%] text-red-600 ">{warning}</p>
