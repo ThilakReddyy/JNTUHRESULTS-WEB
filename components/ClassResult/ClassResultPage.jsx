@@ -105,7 +105,21 @@ const AcademicReportPage = () => {
                         roll_numbers += roll_number + j.toString() + ",";
                     }
                     roll_numbers = roll_numbers.slice(0, -1);
-
+                    var storedData = localStorage.getItem(roll_number + form['semesterOption']);
+                    if (storedData !== null) {
+                        const parsedData = JSON.parse(storedData);
+                        const currentTime = new Date().getTime();
+                        if (parsedData.expiry < currentTime) {
+                            console.log("dateexpired")
+                            localStorage.removeItem(roll_number + form['semesterOption']);
+                        } else {
+                            setLoading(false);
+                            setResult(prevResult => [...prevResult, ...parsedData.value]);
+                            setReportForm(false);
+                            console.log("takenfrom here")
+                            continue;
+                        }
+                    }
                     const response = await axios.get(url + roll_numbers, { mode: 'cors' });
                     if (response.status === 200) {
                         if (response.data.length === 0) {
@@ -114,6 +128,13 @@ const AcademicReportPage = () => {
                         }
                         setLoading(false);
                         setResult(prevResult => [...prevResult, ...response.data]);
+                        const expiryDate = new Date();
+                        expiryDate.setSeconds(expiryDate.getHours() + 1); // Set expiry date to 1 hour from now
+                        const dataToStore = {
+                            value: response.data,
+                            expiry: expiryDate.getTime() // Store expiry timestamp
+                        };
+                        localStorage.setItem(roll_number + form['semesterOption'], JSON.stringify(dataToStore));
                     }
                 }
             }
@@ -127,8 +148,9 @@ const AcademicReportPage = () => {
     return (
         <div className=''>
             <br />
+            {/* Render the form */}
             <div className={`${reportForm ? 'block' : 'hidden'} md:my-[50px] pt-[75px]`}>
-                {/* Render the form */}
+
                 <ClassResultForm
                     warning={warning}
                     submit={submit}
@@ -136,12 +158,14 @@ const AcademicReportPage = () => {
                     setForm={setForm}
                 />
             </div>
+
+            {/* Render the loading component */}
             <div className={`${loading ? 'block' : 'hidden'} pt-[75px]`}>
-                {/* Render the loading component */}
                 <Loading />
             </div>
+
+            {/* Render the result component */}
             <div className={`${!reportForm && !loading ? 'block' : 'hidden'} pt-[55px]`}>
-                {/* Render the result component */}
                 <ClassResultResult query={result} semester={form['semesterOption']} />
             </div>
         </div>
