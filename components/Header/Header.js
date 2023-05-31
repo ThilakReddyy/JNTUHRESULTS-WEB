@@ -50,9 +50,10 @@ const Header = () => {
           }}
         >
         </script>
-        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5512897194230969"
-          crossorigin="anonymous"></Script>
       </Head>
+      <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5512897194230969"
+        crossorigin="anonymous"></Script>
+
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-6CR1W425NE"
         strategy="afterInteractive"
