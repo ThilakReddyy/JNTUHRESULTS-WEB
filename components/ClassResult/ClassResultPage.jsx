@@ -7,18 +7,19 @@ import Loading from '../Loading/Loading';
 const AcademicReportPage = () => {
     // State variables
     const [form, setForm] = useState({
-        collegeOption: null,
-        semesterOption: null,
-        regulationOption: null,
-        degreeOption: null,
-        branchOption: null
+        collegeOption: "",
+        semesterOption: "",
+        regulationOption: "",
+        degreeOption: "",
+        branchOption: ""
     });
 
     const [result, setResult] = useState([]);
     const [reportForm, setReportForm] = useState(true);
     const [loading, setLoading] = useState(false);
-    const [warning, setWarning] = useState("The feature is under development!!!");
+    const [warning, setWarning] = useState("");
     const [len, setLen] = useState(false);
+    const [updating, setUpdating] = useState(true);
 
     useEffect(() => {
         // Check if the result is empty and len is true
@@ -28,6 +29,11 @@ const AcademicReportPage = () => {
             setReportForm(true);
         }
     }, [result, len]);
+
+
+    useEffect(() => {
+        console.log(result)
+    }, [updating])
 
     // Function to increase a string value by one
     const increaseStringValueByOne = (value) => {
@@ -64,7 +70,7 @@ const AcademicReportPage = () => {
         // Check if all form values are selected
         const values = Object.values(form);
         for (const value of values) {
-            if (value === null) {
+            if (value === "") {
                 setWarning("Select all the values!!!");
                 return;
             }
@@ -129,7 +135,7 @@ const AcademicReportPage = () => {
                         setLoading(false);
                         setResult(prevResult => [...prevResult, ...response.data]);
                         const expiryDate = new Date();
-                        expiryDate.setSeconds(expiryDate.getHours() + 1); // Set expiry date to 1 hour from now
+                        expiryDate.setHours(expiryDate.getHours() + 1); // Set expiry date to 1 hour from now
                         const dataToStore = {
                             value: response.data,
                             expiry: expiryDate.getTime() // Store expiry timestamp
@@ -138,6 +144,7 @@ const AcademicReportPage = () => {
                     }
                 }
             }
+            setUpdating(false);
         } catch {
             alert("500 - Internal Server Error");
             setLoading(false);

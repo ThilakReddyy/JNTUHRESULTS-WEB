@@ -71,7 +71,7 @@ const ClassReportForm = ({ warning, submit, form, setForm }) => {
                         <div className="px-[10%] md:px-[30%] text-xs ">
                             {/* College Name */}
                             <select
-                                value={form['collegeOption']}
+                                defaultValue={form['collegeOption']}
                                 onChange={handleSetCollegeOption}
                                 className="w-[100%] py-[4px] border border-[#CCCCCC] mt-[5px] rounded-sm h-[35px] text-center "
                                 style={{ fontSize: `${fontSize}px`, color: '#808080' }}
@@ -98,7 +98,7 @@ const ClassReportForm = ({ warning, submit, form, setForm }) => {
 
                             {/* Degree Name */}
                             <select
-                                value={form['degreeOption']}
+                                defaultValue={form['degreeOption']}
                                 onChange={handleDegreeOptionChange}
                                 className="w-[100%] py-[4px] border border-[#CCCCCC] mt-[5px] rounded-sm h-[35px] text-center"
                                 style={{ fontSize: `${fontSize}px`, color: '#808080' }}
@@ -126,7 +126,7 @@ const ClassReportForm = ({ warning, submit, form, setForm }) => {
                                 <option value="23">2023-2027</option>
                             </select>
                             <select
-                                value={form['branchOption']}
+                                defaultValue={form['branchOption']}
                                 onChange={handleBranchOptionChange}
                                 className="w-[100%] py-[4px] border border-[#CCCCCC] mt-[5px] rounded-sm h-[35px] text-center"
                                 style={{ fontSize: `${fontSize}px`, color: '#808080' }}
@@ -154,7 +154,7 @@ const ClassReportForm = ({ warning, submit, form, setForm }) => {
                                 <option value="03">Mechanical Engineering</option>
                             </select>
                             <select
-                                value={form['semesterOption']}
+                                defaultValue={form['semesterOption']}
                                 onChange={handleSemesterChange}
                                 className="w-[100%] py-[4px] border border-[#CCCCCC] mt-[5px] rounded-sm h-[35px] text-center"
                                 style={{ fontSize: `${fontSize}px`, color: '#808080' }}

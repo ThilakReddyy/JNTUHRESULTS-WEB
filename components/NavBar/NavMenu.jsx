@@ -3,12 +3,17 @@ import { BsLayoutTextSidebarReverse } from 'react-icons/bs'
 import { FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa'
 import { IoIosNotificationsOutline } from "react-icons/io";
 import Link from 'next/link'
+import { Inter } from 'next/font/google'
 
+const inter = Inter({
+    subsets: ['latin'],
+    variable: '--font-inter',
+})
 const NavMenu = ({ handleNavBar }) => {
 
     return (<>
 
-        <div className={` font-Inter font-sans fixed  z-10 w-full bg-white h-full mt-[60px] md:mt-[0px]  mr-0 shadow-xl md:flex md:h-[25px] md:shadow-none md:w-auto md:right-[150px]`}>
+        <div className={`${inter.variable} font-Inter font-sans fixed  z-10 w-full bg-white h-full mt-[60px] md:mt-[0px]  mr-0 shadow-xl md:flex md:h-[25px] md:shadow-none md:w-auto md:right-[150px]`}>
 
 
             <Link href='/'>
