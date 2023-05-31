@@ -1,81 +1,85 @@
-const ClassResultResult = ({ query }) => {
-    return (<>
-        <div className="m-2 text-[55%] sm:text-[80%] md:text-[80%] lg:text-[100%]">
-            {query.map((res, index) => {
-                var details = res["Details"]
-                var results = res["Results"]
+const ClassResultResult = ({ query, semester }) => {
+    return (
+        <>
+            <div className="m-2 text-[45%] sm:text-[60%] md:text-[80%] lg:text-[100%]" >
+
+                <table className="w-[100%]">
+                    <tbody>
+                        <tr className="bg-gray-400 md:bg-white">
+                            <th>{semester} Results</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {query.map((value, index) => {
+                const Details = value['Details'];
+                const Results = value['Results'];
+
                 return (
-                    <>
-                        <table className="w-[100%] mt-4">
-                            <tbody>
-                                <tr className='w-max bg-gray-200 text-[130%] sm:text-[100%]'>
-                                    <th className="w-[28%]">Roll Number</th>
-                                    <th>Student Name</th>
+                    <div className="m-2 text-[45%] sm:text-[60%] md:text-[80%] lg:text-[100%]" key={index}>
 
+                        <table className="w-[100%] mt-2">
+                            <tbody>
+                                <tr className='w-max bg-gray-200 md:bg-gray-300'>
+                                    {Object.keys(Details).map((value, index) => (
+                                        <th key={index}>{value}</th>
+                                    ))}
                                 </tr>
                                 <tr>
-                                    <th>{details["Roll Number"]}</th>
-                                    <th>{details["Student Name"]}</th>
+                                    {Object.keys(Details).map((value, index) => (
+                                        <th key={index}>{Details[value]}</th>
+                                    ))}
                                 </tr>
-
                             </tbody>
-
                         </table>
-                        <table className="w-[100%] ">
-                            <tbody>
-                                <tr className='w-max bg-gray-200 sm:text-[100%]'>
-                                    <th>Subject Name</th>
-                                    <th>Grade FA</th>
-                                    <th>Grade SA</th>
-                                    <th>Subject Grade</th>
-                                    <th>Subject Grade point</th>
+                        {Object.keys(Results).map((val) => {
+                            if (val !== 'Total') {
+                                return (
+                                    <div key={val} id='1'>
 
-                                </tr>
 
-                                {results.map((val, index) => {
-                                    console.log(index == 6, val)
-                                    return (
-                                        <>
-                                            {index == 6 ? <><div className="my-[1px]"></div></> : <></>}
-                                            <tr className='w-max sm:text-[100%]'>
-                                                <th>{val["Subject Name"]}</th>
-                                                <th>{val["Grade FA"]}</th>
-                                                <th>{val["Grade SA"]}</th>
-                                                <th>{val["Subject Grade"]}</th>
-                                                <th>{val["Subject Grade point"]}</th>
-
-                                            </tr>
-                                        </>
-                                    )
-                                })}
-
-                            </tbody>
-
-                        </table>
-                        <table className="w-[100%] ">
-                            <tbody>
-                                <tr >
-                                    <th className="w-max text-[130%] sm:text-[100%] w-[49.1%]">CGPA</th>
-                                    <th>{res["CGPA"]}</th>
-
-                                </tr>
-                                <tr>
-                            
-                                    <th className="w-max text-[130%] sm:text-[100%] w-[49.1%]">Result</th>
-                                    <th className={res["Result"] === 'PASSED' ? 'text-green-600' : 'text-red-400'}>
-                                        {res["Result"]}
-                                    </th>
-                                </tr>
-
-                            </tbody>
-
-                        </table>
-                    </>
-                )
-
+                                        <table>
+                                            <tbody>
+                                                <tr className="w-max bg-gray-200 md:bg-gray-300">
+                                                    <th>SUBJECT_CODE</th>
+                                                    <th>SUBJECT_NAME</th>
+                                                    <th>GRADE</th>
+                                                    <th>CREDITS</th>
+                                                </tr>
+                                                {Object.keys(Results[val]).map((item, index) => {
+                                                    if (item !== 'CGPA' && item !== 'total' && item !== 'credits') {
+                                                        return (
+                                                            <tr key={index}>
+                                                                <th>{Results[val][item]['subject_code']}</th>
+                                                                <th>{Results[val][item]['subject_name']}</th>
+                                                                <th>{Results[val][item]['subject_grade']}</th>
+                                                                <th>{Results[val][item]['subject_credits']}</th>
+                                                            </tr>
+                                                        );
+                                                    }
+                                                    return null;
+                                                })}
+                                            </tbody>
+                                        </table>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <th style={{ width: '75%' }}>CGPA</th>
+                                                    <th>{Results[val]['CGPA']}</th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <br />
+                                    </div>
+                                );
+                            }
+                            return null;
+                        })}
+                    </div>
+                );
             })}
-        </div>
-    </>)
-}
+        </>
+    );
+};
 
 export default ClassResultResult;

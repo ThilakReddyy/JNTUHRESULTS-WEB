@@ -2,35 +2,43 @@ import React, { useEffect, useState } from "react";
 import data from './colleges';
 import Footer from "../Footer/Footer";
 
-const ClassReportForm = ({ setSchoolCode, warning, submit }) => {
-
-    const [collegeOption, setCollegeOption] = useState(null);
-    const [semesterOption, setSemesterOption] = useState(null);
-    const [regulationOption, setRegulationOption] = useState(null);
-    const [degreeOption, setDegreeOption] = useState(null);
-    const [branchOption, setBranchOption] = useState(null);
+const ClassReportForm = ({ warning, submit, form, setForm }) => {
     const [fontSize, setFontSize] = useState(10);
 
     const handleSetCollegeOption = (event) => {
-        setCollegeOption(event.target.value);
 
+        setForm(prevForm => ({
+            ...prevForm,
+            collegeOption: event.target.value
+        }));
     }
 
     const handleSemesterChange = (event) => {
-        setSemesterOption(event.target.value);
+        setForm(prevForm => ({
+            ...prevForm,
+            semesterOption: event.target.value
+        }));
     };
 
     const handleRegulationChange = (event) => {
-        setRegulationOption(event.target.value)
-        console.log(collegeOption, degreeOption, semesterOption, regulationOption)
+        setForm(prevForm => ({
+            ...prevForm,
+            regulationOption: event.target.value
+        }));
     };
 
     const handleDegreeOptionChange = (event) => {
-        setDegreeOption(event.target.value)
+        setForm(prevForm => ({
+            ...prevForm,
+            degreeOption: event.target.value
+        }));
     }
 
     const handleBranchOptionChange = (event) => {
-        setBranchOption(event.target.value)
+        setForm(prevForm => ({
+            ...prevForm,
+            branchOption: event.target.value
+        }));
     }
     useEffect(() => {
         const handleResize = () => {
@@ -61,8 +69,9 @@ const ClassReportForm = ({ setSchoolCode, warning, submit }) => {
                         </h2>
                         <br />
                         <div className="px-[10%] md:px-[30%] text-xs ">
+                            {/* College Name */}
                             <select
-                                value={collegeOption}
+                                value={form['collegeOption']}
                                 onChange={handleSetCollegeOption}
                                 className="w-[100%] py-[4px] border border-[#CCCCCC] mt-[5px] rounded-sm h-[35px] text-center "
                                 style={{ fontSize: `${fontSize}px`, color: '#808080' }}
@@ -86,8 +95,10 @@ const ClassReportForm = ({ setSchoolCode, warning, submit }) => {
                                 }
 
                             </select>
+
+                            {/* Degree Name */}
                             <select
-                                value={degreeOption}
+                                value={form['degreeOption']}
                                 onChange={handleDegreeOptionChange}
                                 className="w-[100%] py-[4px] border border-[#CCCCCC] mt-[5px] rounded-sm h-[35px] text-center"
                                 style={{ fontSize: `${fontSize}px`, color: '#808080' }}
@@ -99,7 +110,7 @@ const ClassReportForm = ({ setSchoolCode, warning, submit }) => {
                                 <option value="R">B.Pharmacy</option>
                             </select>
                             <select
-                                value={regulationOption}
+                                value={form['regulationOption']}
                                 onChange={handleRegulationChange}
                                 className="w-[100%] py-[4px] border border-[#CCCCCC] mt-[5px] rounded-sm h-[35px] text-center"
                                 style={{ fontSize: `${fontSize}px`, color: '#808080' }}
@@ -115,7 +126,7 @@ const ClassReportForm = ({ setSchoolCode, warning, submit }) => {
                                 <option value="23">2023-2027</option>
                             </select>
                             <select
-                                value={branchOption}
+                                value={form['branchOption']}
                                 onChange={handleBranchOptionChange}
                                 className="w-[100%] py-[4px] border border-[#CCCCCC] mt-[5px] rounded-sm h-[35px] text-center"
                                 style={{ fontSize: `${fontSize}px`, color: '#808080' }}
@@ -143,7 +154,7 @@ const ClassReportForm = ({ setSchoolCode, warning, submit }) => {
                                 <option value="03">Mechanical Engineering</option>
                             </select>
                             <select
-                                value={semesterOption}
+                                value={form['semesterOption']}
                                 onChange={handleSemesterChange}
                                 className="w-[100%] py-[4px] border border-[#CCCCCC] mt-[5px] rounded-sm h-[35px] text-center"
                                 style={{ fontSize: `${fontSize}px`, color: '#808080' }}
@@ -181,7 +192,7 @@ const ClassReportForm = ({ setSchoolCode, warning, submit }) => {
                         </button>
 
                         <br />
-                        <br />
+
                     </center>
                 </div>
             </div >
