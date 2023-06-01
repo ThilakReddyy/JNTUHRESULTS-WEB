@@ -42,29 +42,32 @@ const AcademicReportPage = () => {
         return incrementedString;
     };
 
-    // use Effect to work only between 12 am and 6 am
-    // useEffect(() => {
-    //     //only works between 12 am and 6am
-    //     var currentTime = new Date();
-    //     var currentHour = currentTime.getHours();
-    //     if (currentHour < 6) {
+    //use Effect to work only between 12 am and 6 am
+    useEffect(() => {
+        //only works between 12 am and 6am
+        var currentTime = new Date();
+        var currentHour = currentTime.getHours();
+        if (currentHour < 6) {
 
-    //         setWarning("");
-    //     }
+            setWarning("");
+        }
+        else {
+            setWarning("Feature under development!!")
+        }
 
-    // }, [])
+    }, [])
 
     // Function to handle form submission
     const submit = async () => {
 
         //only works between 6 and 12
-        // var currentTime = new Date();
-        // var currentHour = currentTime.getHours();
+        var currentTime = new Date();
+        var currentHour = currentTime.getHours();
 
-        // // if (currentHour > 6) {
+        if (currentHour > 6) {
 
-        // //     return "";
-        // // }
+            return "";
+        }
 
 
         // Check if all form values are selected
