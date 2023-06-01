@@ -20,6 +20,7 @@ body {
     margin: 0px;
     padding: 0px;
     top: 0px;
+    background-color: #f5f5f5;
 }
 
 @keyframes fade-in {

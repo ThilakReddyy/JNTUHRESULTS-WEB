@@ -13,7 +13,7 @@ const NavMenu = ({ handleNavBar }) => {
 
     return (<>
 
-        <div className={`${inter.variable} font-Inter font-sans fixed  z-10 w-full bg-white h-full mt-[60px] md:mt-[0px]  mr-0 shadow-xl md:flex md:h-[25px] md:shadow-none md:w-auto md:right-[150px]`}>
+        <div className={`${inter.variable} font-Inter font-sans fixed  z-10 w-full bg-white h-full mt-[60px] md:mt-[0px]  mr-0 shadow-xl md:flex md:h-[25px] md:shadow-none md:w-auto md:right-[100px]`}>
 
 
             <Link href='/'>
