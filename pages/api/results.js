@@ -42,7 +42,7 @@ export default async function handler(req, res) {
                 throw error;
             }
 
-            console.log("data.json written correctly");
+
         });
 
         res.status(200).json(results);
