@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Loading from '../Loading/Loading';
 import axios from 'axios';
-
+import notificationdata from '../../public/Notification.json'
 
 const NotificationScraper = () => {
     const [results, setResults] = useState([]);
@@ -11,10 +11,10 @@ const NotificationScraper = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                setIsLoading(false);
+                setResults(NotificationScraper)
                 const response = await axios.get('https://jntuhresults.up.railway.app/api/notifications', { mode: 'cors' });
                 const data = await response.data;
-                console.log(response)
-                setIsLoading(false);
                 setResults(data);
             } catch (error) {
                 console.error(error);
