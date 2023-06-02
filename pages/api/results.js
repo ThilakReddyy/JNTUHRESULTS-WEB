@@ -1,5 +1,5 @@
-import axios from 'axios';
-import cheerio from 'cheerio';
+import fetch from 'node-fetch'
+const cheerio = require('cheerio');
 const fs = require('fs');
 
 export default async function handler(req, res) {
@@ -7,8 +7,9 @@ export default async function handler(req, res) {
         const results = [];
         for (let i = 0; i < 2; i++) {
             const url = "http://results.jntuh.ac.in/jsp/home.jsp";
-            const response = await axios.get(url);
-            const $ = cheerio.load(response.data);
+            const response = await fetch(url);
+            const html = await response.text();
+            const $ = cheerio.load(html);
             const result = $("table").eq(i).find("tr");
 
             result.each(function () {
@@ -31,28 +32,21 @@ export default async function handler(req, res) {
             const dateB = new Date(b.Date);
             return dateB - dateA;
         });
+
         const data = JSON.stringify(results);
-
-        // writing the JSON string content to a file
-        // fs.writeFile("public/Notification.json", data, (error) => {
-
-        //     if (error) {
-        //         console.error(error);
-
-        //         throw error;
-        //     }
-
-
-        // });
-
         res.status(200).json(results);
+        fs.writeFile("public/Notification.json", data, (error) => {
+            if (error) {
+                console.error(error);
+                throw error;
+            }
+        });
     } catch (error) {
-
         fs.readFile("public/Notification.json", (error, data) => {
             if (error) {
                 console.error(error);
                 res.status(500).json({ error: 'Internal Server Error' });
-                throw err;
+                throw error;
             }
             const result = JSON.parse(data);
             res.status(200).json(result);

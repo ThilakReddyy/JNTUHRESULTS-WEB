@@ -2428,7 +2428,7 @@ node-domexception@^1.0.0:
 
 node-fetch@^3.3.1:
   version "3.3.1"
-  resolved "https://registry.npmjs.org/node-fetch/-/node-fetch-3.3.1.tgz"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-3.3.1.tgz#b3eea7b54b3a48020e46f4f88b9c5a7430d20b2e"
   integrity sha512-cRVc/kyto/7E5shrWca1Wsea4y6tL9iYJE5FBCius3JQfb/4P4I295PfhgbJQBLTx6lATE4z+wK0rPM4VS2uow==
   dependencies:
     data-uri-to-buffer "^4.0.0"
