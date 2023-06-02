@@ -88,7 +88,7 @@ const AcademicReportPage = () => {
                 <AcademicReportForm warning={warning} setHtno={setHtno} submit={submit} />
             </div>
             {/* Loading indicator */}
-            <div className={`${loading ? 'block' : 'hidden'} pt-[75px]`}>
+            <div className={`${loading ? 'block' : 'hidden'} `}>
                 <Loading />
             </div>
             {/* Academic report result */}
