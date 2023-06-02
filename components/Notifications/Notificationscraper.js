@@ -37,7 +37,7 @@ const NotificationScraper = () => {
                             {results.map((result, index) => (
                                 <a key={index} href={result.Link} target='_blank' >
 
-                                    <div class="border border-gray-100 dark:border-slate-800 hover:drop-shadow-sm group text-black dark:text-white shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300" >
+                                    <div class="border border-gray-100 dark:border-slate-800 hover:drop-shadow-sm group text-black shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300" >
                                         <h3 class="group-hover:text-black text-lg sm:text-2xl font-bold">
                                             <div className="flex flex-row items-center justify-start">
                                                 <span className="p-1">{result.Result_title}</span>
