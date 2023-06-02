@@ -170,7 +170,7 @@ const AcademicReportPage = () => {
             </div>
 
             {/* Render the loading component */}
-            <div className={`${loading ? 'block' : 'hidden'} pt-[75px]`}>
+            <div className={`${loading ? 'block' : 'hidden'}`}>
                 <Loading />
             </div>
 
