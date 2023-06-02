@@ -5,7 +5,7 @@ const AcademicReportResult = ({ query }) => {
     return (
         <>
 
-            <div className="m-2 text-[45%] sm:text-[60%] md:text-[80%] lg:text-[100%]">
+            <div className="m-2 text-[45%] sm:text-[60%] md:text-[80%] lg:text-[100%] ">
                 <table className="w-[100%] my-2">
                     <tbody>
                         <tr className='w-max bg-gray-200 md:bg-gray-300'>

@@ -47,7 +47,7 @@ const AcademicReportPage = () => {
         //only works between 12 am and 6am
         var currentTime = new Date();
         var currentHour = currentTime.getHours();
-        if (currentHour < 6) {
+        if (currentHour < 10) {
 
             setWarning("");
         }
@@ -64,7 +64,7 @@ const AcademicReportPage = () => {
         var currentTime = new Date();
         var currentHour = currentTime.getHours();
 
-        if (currentHour > 6) {
+        if (currentHour > 10) {
 
             return "";
         }
@@ -159,7 +159,7 @@ const AcademicReportPage = () => {
         <div className=''>
             <br />
             {/* Render the form */}
-            <div className={`${reportForm ? 'block' : 'hidden'} md:my-[50px] pt-[75px]`}>
+            <div className={`${reportForm ? 'block' : 'hidden'} h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-100 md:py-[150px] pt-[75px]`}>
 
                 <ClassResultForm
                     warning={warning}

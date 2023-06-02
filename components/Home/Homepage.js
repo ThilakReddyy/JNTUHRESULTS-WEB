@@ -14,54 +14,95 @@ const HomePage = () => {
       once: true
     });
   }, []);
-  return (<>
-    <div className="md:block bg-gradient-to-b from-red-500 to-blue-700">
-      <div className="h-screen flex justify-center items-center p-8">
-        <center className='md:flex headertext font-montser text-[35px] md:text-[50px] lg:text-[70px] xl-[90px] 2xl:text-[120px] md:drop-shadow-md animate-fade-in text-gray-900 leading-tight'>
-          Welcome to JNTUH RESULTS
-        </center>
-      </div>
-    </div>
-
-
-    <div className='md:hidden'>
-
-
-      {/* Features */}
-      <section className="bg-white py-12 px-6 ">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-black mb-8">What&rsquo;s in JNTUH Results?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="border border-gray-200 rounded-lg shadow-md p-6">
-              <h3 className="text-xl font-bold mb-4">Academic Results</h3>
-              <p className="text-gray-700">View your overall performance.</p>
-              <div className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg mt-4 inline-block">
-                <Link href="/academicreport">
-                  View Academic Results
-
-                </Link>
-              </div>
-            </div>
-            <div className="border border-gray-200 rounded-lg shadow-md p-6">
-              <h3 className="text-xl font-bold mb-4">Class Results</h3>
-              <p className="text-gray-700">View the results of your classmates and compare your performance with theirs.</p>
-              <div className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg mt-4 inline-block">
-                <Link href="/classresult">
-                  View Class Results
-                </Link>
-              </div>
+  return (
+    <div className='__variable_0ec1f4'>
+      <div className="md:block md:h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-100">
+        <div className="  md:flex justify-center  p-8 pt-[100px] ">
+          <center className='md:flex font-montser text-[28px] md:text-[50px] lg:text-[70px] '>
+            Welcome to&nbsp;
+            <div className='text-blue-400 hover:text-blue-600 hover:underline'>
+              <Link href="/">
+                JNTUH Results!
+              </Link>
             </div>
 
-          </div>
+
+          </center>
+          <br />
+
         </div>
-      </section >
+        <center>
 
-      {/* Footer */}
-      < footer className="bg-gray-800 py-2 px-6 text-center text-gray-500 text-sm fixed bottom-0 left-0 w-full hidden md:block" >
-        <p>© 2023 jntuhresults.vercel.app. All rights reserved.</p>
-      </footer >
-    </div >
 
-  </>)
+          <div class="home-links flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
+            <Link href="/academicreport">
+
+              <div class="border border-gray-100 dark:border-slate-800 hover:drop-shadow-sm group text-black dark:text-white shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300" >
+                <h3 class="group-hover:text-black text-lg sm:text-2xl font-bold">
+                  <div className="flex flex-row items-center justify-start">
+                    <span className="p-1">Academic Results</span>
+                    <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                </h3>
+                <p className="group-hover:text-black text-slate-500 mt-4 text-base sm:text-xl"> Access your overall academic performance with just an hall ticket.</p>
+              </div>
+            </Link>
+            <Link href="/classresult">
+
+              <div className="border border-gray-100 dark:border-slate-800 hover:drop-shadow-sm group text-black dark:text-white shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300" >
+                <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
+                  <div className="flex flex-row items-center justify-start">
+                    <span className="p-1">Class Results</span>
+                    <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                </h3>
+                <p class="group-hover:text-black text-slate-500 mt-4 text-base sm:text-xl">View the results of your classmates and compare your performance with theirs.
+                </p>
+              </div>
+            </Link>
+            <Link href="/notifications">
+
+              <div className="border border-gray-100 dark:border-slate-800 hover:drop-shadow-sm group text-black dark:text-white shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300" >
+                <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
+                  <div className="flex flex-row items-center justify-start">
+                    <span className="p-1">Notifications</span>
+                    <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                </h3>
+                <p class="group-hover:text-black text-slate-500 mt-4 text-base sm:text-xl">Stay informed with JNTUH notifications for up-to-date information and updates.
+                </p>
+              </div>
+            </Link>
+          </div>
+        </center>
+
+
+
+
+
+        {/* Footer */}
+        <footer class="md:fixed w-full border-t py-6 mt-[30px] md:py-4 bottom-0 ">
+          <div class="md:h-8 ">
+            <div class=" md:px-0">
+              <p class="text-center text-sm md:text-lg  ">
+                Developed by&nbsp;
+                <a href="https://github.com/thilakreddyy" target="_blank" rel="noreferrer" class="font-medium underline underline-offset-4">
+                  Thilak Reddy
+                </a>
+              </p>
+            </div>
+          </div>
+        </footer>
+
+
+      </div>
+
+    </div>)
 }
 export default HomePage;

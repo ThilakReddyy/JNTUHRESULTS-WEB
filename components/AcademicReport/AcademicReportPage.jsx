@@ -84,7 +84,7 @@ const AcademicReportPage = () => {
         <div>
             <br />
             {/* Academic report form */}
-            <div className={`${reportForm ? 'block' : 'hidden'} md:my-[50px] pt-[75px]`}>
+            <div className={`${reportForm ? 'block' : 'hidden'} h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-100 md:py-[150px] pt-[75px]`}>
                 <AcademicReportForm warning={warning} setHtno={setHtno} submit={submit} />
             </div>
             {/* Loading indicator */}
