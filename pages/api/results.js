@@ -41,6 +41,7 @@ export default async function handler(req, res) {
                 throw error;
             }
         });
+        return res
     } catch (error) {
         fs.readFile("public/Notification.json", (error, data) => {
             if (error) {

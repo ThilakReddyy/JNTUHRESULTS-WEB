@@ -1,8 +1,6 @@
 
 import { useEffect, useState } from 'react';
 import Loading from '../Loading/Loading';
-import axios from 'axios';
-
 
 const NotificationScraper = () => {
     const [results, setResults] = useState([]);
@@ -11,8 +9,8 @@ const NotificationScraper = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('api/results');
-                const data = await response.data;
+                const response = await fetch('api/results');
+                const data = await response.json();
                 console.log(response)
                 setIsLoading(false);
                 setResults(data);
