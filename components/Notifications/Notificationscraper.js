@@ -11,7 +11,7 @@ const NotificationScraper = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('/api/results', { mode: 'cors' });
+                const response = await axios.get('api/results');
                 const data = await response.data;
                 console.log(response)
                 setIsLoading(false);

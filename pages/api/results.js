@@ -34,9 +34,6 @@ export default async function handler(req, res) {
         const data = JSON.stringify(results);
 
         // writing the JSON string content to a file
-
-
-        res.status(200).json(results);
         fs.writeFile("public/Notification.json", data, (error) => {
 
             if (error) {
@@ -47,6 +44,8 @@ export default async function handler(req, res) {
 
 
         });
+
+        res.status(200).json(results);
     } catch (error) {
 
         fs.readFile("public/Notification.json", (error, data) => {
