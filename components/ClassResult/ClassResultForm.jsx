@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import data from './colleges';
 import Footer from "../Footer/Footer";
+import branches from './branches';
 
 const ClassReportForm = ({ warning, submit, form, setForm }) => {
     const [fontSize, setFontSize] = useState(10);
@@ -55,6 +56,7 @@ const ClassReportForm = ({ warning, submit, form, setForm }) => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
 
 
 
@@ -134,24 +136,11 @@ const ClassReportForm = ({ warning, submit, form, setForm }) => {
                                 <option value="" disabled selected>
                                     Enter the Branch Name...
                                 </option>
-                                <option value="21">Aeronautical Engineering</option>
-                                <option value="11">BioMedical Engineering</option>
-                                <option value="08">Chemical Engineering</option>
-                                <option value="01">Civil Engineering</option>
-                                <option value="56">Computer Engineering (Software Engineering) Technology</option>
-                                <option value="05">Computer Science &amp; Engineering</option>
-                                <option value="66">Computer Science and Engineering (Artificial Intelligence and Machine Learning)</option>
-                                <option value="62">Computer Science and Engineering (Cyber Security) Technology</option>
-                                <option value="67">Computer Science and Engineering (Datascience)</option>
-                                <option value="69">Computer Science and Engineering (IoT)</option>
-                                <option value="02">Electrical &amp; Electronics Engineering</option>
-                                <option value="04">Electronics &amp; Communication Engineering</option>
-                                <option value="19">Electronics &amp; Computer Engineering</option>
-                                <option value="13">Electronics &amp; Control Engineering</option>
-                                <option value="10">Electronics &amp; Instrumentation Engineering</option>
-                                <option value="12">Information Technology</option>
-                                <option value="22">Instrumentation &amp; Control Engineering</option>
-                                <option value="03">Mechanical Engineering</option>
+                                {branches.map(({ value, label }) => (
+                                    <option key={value} value={value}>
+                                        {label}
+                                    </option>
+                                ))}
                             </select>
                             <select
                                 defaultValue={form['semesterOption']}

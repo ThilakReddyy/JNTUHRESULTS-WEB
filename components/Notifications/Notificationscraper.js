@@ -13,8 +13,8 @@ const NotificationScraper = () => {
             try {
                 setIsLoading(false);
                 setResults(notificationdata)
-                const response = await axios.get('https://jntuhresults.up.railway.app/api/notifications', { mode: 'cors' });
-                const data = await response.data;
+                // const response = await axios.get('https://jntuhresults.up.railway.app/api/notifications', { mode: 'cors' });
+                // const data = await response.data;
                 setResults(data);
             } catch (error) {
                 console.error(error);
