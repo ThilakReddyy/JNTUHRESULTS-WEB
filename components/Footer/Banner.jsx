@@ -8,9 +8,9 @@ const Banner = () => {
     return (
         <>
             <center className={`mx-[10%] md:mx-[30%]   shadow-2xl rounded-md border-1 border-black border-solid bg-stone-200 md:hidden ${banner ? 'block' : 'hidden'}`}>
-                <button className="absolute right-[11.7%] sm:right-[31.7%]" onClick={closeBanner}>
+                {/* <button className="absolute right-[11.7%] sm:right-[31.7%]" onClick={closeBanner}>
                     [x]
-                </button>
+                </button> */}
                 <div className="py-[7%] px-[2%]">
 
                     <div className="font-semibold">Check the TS 10th class results in a quicker manner &nbsp;
@@ -30,7 +30,7 @@ const Banner = () => {
 
                     <small>Get your Results with your CGPA in a second</small>
                     <br />
-                    <br />
+
                     {/* <div>Check out the another Version of JNTUH RESULTS
                         <a>
                             <Link href="https://jntuh-results-stats.vercel.app/">
