@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import data from './colleges';
 import Footer from "../Footer/Footer";
 import branches from './branches';
-
+import Banner from "../Footer/Banner";
 const ClassReportForm = ({ warning, submit, form, setForm }) => {
     const [fontSize, setFontSize] = useState(10);
 
@@ -58,10 +58,9 @@ const ClassReportForm = ({ warning, submit, form, setForm }) => {
     }, []);
 
 
-
-
+    const [banner, setBanner] = useState(true);
     return (
-        <>
+        <div className={`${banner ? '' : 'h-screen'} md:h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-100 md:py-[150px] pt-[75px]`}>
             <div className="w-[75%] mx-[12.5%] md:w-[66%] md:mx-[17%]">
                 <div className="mx-[0.25%] border-black shadow-2xl border-[3px] rounded-md">
                     <center className="py-[35px]">
@@ -186,7 +185,11 @@ const ClassReportForm = ({ warning, submit, form, setForm }) => {
                 </div>
             </div >
             <Footer />
-        </>
+            <div className={`${banner ? 'block' : 'hidden'}`}>
+                <Banner setBanner={setBanner} />
+            </div>
+
+        </div>
     );
 };
 

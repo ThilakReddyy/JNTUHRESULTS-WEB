@@ -1,4 +1,3 @@
-import Banner from './Banner'
 
 const Footer = () => {
     return (
@@ -34,7 +33,7 @@ const Footer = () => {
 
 
             </p>
-            <Banner />
+
         </>
     )
 }
