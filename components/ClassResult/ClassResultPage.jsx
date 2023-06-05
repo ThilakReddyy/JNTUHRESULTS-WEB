@@ -159,7 +159,7 @@ const AcademicReportPage = () => {
         <div className=''>
             <br />
             {/* Render the form */}
-            <div className={`${reportForm ? 'block' : 'hidden'} h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-100 md:py-[150px] pt-[75px]`}>
+            <div className={`${reportForm ? 'block' : 'hidden'} md:h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-100 md:py-[150px] pt-[75px]`}>
 
                 <ClassResultForm
                     warning={warning}

@@ -34,7 +34,7 @@ const Footer = () => {
 
 
             </p>
-            {/* <Banner /> */}
+            <Banner />
         </>
     )
 }
