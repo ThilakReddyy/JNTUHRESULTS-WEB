@@ -34,15 +34,15 @@ const HomePage = () => {
         <center>
 
 
-          <div class="home-links flex flex-wrap items-center justify-around max-w-4xl md:mt-6  sm:w-full">
+          <div className="home-links flex flex-wrap items-center justify-around max-w-4xl md:mt-6  sm:w-full">
             <Link href="/academicreport">
 
-              <div class="border  hover:drop-shadow-sm group text-black border-slate-800 md:border-gray-100 shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300" >
-                <h3 class="group-hover:text-black text-lg sm:text-2xl font-bold">
+              <div className="border  hover:drop-shadow-sm group text-black border-slate-800 md:border-gray-100 shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300" >
+                <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
                   <div className="flex flex-row items-center justify-start">
                     <span className="p-1 text-black">Academic Results</span>
                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                      <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
                     </svg>
                   </div>
                 </h3>
@@ -56,11 +56,11 @@ const HomePage = () => {
                   <div className="flex flex-row items-center justify-start">
                     <span className="p-1 text-black">Class Results</span>
                     <svg stroke="currentColor" color='black' fill="currentColor" strokeWidth="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                      <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
                     </svg>
                   </div>
                 </h3>
-                <p class="group-hover:text-black text-slate-500 mt-4 text-base sm:text-xl">View the results of your classmates and compare your performance with theirs.
+                <p className="group-hover:text-black text-slate-500 mt-4 text-base sm:text-xl">View the results of your classmates and compare your performance with theirs.
                 </p>
               </div>
             </Link>
@@ -71,11 +71,11 @@ const HomePage = () => {
                   <div className="flex flex-row items-center justify-start">
                     <span className="p-1">Notifications</span>
                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                      <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
                     </svg>
                   </div>
                 </h3>
-                <p class="group-hover:text-black text-slate-500 mt-4 text-base sm:text-xl">Stay informed with JNTUH notifications for up-to-date information and updates.
+                <p className="group-hover:text-black text-slate-500 mt-4 text-base sm:text-xl">Stay informed with JNTUH notifications for up-to-date information and updates.
                 </p>
               </div>
             </Link>
@@ -87,12 +87,12 @@ const HomePage = () => {
 
 
         {/* Footer */}
-        <footer class="md:fixed w-full border-t py-6 mt-[30px] md:py-4 bottom-0 ">
-          <div class="md:h-8 ">
-            <div class=" md:px-0">
-              <p class="text-center text-sm md:text-lg  ">
+        <footer className="md:fixed w-full border-t py-6 mt-[30px] md:py-4 bottom-0 ">
+          <div className="md:h-8 ">
+            <div className=" md:px-0">
+              <p className="text-center text-sm md:text-lg  ">
                 Developed by&nbsp;
-                <a href="https://github.com/thilakreddyy" target="_blank" rel="noreferrer" class="font-medium underline underline-offset-4">
+                <a href="https://github.com/thilakreddyy" target="_blank" rel="noreferrer" className="font-medium underline underline-offset-4">
                   Thilak Reddy
                 </a>
               </p>
