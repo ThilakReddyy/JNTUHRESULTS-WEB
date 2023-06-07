@@ -13,9 +13,9 @@ const NotificationScraper = () => {
             try {
                 setIsLoading(false);
                 setResults(notificationdata)
-                // const response = await axios.get('https://jntuhresults.up.railway.app/api/notifications', { mode: 'cors' });
-                // const data = await response.data;
-                // setResults(data);
+                const response = await axios.get('https://jntuhresults.up.railway.app/api/notifications', { mode: 'cors' });
+                const data = await response.data;
+                setResults(data);
             } catch (error) {
                 console.error(error);
                 alert("500 - Internal Server Error")
@@ -55,7 +55,7 @@ const NotificationScraper = () => {
 
                         </div>
                     </div>
-                   
+
                 </center>
             )}
         </div>
