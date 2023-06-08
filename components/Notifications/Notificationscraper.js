@@ -15,7 +15,8 @@ const NotificationScraper = () => {
                 setResults(notificationdata)
                 const response = await axios.get('https://jntuhresults.up.railway.app/api/notifications', { mode: 'cors' });
                 const data = await response.data;
-                setResults(data);
+                const sortedData = data.sort((a, b) => new Date(b.Date) - new Date(a.Date));
+                setResults(sortedData);
             } catch (error) {
                 console.error(error);
                 alert("500 - Internal Server Error")
