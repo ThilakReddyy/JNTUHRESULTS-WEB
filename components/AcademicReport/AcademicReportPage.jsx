@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import AcademicReportForm from './AcademicReportForm';
 import AcademicReportResult from './AcademicReportResult';
 import axios from 'axios';
@@ -14,7 +14,7 @@ const AcademicReportPage = () => {
 
     // Function to fetch academic result
     async function fetchAcademicResult(htno) {
-        const url = "https://jntuhresults.up.railway.app/api/academicresult?htno=" + htno;
+        const url = "http://localhost:3000/api/academicresult?htno=" + htno;
         try {
             const response = await axios.get(url, { mode: 'cors' });
             if (response.status === 200) {
