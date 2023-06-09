@@ -14,9 +14,9 @@ const AcademicReportPage = () => {
 
     // Function to fetch academic result
     async function fetchAcademicResult(htno) {
-        const url = "http://localhost:3000/api/academicresult?htno=" + htno;
+        const url = window.location.origin + "/api/academicresult?htno=" + htno;
         try {
-            const response = await axios.get(url, { mode: 'cors' });
+            const response = await axios.get(url);
             if (response.status === 200) {
                 console.log(response.data);
                 if (response.data === htno + " - 500 Internal Server Error") {
