@@ -63,7 +63,7 @@ const AcademicReportPage = () => {
         //only works between 6 and 12
         var currentTime = new Date();
         var currentHour = currentTime.getHours();
-
+        console.log(currentHour)
         if (currentHour > 10) {
 
             return "";
