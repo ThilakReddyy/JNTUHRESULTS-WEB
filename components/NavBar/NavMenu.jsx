@@ -64,7 +64,7 @@ const NavMenu = ({ handleNavBar }) => {
                         </a>
                     </div>
                     <div className="flex justify-center m-2 text-xs	 text-gray-600">
-                        <p>&copy; 2023 Jntuh Results.</p>
+                        <p>&copy; 2023 jntuhresults.vercel.app</p>
                     </div>
 
                 </center>
