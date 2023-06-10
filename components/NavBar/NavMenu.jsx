@@ -42,7 +42,7 @@ const NavMenu = ({ handleNavBar }) => {
                     <p className='ml-[18px] cursor-pointer p-[3px] md:pt-0 border border-white md:hover:bg-black md:hover:text-white border-black md:hover:rounded'>Notifications</p>
                 </div>
             </Link>
-            <div className='hidden'>
+            <div className='md:hidden'>
                 <Link href='/helpcenter'>
                     <div className="mt-[21px] text-[#030303] text-base	 font-normal flex align-center ml-[20px] md:mt-[0px]" onClick={handleNavBar}>
                         <MdOutlineLiveHelp size={24} className='md:hidden mt-[4px] ml-[2px]' />
