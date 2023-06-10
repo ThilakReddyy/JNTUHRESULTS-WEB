@@ -21,7 +21,7 @@ const Faq = () => {
                                     1.How does this website work?
                                 </h3>
                                 <p className="mt-2 text-base leading-6 text-gray-500">
-                                    The JNTUHRESULTS project functions as when a user enters their roll number, the website asynchronously sends requests to the JNTUH server, retrieving the results for all regular and supplementary exams across all semesters associated with the given roll number. Using BeautifulSoup, the backend parses the HTML content of the responses to extract the relevant result information. An algorithm then combines the results and calculates the Cumulative Grade Point Average (CGPA) for the student. This entire process is optimized to be completed in less than 2 seconds, allowing the JNTUHRESULTS-vercel website to swiftly provide comprehensive results to the user.
+                                    When a user enters their roll number, the website asynchronously sends requests to the JNTUH server, retrieving the results for all regular and supplementary exams across all semesters associated with the given roll number. Using BeautifulSoup, the backend parses the HTML content of the responses to extract the relevant result information. An algorithm then combines the results and calculates the Cumulative Grade Point Average (CGPA) for the student. This entire process is optimized to be completed in less than 2 seconds, allowing the JNTUHRESULTS-vercel website to swiftly provide comprehensive results to the user.
                                 </p>
                             </div>
 
