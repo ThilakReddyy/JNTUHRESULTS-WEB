@@ -18,7 +18,7 @@ const HelpPage = () => {
 
                         <div className="">
                             <div className="home-links flex flex-wrap items-center justify-around max-w-4xl md:mt-6  sm:w-full">
-                                <a href="https://forms.gle/Fzqcdi7FtAFF8cYa6" target="_blank">
+                                <a href="https://forms.gle/cftCZ193nSWzjXTp7c" target="_blank">
 
                                     <div className="border  hover:drop-shadow-sm group text-black border-slate-800 md:border-gray-100 shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300" >
                                         <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">

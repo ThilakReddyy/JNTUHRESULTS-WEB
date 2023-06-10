@@ -66,7 +66,7 @@ const Faq = () => {
                                     6.How can I report a bug or ask for help?
                                 </h3>
                                 <p className="mt-2 text-base leading-6 text-gray-500">
-                                    If you encounter any issues or have questions regarding the website, you can contact the developer via <a className="text-#0000FF" href="mailto:thilakreddypothuganti@gmail.com">email</a> or fill the issue in the <a className="text-#0000FF" target='_blank' href="https://forms.gle/Fzqcdi7FtAFF8cYa6"></a>Google Forms. Additionally, if you find a bug, you can submit an issue on the project&apos;s GitHub repository. You&apos;re also welcome to contribute by submitting pull requests with bug fixes or changes to the develop branch.
+                                    If you encounter any issues or have questions regarding the website, you can contact the developer via <a className="text-#0000FF" href="mailto:thilakreddypothuganti@gmail.com">email</a> or fill the issue in the <a className="text-#0000FF" target='_blank' href="https://forms.gle/cftCZ193nSWzjXTp7"></a>Google Forms. Additionally, if you find a bug, you can submit an issue on the project&apos;s GitHub repository. You&apos;re also welcome to contribute by submitting pull requests with bug fixes or changes to the develop branch.
                                 </p>
                             </div>
 
