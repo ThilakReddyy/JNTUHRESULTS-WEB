@@ -23,7 +23,7 @@ const Banner = ({ setBanner }) => {
                             </Link>
                         </a>
                     </div> */}
-                    <small>Get your Results with your CGPA in a second</small>
+                    <small>Get your JNTUH Results with your CGPA in a second</small>
                     <br />
 
 
