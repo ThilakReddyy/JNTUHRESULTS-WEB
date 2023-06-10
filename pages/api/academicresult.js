@@ -194,12 +194,13 @@ export default async function handler(req, res) {
 
             // Calculate the time taken in milliseconds
 
-            console.log('Time taken:', endTime - startTime, 'seconds');
+            console.log(htno, 'Time taken:', endTime - startTime, 'seconds');
             res.status(200).json(results);
         })
         .catch(error => {
             console.error(error);
             res.status(500).json("Internal Server Error");
+            console.log(htno, "results failed to fetch")
             res.end();
         });
 }
