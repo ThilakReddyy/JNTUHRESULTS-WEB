@@ -13,31 +13,31 @@ const Banner = ({ setBanner }) => {
                 </button>
                 <div className="py-[7%] px-[2%]">
 
-                    <div className="font-semibold">Check the TS 10th class results in a quicker manner &nbsp;
+                    {/* <div className="font-semibold">Check the TS 10th class results in a quicker manner &nbsp;
                         <br />
-                        {/* <a>
+                        <a>
                             <Link href="https://tssscresult.vercel.app/">
                                 <strong>
                                     TS-SSC Results
                                 </strong>
                             </Link>
-                        </a> */}
-                    </div>
-
-                    <Link href="https://tssscresult.vercel.app/">
-                        <img src='https://raw.githubusercontent.com/ThilakReddyy/TS-SSC-RESULTS-WEB/main/public/ts-sscresultspnglogo.png' href="https://tssscresult.vercel.app/" className="w-[60px]  sm:w-[120px]" />
-                    </Link>
-
+                        </a>
+                    </div> */}
                     <small>Get your Results with your CGPA in a second</small>
                     <br />
 
-                    {/* <div>Check out the another Version of JNTUH RESULTS
+
+                    <img src='/logo.png' href="https://jntuhresults.vercel.app/" className="w-[60px]  sm:w-[120px]" />
+
+
+
+                    <div>Check out the another Version of JNTUH RESULTS
                         <a>
                             <Link href="https://jntuh-results-stats.vercel.app/">
                                 <strong className="hover:cursor-pointer"> here</strong>
                             </Link>
                         </a>
-                    </div> */}
+                    </div>
                 </div>
             </center>
         </div>
