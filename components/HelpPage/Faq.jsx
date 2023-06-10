@@ -30,7 +30,7 @@ const Faq = () => {
                                     2.How do I access my grades for all semesters?
                                 </h3>
                                 <p className="mt-2 text-base leading-6 text-gray-500">
-                                    To access your grades for all semesters, enter your roll number in the provided inbox in the academic result page and click on the "Results" button. The results of all your semesters will be displayed.
+                                    To access your grades for all semesters, enter your roll number in the provided inbox in the academic result page and click on the &quot;Results&quot; button. The results of all your semesters will be displayed.
                                 </p>
                             </div>
 
@@ -66,7 +66,7 @@ const Faq = () => {
                                     6.How can I report a bug or ask for help?
                                 </h3>
                                 <p className="mt-2 text-base leading-6 text-gray-500">
-                                    If you encounter any issues or have questions regarding the website, you can contact the developer via <a className="text-#0000FF" href="mailto:thilakreddypothuganti@gmail.com">email</a> or fill the issue in the <a className="text-#0000FF" target='_blank' href="https://forms.gle/Fzqcdi7FtAFF8cYa6"></a>Google Forms. Additionally, if you find a bug, you can submit an issue on the project's GitHub repository. You're also welcome to contribute by submitting pull requests with bug fixes or changes to the develop branch.
+                                    If you encounter any issues or have questions regarding the website, you can contact the developer via <a className="text-#0000FF" href="mailto:thilakreddypothuganti@gmail.com">email</a> or fill the issue in the <a className="text-#0000FF" target='_blank' href="https://forms.gle/Fzqcdi7FtAFF8cYa6"></a>Google Forms. Additionally, if you find a bug, you can submit an issue on the project&apos;s GitHub repository. You&apos;re also welcome to contribute by submitting pull requests with bug fixes or changes to the develop branch.
                                 </p>
                             </div>
 
@@ -92,7 +92,7 @@ const Faq = () => {
                                     9.Can I suggest ideas for new website tools or features?
                                 </h3>
                                 <p className="mt-2 text-base leading-6 text-gray-500">
-                                    Yes, you can message me with your ideas for small website tools that you can't find online or any other features you'd like to see.
+                                    Yes, you can message me with your ideas for small website tools that you can&apos;t find online or any other features you&apos;d like to see.
                                 </p>
                             </div>
 
@@ -101,7 +101,7 @@ const Faq = () => {
                                     10.How can I report a bug or ask for help related to the backend?
                                 </h3>
                                 <p className="mt-2 text-base leading-6 text-gray-500">
-                                    If you encounter any issues or have questions regarding the backend setup, deployment, or any special feature implementation, you can contact the developer via email. In case you find a bug, you can submit an issue on the project's GitHub repository. Additionally, you are welcome to contribute by submitting pull requests with bug fixes or changes to the dev branch.
+                                    If you encounter any issues or have questions regarding the backend setup, deployment, or any special feature implementation, you can contact the developer via email. In case you find a bug, you can submit an issue on the project&apos;s GitHub repository. Additionally, you are welcome to contribute by submitting pull requests with bug fixes or changes to the dev branch.
                                 </p>
                             </div>
                             <center>

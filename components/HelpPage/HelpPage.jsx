@@ -1,4 +1,4 @@
-
+import Link from 'next/link';
 const HelpPage = () => {
     return (
         <>
@@ -34,7 +34,7 @@ const HelpPage = () => {
                                 </a>
 
 
-                                <a href="/faq">
+                                <Link href="/faq">
 
                                     <div className="border  hover:drop-shadow-sm group text-black border-slate-800 md:border-gray-100 shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300" >
                                         <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
@@ -47,7 +47,7 @@ const HelpPage = () => {
                                         </h3>
                                         <p className="group-hover:text-black text-slate-500 mt-4 text-base sm:text-xl"> The most Frequently asked questions are here.</p>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </center>
