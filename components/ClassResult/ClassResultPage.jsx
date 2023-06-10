@@ -68,8 +68,6 @@ const AcademicReportPage = () => {
             console.log("Result not available at this time")
             return "";
         }
-
-
         // Check if all form values are selected
         const values = Object.values(form);
         for (const value of values) {
