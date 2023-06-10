@@ -7,7 +7,7 @@ const Banner = ({ setBanner }) => {
     }
     return (
         <div className={`pb-[80px]`}>
-            <center className={`mx-[10%] md:mx-[30%]   shadow-2xl rounded-md border-1 border-black border-solid bg-stone-200 md:hidden `}>
+            <center className={`mx-[10%] md:mx-[30%]   shadow-2xl rounded-md border-1 border-black border-solid bg-stone-200 hidden md:block `}>
                 <button className="absolute right-[11.7%] sm:right-[31.7%]" onClick={closeBanner}>
                     [x]
                 </button>
