@@ -2,6 +2,8 @@ import { MdOutlineCottage, MdOutlineSchool } from 'react-icons/md'
 import { BsLayoutTextSidebarReverse } from 'react-icons/bs'
 import { FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa'
 import { IoIosNotificationsOutline } from "react-icons/io";
+import { MdOutlineLiveHelp } from "react-icons/md";
+
 import Link from 'next/link'
 import { Inter } from 'next/font/google'
 
@@ -40,7 +42,14 @@ const NavMenu = ({ handleNavBar }) => {
                     <p className='ml-[18px] cursor-pointer p-[3px] md:pt-0 border border-white md:hover:bg-black md:hover:text-white border-black md:hover:rounded'>Notifications</p>
                 </div>
             </Link>
-
+            <div className='md:hidden'>
+                <Link href='/helpcenter'>
+                    <div className="mt-[21px] text-[#030303] text-base	 font-normal flex align-center ml-[20px] md:mt-[0px]" onClick={handleNavBar}>
+                        <MdOutlineLiveHelp size={24} className='md:hidden mt-[4px] ml-[2px]' />
+                        <p className='ml-[18px] cursor-pointer p-[3px] md:pt-0 border border-white md:hover:bg-black md:hover:text-white border-black md:hover:rounded'>Help Center</p>
+                    </div>
+                </Link>
+            </div>
             <div className='bottom-0 md:hidden fixed w-full'>
                 <center >
                     <div className="flex justify-center mt-4 text-sm text-gray-600">

@@ -1,6 +1,6 @@
 import ClassResultPage from "../components/ClassResult/ClassResultPage";
-const classresult = ({ NavMenuOpen }) => {
-    console.log(NavMenuOpen)
+const classresult = () => {
+
     return (
         <>
             <ClassResultPage />
