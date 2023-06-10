@@ -31,9 +31,7 @@ const AcademicReportPage = () => {
     }, [result, len]);
 
 
-    useEffect(() => {
-        console.log(result)
-    }, [updating])
+
 
     // Function to increase a string value by one
     const increaseStringValueByOne = (value) => {

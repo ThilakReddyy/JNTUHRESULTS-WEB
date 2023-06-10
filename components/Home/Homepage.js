@@ -16,7 +16,7 @@ const HomePage = () => {
   }, []);
   return (
     <div className='__variable_0ec1f4'>
-      <div className="md:block md:h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-100">
+      <div className=" ms:h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-100">
         <div className="  md:flex justify-center  p-8 pt-[100px] ">
           <center className='md:flex font-montser text-[28px] md:text-[50px] lg:text-[70px] '>
             Welcome to&nbsp;
@@ -102,7 +102,7 @@ const HomePage = () => {
 
 
         {/* Footer */}
-        <footer className="md:fixed w-full border-t py-6 mt-[30px] md:py-4 bottom-0 ">
+        <footer className="ms:fixed w-full border-t py-6 mt-[30px] md:py-4 bottom-0 ">
           <div className="md:h-8 ">
             <div className=" md:px-0">
               <p className="text-center text-sm md:text-lg  ">

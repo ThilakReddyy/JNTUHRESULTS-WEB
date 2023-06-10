@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { useState } from "react";
+import Image from "next/image";
+
 const Banner = ({ setBanner }) => {
 
     const closeBanner = () => {
@@ -27,16 +28,16 @@ const Banner = ({ setBanner }) => {
                     <br />
 
 
-                    <img src='/logo.png' href="https://jntuhresults.vercel.app/" className="w-[60px]  sm:w-[120px]" />
-
+                    <Image src='/logo.png' href="https://jntuhresults.vercel.app/" alt="jntuh_results_logo" width={90} height={90} />
+                    <br />
 
 
                     <div>Check out the another Version of JNTUH RESULTS
-                        <a>
-                            <Link href="https://jntuh-results-stats.vercel.app/">
-                                <strong className="hover:cursor-pointer"> here</strong>
-                            </Link>
-                        </a>
+
+                        <Link href="https://jntuh-results-stats.vercel.app/">
+                            <strong className="hover:cursor-pointer"> here</strong>
+                        </Link>
+
                     </div>
                 </div>
             </center>
