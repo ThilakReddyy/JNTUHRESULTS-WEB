@@ -49,8 +49,8 @@ const Faq = () => {
     return (
         <>
             <section className="py-[75px] ">
-                <h3 className='text-center text-xl font-bold hidden md:block font-intercursive'>Frequently Asked Question's</h3>
-                <h3 className='text-center text-xl font-bold block md:hidden font-intercursive'>FAQ's</h3>
+                <h3 className='text-center text-xl font-bold hidden md:block font-intercursive'>Frequently Asked Question&apos;s</h3>
+                <h3 className='text-center text-xl font-bold block md:hidden font-intercursive'>FAQ&apos;s</h3>
                 <center>
                     <div className='max-w-[1024px] font-interer px-[15px]'>
 
