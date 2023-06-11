@@ -11,6 +11,9 @@ module.exports = {
 
     fontFamily: {
       montser: ['Montserrat', 'sans-serif'],
+      intercursive: ['Delicious Handrawn', 'cursive'
+      ],
+      interer: ['Inter', 'sans-serif'],
     },
     screens: {
       'sm': '640px',

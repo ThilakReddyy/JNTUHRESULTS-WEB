@@ -1,4 +1,3 @@
-import Loading from '../Loading/Loading'
 import Link from 'next/link';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
