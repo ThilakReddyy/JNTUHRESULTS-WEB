@@ -48,7 +48,7 @@ const Faq = () => {
 
     return (
         <>
-            <section className="py-[75px] ">
+            <section className="pt-[75px] ">
                 <h3 className='text-center text-xl font-bold hidden md:block font-intercursive'>Frequently Asked Question&apos;s</h3>
                 <h3 className='text-center text-xl font-bold block md:hidden font-intercursive'>FAQ&apos;s</h3>
                 <center>
@@ -86,7 +86,7 @@ const Faq = () => {
                     </div>
                 </center>
             </section>
-            <div className='bottom-0 md:hidden w-full font-interer'>
+            <div className='bottom-0 md:hidden w-full font-interer pt-[10px]'>
                 <hr />
                 <center >
                     <div className="flex justify-center mt-4 text-sm text-gray-600">
