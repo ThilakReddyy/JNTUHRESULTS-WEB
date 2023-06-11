@@ -50,6 +50,9 @@ const Header = () => {
           }}
         >
         </script>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Roboto+Slab&display=swap');
+        </style>
       </Head>
       <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5512897194230969"
         crossorigin="anonymous"></Script>

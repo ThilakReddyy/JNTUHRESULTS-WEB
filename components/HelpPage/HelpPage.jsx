@@ -7,9 +7,6 @@ const HelpPage = () => {
                     <div className="  md:flex justify-center  p-8 pt-[100px] ">
                         <center className='md:flex font-montser text-[28px] md:text-[50px] lg:text-[70px] '>
                             Help Center
-
-
-
                         </center>
                         <br />
 
