@@ -8,12 +8,11 @@ const Banner = ({ setBanner }) => {
     }
     return (
         <div className={`pb-[80px]`}>
-
-            <center className={`mx-[10%] md:mx-[30%]   shadow-2xl rounded-md border-1 border-black border-solid bg-stone-200 block md:hidden `}>
+            <center className={`mx-[10%] md:mx-[30%]   shadow-2xl rounded-md border-1 border-black border-solid bg-stone-200 hidden md:block `}>
                 <button className="absolute right-[11.7%] sm:right-[31.7%]" onClick={closeBanner}>
                     [x]
                 </button>
-                <div className="py-[10%] px-[5%] text-left">
+                <div className="py-[7%] px-[2%]">
 
                     {/* <div className="font-semibold">Check the TS 10th class results in a quicker manner &nbsp;
                         <br />
@@ -25,8 +24,7 @@ const Banner = ({ setBanner }) => {
                             </Link>
                         </a>
                     </div> */}
-                    <small>If the results are not displaying in the correct order, it is likely due to server overload at JNTUH. Please wait for some time and try again later.</small>
-                    {/* <small>Get your JNTUH Results with your CGPA in a second</small>
+                    <small>Get your JNTUH Results with your CGPA in a second</small>
                     <br />
 
 
@@ -40,10 +38,10 @@ const Banner = ({ setBanner }) => {
                             <strong className="hover:cursor-pointer"> here</strong>
                         </Link>
 
-                    </div> */}
+                    </div>
                 </div>
             </center>
-        </div >
+        </div>
     )
 }
 export default Banner;
