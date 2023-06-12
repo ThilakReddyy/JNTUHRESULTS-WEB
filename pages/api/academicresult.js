@@ -181,9 +181,13 @@ class ResultScraper {
 
             }
             this.results.Results.Total = (total / credits).toFixed(2)
+            if (this.results.Results.Total === "NaN") {
+                this.results.Results.Total = ""
+            }
 
         }
         catch (error) {
+            console.log("okay")
 
         }
 
