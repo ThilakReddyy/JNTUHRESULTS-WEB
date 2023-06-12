@@ -180,7 +180,7 @@ class ResultScraper {
                 credits = credits + results[val].credits
 
             }
-            this.results.Results.Total = total / credits
+            this.results.Results.Total = (total / credits).toFixed(2)
 
         }
         catch (error) {
