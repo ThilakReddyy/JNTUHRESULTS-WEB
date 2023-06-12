@@ -14,8 +14,8 @@ const AcademicReportPage = () => {
 
     // Function to fetch academic result
     async function fetchAcademicResult(htno) {
-        // const url = window.location.origin + "/api/academicresult?htno=" + htno;
-        const url = "https://jntuhresults.up.railway.app/api/academicresult?htno=" + htno;
+        const url = "/api/academicresult?htno=" + htno;
+        //const url = "https://jntuhresults.up.railway.app/api/academicresult?htno=" + htno;
         try {
             //const response = await axios.get(url);
             const response = await axios.get(url, { mode: 'cors' });
@@ -40,7 +40,7 @@ const AcademicReportPage = () => {
                     expiry: expiryDate.getTime(), // Store expiry timestamp
                 };
                 localStorage.setItem(htno, JSON.stringify(dataToStore));
-                console
+
             }
         } catch (error) {
             alert("500 - Internal Server Error");
