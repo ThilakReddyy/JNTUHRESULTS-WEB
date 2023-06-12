@@ -14,11 +14,11 @@ const AcademicReportPage = () => {
 
     // Function to fetch academic result
     async function fetchAcademicResult(htno) {
-        const url = "/api/academicresult?htno=" + htno;
-        //const url = "https://jntuhresults.up.railway.app/api/academicresult?htno=" + htno;
+        //const url = "/api/academicresult?htno=" + htno;
+        const url = "https://jntuhresults.up.railway.app/api/academicresult?htno=" + htno;
         try {
-            const response = await axios.get(url);
-            //const response = await axios.get(url, { mode: 'cors' });
+            //const response = await axios.get(url);
+            const response = await axios.get(url, { mode: 'cors' });
             if (response.status === 200) {
                 console.log(response.data);
                 if (response.data === htno + " - 500 Internal Server Error") {
