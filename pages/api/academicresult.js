@@ -4,6 +4,7 @@ const cheerio = require('cheerio');
 class ResultScraper {
     constructor(rollNumber) {
         this.url = 'http://results.jntuh.ac.in/resultAction';
+        // this.url = "http://202.63.105.184/results/resultAction";
         this.rollNumber = rollNumber;
         this.results = { Details: {}, Results: {} };
         this.examCodes = {
