@@ -180,10 +180,14 @@ class ResultScraper {
                 credits = credits + results[val].credits
 
             }
-            this.results.Results.Total = total / credits
+            this.results.Results.Total = (total / credits).toFixed(2)
+            if (this.results.Results.Total === "NaN") {
+                this.results.Results.Total = ""
+            }
 
         }
         catch (error) {
+            console.log("okay")
 
         }
 
