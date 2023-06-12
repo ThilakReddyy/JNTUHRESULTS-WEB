@@ -24,8 +24,8 @@ class ResultScraper {
             },
             bpharmacy: {
                 R17: {
-                    '1-1': ['519', '537', '577', '616', '643', '683', '722', '781', '824', '832'],
-                    '1-2': ['517', '549', '575', '591', '648', '662', '698', '727', '779', '829', '831'],
+                    '1-1': ['519', '537', '577', '616', '643', '683', '722', '781', '824', '832', '855'],
+                    '1-2': ['517', '549', '575', '591', '648', '662', '698', '727', '779', '829', '831', '853'],
                     '2-1': ['532', '570', '638', '673', '717', '769', '819', '849'],
                     '2-2': ['558', '611', '650', '661', '693', '711', '774', '814', '845'],
                     '3-1': ['597', '633', '668', '712', '759', '799', '837'],
@@ -81,7 +81,7 @@ class ResultScraper {
                 this.results.Results[semesterCode][subjectCode].subject_grade !== 'F' &&
                 this.results.Results[semesterCode][subjectCode].subject_grade !== 'Ab' &&
                 this.results.Results[semesterCode][subjectCode].subject_grade !== '-' &&
-                this.results.Results[semesterCode][subjectCode].subject_grade < subjectGrade) {
+                this.gradesToGPA[this.results.Results[semesterCode][subjectCode].subject_grade] > this.gradesToGPA[subjectGrade]) {
                 return;
             }
 
@@ -171,6 +171,20 @@ class ResultScraper {
             } catch (error) {
                 console.error(this.rollNumber, error);
             }
+        }
+        try {
+            const results = this.results.Results;
+            var total = 0, credits = 0;
+            for (let val in results) {
+                total = total + results[val].total
+                credits = credits + results[val].credits
+
+            }
+            this.results.Results.Total = total / credits
+
+        }
+        catch (error) {
+
         }
 
         return this.results;
