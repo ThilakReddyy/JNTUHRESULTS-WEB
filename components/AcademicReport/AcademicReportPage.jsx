@@ -67,9 +67,8 @@ const AcademicReportPage = () => {
                     const parsedData = JSON.parse(storedData);
                     const currentTime = new Date().getTime();
                     if (parsedData.expiry < currentTime) {
-                        setLoading(false);
-                        setResult(parsedData.value);
-                        setReportForm(false);
+
+                        localStorage.removeItem(htno);
                         await fetchAcademicResult(htno);
                     } else {
                         setLoading(false);
