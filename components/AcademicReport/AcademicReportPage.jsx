@@ -33,7 +33,7 @@ const AcademicReportPage = () => {
                 setReportForm(false);
 
                 const expiryDate = new Date();
-                expiryDate.setSeconds(expiryDate.getSeconds() + 45); // Set expiry date to 30 seconds from now
+                expiryDate.setSeconds(expiryDate.getSeconds() + 60); // Set expiry date to 30 seconds from now
 
                 const dataToStore = {
                     value: response.data,
