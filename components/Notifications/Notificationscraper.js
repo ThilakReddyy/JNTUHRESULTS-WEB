@@ -12,7 +12,7 @@ const NotificationScraper = () => {
         const fetchData = async () => {
             try {
                 setIsLoading(false);
-                const sortedData = notificationdata.sort((a, b) => new Date(b.Date) - new Date(a.Date));
+                var sortedData = notificationdata.sort((a, b) => new Date(b.Date) - new Date(a.Date));
                 setResults(sortedData)
                 const response = await axios.get('https://jntuhresults.up.railway.app/api/notifications', { mode: 'cors' });
                 const data = await response.data;
