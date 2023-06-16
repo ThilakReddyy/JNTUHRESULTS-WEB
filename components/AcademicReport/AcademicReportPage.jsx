@@ -33,7 +33,7 @@ const AcademicReportPage = () => {
                 setReportForm(false);
 
                 const expiryDate = new Date();
-                expiryDate.setSeconds(expiryDate.getSeconds() + 45); // Set expiry date to 30 seconds from now
+                expiryDate.setSeconds(expiryDate.getSeconds() + 30); // Set expiry date to 30 seconds from now
 
                 const dataToStore = {
                     value: response.data,
@@ -67,7 +67,9 @@ const AcademicReportPage = () => {
                     const parsedData = JSON.parse(storedData);
                     const currentTime = new Date().getTime();
                     if (parsedData.expiry < currentTime) {
-
+                        setLoading(false);
+                        setResult(parsedData.value);
+                        setReportForm(false);
                         localStorage.removeItem(htno);
                         await fetchAcademicResult(htno);
                     } else {
