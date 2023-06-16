@@ -30,7 +30,7 @@ const NavBar = () => {
     return (<>
 
 
-        <nav className="shadow-xl flex py-[18px] h-[60px] w-full items-center md:px-[20px] md:mb-[20px] bg-white fixed " >
+        <nav className="shadow-xl flex py-[18px] h-[60px] w-full items-center md:px-[20px] md:mb-[20px] z-999 bg-white fixed " >
             <div className="flex-1 flex justify-start md:hidden" onClick={handleNavBar}
 
             >

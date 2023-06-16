@@ -34,18 +34,59 @@ class ResultScraper {
                     '4-1': ['663', '705', '754', '794', '832', '836'],
                     '4-2': ['678', '700', '789', '809']
                 }
+            },
+            mpharmacy: {
+                R19:
+                {
+                    '1-1': ['319', '332', '347', '356', '371', '382', '388'],
+                    '1-2': ['328', '336', '344', '353', '368', '379', '387'],
+                    '2-1': ['337', '350', '365', '376', '386'],
+                    '2-2': ['340', '374', '385']
+                },
+                R22:
+                {
+                    '1-1': ['389']
+                }
+            },
+            mTech: {
+                R19:
+                {
+                    '1-1': ['161', '177', '185', '198', '209', '215'],
+                    '1-2': ['157', '165', '174', '182', '195', '206', '214'],
+                    '2-1': ['166', '180', '194', '204', '213'],
+                    '2-2': ['169', '203', '212']
+                },
+                R22:
+                {
+                    '1-1': ['216']
+                }
+            },
+            mba: {
+                R19:
+                {
+                    '1-1': ['297', '316', '323', '350', '362', '368'],
+                    '1-2': ['122', '293', '302', '313', '320', '347', '359', '367'],
+                    '2-1': ['303', '310', '344', '356', '366'],
+                    '2-2': ['120', '307', '341', '353', '365']
+                },
+                R22:
+                {
+                    '1-1': ['369']
+                }
             }
         };
         this.gradesToGPA = { O: 10, 'A+': 9, A: 8, 'B+': 7, B: 6, C: 5, F: 0, Ab: 0, '-': 0 };
         this.payloads = {
             btech: ['&degree=btech&etype=r17&result=null&grad=null&type=intgrade&htno=', '&degree=btech&etype=r17&result=gradercrv&grad=null&type=rcrvintgrade&htno='],
-            bpharmacy: ['&degree=bpharmacy&etype=r17&grad=null&result=null&type=regular&htno=', '&degree=bpharmacy&etype=r17&grad=null&result=gradercrv&type=rcrvintgrade&htno=']
+            bpharmacy: ['&degree=bpharmacy&etype=r17&grad=null&result=null&type=regular&htno=', '&degree=bpharmacy&etype=r17&grad=null&result=gradercrv&type=rcrvintgrade&htno='],
+            mba: ["&degree=mba&grad=pg&etype=null&result=grade17&type=intgrade&htno=", "&degree=mba&grad=pg&etype=r16&result=gradercrv&type=rcrvintgrade&htno="]
         };
     }
 
     async fetchResult(examCode, payload) {
         const payloadData = `?&examCode=${examCode}${payload}${this.rollNumber}`;
         const response = await axios.get(this.url + payloadData);
+
         return response.data;
     }
 
@@ -126,7 +167,12 @@ class ResultScraper {
         } else if (this.rollNumber[5] === 'R') {
             payloads = this.payloads.bpharmacy;
             examCodes = this.examCodes.bpharmacy.R17;
+        } else if (this.rollNumber[5] == 'E') {
+            payloads = this.payloads.mba;
+            examCodes = this.examCodes.mba[this.rollNumber.startsWith('22') ? 'R22' : 'R19'];
+
         }
+
 
         if (this.rollNumber[4] === '5') {
             delete examCodes['1-1'];

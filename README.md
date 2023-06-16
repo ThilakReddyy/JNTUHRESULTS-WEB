@@ -46,6 +46,13 @@ npm start
 
 <p>Found a bug? Go ahead and <a href="https://github.com/ThilakReddyy/JNTUHRESULTS-SERVICE/issues">submit an issue</a>. And, of course, feel free to submit pull requests with bug fixes or changes to the dev branch.</p>
 
+## Contact
+For any questions, feedback, or inquiries, please contact:
+
+- Name: Thilak Reddy
+- Email: thilakreddypothuganti@gmail.com
+
+
 <p>Also feel free to message me if you have any ideas for small website tools that you can't yet find online. Thanks!</p>
 <h2>Thanks</h2>
 <ul>
