@@ -16,7 +16,7 @@ const NotificationScraper = () => {
     function shareUrl(link, title) {
         if (!navigator.share) return;
 
-        const sharedText = `*Check out the Results!*\n\n${title}\n\n\n`;
+        const sharedText = `*Check out the Results!* \n\n ${title}\n\n\n`;
 
         navigator.share({
             title: 'Check out this website!',
@@ -160,7 +160,7 @@ const NotificationScraper = () => {
 
                                     <div className='ml-auto flex '>
 
-                                        <Link className='px-[5px]' target='_blank' href={`https://api.whatsapp.com/send?text=*Check out the Results!*\n\n${result.Result_title}\n\n${result.Link}\n`} >
+                                        <Link className='px-[5px]' target='_blank' href={`https://api.whatsapp.com/send?text=*Check out the Results!* \n\n ${result.Result_title} \n\n${result.Link}\n`} >
                                             <RiWhatsappLine size={17} />
                                         </Link>
 
