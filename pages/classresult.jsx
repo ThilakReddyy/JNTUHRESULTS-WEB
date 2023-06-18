@@ -4,7 +4,6 @@ const classresult = () => {
     return (
         <>
             <ClassResultPage />
-
         </>
     )
 }
