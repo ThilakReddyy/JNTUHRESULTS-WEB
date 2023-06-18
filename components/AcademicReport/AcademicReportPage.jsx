@@ -77,6 +77,7 @@ const AcademicReportPage = () => {
                         setResult(parsedData.value);
                         setReportForm(false);
                     }
+
                 }
             } catch (error) {
                 alert("500 - Internal Server Error");
