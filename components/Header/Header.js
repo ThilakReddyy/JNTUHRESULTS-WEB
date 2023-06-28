@@ -23,7 +23,7 @@ const Header = () => {
           content='You can find the Results of your entire semesters here of Jawaharlal Nehru Technological University, Hyderabad (JNTUH).'
         />
 
-        <meta property="twitter:description" content="JNTUH Results, JNTUH B.Tech Results,jntuhresults,jntuh notifications, JNTUH Results Enginnering, JNTUH Engineering Results,jntuh bpharmacy results,jntuh bphar results, jntuh mtech results, jntuh mba results, jntuh mca results" />
+        <meta property="twitter:description" content="JNTUH Results, JNTUH B.Tech Results,jntuhresults,jntuh notifications, JNTUH Results Enginnering, JNTUH Engineering Results,jntuh bpharmacy results,jntuh bphar results, jntuh mtech results, jntuh mba results, jntuh mca results" ></ meta>
 
         <meta
           property='og:image'
