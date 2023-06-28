@@ -101,13 +101,24 @@ const HomePage = () => {
 
 
         {/* Footer */}
-        <footer className="ms:fixed w-full border-t py-6 mt-[30px] md:py-4 bottom-0 ">
+        <footer className="ms:fixed w-full border-t py-6 mt-[30px]  bottom-0 ">
           <div className="md:h-8 ">
             <div className=" md:px-0">
               <p className="text-center text-sm md:text-lg  ">
                 Developed by&nbsp;
                 <a href="https://github.com/thilakreddyy" target="_blank" rel="noreferrer" className="font-medium underline underline-offset-4">
                   Thilak Reddy
+                </a>
+
+              </p>
+              <p className="text-center text-sm md:text-lg  ">
+                Collaborators:&nbsp;
+                <a href="https://github.com/hemanth-kotagiri" target="_blank" rel="noreferrer" className="font-medium underline underline-offset-4">
+                  Hemanth Kotagiri&nbsp;
+                </a>
+                and&nbsp;
+                <a href="https://github.com/Syed-Ansar" target="_blank" rel="noreferrer" className="font-medium underline underline-offset-4">
+                  Syed Ansar
                 </a>
               </p>
             </div>
