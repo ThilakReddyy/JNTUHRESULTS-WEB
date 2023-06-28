@@ -20,10 +20,11 @@ const Header = () => {
         <meta property="twitter:title" content="JNTUH Results" />
         <meta
           property='og:description'
-          content='You can find the Results of your entire B Tech & B Pharmacy semesters here of Jawaharlal Nehru Technological University, Hyderabad (JNTUH).'
+          content='You can find the Results of your entire semesters here of Jawaharlal Nehru Technological University, Hyderabad (JNTUH).'
         />
 
-        <meta property="twitter:description" content="JNTUH Results, JNTUH B.Tech Results,jntuhresults,jntuh notifications, JNTUH Results Enginnering, JNTUH Engineering Results,jntuh bpharmacy results,jntuh bphar results "></meta>
+        <meta property="twitter:description" content="JNTUH Results, JNTUH B.Tech Results,jntuhresults,jntuh notifications, JNTUH Results Enginnering, JNTUH Engineering Results,jntuh bpharmacy results,jntuh bphar results, jntuh mtech results, jntuh mba results, jntuh mca results" ></ meta>
+
         <meta
           property='og:image'
           content={
