@@ -31,7 +31,7 @@ const Header = () => {
             'https://raw.githubusercontent.com/ThilakReddyy/JNTUHRESULTS-WEB/main/public/FrontPage.png'
           }
         />
-        <meta name="google-site-verification" content="vP9NVw1iLaX8FckxhrQFuLXtErQXyW0GkLgT-7S-evM" />
+        <meta name="google-site-verification" content="2arj9D99oUuGh03Qhewo_iEY45zbwhrJqLytiZSmoEg" />
 
 
         <script
