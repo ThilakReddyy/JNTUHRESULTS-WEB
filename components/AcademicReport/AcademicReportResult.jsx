@@ -28,29 +28,59 @@ const AcademicReportResult = ({ query }) => {
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div className="block sm:hidden">
+                                    <table>
+                                        <tbody>
+                                            <tr className="w-max bg-gray-200 md:bg-gray-300">
+                                                <th>SUBJECT_CODE</th>
+                                                <th>SUBJECT_NAME</th>
+                                                <th>GRADE</th>
+                                                <th>CREDITS</th>
+                                            </tr>
+                                            {Object.keys(Results[val]).map(function (item, index) {
+                                                if (item != 'CGPA' & item != 'total' & item != 'credits') {
+                                                    return <><tr>
+                                                        <th>{Results[val][item]['subject_code']}</th>
+                                                        <th>{Results[val][item]['subject_name']}</th>
 
-                                <table>
-                                    <tbody>
-                                        <tr className="w-max bg-gray-200 md:bg-gray-300">
-                                            <th>SUBJECT_CODE</th>
-                                            <th>SUBJECT_NAME</th>
-                                            <th>GRADE</th>
-                                            <th>CREDITS</th>
-                                        </tr>
-                                        {Object.keys(Results[val]).map(function (item, index) {
-                                            if (item != 'CGPA' & item != 'total' & item != 'credits') {
-                                                return <><tr>
-                                                    <th>{Results[val][item]['subject_code']}</th>
-                                                    <th>{Results[val][item]['subject_name']}</th>
-
-                                                    <th>{Results[val][item]['subject_grade']}</th>
-                                                    <th>{Results[val][item]['subject_credits']}</th>
-                                                </tr>
-                                                </>
-                                            }
-                                        })}
-                                    </tbody>
-                                </table>
+                                                        <th>{Results[val][item]['subject_grade']}</th>
+                                                        <th>{Results[val][item]['subject_credits']}</th>
+                                                    </tr>
+                                                    </>
+                                                }
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div className="hidden sm:block">
+                                    <table>
+                                        <tbody>
+                                            <tr className="w-max bg-gray-200 md:bg-gray-300">
+                                                <th>SUBJECT_CODE</th>
+                                                <th>SUBJECT_NAME</th>
+                                                <th>INTERNAL</th>
+                                                <th>EXTERNAL</th>
+                                                <th>TOTAL</th>
+                                                <th>GRADE</th>
+                                                <th>CREDITS</th>
+                                            </tr>
+                                            {Object.keys(Results[val]).map(function (item, index) {
+                                                if (item != 'CGPA' & item != 'total' & item != 'credits') {
+                                                    return <><tr>
+                                                        <th>{Results[val][item]['subject_code']}</th>
+                                                        <th>{Results[val][item]['subject_name']}</th>
+                                                        <th>{Results[val][item]['subject_internal']}</th>
+                                                        <th>{Results[val][item]['subject_external']}</th>
+                                                        <th>{Results[val][item]['subject_total']}</th>
+                                                        <th>{Results[val][item]['subject_grade']}</th>
+                                                        <th>{Results[val][item]['subject_credits']}</th>
+                                                    </tr>
+                                                    </>
+                                                }
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
                                 <table>
                                     <tbody>
                                         <tr>
