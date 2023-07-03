@@ -14,7 +14,6 @@ const Banner = ({ setBanner }) => {
                 </button>
                 <div className="py-[7%] px-[2%]">
                     <div>
-                        <p > <b>Note: </b>To view your marks as well, kindly switch to landscape mode.</p>
                         <br />
                         <span className="font-bold">Check out your results with statistics </span>
                         <Link href="https://jntuh-results-stats.vercel.app/multi">
