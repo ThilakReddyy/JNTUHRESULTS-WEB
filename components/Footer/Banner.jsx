@@ -14,7 +14,6 @@ const Banner = ({ setBanner }) => {
                 </button>
                 <div className="py-[7%] px-[2%]">
                     <div>
-                        <p className="font-bold"> If the current display of results is not in the correct format due to high server load at JNTUH. We kindly request your patience until the results can be displayed accurately.</p>
                         <br />
                         <span className="font-bold">Check out your results with statistics </span>
                         <Link href="https://jntuh-results-stats.vercel.app/multi">
