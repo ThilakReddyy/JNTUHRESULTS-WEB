@@ -50,7 +50,7 @@ const AcademicReportPage = () => {
             setWarning("");
         }
         else {
-            setWarning("Feature under development!!")
+            setWarning("Results are only available from 12 AM to 10 AM")
         }
 
     }, [])
@@ -125,7 +125,14 @@ const AcademicReportPage = () => {
                             continue;
                         }
                     }
-                    const response = await axios.get(url + roll_numbers, { mode: 'cors' });
+                    try {
+                        const response = await axios.get(url + roll_numbers, { mode: 'cors' });
+                    }
+                    catch
+                    {
+                        const response = await axios.get(url + roll_numbers, { mode: 'cors' });
+                    }
+
                     if (response.status === 200) {
                         if (response.data.length === 0) {
                             setLen(true);
