@@ -125,12 +125,13 @@ const AcademicReportPage = () => {
                             continue;
                         }
                     }
+                    var response;
                     try {
-                        const response = await axios.get(url + roll_numbers, { mode: 'cors' });
+                        response = await axios.get(url + roll_numbers, { mode: 'cors' });
                     }
                     catch
                     {
-                        const response = await axios.get(url + roll_numbers, { mode: 'cors' });
+                        response = await axios.get(url + roll_numbers, { mode: 'cors' });
                     }
 
                     if (response.status === 200) {
