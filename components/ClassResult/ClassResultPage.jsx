@@ -50,7 +50,7 @@ const AcademicReportPage = () => {
             setWarning("");
         }
         else {
-            setWarning("Results are only available from 12 AM to 10 AM")
+            setWarning("Results are only available from 12 AM to 7 AM")
         }
 
     }, [])
@@ -62,7 +62,7 @@ const AcademicReportPage = () => {
         var currentTime = new Date();
         var currentHour = currentTime.getHours();
 
-        if (currentHour >= 10) {
+        if (currentHour >= 7) {
             console.log("Result not available at this time")
             return "";
         }
@@ -102,7 +102,7 @@ const AcademicReportPage = () => {
 
 
                 // Fetch data for different roll numbers
-                const url = "https://jntuhresults-service-production.up.railway.app/api/classresult?semester=" + form['semesterOption'] + '&htnos=';
+                const url = "https://jntuhresults.up.railway.app/api/classresult?semester=" + form['semesterOption'] + '&htnos=';
                 for (let i = 0; i < roll_last_2.length; i++) {
                     const roll_number = hallticket + roll_last_2[i];
                     let roll_numbers = "";
