@@ -52,7 +52,7 @@ const NavBar = () => {
                 </div>
             </div>
             <div className="flex-1 flex justify-end">
-                <a href="https://github.com/ThilakReddyy/JNTUHRESULTS-WEB/">
+                <a href="https://github.com/ThilakReddyy/JNTUHRESULTS-WEB/" aria-label="github jntuhresults-web">
                     <GoMarkGithub size={20} className="mx-4 " />
                 </a>
             </div>
