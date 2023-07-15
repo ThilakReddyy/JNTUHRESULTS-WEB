@@ -5,6 +5,7 @@ import notificationdata from '../../public/Notification.json'
 import { AiOutlineShareAlt } from "react-icons/ai"
 import Link from 'next/link';
 import debounce from 'lodash.debounce';
+import { RiWhatsappLine } from "react-icons/ri";
 
 const NotificationScraper = () => {
     const [results, setResults] = useState([]);
