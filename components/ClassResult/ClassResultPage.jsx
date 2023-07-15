@@ -47,7 +47,7 @@ const AcademicReportPage = () => {
         var currentHour = currentTime.getHours();
         if (currentHour < 7) {
 
-            setWarning("");
+            setWarning("Result not available at this time");
         }
         else {
             setWarning("Results are only available from 12 AM to 7 AM")
