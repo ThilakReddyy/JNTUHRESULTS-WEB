@@ -45,7 +45,7 @@ const AcademicReportPage = () => {
         //only works between 12 am and 6am
         var currentTime = new Date();
         var currentHour = currentTime.getHours();
-        if (currentHour < 10) {
+        if (currentHour < 7) {
 
             setWarning("");
         }

@@ -10,7 +10,7 @@ const AcademicReportPage = () => {
     const [reportForm, setReportForm] = useState(true);
     const [loading, setLoading] = useState(false);
     const [htno, setHtno] = useState("");
-    const [warning, setWarning] = useState("");
+    const [warning, setWarning] = useState("The results migh not be available right now due to jntuh server issue!!");
 
     // Function to fetch academic result
     async function fetchAcademicResult(htno) {
