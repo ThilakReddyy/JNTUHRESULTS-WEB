@@ -14,6 +14,7 @@ const AcademicReportPage = () => {
 
     // Function to fetch academic result
     async function fetchAcademicResult(htno) {
+        alert("kindly wait for 15 minutes and try again")
         //const url = "/api/academicresult?htno=" + htno;
         const url = "https://jntuhresults.up.railway.app/api/academicresult?htno=" + htno;
         try {
