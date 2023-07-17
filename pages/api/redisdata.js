@@ -1,6 +1,6 @@
 import Redis from 'ioredis'
 
-let redis = new Redis("redis://default:EIv5u8Z2c6G8JvNZQ2QO@containers-us-west-63.railway.app:5512")
+let redis = new Redis(process.env.REDIS_URL)
 
 export default async function handler(req, res) {
     let start = Date.now();
