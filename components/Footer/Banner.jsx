@@ -7,7 +7,7 @@ const Banner = ({ setBanner }) => {
         setBanner(false);
     }
     return (
-        <div className="pb-[80px] hidden">
+        <div className="pb-[80px]">
             <center className="mx-[10%] md:mx-[30%] shadow-2xl rounded-md border-1 border-black border-solid bg-stone-200">
                 <button className="absolute right-[11.7%] sm:right-[31.7%]" onClick={closeBanner}>
                     [x]
@@ -15,10 +15,21 @@ const Banner = ({ setBanner }) => {
                 <div className="py-[7%] px-[2%]">
                     <div>
                         <br />
-                        <span className="font-bold">Check out your results with statistics </span>
+                        <span className="font-bold">
+                            If you encounter any difficulties retrieving results, please provide your feedback&nbsp;
+                            <Link href="https://docs.google.com/forms/d/e/1FAIpQLScFdsBs-QvzuZLxc1ZmvsUo4R2Ez1NPe0UmG7E1tgzXzKrimg/viewform">
+                                <strong className="hover:cursor-pointer text-sky-900">here</strong>
+                            </Link>
+                            &nbsp;or reach out to me directly via
+                            <Link href="https://www.instagram.com/__thilak_reddy__/">
+                                <strong className="hover:cursor-pointer text-sky-900">&nbsp;Instagram</strong>
+                            </Link>
+                            .
+                        </span>
+                        {/* <span className="font-bold">Check out your results with statistics </span>
                         <Link href="https://jntuh-results-stats.vercel.app/multi">
                             <strong className="hover:cursor-pointer text-sky-900">here</strong>
-                        </Link>
+                        </Link> */}
                     </div>
                 </div>
             </center>
