@@ -16,7 +16,7 @@ const HomePage = () => {
   return (
     <div className='__variable_0ec1f4'>
       <div className=" ms:h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-100">
-        <h1 className="  md:flex justify-center  p-8 pt-[100px] ">
+        <div className="  md:flex justify-center  p-8 pt-[100px] ">
           <center className='md:flex font-montser text-[28px] md:text-[50px] lg:text-[70px] '>
             Welcome to&nbsp;
             <div className='text-blue-400 hover:text-blue-600 hover:underline'>
@@ -29,7 +29,7 @@ const HomePage = () => {
           </center>
           <br />
 
-        </h1>
+        </div>
         <center>
 
 
