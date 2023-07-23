@@ -1,5 +1,10 @@
+// Import necessary libraries
 const axios = require('axios');
 const cheerio = require('cheerio');
+const Redis = require('ioredis');
+
+// Create a new Redis client and connect to the Redis server
+const redis = new Redis(process.env.REDIS_URL);
 
 class ResultScraper {
     constructor(rollNumber) {
@@ -32,7 +37,7 @@ class ResultScraper {
                     '3-1': ['597', '633', '668', '712', '759', '799', '837'],
                     '3-2': ['655', '660', '688', '710', '764', '804', '841'],
                     '4-1': ['663', '705', '754', '794', '832', '836'],
-                    '4-2': ['678', '700', '789', '809']
+                    '4-2': ['678', '700', '789', '809', '861']
                 },
                 R22: {
                     '1-1': ['859']
@@ -263,6 +268,15 @@ export default async function handler(req, res) {
             // Calculate the time taken in milliseconds
 
             console.log(rollNumber, 'Time taken:', endTime - startTime, 'seconds');
+            // Set the data in Redis with the specified key and expiration time
+            const jsonString = JSON.stringify(results);
+            redis.set(rollNumber, jsonString, 'EX', 4 * 3600)
+                .then(() => {
+                    console.log('Data has been set in the Redis cache.');
+                })
+                .catch((error) => {
+                    console.error('Error setting data in the Redis cache:', error);
+                });
             res.status(200).json(results);
         })
         .catch(error => {

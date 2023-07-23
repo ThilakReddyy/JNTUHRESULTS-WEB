@@ -3,6 +3,7 @@ import data from './colleges';
 import Footer from "../Footer/Footer";
 import branches from './branches';
 import Banner from "../Footer/Banner";
+import Link from "next/link";
 const ClassReportForm = ({ warning, submit, form, setForm }) => {
     const [fontSize, setFontSize] = useState(10);
 
@@ -162,7 +163,14 @@ const ClassReportForm = ({ warning, submit, form, setForm }) => {
 
                         </div>
                         <br />
-                        <p className="text-[60%] text-red-600 ">{warning}</p>
+                        <p className="text-[60%] text-red-600 mx-[10px]">{warning}.
+                            <br />
+                            To get the class results for all semesters and the entire class kindly click&nbsp;
+
+                            <Link href="https://docs.google.com/forms/d/e/1FAIpQLSf0XmGa2Zc6ceufIpZj4nrCRp6yUUVvgc6kXpquoKl7kiyvsQ/viewform?usp=sf_link">
+                                <strong className="hover:cursor-pointer text-sky-900">here</strong>
+                            </Link>
+                        </p>
                         <br />
 
                         <button
