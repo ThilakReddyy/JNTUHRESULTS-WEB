@@ -31,10 +31,10 @@ const Header = () => {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Inter:wght@300&family=Roboto+Slab&display=swap" rel="stylesheet" />
 
-
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5512897194230969"
+          crossorigin="anonymous"></script>
       </Head>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5512897194230969"
-        crossorigin="anonymous"></script>
+
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-6CR1W425NE"
         strategy="afterInteractive"
