@@ -39,7 +39,7 @@ const NavBar = () => {
             <div className="flex-2 justify-center mt-[5px] ">
 
                 <Image
-                    src="/logo.png"
+                    src="/jntuhresults.png"
                     alt="Jntuh Results logo"
                     width={72}
                     height={57}
