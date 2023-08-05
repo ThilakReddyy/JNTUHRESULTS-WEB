@@ -22,7 +22,7 @@ const Banner = ({ setBanner }) => {
                             .&nbsp;Your feedback is highly valuable.
                         </span> */}
                         <span className="font-bold">Check out your results with statistics </span>
-                        <Link href="https://jntuh-results-stats.vercel.app/multi">
+                        <Link href="https://jntuh-results-stats.netlify.app/multi">
                             <strong className="hover:cursor-pointer text-sky-900">here</strong>
                         </Link>
                     </div>
