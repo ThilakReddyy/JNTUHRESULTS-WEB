@@ -14,17 +14,17 @@ const Banner = ({ setBanner }) => {
                 <div className="py-[7%] px-[2%]">
                     <div>
                         <br />
-                        <span className="font-bold">
+                        {/* <span className="font-bold">
                             Please provide any suggestions, new features, improvements, or additions you have in mind for our website&nbsp;
                             <Link href="https://docs.google.com/forms/d/e/1FAIpQLScFdsBs-QvzuZLxc1ZmvsUo4R2Ez1NPe0UmG7E1tgzXzKrimg/viewform">
                                 <strong className="hover:cursor-pointer text-sky-900">here</strong>
                             </Link>
                             .&nbsp;Your feedback is highly valuable.
-                        </span>
-                        {/* <span className="font-bold">Check out your results with statistics </span>
-                        <Link href="https://jntuh-results-stats.vercel.app/multi">
+                        </span> */}
+                        <span className="font-bold">Check out your results with statistics </span>
+                        <Link href="https://jntuh-results-stats.netlify.app/multi">
                             <strong className="hover:cursor-pointer text-sky-900">here</strong>
-                        </Link> */}
+                        </Link>
                     </div>
                 </div>
             </center>
