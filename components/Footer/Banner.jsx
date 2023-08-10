@@ -21,6 +21,11 @@ const Banner = ({ setBanner }) => {
                             </Link>
                             .&nbsp;Your feedback is highly valuable.
                         </span> */}
+                        <span className="font-bold">
+                            Looks like JNTU servers are down! Please try again after sometime!&nbsp;
+
+                        </span>
+                        <br />
                         <span className="font-bold">Check out your results with statistics </span>
                         <Link href="https://jntuh-results-stats.netlify.app/multi">
                             <strong className="hover:cursor-pointer text-sky-900">here</strong>
