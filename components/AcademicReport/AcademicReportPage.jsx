@@ -12,6 +12,8 @@ const AcademicReportPage = () => {
     const [htno, setHtno] = useState("");
     const [warning, setWarning] = useState("");
 
+
+
     // Function to fetch academic result
     async function fetchAcademicResult(htno) {
 
@@ -34,7 +36,7 @@ const AcademicReportPage = () => {
         const url = "https://jntuhresults.up.railway.app/api/academicresult?htno=" + htno;
         try {
             //const response = await axios.get(url);
-            const response = await axios.get(url, { mode: 'cors' });
+            const response = await axios.get(url, { mode: 'cors', timeout: 2000, });
             if (response.status === 200) {
                 console.log(response.data);
                 if (response.data === htno + " - 500 Internal Server Error") {
@@ -59,9 +61,51 @@ const AcademicReportPage = () => {
 
             }
         } catch (error) {
-            alert("500 - Internal Server Error");
-            setLoading(false);
-            setReportForm(true);
+            if (error.code === 'ECONNABORTED') {
+                const alternativeUrl = "https://jntuhresultsbackend.vercel.app/api/academicresult?htno=" + htno;
+                try {
+                    //const response = await axios.get(url);
+                    const response = await axios.get(alternativeUrl);
+                    if (response.status === 200) {
+                        console.log(response.data);
+                        if (response.data === htno + " - 500 Internal Server Error") {
+                            setLoading(false);
+                            alert("500 - Internal Server Error");
+                            setLoading(false);
+                            setReportForm(true);
+                            return;
+                        }
+                        setLoading(false);
+                        setResult(response.data);
+                        setReportForm(false);
+
+                        const expiryDate = new Date();
+                        expiryDate.setSeconds(expiryDate.getSeconds() + 30); // Set expiry date to 30 seconds from now
+
+                        const dataToStore = {
+                            value: response.data,
+                            expiry: expiryDate.getTime(), // Store expiry timestamp
+                        };
+                        localStorage.setItem(htno, JSON.stringify(dataToStore));
+
+                    }
+                }
+                catch (error) {
+                    console.log(error);
+                    alert("500 - Internal Server Error");
+                    setLoading(false);
+                    setReportForm(true);
+                }
+
+
+            }
+            else {
+                console.log(error);
+                alert("500 - Internal Server Error");
+                setLoading(false);
+                setReportForm(true);
+            }
+
         }
     }
 
