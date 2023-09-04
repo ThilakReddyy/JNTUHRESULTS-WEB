@@ -8,8 +8,8 @@ const redis = new Redis(process.env.REDIS_URL);
 
 class ResultScraper {
     constructor(rollNumber) {
-        this.url = 'http://results.jntuh.ac.in/resultAction';
-        // this.url = "http://202.63.105.184/results/resultAction";
+        // this.url = 'http://results.jntuh.ac.in/resultAction';
+        this.url = "http://202.63.105.184/results/resultAction";
         this.rollNumber = rollNumber;
         this.data = { Details: {}, Results: {} };
         this.examCodes = {
@@ -268,9 +268,6 @@ class ResultScraper {
 
 export default async function handler(req, res) {
 
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
 
 
