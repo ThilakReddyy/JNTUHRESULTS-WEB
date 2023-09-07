@@ -1,7 +1,17 @@
+import React, { useState, useEffect } from 'react';
+
 const AcademicReportResult = ({ query }) => {
     const Results = query['Results'];
     const Details = query['Details'];
+    const [visible, setVisible] = useState(true);
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setVisible(false); // Hide the banner after 2 seconds
+        }, 2800);
+
+        return () => clearTimeout(timer);
+    }, []);
     return (
         <>
 
@@ -105,7 +115,13 @@ const AcademicReportResult = ({ query }) => {
                     </table>
                 </div>
             </div>
+            <div
+                className={`bg-orange-300 p-4 text-center fixed top-0 left-0 right-0 z-50 my-[200px] mx-[40px] rounded ${visible ? 'opacity-100 transition-opacity' : 'opacity-0 pointer-events-none'
+                    }`}
+            >
 
+                To access your results, including marks, kindly switch to desktop mode.
+            </div>
         </>
     )
 }
