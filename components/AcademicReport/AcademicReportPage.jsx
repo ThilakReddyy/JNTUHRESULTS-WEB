@@ -36,7 +36,7 @@ const AcademicReportPage = () => {
         const url = "https://jntuhresults.up.railway.app/api/academicresult?htno=" + htno;
         try {
             //const response = await axios.get(url);
-            const response = await axios.get(url, { mode: 'cors', timeout: 4000, });
+            const response = await axios.get(url, { mode: 'cors', });
             if (response.status === 200) {
                 console.log(response.data);
                 if (response.data === htno + " - 500 Internal Server Error") {
