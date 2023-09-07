@@ -12,7 +12,26 @@ const AcademicReportPage = () => {
     const [htno, setHtno] = useState("");
     const [warning, setWarning] = useState("");
 
-
+    function mapValueToRange() {
+        const alternativeurls = ["https://jntuhresultsbackend.vercel.app", "https://jntuhresults-web-two.vercel.app", "jntuhresults-web-three.vercel.app"]
+        const currentDate = new Date();
+        const inputValue = currentDate.getDate();
+        if (inputValue >= 1 && inputValue <= 5) {
+            return alternativeurls[0];
+        } else if (inputValue >= 6 && inputValue <= 10) {
+            return alternativeurls[1];
+        } else if (inputValue >= 11 && inputValue <= 15) {
+            return alternativeurls[2];
+        } else if (inputValue >= 16 && inputValue <= 20) {
+            return alternativeurls[1];
+        } else if (inputValue >= 21 && inputValue <= 25) {
+            return alternativeurls[0];
+        } else if (inputValue >= 26 && inputValue <= 31) {
+            return alternativeurls[2];
+        } else {
+            return "Invalid input";
+        }
+    }
 
     // Function to fetch academic result
     async function fetchAcademicResult(htno) {
@@ -36,7 +55,7 @@ const AcademicReportPage = () => {
         const url = "https://jntuhresults.up.railway.app/api/academicresult?htno=" + htno;
         try {
             //const response = await axios.get(url);
-            const response = await axios.get(url, { mode: 'cors', });
+            const response = await axios.get(url, { mode: 'cors', timeout: 5000, });
             if (response.status === 200) {
                 console.log(response.data);
                 if (response.data === htno + " - 500 Internal Server Error") {
@@ -61,57 +80,52 @@ const AcademicReportPage = () => {
 
             }
         } catch (error) {
-            // if (error.code === 'ECONNABORTED') {
-            //     const alternativeUrl = "https://jntuhresultsbackend.vercel.app/api/academicresult?htno=" + htno;
-            //     try {
-            //         //const response = await axios.get(url);
-            //         const response = await axios.get(alternativeUrl);
-            //         if (response.status === 200) {
-            //             console.log(response.data);
-            //             if (response.data === htno + " - 500 Internal Server Error") {
-            //                 setLoading(false);
-            //                 alert("500 - Internal Server Error");
-            //                 setLoading(false);
-            //                 setReportForm(true);
-            //                 return;
-            //             }
-            //             setLoading(false);
-            //             setResult(response.data);
-            //             setReportForm(false);
+            if (error.code === 'ECONNABORTED') {
 
-            //             const expiryDate = new Date();
-            //             expiryDate.setSeconds(expiryDate.getSeconds() + 30); // Set expiry date to 30 seconds from now
+                const alternativeUrl = mapValueToRange() + "/api/academicresult?htno=" + htno;
+                try {
+                    //const response = await axios.get(url);
+                    const response = await axios.get(alternativeUrl);
+                    if (response.status === 200) {
+                        console.log(response.data);
+                        if (response.data === htno + " - 500 Internal Server Error") {
+                            setLoading(false);
+                            alert("500 - Internal Server Error");
+                            setLoading(false);
+                            setReportForm(true);
+                            return;
+                        }
+                        setLoading(false);
+                        setResult(response.data);
+                        setReportForm(false);
 
-            //             const dataToStore = {
-            //                 value: response.data,
-            //                 expiry: expiryDate.getTime(), // Store expiry timestamp
-            //             };
-            //             localStorage.setItem(htno, JSON.stringify(dataToStore));
+                        const expiryDate = new Date();
+                        expiryDate.setSeconds(expiryDate.getSeconds() + 30); // Set expiry date to 30 seconds from now
 
-            //         }
-            //     }
-            //     catch (error) {
-            //         console.log(error);
-            //         alert("500 - Internal Server Error");
-            //         setLoading(false);
-            //         setReportForm(true);
-            //     }
-            //     console.log(error);
-            //     alert("500 - Internal Server Error");
-            //     setLoading(false);
-            //     setReportForm(true);
+                        const dataToStore = {
+                            value: response.data,
+                            expiry: expiryDate.getTime(), // Store expiry timestamp
+                        };
+                        localStorage.setItem(htno, JSON.stringify(dataToStore));
 
-            // }
-            // else {
-            //     console.log(error);
-            //     alert("500 - Internal Server Error");
-            //     setLoading(false);
-            //     setReportForm(true);
-            // }
-            console.log(error);
-            alert("500 - Internal Server Error");
-            setLoading(false);
-            setReportForm(true);
+                    }
+                }
+                catch (error) {
+                    console.log(error);
+                    alert("500 - Internal Server Error");
+                    setLoading(false);
+                    setReportForm(true);
+                }
+
+
+            }
+            else {
+                console.log(error);
+                alert("500 - Internal Server Error");
+                setLoading(false);
+                setReportForm(true);
+            }
+
         }
     }
 

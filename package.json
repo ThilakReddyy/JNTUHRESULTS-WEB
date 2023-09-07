@@ -19,6 +19,8 @@
     "fast-html-parser": "^1.0.1",
     "ioredis": "^5.3.2",
     "js-cookie": "^3.0.5",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.6.0",
     "next": "^13.4.4",
     "next-pwa": "^5.6.0",
     "node": "^20.2.0",
