@@ -3,10 +3,15 @@ import { GoMarkGithub } from 'react-icons/go';
 import Image from 'next/image';
 import NavMenu from './NavMenu';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 const NavBar = () => {
 
+    const pathname = usePathname();
+
     const [NavMenuOpen, setNavMenuOpen] = useState(false);
+    const [NavBarr, setNavBarr] = useState(true);
+    console.log(pathname == "/notifications");
     useEffect(() => {
         const handleClick = (event) => {
             if ((NavMenuOpen && event.target.closest('#nav-menu') == null) && (event.target.id !== "navBarMenuIcon")) {
@@ -21,13 +26,19 @@ const NavBar = () => {
         };
     }, [NavMenuOpen]);
 
+    useEffect(() => {
+
+        setNavBarr(pathname != "/notifications");
+
+    }, []);
+
     const handleNavBar = () => {
 
         setNavMenuOpen(!NavMenuOpen);
     }
 
 
-    return (<>
+    return (<div className={`${(!NavBarr) ? 'hidden' : ''} `}>
 
 
         <nav className="shadow-xl flex py-[18px] h-[60px] w-full items-center md:px-[20px] md:mb-[20px] z-999 bg-white fixed " >
@@ -58,7 +69,7 @@ const NavBar = () => {
             </div>
         </nav>
 
-    </>
+    </div>
     )
 }
 export default NavBar;
