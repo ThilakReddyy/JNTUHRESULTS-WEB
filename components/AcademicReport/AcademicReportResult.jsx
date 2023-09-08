@@ -47,7 +47,7 @@ const AcademicReportResult = ({ query }) => {
     return (
         <>
             <div ref={reportTemplateRef} >
-                <div className="m-2 text-[30%] sm:text-[45%] " >
+                <div className="m-2 text-[30%] sm:text-[45%] md:text-[60%] lg:text-[100%]" >
                     <table className="w-[100%] my-2">
                         <tbody>
                             <tr className='w-max bg-gray-200 md:bg-gray-300'>
