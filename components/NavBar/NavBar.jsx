@@ -4,9 +4,14 @@ import Image from 'next/image';
 import NavMenu from './NavMenu';
 import { useState, useEffect } from 'react';
 
+
 const NavBar = () => {
 
+
+
     const [NavMenuOpen, setNavMenuOpen] = useState(false);
+    const [NavBarr, setNavBarr] = useState(true);
+
     useEffect(() => {
         const handleClick = (event) => {
             if ((NavMenuOpen && event.target.closest('#nav-menu') == null) && (event.target.id !== "navBarMenuIcon")) {
@@ -21,13 +26,15 @@ const NavBar = () => {
         };
     }, [NavMenuOpen]);
 
+
+
     const handleNavBar = () => {
 
         setNavMenuOpen(!NavMenuOpen);
     }
 
 
-    return (<>
+    return (<div >
 
 
         <nav className="shadow-xl flex py-[18px] h-[60px] w-full items-center md:px-[20px] md:mb-[20px] z-999 bg-white fixed " >
@@ -58,7 +65,7 @@ const NavBar = () => {
             </div>
         </nav>
 
-    </>
+    </div>
     )
 }
 export default NavBar;

@@ -116,7 +116,7 @@ const AcademicReportResult = ({ query }) => {
                 </div>
             </div>
             <div
-                className={`bg-orange-300 p-4 text-center fixed top-0 left-0 right-0 z-50 my-[200px] mx-[40px] rounded ${visible ? 'opacity-100 transition-opacity' : 'opacity-0 pointer-events-none'
+                className={`bg-orange-300 lg:hidden p-4 text-center fixed top-0 left-0 right-0 z-50 my-[200px] mx-[40px] rounded ${visible ? 'opacity-100 transition-opacity' : 'opacity-0 pointer-events-none'
                     }`}
             >
 
