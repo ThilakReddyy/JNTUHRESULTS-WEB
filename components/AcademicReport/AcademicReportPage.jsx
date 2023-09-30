@@ -13,7 +13,7 @@ const AcademicReportPage = () => {
     const [warning, setWarning] = useState("");
 
     function mapValueToRange() {
-        const alternativeurls = ["https://jntuhresultsbackend.vercel.app", "https://jntuhresults-web-two.vercel.app", "jntuhresults-web-three.vercel.app"]
+        const alternativeurls = ["https://jntuhresultsbackend.vercel.app", "https://jntuhresults-web-two.vercel.app", "https://jntuhresults-web-three.vercel.app"]
         const currentDate = new Date();
         const inputValue = currentDate.getDate();
         if (inputValue >= 1 && inputValue <= 5) {
