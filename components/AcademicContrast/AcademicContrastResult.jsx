@@ -235,15 +235,15 @@ const AcademicReportResult = ({ query }) => {
                         </tr>
 
                         {
-                            performanceAnalysisKeys.map((key) => (
-                                <tr>
+                            performanceAnalysisKeys.map((Key) => (
+                                <tr key={Key}>
                                     <th className='w-max bg-gray-200 md:bg-gray-300 w-[33%]'>
-                                        {key}
+                                        {Key}
                                     </th>
                                     {
                                         performanceAnalysis.map((student, index) => (
                                             <td key={index} className="w-max text-center text-black">
-                                                <div>{student[key]}</div>
+                                                <div>{student[Key]}</div>
                                             </td>
 
                                         ))
