@@ -4,7 +4,7 @@ import jsPDF from 'jspdf';
 import { HiArrowSmDown } from "react-icons/hi";
 
 // Defining the functional component
-const AcademicReportResult = ({ query }) => {
+const AcademicContrastResult = ({ query }) => {
 
     // Destructure the 'query' prop into two student objects
     const [student1, student2] = query;
@@ -99,7 +99,7 @@ const AcademicReportResult = ({ query }) => {
     return (
         <div ref={reportTemplateRef}>
 
-            <div class="m-2  text-[40%] sm:text-[30%] md:text-[60%] lg:text-[100%]">
+            <div className="m-2  text-[40%] sm:text-[30%] md:text-[60%] lg:text-[100%]">
 
 
                 <table>
@@ -114,7 +114,7 @@ const AcademicReportResult = ({ query }) => {
                     </tbody>
 
                 </table>
-                <table class="w-[100%] my-[0.5px]">
+                <table className="w-[100%] my-[0.5px]">
                     <tbody>
 
                         <tr>
@@ -157,7 +157,7 @@ const AcademicReportResult = ({ query }) => {
 
                 </table>
 
-                <table class="w-[100%] my-[0.5px]">
+                <table className="w-[100%] my-[0.5px]">
 
                     <tbody>
 
@@ -217,10 +217,8 @@ const AcademicReportResult = ({ query }) => {
                     </tbody>
 
                 </table>
-                <table class="w-[100%] my-[0.5px]">
-
+                <table className="w-[100%] my-[0.5px]">
                     <tbody>
-
                         <tr>
                             <th className='w-max bg-gray-200 md:bg-gray-300 w-[33%]'>
 
@@ -233,7 +231,6 @@ const AcademicReportResult = ({ query }) => {
                                 Student 2
                             </th>
                         </tr>
-
                         {
                             performanceAnalysisKeys.map((Key) => (
                                 <tr key={Key}>
@@ -245,7 +242,6 @@ const AcademicReportResult = ({ query }) => {
                                             <td key={index} className="w-max text-center text-black">
                                                 <div>{student[Key]}</div>
                                             </td>
-
                                         ))
                                     }
                                 </tr>
@@ -282,4 +278,4 @@ const AcademicReportResult = ({ query }) => {
     )
 }
 
-export default AcademicReportResult;
+export default AcademicContrastResult;

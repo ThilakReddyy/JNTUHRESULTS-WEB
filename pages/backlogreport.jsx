@@ -6,15 +6,15 @@ const academicreport = () => {
         <>
             <Head>
                 <title>
-                    JNTUH RESULTS | ACADEMIC RESULT
+                    JNTUH RESULTS | BACKLOG ASSESMENT
                 </title>
                 <meta
                     name="description"
-                    content="Check out academic result with in a go."
+                    content="Check out the backlogs result with in a go."
                     key="desc"
                 />
             </Head>
-            <AcademicReportPage backlog={false} />
+            <AcademicReportPage backlog={true} />
         </>
     )
 }

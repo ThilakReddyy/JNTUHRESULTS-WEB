@@ -4,7 +4,8 @@ import AcademicReportResult from './AcademicReportResult';
 import axios from 'axios';
 import Loading from '../Loading/Loading';
 
-const AcademicReportPage = () => {
+const AcademicReportPage = ({ backlog }) => {
+
     // State variables
     const [result, setResult] = useState({ "Details": {}, "Results": {} });
     const [reportForm, setReportForm] = useState(true);
@@ -173,7 +174,7 @@ const AcademicReportPage = () => {
             <br />
             {/* Academic report form */}
             <div className={`${reportForm ? 'block' : 'hidden'}`}>
-                <AcademicReportForm warning={warning} setHtno={setHtno} submit={submit} />
+                <AcademicReportForm warning={warning} setHtno={setHtno} submit={submit} backlog={backlog} />
             </div>
             {/* Loading indicator */}
             <div className={`${loading ? 'block' : 'hidden'} `}>
@@ -181,7 +182,7 @@ const AcademicReportPage = () => {
             </div>
             {/* Academic report result */}
             <div className={`${(!reportForm && !loading) ? 'block' : 'hidden'} pt-[50px]`}>
-                <AcademicReportResult query={result} />
+                <AcademicReportResult query={result} backlog={backlog} />
             </div>
         </div>
     );
