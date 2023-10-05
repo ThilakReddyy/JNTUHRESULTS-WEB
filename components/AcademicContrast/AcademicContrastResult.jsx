@@ -83,7 +83,7 @@ const AcademicReportResult = ({ query }) => {
                 (totalBacklogs, semester) =>
                     totalBacklogs +
                     Object.values(semester).filter(
-                        (subject) => subject["subject_grade"] === "F"
+                        (subject) => ["F", "Ab", "-"].includes(subject["subject_grade"])
                     ).length, 0
             );
 
