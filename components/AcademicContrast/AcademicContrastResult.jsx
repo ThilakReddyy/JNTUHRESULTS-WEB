@@ -1,17 +1,23 @@
-import React, { useRef } from 'react';
+// Import necessary modules and components
+import React, { useRef, useEffect, useState } from 'react';
 import jsPDF from 'jspdf';
 import { HiArrowSmDown } from "react-icons/hi";
 
-// Define your functional component
+// Defining the functional component
 const AcademicReportResult = ({ query }) => {
 
-    //students
+    // Destructure the 'query' prop into two student objects
     const [student1, student2] = query;
+
+    // State to hold performance analysis data
+    const [performanceAnalysis, setPerformanceAnalysis] = useState([{}, {}]);
+
+    // Extract keys from both students' results
     const student1Keys = Object.keys(student1["Results"])
+
+    // Determine the semester keys based on which student has more
     const student2Keys = Object.keys(student2["Results"])
     const semesterkeys = student1Keys.length > student2Keys.length ? student1Keys : student2Keys
-
-
 
     // Reference for the PDF content
     const reportTemplateRef = useRef(null);
@@ -46,12 +52,49 @@ const AcademicReportResult = ({ query }) => {
         });
 
     }
+
+    // Data for personal details table
     const personalDetailsData = [
         { label: 'Name', field: 'NAME' },
         { label: 'Roll No', field: 'Roll_No' },
         { label: 'College Code', field: 'COLLEGE_CODE' },
         { label: "Father's Name", field: 'FATHER_NAME' },
     ];
+
+    // Keys for performance analysis table
+    const performanceAnalysisKeys = ["Total CGPA", "Percentage", "Credits Obtained", "Backlogs"]
+
+    // Calculate performance analysis data when 'query' changes
+    useEffect(() => {
+        setPerformanceAnalysis(query.map((student) => {
+            //Total
+            const total = student["Results"]["Total"] || "-";
+
+            //Calculate total credits
+            const credits = Object.values(student["Results"]).reduce((total, semester) => {
+                return total + Object.values(semester).reduce((semesterTotal, subject) => {
+                    const credit = subject["subject_credits"];
+                    return semesterTotal + (credit !== undefined ? Number(credit) : 0);
+                }, 0);
+            }, 0);
+
+            //Calculate total backlogs
+            const backlogs = Object.values(student["Results"]).reduce(
+                (totalBacklogs, semester) =>
+                    totalBacklogs +
+                    Object.values(semester).filter(
+                        (subject) => subject["subject_grade"] === "F"
+                    ).length, 0
+            );
+
+            //Calculate percentage
+            const percentage = (total != "-") ? (total - 0.5) * 10 : "-";
+
+            return { "Total CGPA": total, Percentage: percentage, "Credits Obtained": credits, Backlogs: backlogs };
+        }))
+
+    }, [query]); // Watch for changes in the 'query' variable
+
 
     return (
         <div ref={reportTemplateRef}>
@@ -164,7 +207,7 @@ const AcademicReportResult = ({ query }) => {
                         }
                     </tbody>
                 </table>
-                {/* <table className='mt-[5px]'>
+                <table className='mt-[15px]'>
                     <tbody>
                         <tr>
                             <th className=' bg-gray-200 text-[120%] md:bg-gray-300 text-center w-[100%] mt-[2px]'>
@@ -179,7 +222,7 @@ const AcademicReportResult = ({ query }) => {
                     <tbody>
 
                         <tr>
-                            <th className='w-max bg-gray-200 md:bg-gray-300'>
+                            <th className='w-max bg-gray-200 md:bg-gray-300 w-[33%]'>
 
                                 Student Attribute
                             </th>
@@ -191,8 +234,39 @@ const AcademicReportResult = ({ query }) => {
                             </th>
                         </tr>
 
+                        {
+                            performanceAnalysisKeys.map((key) => (
+                                <tr>
+                                    <th className='w-max bg-gray-200 md:bg-gray-300 w-[33%]'>
+                                        {key}
+                                    </th>
+                                    {
+                                        performanceAnalysis.map((student, index) => (
+                                            <td key={index} className="w-max text-center text-black">
+                                                <div>{student[key]}</div>
+                                            </td>
+
+                                        ))
+                                    }
+                                </tr>
+                            ))
+                            // Object.keys(performanceAnalysis).map((dataKeys) => (
+                            //     <tr key={data.field}>
+                            //         <th className='w-max bg-gray-200 md:bg-gray-300 w-[33%]'>
+                            //             {dataKeys}
+                            //         </th>
+                            //         {query.map((student, index) => (
+                            //             <td key={index} className="w-max text-center text-black">
+                            //                 <div>{student['Details'][data.field]}</div>
+                            //             </td>
+                            //         ))}
+                            //     </tr>
+                            // ))
+                        }
+
+
                     </tbody>
-                </table> */}
+                </table>
             </div >
             <div className="fixed bottom-4 right-4">
                 {/* Adjust the bottom and right values as needed for positioning */}
