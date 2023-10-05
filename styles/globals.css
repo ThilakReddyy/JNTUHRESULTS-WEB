@@ -48,7 +48,8 @@ table {
 
 }
 
-th {
+th,
+td {
     border: 1px solid black;
     border-collapse: separate;
     border-spacing: 2px;

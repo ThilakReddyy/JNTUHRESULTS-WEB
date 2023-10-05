@@ -23,7 +23,6 @@ const Banner = ({ setBanner }) => {
                             <Link href="https://www.instagram.com/__thilak_reddy__/">
                                 <strong className="hover:cursor-pointer text-sky-900">Instagram</strong>
                             </Link>
-
                         </span>
                         {/* <span className="font-bold">
                             Looks like JNTU servers are down! Please try again after sometime!&nbsp;

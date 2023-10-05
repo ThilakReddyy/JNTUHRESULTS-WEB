@@ -3,6 +3,7 @@ import { BsLayoutTextSidebarReverse } from 'react-icons/bs'
 import { FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa'
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { MdOutlineLiveHelp } from "react-icons/md";
+import { VscDiff } from 'react-icons/vsc';
 
 import Link from 'next/link'
 import { Inter } from 'next/font/google'
@@ -30,12 +31,21 @@ const NavMenu = ({ handleNavBar }) => {
                     <p className='ml-[18px] cursor-pointer p-[3px]  pt-0 border border-white  md:hover:bg-black md:hover:text-white md:hover:border-black md:hover:rounded'>Academic Result</p>
                 </div>
             </Link>
+            <div className='md:hidden'>
+                <Link href='/academiccontrast'>
+                    <div className="mt-[21px] text-[#030303] text-base	 font-normal flex align-center ml-[20px] md:mt-[0px]" onClick={handleNavBar}>
+                        <VscDiff size={24} className='md:hidden mt-[4px] ml-[2px]' />
+                        <p className='ml-[18px] cursor-pointer p-[3px] md:pt-0 border border-white md:hover:bg-black md:hover:text-white border-black md:hover:rounded'>Academic Contrast</p>
+                    </div>
+                </Link>
+            </div>
             <Link href='/classresult'>
                 <div className="mt-[21px] text-[#030303] text-base	 font-normal flex align-center ml-[20px] md:mt-[0px]" onClick={handleNavBar}>
                     <BsLayoutTextSidebarReverse size={17} className='md:hidden mt-[3px] ml-[2px]' />
                     <p className='ml-[20px] cursor-pointer p-[3px] pt-0  border border-white md:hover:bg-black md:hover:text-white md:hover:border-black md:hover:rounded'>Class Results</p>
                 </div>
             </Link>
+
             <Link href='/notifications'>
                 <div className="mt-[21px] text-[#030303] text-base	 font-normal flex align-center ml-[20px] md:mt-[0px]" onClick={handleNavBar}>
                     <IoIosNotificationsOutline size={24} className='md:hidden mt-[4px] ml-[2px]' />
