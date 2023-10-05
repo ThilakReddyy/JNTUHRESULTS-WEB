@@ -24,7 +24,7 @@ const AcademicReportResult = ({ query }) => {
         // Create a new PDF document
         const doc = new jsPDF({
 
-            format: [content.offsetWidth, content.offsetHeight], // or other page sizes like 'letter'
+            format: [content.offsetWidth, content.offsetHeight + 20], // or other page sizes like 'letter'
             orientation: 'potrait', // or 'landscape'
             unit: 'px',
             marginLeft: 10, // Adjust margins as needed
