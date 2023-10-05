@@ -29,7 +29,7 @@ const AcademicReportResult = ({ query }) => {
         const doc = new jsPDF({
 
             format: [content.offsetWidth, content.offsetHeight + 20], // or other page sizes like 'letter'
-            orientation: 'landscape', // or 'landscape'
+            orientation: 'potrait', // or 'landscape'
             unit: 'px',
             marginLeft: 10, // Adjust margins as needed
             marginTop: 10,
@@ -40,7 +40,7 @@ const AcademicReportResult = ({ query }) => {
         // Generate the PDF from HTML content
         doc.html(reportTemplateRef.current, {
             async callback(doc) {
-                await doc.save(student1["Roll_No"] + student2["Roll_No"]);
+                await doc.save(student1["Details"]["Roll_No"] + student2["Details"]["Roll_No"]);
             },
 
         });
@@ -75,7 +75,7 @@ const AcademicReportResult = ({ query }) => {
                     <tbody>
 
                         <tr>
-                            <th className='w-max bg-gray-200 md:bg-gray-300'>
+                            <th className='w-max bg-gray-200 md:bg-gray-300 w-[33%]'>
                                 Student Attribute
                             </th>
                             <th className='w-max bg-gray-200 md:bg-gray-300'>
@@ -88,7 +88,7 @@ const AcademicReportResult = ({ query }) => {
                         {
                             personalDetailsData.map((data) => (
                                 <tr key={data.field}>
-                                    <th className='w-max bg-gray-200 md:bg-gray-300'>
+                                    <th className='w-max bg-gray-200 md:bg-gray-300 w-[33%]'>
                                         {data.label}
                                     </th>
                                     {query.map((student, index) => (
@@ -119,7 +119,7 @@ const AcademicReportResult = ({ query }) => {
                     <tbody>
 
                         <tr>
-                            <th className='w-max bg-gray-200 md:bg-gray-300'>
+                            <th className='w-max bg-gray-200 md:bg-gray-300 w-[33%]'>
 
                                 Student Attribute
                             </th>

@@ -26,7 +26,7 @@ const AcademicContrastForm = ({ setHtno, warning, submit }) => {
                                 });
 
                             }}
-                            className=" border-[1px] m-[9.8px] border-double border-black rounded text-rounded text-center text-[60%]  shadow-xl w-[150px] h-[28px] sm:w-[200px] sm:h-[35px] sm:text-[100%] md:m-0"
+                            className=" border-[1px] m-[9.8px] border-double border-black rounded text-rounded text-center text-[60%]  shadow-xl w-[150px] h-[28px] sm:w-[200px] sm:h-[35px] sm:text-[100%] "
                             type="text"
                             maxLength={10}
                             placeholder="Enter first hall ticket no"
@@ -41,7 +41,7 @@ const AcademicContrastForm = ({ setHtno, warning, submit }) => {
                                 });
 
                             }}
-                            className="border-[1px] m-[9.8px] border-double border-black rounded text-rounded text-center text-[60%]  shadow-xl w-[150px] h-[28px] sm:w-[200px] sm:h-[35px] sm:text-[100%] md:m-0"
+                            className="border-[1px] m-[9.8px] border-double border-black rounded text-rounded text-center text-[60%]  shadow-xl w-[150px] h-[28px] sm:w-[200px] sm:h-[35px] sm:text-[100%] "
                             type="text"
                             maxLength={10}
                             placeholder="Enter second hall ticket no"
