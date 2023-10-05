@@ -2,7 +2,7 @@ import Footer from "../Footer/Footer.jsx";
 import Banner from '../Footer/Banner'
 import { useState } from "react";
 
-const AcademicReportForm = ({ setHtno, warning, submit }) => {
+const AcademicReportForm = ({ setHtno, warning, submit, backlog }) => {
     const [banner, setBanner] = useState(true);
     return (
         <div className={`${banner ? 'md:h-auto' : 'md:h-screen'} h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-100 md:py-[150px] pt-[75px]`}>
@@ -11,7 +11,7 @@ const AcademicReportForm = ({ setHtno, warning, submit }) => {
                     <center className="py-[35px]">
                         <br />
                         <h2 className="leading-normal  font-semibold mx-1  text-[1xl] sm:text-2xl">
-                            Academic Performance
+                            {backlog == false ? "Academic Performance" : "Backlog Report"}
                         </h2>
 
                         <br />
