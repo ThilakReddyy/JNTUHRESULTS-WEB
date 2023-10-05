@@ -88,7 +88,7 @@ const AcademicReportResult = ({ query }) => {
             );
 
             //Calculate percentage
-            const percentage = (total != "-") ? (total - 0.5) * 10 : "-";
+            const percentage = (total != "-") ? ((total - 0.5) * 10).toFixed(2) : "-";
 
             return { "Total CGPA": total, Percentage: percentage, "Credits Obtained": credits, Backlogs: backlogs };
         }))
