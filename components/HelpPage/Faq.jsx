@@ -9,6 +9,10 @@ const Faq = () => {
             'answer': 'When a user enters their roll number, the website asynchronously sends requests to the JNTUH server, retrieving the results for all regular and supplementary exams across all semesters associated with the given roll number. Using BeautifulSoup, the backend parses the HTML content of the responses to extract the relevant result information. An algorithm then combines the results and calculates the Cumulative Grade Point Average (CGPA) for the student. This entire process is optimized to be completed in less than 2 seconds, allowing the JNTUHRESULTS-vercel website to swiftly provide comprehensive results to the user.'
         },
         {
+            'question': 'Was the entire code written by you?',
+            'answer': 'The entire backend logic has been developed by myself, along with my friends Hemanth Kotagiri and Syed Ansar. You are welcome to use the code in any way you see fit by following the GPT license, and if you have any questions or need assistance, please dont hesitate to reach out to us.'
+        },
+        {
             'question': 'How do I access my grades for all semesters?',
             'answer': 'To access your grades for all semesters, enter your roll number in the provided inbox in the academic result page and click on the "Results" button. The results of all your semesters will be displayed.'
         },
