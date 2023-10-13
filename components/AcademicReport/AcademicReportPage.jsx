@@ -35,7 +35,7 @@ const AcademicReportPage = ({ backlog }) => {
     }
 
     // Function to fetch academic result
-    async function fetchAcademicResult(htno) {
+    async function fetchAcademicResult(htno, islocallycached) {
 
         const response = await axios.get("/api/redisdata?htno=" + htno);
         if (response.data != "Internal error") {
@@ -59,13 +59,13 @@ const AcademicReportPage = ({ backlog }) => {
             const response = await axios.get(url, { mode: 'cors', timeout: 5000, });
             if (response.status === 200) {
                 console.log(response.data);
-                if (response.data === htno + " - 500 Internal Server Error") {
-                    setLoading(false);
-                    alert("500 - Internal Server Error");
-                    setLoading(false);
-                    setReportForm(true);
-                    return;
-                }
+                // if (response.data === htno + " - 500 Internal Server Error") {
+                //     setLoading(false);
+                //     alert("500 - Internal Server Error");
+                //     setLoading(false);
+                //     setReportForm(true);
+                //     return;
+                // }
                 setLoading(false);
                 setResult(response.data);
                 setReportForm(false);
@@ -101,7 +101,7 @@ const AcademicReportPage = ({ backlog }) => {
                         setReportForm(false);
 
                         const expiryDate = new Date();
-                        expiryDate.setSeconds(expiryDate.getSeconds() + 30); // Set expiry date to 30 seconds from now
+                        expiryDate.setSeconds(expiryDate.getSeconds() + 7); // Set expiry date to 30 seconds from now
 
                         const dataToStore = {
                             value: response.data,
@@ -113,18 +113,25 @@ const AcademicReportPage = ({ backlog }) => {
                 }
                 catch (error) {
                     console.log(error);
-                    alert("500 - Internal Server Error");
-                    setLoading(false);
-                    setReportForm(true);
+                    if (!islocallycached) {
+                        alert("500 - Internal Server Error");
+                        setLoading(false);
+                        setReportForm(true);
+                    }
+
                 }
 
 
             }
             else {
                 console.log(error);
-                alert("500 - Internal Server Error");
-                setLoading(false);
-                setReportForm(true);
+                if (!islocallycached) {
+                    alert("500 - Internal Server Error");
+                    setLoading(false);
+                    setReportForm(true);
+                }
+
+
             }
 
         }
@@ -143,7 +150,7 @@ const AcademicReportPage = ({ backlog }) => {
                 const storedData = localStorage.getItem(htno);
 
                 if (storedData === null) {
-                    await fetchAcademicResult(htno);
+                    await fetchAcademicResult(htno, false);
                 } else {
                     const parsedData = JSON.parse(storedData);
                     const currentTime = new Date().getTime();
@@ -153,7 +160,7 @@ const AcademicReportPage = ({ backlog }) => {
                         setResult(parsedData.value);
                         setReportForm(false);
 
-                        await fetchAcademicResult(htno);
+                        await fetchAcademicResult(htno, true);
                     } else {
                         setLoading(false);
                         setResult(parsedData.value);
