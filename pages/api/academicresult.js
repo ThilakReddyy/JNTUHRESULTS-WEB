@@ -9,7 +9,7 @@ const redis = new Redis(process.env.REDIS_URL);
 class ResultScraper {
     constructor(rollNumber) {
         this.url = 'http://results.jntuh.ac.in/resultAction';
-        // this.url = "http://202.63.105.184/results/resultAction";
+        this.url = "http://202.63.105.184/results/resultAction";
         this.rollNumber = rollNumber;
         this.data = { Details: {}, Results: {} };
         this.examCodes = {
@@ -184,7 +184,7 @@ class ResultScraper {
         const tasks = {};
         var payloads = []
         var examCodes = {}
-        const graduationStart = parseInt(this.rollNumber.substring(0, 2));
+        const graduationStart = parseInt(this.rollNumber.substring(0, 2), 10);
         console.log(graduationStart)
         if (this.rollNumber[5] === 'A') {
             payloads = this.payloads.btech;
