@@ -9,7 +9,7 @@ const redis = new Redis(process.env.REDIS_URL);
 class ResultScraper {
     constructor(rollNumber) {
         this.url = 'http://results.jntuh.ac.in/resultAction';
-        //this.url = "http://202.63.105.184/results/resultAction";
+        this.url = "http://202.63.105.184/results/resultAction";
         this.rollNumber = rollNumber;
         this.data = { Details: {}, Results: {} };
         this.examCodes = {
@@ -31,20 +31,21 @@ class ResultScraper {
             },
             bpharmacy: {
                 R17: {
-                    '1-1': ['519', '537', '577', '616', '643', '683', '722', '781', '824', '832', '855'],
-                    '1-2': ['517', '549', '575', '591', '648', '662', '698', '727', '779', '829', '831', '853'],
-                    '2-1': ['532', '570', '638', '673', '717', '769', '819', '849', '860'],
-                    '2-2': ['558', '611', '650', '661', '693', '711', '774', '814', '845'],
+                    '1-1': ['519', '537', '577', '616', '643', '683', '722', '781', '824', '832', '855', '893'],
+                    '1-2': ['517', '549', '575', '591', '648', '662', '698', '727', '779', '829', '831', '853', '890'],
+                    '2-1': ['532', '570', '638', '673', '717', '769', '819', '849', '860', '886'],
+                    '2-2': ['558', '611', '650', '661', '693', '711', '774', '814', '845', '882', '897'],
                     '3-1': ['597', '633', '668', '712', '759', '799', '837', '873'],
                     '3-2': ['655', '660', '688', '710', '764', '804', '841', '869', '877'],
                     '4-1': ['663', '705', '754', '794', '832', '836', '865'],
                     '4-2': ['678', '700', '789', '809', '861', '878']
                 },
                 R22: {
-                    '1-1': ['859']
+                    '1-1': ['859', '892'],
+                    '1-2': ['898']
                 }
             },
-            mpharmacy: {
+            mtech: {
                 R19:
                 {
                     '1-1': ['319', '332', '347', '356', '371', '382', '388', '395'],
@@ -58,7 +59,7 @@ class ResultScraper {
                     '1-2': ['392']
                 }
             },
-            mTech: {
+            mpharmacy: {
                 R19:
                 {
                     '1-1': ['161', '177', '185', '198', '209', '215', '222'],
@@ -180,22 +181,28 @@ class ResultScraper {
     }
 
     async scrapeAllResults(examCode = 'all') {
-        const session = axios.create();
+
         const tasks = {};
         var payloads = []
         var examCodes = {}
+        const graduationStart = parseInt(this.rollNumber.substring(0, 2), 10);
+        console.log(graduationStart)
         if (this.rollNumber[5] === 'A') {
             payloads = this.payloads.btech;
-            examCodes = this.examCodes.btech[this.rollNumber.startsWith('22') ? 'R22' : 'R18'];
+            examCodes = this.examCodes.btech[graduationStart >= 22 ? 'R22' : 'R18'];
         } else if (this.rollNumber[5] === 'R') {
             payloads = this.payloads.bpharmacy;
-            examCodes = this.examCodes.bpharmacy[this.rollNumber.startsWith('22') ? 'R22' : 'R17'];
+            examCodes = this.examCodes.bpharmacy[graduationStart >= 22 ? 'R22' : 'R17'];
         } else if (this.rollNumber[5] == 'E') {
             payloads = this.payloads.mba;
-            examCodes = this.examCodes.mba[this.rollNumber.startsWith('22') ? 'R22' : 'R19'];
-
+            examCodes = this.examCodes.mba[graduationStart >= 22 ? 'R22' : 'R19'];
+        } else if (this.rollNumber[5] == 'D') {
+            payloads = this.payloads.mtech;
+            examCodes = this.examCodes.mtech[graduationStart >= 22 ? 'R22' : 'R19'];
+        } else if (this.rollNumber[5] == 'S') {
+            payloads = this.payloads.mpharmacy;
+            examCodes = this.examCodes.mpharmacy[graduationStart >= 22 ? 'R22' : 'R19'];
         }
-
 
         if (this.rollNumber[4] === '5') {
             delete examCodes['1-1'];
