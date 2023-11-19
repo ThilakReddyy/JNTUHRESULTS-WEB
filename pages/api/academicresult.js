@@ -9,7 +9,7 @@ const redis = new Redis(process.env.REDIS_URL);
 class ResultScraper {
     constructor(rollNumber) {
         this.url = 'http://results.jntuh.ac.in/resultAction';
-        this.url = "http://202.63.105.184/results/resultAction";
+        // this.url = "http://202.63.105.184/results/resultAction";
         this.rollNumber = rollNumber;
         this.data = { Details: {}, Results: {} };
         this.examCodes = {
