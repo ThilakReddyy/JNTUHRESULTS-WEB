@@ -17,9 +17,9 @@
 }
 
 body {
-    margin: 0px;
-    padding: 0px;
-    top: 0px;
+    margin: 0;
+    padding: 0;
+    top: 0;
     background-color: #f5f5f5;
 }
 
@@ -110,7 +110,7 @@ td {
 }
 
 .headertext {
-    background: -webkit-linear-gradient(#9c5d5d, #000000);
+    background: -webkit-linear-gradient(#9c5d5d, #000);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
