@@ -39,7 +39,7 @@ const AcademicReportResult = ({ query, backlog }) => {
         else {
             setResults(query['Results']);
         }
-    }, [query]);
+    }, [backlog,query]);
 
     // Function to export PDF
     const exportPdf = async () => {
