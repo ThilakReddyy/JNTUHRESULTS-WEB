@@ -46,6 +46,9 @@ export function ModeToggleMobile() {
           if (theme == "dark") {
             setTheme("light");
           }
+          if (theme == "system") {
+            setTheme("light");
+          }
         }}
         className={`flex h-7 w-14  cursor-pointer rounded-full border ${
           theme === "light"
