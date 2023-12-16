@@ -1,0 +1,82 @@
+"use client";
+import Link from "next/link";
+import Image from "next/image";
+import { AiOutlineGithub } from "react-icons/ai";
+import { HiOutlineBars3BottomLeft } from "react-icons/hi2";
+import { ModeToggle } from "../ui/toggle";
+import { useSidebarContext } from "@/customhooks/sidebarhook";
+
+const Navbar = () => {
+  const { toggleSidebar } = useSidebarContext();
+
+  return (
+    <nav className="fixed  inset-y-0 h-16 w-full z-50 p-4 px-4 lg:px-8  dark:bg-black bg-white grid grid-cols-3 lg:grid-cols-2 border-b">
+      <div className="justify-start flex items-center lg:hidden">
+        <button
+          onClick={toggleSidebar}
+          className="cursor-pointer"
+          aria-label="Nav open button"
+        >
+          <HiOutlineBars3BottomLeft size={26} />
+        </button>
+      </div>
+      <div className="flex justify-center lg:justify-start items-center">
+        <div className="md:hidden">
+          <span className="dark:hidden">
+            <Image
+              src="/jntuhresults.png"
+              alt="jntuhresults_logo"
+              width={65}
+              height={40}
+              priority={false}
+            />
+          </span>
+          <span className="hidden dark:block">
+            <Image
+              src="/jntuhresults_black.png"
+              alt="jntuhresults_logo"
+              width={65}
+              height={40}
+              priority={false}
+            />
+          </span>
+        </div>
+        <div className="hidden md:block">
+          <span className="dark:hidden">
+            <Image
+              src="/jntuhresults_md.png"
+              alt="jntuhresults_logo"
+              width={130}
+              height={22.84}
+              priority={false}
+            />
+          </span>
+          <span className="hidden dark:block">
+            <Image
+              src="/jntuhresults_md_black.png"
+              alt="jntuhresults_logo"
+              width={130}
+              height={22.84}
+              priority={false}
+            />
+          </span>
+        </div>
+      </div>
+      <div className="flex justify-end items-center">
+        <span className="flex gap-4 items-center">
+          <Link
+            href="https://github.com/ThilakReddyy/JNTUHRESULTS-WEB"
+            aria-label="Github link"
+          >
+            <AiOutlineGithub size={23} />
+          </Link>
+          <span className="hidden items-center lg:block">
+            <ModeToggle />
+          </span>
+        </span>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
