@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
@@ -33,10 +33,7 @@ export default function RootLayout({
             <main className="pt-16">
               <SideMenubar />
               <div className="lg:ml-64">{children}</div>
-              <div className="md:hidden">
-                <Toaster position="bottom-center" reverseOrder={false} />
-              </div>
-              <div className="hidden md:block">
+              <div className=" md:block">
                 <Toaster position="bottom-right" reverseOrder={false} />
               </div>
             </main>

@@ -36,9 +36,10 @@ const AcademicResult = () => {
       const result = await fetchAcademicResult(hallticketno);
       console.log(result);
       if (result !== null && result !== undefined) {
-        console.log(result);
+        console.log(typeof result);
         router.push("/academicresult/result?htno=" + hallticketno);
       } else {
+        console.log("hoegoa");
         setLoading(false);
         toast.error("Internal server Error!!");
       }
