@@ -24,7 +24,7 @@ async function getRedisData(htno: string) {
 const fetchData = async (htno: string, url: string) => {
   try {
     const response = await axios.get(url, { timeout: 5000 });
-    if (response.status == 200) {
+    if (response.status == 200 && typeof response.data === "object") {
       const expiryDate = new Date();
       expiryDate.setMinutes(expiryDate.getMinutes() + 1);
       const dataToStore = {
