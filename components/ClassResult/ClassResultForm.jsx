@@ -105,7 +105,7 @@ const ClassReportForm = ({ warning, submit, form, setForm }) => {
                     );
                   })}
               </select>
-              <div className=" md:px-[30%] text-xs ">
+              <div className="text-xs ">
                 <input
                   defaultValue={form["hallticketNo"]}
                   onChange={(event) => {
