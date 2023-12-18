@@ -94,3 +94,13 @@ td {
   border-spacing: 2px;
   height: 20px;
 }
+
+.selectth {
+  display: flex;
+  align-items: center;
+  border-collapse: separate;
+  background-color: transparent;
+  border-spacing: 2px;
+  height: max-content;
+  width: 100%;
+}

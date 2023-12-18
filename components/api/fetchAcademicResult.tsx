@@ -45,7 +45,7 @@ export const getLocalStoragedata = (htno: string, backlog: boolean = false) => {
     const storageData = localStorage.getItem(htno);
     if (storageData !== null) {
       const data = JSON.parse(storageData);
-
+      const collegeName = data.value["Details"]["COLLEGE_CODE"];
       if (backlog === true) {
         const semesters = data.value["Results"];
         for (let semester in semesters) {
@@ -90,5 +90,10 @@ export async function fetchAcademicResult(htno: string) {
     return response;
   }
 
+  //Rechecking Redis Data
+  response = await getRedisData(htno);
+  if (response != null) {
+    return response;
+  }
   return null;
 }
