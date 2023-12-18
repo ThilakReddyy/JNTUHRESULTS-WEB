@@ -58,7 +58,7 @@ const BacklogReportResult = () => {
                 <table className="dark:border-white w-[100%]">
                   <tbody>
                     <tr>
-                      <th className="dark:border-white">{value} Results</th>
+                      <th className="bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954] dark:border-white">{value} Results</th>
                     </tr>
                   </tbody>
                 </table>
