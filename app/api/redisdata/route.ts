@@ -9,7 +9,13 @@ export async function GET(req: NextRequest) {
     const rollNumber: string = String(
       req.nextUrl.searchParams.get("htno")?.toUpperCase(),
     );
-    let cache = await redis.get(rollNumber);
+    console.log(rollNumber);
+    let cache: string | null = "";
+    if (rollNumber === "NOTIFICATIONS") {
+      cache = await redis.get("notifications");
+    } else {
+      cache = await redis.get(rollNumber);
+    }
     if (cache) {
       const cacheData = JSON.parse(cache);
 

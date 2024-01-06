@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { getLocalStoragedata } from "@/components/api/fetchAcademicResult";
+import ResultDetails from "@/components/result/details";
 
 const BacklogReportResult = () => {
   const router = useRouter();
@@ -32,24 +33,10 @@ const BacklogReportResult = () => {
       <div className="text-center font-bold my-5 text-xs lg:text-2xl">
         BACKLOG REPORT
       </div>
-      <table className="w-[100%] my-2  border-black dark:border-white   ">
-        <tbody>
-          <tr className="w-max bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954]">
-            {Object.keys(Details).map((value: string, index: number) => (
-              <th key={index} className=" dark:border-white">
-                {value}
-              </th>
-            ))}
-          </tr>
-          <tr>
-            {Object.values(Details).map((value: any, index: number) => (
-              <th key={index} className="dark:border-white">
-                {value}
-              </th>
-            ))}
-          </tr>
-        </tbody>
-      </table>
+
+      {/* Render Details */}
+      <ResultDetails Details={Details} />
+
       {Object.keys(Results).map((value: string, index: number) => {
         return (
           <div key={index}>
@@ -58,7 +45,9 @@ const BacklogReportResult = () => {
                 <table className="dark:border-white w-[100%]">
                   <tbody>
                     <tr>
-                      <th className="bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954] dark:border-white">{value} Results</th>
+                      <th className="bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954] dark:border-white">
+                        {value} Results
+                      </th>
                     </tr>
                   </tbody>
                 </table>
