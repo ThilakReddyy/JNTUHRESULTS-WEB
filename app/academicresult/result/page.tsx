@@ -3,33 +3,39 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { getLocalStoragedata } from "@/components/api/fetchAcademicResult";
 import { calculateResult } from "@/components/customfunctions/calculateresult";
+import { grades, credits } from "@/constants/resultconstants";
+import ResultDetails from "@/components/result/details";
 
 const AcademicResultResult = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const htno = searchParams.get("htno");
-  const [renderKey, setRenderKey] = useState(0);
+  const htno = useSearchParams().get("htno");
   const details = getLocalStoragedata(String(htno));
-  const grades = ["O", "A+", "A", "B+", "B", "C", "F", "P", "Ab", "-"];
-  const credits: number[] = [];
+
   const { Details: resultdetails, Results: resultresults } =
     details?.value || {};
-  const [Details, setDetails] = useState(resultdetails);
+
+  const [renderKey, setRenderKey] = useState(0);
+  const [Details] = useState(resultdetails);
   const [Results, setResults] = useState(resultresults);
-  for (let i = 0; i < 15; i += 0.5) {
-    credits.push(i);
-  }
+  const [edit, setEdit] = useState(false);
+
   useEffect(() => {
     setResults(calculateResult(Results));
     setRenderKey((prevkey) => prevkey + 1);
-    console.log(Results);
   }, [Results]);
-  function editResults(
+
+  useEffect(() => {
+    if (details === null) {
+      router.push("/academicresult");
+    }
+  }, [details, router]);
+
+  const editResults = (
     value: string,
     subject_key: string,
     newValue: string,
     keychange: string,
-  ) {
+  ) => {
     setResults((prevResults: typeof Results) => ({
       ...prevResults,
       [value]: {
@@ -40,16 +46,7 @@ const AcademicResultResult = () => {
         },
       },
     }));
-
-    console.log(value, subject_key, newValue);
-  }
-
-  const [edit, setEdit] = useState(false);
-  useEffect(() => {
-    if (details === null) {
-      router.push("/academicresult");
-    }
-  }, [details, router]);
+  };
 
   return details === null ? (
     <>
@@ -74,24 +71,10 @@ const AcademicResultResult = () => {
           </button>
         </div>
       </div>
-      <table className="w-[100%] my-2  border-black dark:border-white   ">
-        <tbody>
-          <tr className="w-max bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954]">
-            {Object.keys(Details).map((value: string, index: number) => (
-              <th key={index} className=" dark:border-white">
-                {value}
-              </th>
-            ))}
-          </tr>
-          <tr>
-            {Object.values(Details).map((value: any, index: number) => (
-              <th key={index} className="dark:border-white">
-                {value}
-              </th>
-            ))}
-          </tr>
-        </tbody>
-      </table>
+
+      {/* Render Details */}
+      <ResultDetails Details={Details} />
+
       {Object.keys(Results).map((value: string, index: number) => {
         return (
           <div key={index}>
@@ -151,7 +134,6 @@ const AcademicResultResult = () => {
                                         e.target.value,
                                         "subject_grade",
                                       );
-                                      console.log(e);
                                     }}
                                   >
                                     {grades.map((grade) => (

@@ -33,7 +33,6 @@ const BacklogReport = () => {
       }
       const result = await fetchAcademicResult(hallticketno);
       if (result !== null && result !== undefined) {
-        console.log(result);
         router.push("/backlogreport/result?htno=" + hallticketno);
       } else {
         setLoading(false);
