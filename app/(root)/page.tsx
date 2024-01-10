@@ -115,7 +115,6 @@ export default function Home() {
                   <span className="p-1 ">Class Results</span>
                   <svg
                     stroke="currentColor"
-                    color="black"
                     fill="currentColor"
                     strokeWidth="0"
                     viewBox="0 0 20 20"
