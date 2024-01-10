@@ -56,6 +56,7 @@ const Notifications = () => {
             setPlaceHolder(searchQueries[ind].substring(0, i + 1));
             await sleep(10);
           }
+          await sleep(400);
           for (let i = 0; i < searchQueries[ind].length; i++) {
             setPlaceHolder(
               searchQueries[ind].substring(
