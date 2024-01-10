@@ -46,7 +46,7 @@ export default function Home() {
           <span className={`font-extralight ${blind && "opacity-0"}`}>|</span>
         </Link>
       </div>
-      <center>
+      <div className="text-center flex justify-center">
         <div className="home-links flex flex-wrap items-center justify-around max-w-4xl md:mt-6  sm:w-full">
           <Link href="/academicresult">
             <div className="border  hover:drop-shadow-sm group text-black  dark:text-white border-slate-800 md:border-gray-100 shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
@@ -221,7 +221,7 @@ export default function Home() {
             </div>
           </Link>
         </div>
-      </center>
+      </div>
     </>
   );
 }
