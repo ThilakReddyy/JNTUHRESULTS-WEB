@@ -4,6 +4,8 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { getLocalStoragedata } from "@/components/api/fetchAcademicResult";
 import { calculateResult } from "@/components/customfunctions/calculateresult";
 import { grades, credits } from "@/constants/resultconstants";
+import { CiEdit } from "react-icons/ci";
+import { IoSaveOutline } from "react-icons/io5";
 import ResultDetails from "@/components/result/details";
 
 const AcademicResultResult = () => {
@@ -64,10 +66,16 @@ const AcademicResultResult = () => {
         <div className="justify-center">ACADEMIC RESULT</div>
         <div className="justify-end flex ">
           <button
-            className="text-xs items-center px-2 border rounded text-white  bg-blue-600 "
+            className="text-xs items-center p-1 border rounded md:hidden text-white  bg-blue-600 "
             onClick={() => setEdit(!edit)}
           >
-            {edit ? "save" : "edit"}
+            {edit ? <IoSaveOutline size={10} /> : <CiEdit size={"10"} />}
+          </button>
+          <button
+            className="text-xs items-center p-2 border rounded hidden md:block text-white  bg-blue-600 "
+            onClick={() => setEdit(!edit)}
+          >
+            {edit ? <IoSaveOutline /> : <CiEdit />}
           </button>
         </div>
       </div>
