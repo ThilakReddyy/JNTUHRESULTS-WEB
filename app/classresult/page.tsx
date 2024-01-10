@@ -31,16 +31,22 @@ const ClassResult = () => {
     }
     console.log(form);
     setLoading(true);
-    console.log(
+    var prefix_rolls = [
       form["regulationName"] +
         form["collegeName"] +
         "1" +
         form["degreeName"] +
         form["branchName"],
-    );
+      parseInt(form["regulationName"]) +
+        1 +
+        form["collegeName"] +
+        "5" +
+        form["degreeName"] +
+        form["branchName"],
+    ];
+    console.log(prefix_rolls);
   };
   const handleEventChange = (event: any) => {
-    console.log(event.target.name, event.target.label);
     setForm((prevForm) => ({
       ...prevForm,
       [event.target.name]: event.target.value,

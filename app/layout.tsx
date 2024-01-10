@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar/navbar";
 import SideMenubar from "@/components/sidemenubar/sidemenubar";
 import { SidebarProvider } from "@/customhooks/sidebarhook";
 import { Toaster } from "react-hot-toast";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <GoogleAnalytics />
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
