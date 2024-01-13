@@ -12,6 +12,7 @@ import {
   setLocalStoragedata,
 } from "@/components/api/fetchClassResult";
 import { useRouter } from "next/navigation";
+import Footer from "@/components/footer/footer";
 const ClassResult = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
@@ -118,131 +119,132 @@ const ClassResult = () => {
   return loading ? (
     <Loading />
   ) : (
-    <div className="w-[75%]  mt-[6%]  mx-[12.5%]   ">
-      <div className="rounded-md border-black dark:border-white border-2  shadow-2xl">
-        <div className=" pt-[30px] pb-[50px]">
-          <div className=" md:text-2xl  font-semibold  ">
-            <div className=" md:text-2xl   font-semibold   flex justify-center ">
-              Class Results
-            </div>
-            <br />
-            <div className="text-xs w-full px-[15%] md:px-[30%]">
-              <select
-                name="collegeName"
-                defaultValue={""}
-                onChange={handleEventChange}
-                className="w-full text-[8px] md:text-xs font-light  border border-black dark:border-white border-double mt-[5px] rounded-sm h-[35px] text-center "
-              >
-                <option value="" disabled>
-                  Select the College Name...
-                </option>
-                {Object.keys(collegedata)
-                  .sort((a, b) =>
-                    collegedata[a]
-                      .toUpperCase()
-                      .localeCompare(collegedata[b].toUpperCase()),
-                  )
-                  .map((key) => (
+    <>
+      <div className="w-[75%]  mt-[6%]  mx-[12.5%]   ">
+        <div className="rounded-md border-black dark:border-white border-2  shadow-2xl">
+          <div className=" pt-[30px] pb-[50px]">
+            <div className=" md:text-2xl  font-semibold  ">
+              <div className=" md:text-2xl   font-semibold   flex justify-center ">
+                Class Results
+              </div>
+              <br />
+              <div className="text-xs w-full px-[15%] md:px-[30%]">
+                <select
+                  name="collegeName"
+                  defaultValue={""}
+                  onChange={handleEventChange}
+                  className="w-full text-[8px] md:text-xs font-light  border border-black dark:border-white border-double mt-[5px] rounded-sm h-[35px] text-center "
+                >
+                  <option value="" disabled>
+                    Select the College Name...
+                  </option>
+                  {Object.keys(collegedata)
+                    .sort((a, b) =>
+                      collegedata[a]
+                        .toUpperCase()
+                        .localeCompare(collegedata[b].toUpperCase()),
+                    )
+                    .map((key) => (
+                      <option
+                        value={key}
+                        key={key}
+                        style={{ width: "10px" }} // Adjust the width as needed
+                      >
+                        {collegedata[key].toUpperCase().substring(0, 65)}
+                      </option>
+                    ))}
+                </select>
+                <select
+                  defaultValue={""}
+                  name="degreeName"
+                  onChange={handleEventChange}
+                  className="w-full text-[8px] md:text-xs font-light  border border-black dark:border-white border-double mt-[5px] rounded-sm h-[35px] text-center "
+                >
+                  <option value="" disabled>
+                    Select Degree...
+                  </option>
+                  {Object.keys(degreeDetails).map((key) => (
                     <option
                       value={key}
                       key={key}
                       style={{ width: "10px" }} // Adjust the width as needed
                     >
-                      {collegedata[key].toUpperCase().substring(0, 65)}
+                      {degreeDetails[key].toUpperCase().substring(0, 65)}
                     </option>
                   ))}
-              </select>
-              <select
-                defaultValue={""}
-                name="degreeName"
-                onChange={handleEventChange}
-                className="w-full text-[8px] md:text-xs font-light  border border-black dark:border-white border-double mt-[5px] rounded-sm h-[35px] text-center "
-              >
-                <option value="" disabled>
-                  Select Degree...
-                </option>
-                {Object.keys(degreeDetails).map((key) => (
-                  <option
-                    value={key}
-                    key={key}
-                    style={{ width: "10px" }} // Adjust the width as needed
-                  >
-                    {degreeDetails[key].toUpperCase().substring(0, 65)}
+                </select>
+                <select
+                  defaultValue={""}
+                  name="regulationName"
+                  onChange={handleEventChange}
+                  className="w-full text-[8px] md:text-xs font-light  border border-black dark:border-white border-double mt-[5px] rounded-sm h-[35px] text-center "
+                >
+                  <option value="" disabled>
+                    Select Regulation...
                   </option>
-                ))}
-              </select>
-              <select
-                defaultValue={""}
-                name="regulationName"
-                onChange={handleEventChange}
-                className="w-full text-[8px] md:text-xs font-light  border border-black dark:border-white border-double mt-[5px] rounded-sm h-[35px] text-center "
-              >
-                <option value="" disabled>
-                  Select Regulation...
-                </option>
-                {Object.keys(regulationDetails).map((key) => (
-                  <option
-                    value={key}
-                    key={key}
-                    style={{ width: "10px" }} // Adjust the width as needed
-                  >
-                    {regulationDetails[key].toUpperCase().substring(0, 65)}
+                  {Object.keys(regulationDetails).map((key) => (
+                    <option
+                      value={key}
+                      key={key}
+                      style={{ width: "10px" }} // Adjust the width as needed
+                    >
+                      {regulationDetails[key].toUpperCase().substring(0, 65)}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  defaultValue={""}
+                  onChange={handleEventChange}
+                  name="branchName"
+                  className="w-full text-[8px] md:text-xs font-light  border border-black dark:border-white border-double mt-[5px] rounded-sm h-[35px] text-center "
+                >
+                  <option value="" disabled>
+                    Select Branch...
                   </option>
-                ))}
-              </select>
-              <select
-                defaultValue={""}
-                onChange={handleEventChange}
-                name="branchName"
-                className="w-full text-[8px] md:text-xs font-light  border border-black dark:border-white border-double mt-[5px] rounded-sm h-[35px] text-center "
-              >
-                <option value="" disabled>
-                  Select Branch...
-                </option>
-                {Object.keys(branchDetails)
-                  .sort((a, b) =>
-                    branchDetails[a]
-                      .toUpperCase()
-                      .localeCompare(branchDetails[b].toUpperCase()),
-                  )
+                  {Object.keys(branchDetails)
+                    .sort((a, b) =>
+                      branchDetails[a]
+                        .toUpperCase()
+                        .localeCompare(branchDetails[b].toUpperCase()),
+                    )
 
-                  .map((key) => (
-                    <option
-                      value={key}
-                      key={key}
-                      style={{ width: "10px" }} // Adjust the width as needed
-                    >
-                      {branchDetails[key].toUpperCase().substring(0, 65)}
-                    </option>
-                  ))}
-              </select>
-              <select
-                defaultValue={""}
-                name="semesterName"
-                onChange={handleEventChange}
-                className="w-full text-[8px] md:text-xs font-light  border border-black dark:border-white border-double mt-[5px] rounded-sm h-[35px] text-center "
-              >
-                <option value="" disabled>
-                  Select Semester...
-                </option>
-                <option value="1-1">I Year I Semester</option>
-                <option value="1-2">I Year II Semester</option>
-                <option value="2-1">II Year I Semester</option>
-                <option value="2-2">II Year II Semester</option>
-                <option value="3-1">III Year I Semester</option>
-                <option value="3-2">III Year II Semester</option>
-                <option value="4-1">IV Year I Semester</option>
-                <option value="4-2">IV Year II Semester</option>
-              </select>
-              {currentHours > 7 && (
-                <div className="text-center pt-4 text-red-600">
-                  Results will only appear from 12 AM to 7 AM
-                </div>
-              )}
-              <div className="flex justify-center mt-[30px]">
-                <button
-                  type="submit"
-                  className="
+                    .map((key) => (
+                      <option
+                        value={key}
+                        key={key}
+                        style={{ width: "10px" }} // Adjust the width as needed
+                      >
+                        {branchDetails[key].toUpperCase().substring(0, 65)}
+                      </option>
+                    ))}
+                </select>
+                <select
+                  defaultValue={""}
+                  name="semesterName"
+                  onChange={handleEventChange}
+                  className="w-full text-[8px] md:text-xs font-light  border border-black dark:border-white border-double mt-[5px] rounded-sm h-[35px] text-center "
+                >
+                  <option value="" disabled>
+                    Select Semester...
+                  </option>
+                  <option value="1-1">I Year I Semester</option>
+                  <option value="1-2">I Year II Semester</option>
+                  <option value="2-1">II Year I Semester</option>
+                  <option value="2-2">II Year II Semester</option>
+                  <option value="3-1">III Year I Semester</option>
+                  <option value="3-2">III Year II Semester</option>
+                  <option value="4-1">IV Year I Semester</option>
+                  <option value="4-2">IV Year II Semester</option>
+                </select>
+                {currentHours > 7 && (
+                  <div className="text-center pt-4 text-red-600">
+                    Results will only appear from 12 AM to 7 AM
+                  </div>
+                )}
+                <div className="flex justify-center mt-[30px]">
+                  <button
+                    type="submit"
+                    className="
             text-sm md:text-lg
             px-3 py-1
             rounded
@@ -250,16 +252,18 @@ const ClassResult = () => {
             dark:text-black text-white
             w-[100px]
             "
-                  onClick={onSubmit}
-                >
-                  Result
-                </button>
+                    onClick={onSubmit}
+                  >
+                    Result
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 
