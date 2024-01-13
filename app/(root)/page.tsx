@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
 export default function Home() {
   const [titleIndex, setTitleIndex] = useState(0);
   const title = "JNTUH RESULTS!!!";
@@ -220,6 +221,34 @@ export default function Home() {
             </div>
           </Link>
         </div>
+      </div>
+      <div className="bottom-0 md:hidden w-full font-interer pt-[10px]">
+        <hr />
+        <center>
+          <div className="flex justify-center mt-4 text-sm text-gray-600">
+            <a
+              href="https://github.com/thilakreddyy"
+              className="mx-2 hover:text-gray-900"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="https://twitter.com/thilakreddyonly"
+              className="mx-2 hover:text-gray-900"
+            >
+              <FaTwitter />
+            </a>
+            <a
+              href="https://www.instagram.com/__thilak_reddy__/"
+              className="mx-2 hover:text-gray-900"
+            >
+              <FaInstagram />
+            </a>
+          </div>
+          <div className="flex justify-center m-2 text-xs	 text-gray-600">
+            <p>&copy; 2023 jntuhresults.vercel.app</p>
+          </div>
+        </center>
       </div>
     </>
   );
