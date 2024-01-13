@@ -9,6 +9,7 @@ import {
   getLocalStoragedata,
 } from "@/components/api/fetchAcademicResult";
 import { useRouter } from "next/navigation";
+import Footer from "@/components/footer/footer";
 
 const BacklogReport = () => {
   const [hallticketno, sethallticketno] = useState("");
@@ -46,12 +47,16 @@ const BacklogReport = () => {
   return loading ? (
     <Loading />
   ) : (
-    <Form
-      onSubmit={onSubmit}
-      title="Backlog Report"
-      hallticketno={hallticketno}
-      sethallticketno={sethallticketno}
-    />
+    <>
+      <Form
+        onSubmit={onSubmit}
+        title="Backlog Report"
+        hallticketno={hallticketno}
+        sethallticketno={sethallticketno}
+      />
+
+      <Footer />
+    </>
   );
 };
 export default BacklogReport;

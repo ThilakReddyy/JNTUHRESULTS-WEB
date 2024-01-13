@@ -4,6 +4,7 @@ import {
   fetchAcademicResult,
   getLocalStoragedata,
 } from "@/components/api/fetchAcademicResult";
+import Footer from "@/components/footer/footer";
 import Form from "@/components/forms/resulthtnoform";
 import Loading from "@/components/loading/loading";
 import { useRouter } from "next/navigation";
@@ -56,6 +57,7 @@ const AcademicResult = () => {
         sethallticketno={sethallticketno}
         onSubmit={onSubmit}
       />
+      <Footer />
     </>
   );
 };
