@@ -7,6 +7,7 @@ import SideMenubar from "@/components/sidemenubar/sidemenubar";
 import { SidebarProvider } from "@/customhooks/sidebarhook";
 import { Toaster } from "react-hot-toast";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import MetaData from "@/components/metadata/metadata";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <MetaData />
+      </head>
       <GoogleAnalytics />
       <body className={inter.className}>
         <ThemeProvider

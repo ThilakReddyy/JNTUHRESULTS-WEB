@@ -1,0 +1,32 @@
+{
+    "theme_color": "#0a0a0a",
+    "background_color": "#000000",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "name": "JNTUH RESULTS ",
+    "description": "Attention, students! Are you tired of endlessly searching for your exam results online? Your search ends here! Introducing our user-friendly website, where you can access reliable and accurate results for various courses, including B.Tech, B.Pharmacy, M.Tech, M.Pharmacy, and MBA. Best of all, it's completely free to use!  Say goodbye to the hassle of navigating through countless websites. Trust our platform to provide quick and easy access to your results. Whether you're a B.Tech, B.Pharmacy, M.Tech, M.Pharmacy, or MBA student, you can conveniently find your results on our website.  Spread the word to your fellow students and let them know they can find their B.Tech, B.Pharmacy, M.Tech, M.Pharmacy, and MBA results here too. We understand the importance of timely and accurate results, and our goal is to make the process as seamless as possible.  Visit us now at https://jntuhresults.vercel.app/ and experience the convenience of accessing your exam results with just a few clicks. Trust us for reliable and precis",
+    "short_name": "JNTUHRESULTS",
+    "icons": [
+        {
+            "src": "/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

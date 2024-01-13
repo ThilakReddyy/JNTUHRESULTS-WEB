@@ -6,8 +6,15 @@ import { regulationDetails } from "@/constants/regulationdetails";
 import { degreeDetails } from "@/constants/degree";
 import { branchDetails } from "@/constants/branchdetails";
 import toast from "react-hot-toast";
+import {
+  fetchClassResult,
+  getLocalStoragedata,
+  setLocalStoragedata,
+} from "@/components/api/fetchClassResult";
+import { useRouter } from "next/navigation";
 const ClassResult = () => {
   const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter();
   const [form, setForm] = useState({
     collegeName: "",
     semesterName: "",
@@ -16,36 +23,88 @@ const ClassResult = () => {
     branchName: "",
   });
 
-  const onSubmit = () => {
-    if (currentHours <= 7) {
+  const onSubmit = async () => {
+    const date = Date.now();
+    if (currentHours > 7) {
       return;
     }
-    const validator = Object.values(form).some((value) => {
-      console.log(value);
-      return value === "";
-    });
+
+    const validator = Object.values(form).some((value) => value === "");
+
     if (validator) {
       toast.error("Kindly fill all the required fields!!");
-
       return;
     }
-    console.log(form);
-    setLoading(true);
-    var prefix_rolls = [
-      form["regulationName"] +
-        form["collegeName"] +
-        "1" +
-        form["degreeName"] +
-        form["branchName"],
-      parseInt(form["regulationName"]) +
-        1 +
-        form["collegeName"] +
-        "5" +
-        form["degreeName"] +
-        form["branchName"],
+
+    //setLoading(true);
+
+    const prefixRolls = [
+      `${form["regulationName"]}${form["collegeName"]}1${form["degreeName"]}${form["branchName"]}`,
+      `${parseInt(form["regulationName"]) + 1}${form["collegeName"]}5${
+        form["degreeName"]
+      }${form["branchName"]}`,
     ];
-    console.log(prefix_rolls);
+
+    const rollPrefixes = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let redirect = false;
+    for (const prefixRoll of prefixRolls) {
+      for (const rollPrefix of rollPrefixes) {
+        let roll_numbers = "";
+        for (let i = 0; i < 10; i++) {
+          roll_numbers += prefixRoll + rollPrefix + i + ",";
+        }
+        roll_numbers = roll_numbers.substring(0, roll_numbers.length - 1);
+        const localStorage = getLocalStoragedata(
+          roll_numbers + form["semesterName"],
+        );
+        if (localStorage !== null && localStorage.expiry < date) {
+          setLocalStoragedata(
+            prefixRolls[0] + form["semesterName"],
+            localStorage.value,
+          );
+          if (redirect === false) {
+            router.push(
+              "/classresult/result?prefix_htnos=" +
+                prefixRolls[0] +
+                "," +
+                prefixRolls[1] +
+                "&semester=" +
+                form["semesterName"],
+            );
+            redirect = true;
+          }
+          continue;
+        }
+        const response = await fetchClassResult(
+          roll_numbers,
+          form["semesterName"],
+        );
+        if (response === null || response.length === 0) {
+          if (redirect === false) {
+            setLoading(false);
+            toast.error("Internal Server Error!!!");
+          }
+          break;
+        }
+        if (redirect === false) {
+          setLocalStoragedata(
+            prefixRolls[0] + form["semesterName"],
+            localStorage.value,
+          );
+          router.push(
+            "/classresult/result?prefix_htnos=" +
+              prefixRolls[0] +
+              "," +
+              prefixRolls[1] +
+              "&semester=" +
+              form["semesterName"],
+          );
+          redirect = true;
+        }
+      }
+    }
   };
+
   const handleEventChange = (event: any) => {
     setForm((prevForm) => ({
       ...prevForm,
