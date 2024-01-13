@@ -22,6 +22,7 @@ export const HomeContent = [
     Description: "Access your overall backlogs report with an hallticket",
     link: "/backlogreport",
   },
+
   {
     title: "Notifications",
     Description: "Get all the latest Notifications from JNTUH",

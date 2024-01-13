@@ -1,4 +1,5 @@
 // Define the array of navigation items
+
 export const navitems = [
   {
     href: "/",
@@ -33,9 +34,9 @@ export const navitems = [
           height="22"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="currentColor"
           strokeWidth="1.25"
           strokeLinecap="round"
+          stroke="currentColor"
           strokeLinejoin="round"
           className="lucide lucide-graduation-cap"
         >
@@ -145,6 +146,33 @@ export const navitems = [
     title: "Notifications",
   },
   {
+    href: "/carrers",
+    image: (
+      <>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.25"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="lucide lucide-scan-eye"
+        >
+          <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+          <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+          <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+          <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+          <circle cx="12" cy="12" r="1" />
+          <path d="M5 12s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5" />
+        </svg>
+      </>
+    ),
+    title: "Jobs & carrers",
+  },
+  {
     href: "/helpcenter",
     image: (
       <>
@@ -168,27 +196,4 @@ export const navitems = [
     ),
     title: "Help center",
   },
-  // {
-  //   href: "/more",
-  //   image: (
-  //     <>
-  //       <svg
-  //         xmlns="http://www.w3.org/2000/svg"
-  //         width="20"
-  //         height="20"
-  //         viewBox="0 0 24 24"
-  //         fill="none"
-  //         stroke="currentColor"
-  //         strokeWidth="1.5"
-  //         strokeLinecap="round"
-  //         strokeLinejoin="round"
-  //         className="lucide lucide-chevron-right-circle"
-  //       >
-  //         <circle cx="12" cy="12" r="10" />
-  //         <path d="m10 8 4 4-4 4" />
-  //       </svg>
-  //     </>
-  //   ),
-  //   title: "more...",
-  // },
 ];
