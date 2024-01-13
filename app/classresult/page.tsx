@@ -25,7 +25,7 @@ const ClassResult = () => {
 
   const onSubmit = async () => {
     const date = Date.now();
-    if (currentHours <= 7) {
+    if (currentHours > 7) {
       return;
     }
 
@@ -37,7 +37,7 @@ const ClassResult = () => {
     }
 
     setLoading(true);
-    router.push("https://jntuhresults.vercel.app/classresult");
+    router.push("https://jntuhresultsnew.vercel.app/classresult");
     return;
     const prefixRolls = [
       `${form["regulationName"]}${form["collegeName"]}1${form["degreeName"]}${form["branchName"]}`,
