@@ -12,22 +12,22 @@ export default function Home() {
     const typeWriter = async () => {
       // Wait for 2 seconds before starting the typewriter effect
       await sleep(200);
+
+      for (let i = 0; i < title.length; i++) {
+        setTitleIndex(i);
+        await sleep(50);
+      }
       while (true) {
-        for (let i = 0; i < title.length; i++) {
-          setTitleIndex(i);
-          await sleep(50);
-        }
+
+
         for (let i = 0; i < 5; i++) {
           setblind(true);
           await sleep(400);
           setblind(false);
           await sleep(400);
         }
-        for (let i = 0; i < title.length; i++) {
-          setTitleIndex(title.length - i - 1);
-          await sleep(50);
-        }
       }
+
     };
 
     typeWriter();
