@@ -12,7 +12,7 @@ import MetaData from "@/components/metadata/metadata";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "JNTUH RESULTS",
+  title: "JNTUH RESULTS - Check Your UG and PG Exam Results Online",
   description: "Access your overall results of Jntuh",
 };
 
