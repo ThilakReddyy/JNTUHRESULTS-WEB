@@ -1,8 +1,23 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
 
 const Carrers = () => {
+  function shareUrl(link: any, title: string) {
+    if (!navigator.share) return;
+
+    const sharedText = `*Check out the JOB title!* \n\n ${title}\n\n\n`;
+
+    navigator
+      .share({
+        title: "Check out this website!",
+        text: sharedText,
+        url: link,
+      })
+      .then(() => console.log("Successfully shared!"))
+      .catch((error) => console.log("Error sharing:", error));
+  }
   return (
     <>
       <div className="m-2 text-[30%] sm:text-[45%]  md:text-[60%] lg:text-[100%]">
@@ -25,12 +40,58 @@ const Carrers = () => {
           </TabsContent>
           <TabsContent value="internships">
             <div className=" rounded drop-shadow-2xl border-2 border-[#dadce0] shadow-xl p-4 lg:p-8">
-              <div
-                className=" lg:text-[24px] font-medium max-w-[70%]"
-                id="title"
-              >
-                Software Student Training in Engineering Program (STEP) Intern,
-                2024
+              <div className="flex">
+                <div
+                  className="justify-start lg:text-[24px] font-medium max-w-[70%]"
+                  id="title"
+                >
+                  Software Student Training in Engineering Program (STEP)
+                  Intern, 2024
+                </div>
+                <div className="w-[100%] flex justify-end ">
+                  <svg
+                    onClick={() =>
+                      shareUrl(
+                        "https://www.google.com/about/careers/applications/jobs/results/99460232238768838-software-student-training-in-engineering-program-step-intern-2024",
+                        "Software Student Training in Engineering Program (STEP)Intern, 2024",
+                      )
+                    }
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="block cursor-pointer md:hidden lucide lucide-share-2"
+                  >
+                    <circle cx="18" cy="5" r="3" />
+                    <circle cx="6" cy="12" r="3" />
+                    <circle cx="18" cy="19" r="3" />
+                    <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
+                    <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="hidden md:block lucide lucide-share-2"
+                  >
+                    <circle cx="18" cy="5" r="3" />
+                    <circle cx="6" cy="12" r="3" />
+                    <circle cx="18" cy="19" r="3" />
+                    <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
+                    <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
+                  </svg>
+                </div>
               </div>
               <div className="mt-4">
                 <div className="flex items-center">
@@ -124,7 +185,6 @@ const Carrers = () => {
                   </Link>
                 </Button>
               </div>
-              <div className="text-black-700 mt-4">Last Date: 19-JAN-2024</div>
             </div>
           </TabsContent>
         </Tabs>
