@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { getLocalStoragedata } from "@/components/api/fetchAcademicResult";
 import { calculateResult } from "@/components/customfunctions/calculateresult";
@@ -13,6 +13,7 @@ const AcademicResultResult = () => {
   const router = useRouter();
   const htno = useSearchParams().get("htno");
   const details = getLocalStoragedata(String(htno));
+  const componentRef = useRef(null);
 
   const { Details: resultdetails, Results: resultresults } =
     details?.value || {};
@@ -60,6 +61,7 @@ const AcademicResultResult = () => {
   ) : (
     <>
       <div
+        ref={componentRef}
         key={renderKey}
         className="m-2 text-[30%]  sm:text-[45%]  md:text-[60%] lg:text-[100%]"
       >
@@ -218,8 +220,11 @@ const AcademicResultResult = () => {
             </div>
           );
         })}
+        <div className="flex justify-center text-[6px] text-black">
+          jntuhresults.vercel.app
+        </div>
       </div>
-      <Print />
+      <Print componentRef={componentRef} />
     </>
   );
 };
