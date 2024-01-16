@@ -5,18 +5,19 @@ import { AiOutlineGithub } from "react-icons/ai";
 import { HiOutlineBars3BottomLeft } from "react-icons/hi2";
 import { ModeToggle } from "../ui/toggle";
 import { useSidebarContext } from "@/customhooks/sidebarhook";
+import { useNavBarContext } from "@/customhooks/navbarhook";
 
 const Navbar = () => {
   const { toggleSidebar } = useSidebarContext();
-
+  const { navbar } = useNavBarContext();
   return (
-    <nav className="fixed  inset-y-0 h-16 w-full z-50 p-4 px-4 lg:px-8  dark:bg-black bg-white grid grid-cols-3 lg:grid-cols-2 border-b">
+    <nav
+      className={`fixed inset-y-0 h-16 w-full z-50 p-4 px-4 lg:px-8  dark:bg-black bg-white grid grid-cols-3 lg:grid-cols-2 border-b ${
+        navbar ? "block" : "hidden"
+      }`}
+    >
       <div className="justify-start flex items-center lg:hidden">
-        <button
-          onClick={toggleSidebar}
-          className="cursor-pointer"
-          aria-label="Nav open button"
-        >
+        <button onClick={toggleSidebar} className="cursor-pointer">
           <HiOutlineBars3BottomLeft size={26} />
         </button>
       </div>
@@ -47,7 +48,7 @@ const Navbar = () => {
               src="/jntuhresults_md.png"
               alt="jntuhresults_logo"
               width={130}
-              height={22.84}
+              height={80}
               priority={false}
             />
           </span>
@@ -56,7 +57,7 @@ const Navbar = () => {
               src="/jntuhresults_md_black.png"
               alt="jntuhresults_logo"
               width={130}
-              height={22.84}
+              height={80}
               priority={false}
             />
           </span>
@@ -64,13 +65,10 @@ const Navbar = () => {
       </div>
       <div className="flex justify-end items-center">
         <span className="flex gap-4 items-center">
-          <Link
-            href="https://github.com/ThilakReddyy/JNTUHRESULTS-WEB"
-            aria-label="Github link"
-          >
+          <Link href="https://github.com/ThilakReddyy/JNTUHRESULTS-WEB">
             <AiOutlineGithub size={23} />
           </Link>
-          <span className="hidden items-center lg:block">
+          <span className="hidden items-center md:block">
             <ModeToggle />
           </span>
         </span>

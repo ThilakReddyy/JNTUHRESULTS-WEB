@@ -11,11 +11,10 @@ const Print = () => {
             px-5 py-1 pb-[1.5px]
             rounded
             bg-black dark:bg-gray-300
-            dark:text-black text-white
-            
+            dark:text-black text-white      
             "
       >
-        print
+        Download Result
       </button>
     </div>
   );
