@@ -1,8 +1,11 @@
-import { redirect } from "next/navigation";
+"use client";
+import { redirect, usePathname } from "next/navigation";
 import React from "react";
 
 const NotFound = () => {
-  redirect("/");
+  const pagename = usePathname();
+  if (pagename === "/academicreport") redirect("/academicresult");
+  else redirect("/");
 };
 
 export default NotFound;
