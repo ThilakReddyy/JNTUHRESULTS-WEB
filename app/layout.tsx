@@ -8,6 +8,7 @@ import { SidebarProvider } from "@/customhooks/sidebarhook";
 import { Toaster } from "react-hot-toast";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import MetaData from "@/components/metadata/metadata";
+import { NavBarProvider } from "@/customhooks/navbarhook";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,14 +36,16 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SidebarProvider>
-            <Navbar />
-            <main className="pt-16">
-              <SideMenubar />
-              <div className="lg:ml-64">{children}</div>
-              <div className=" md:block">
-                <Toaster position="bottom-right" reverseOrder={false} />
-              </div>
-            </main>
+            <NavBarProvider>
+              <Navbar />
+              <main className="pt-16">
+                <SideMenubar />
+                <div className="lg:ml-64">{children}</div>
+                <div className=" md:block">
+                  <Toaster position="bottom-right" reverseOrder={false} />
+                </div>
+              </main>
+            </NavBarProvider>
           </SidebarProvider>
         </ThemeProvider>
       </body>
