@@ -115,7 +115,7 @@ const Carrers = () => {
                 </div>
               </div>
               <div className="mt-4">
-                <Button variant="outline">
+                <Button>
                   <Link
                     href="https://www.google.com/about/careers/applications/jobs/results/99460232238768838-software-student-training-in-engineering-program-step-intern-2024"
                     target="_blank"
