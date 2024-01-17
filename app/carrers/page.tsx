@@ -202,7 +202,7 @@ const Carrers = () => {
               </div>
 
               <DrawerContent className="h-auto max-h-[85vh] ">
-                <DrawerHeader className="border-b border-gray-200 rounded">
+                <DrawerHeader className="border-b  border-gray-200 ">
                   <div className="flex">
                     <div className="ml-2  mr-4 flex items-center">
                       <Image
@@ -383,7 +383,7 @@ const Carrers = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bottom-0 h-36 border-t-2 dark:border-t-yellow-50 m-0 py-2 text-center">
+                <div className="bottom-0 h-36 border-t-[1px] dark:border-t-yellow-50 m-0 py-2 text-center">
                   <Button className="w-[80%] ">
                     <Link
                       href="https://www.google.com/about/careers/applications/jobs/results/99460232238768838-software-student-training-in-engineering-program-step-intern-2024"
