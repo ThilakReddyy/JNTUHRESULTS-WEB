@@ -270,7 +270,7 @@ const Carrers = () => {
                   </div>
                 </DrawerHeader>
                 <div className="overflow-auto h-auto">
-                  <div className="m-2 rounded bg-gray-50 p-2">
+                  <div className="m-2 rounded bg-gray-50 dark:bg-gray-800 p-2">
                     <p className="text-base tracking-normal underline underline-offset-2 font-semibold">
                       Job Description
                     </p>
@@ -325,7 +325,7 @@ const Carrers = () => {
                       </ul>
                     </div>
                   </div>
-                  <div className="m-2 rounded bg-gray-50 p-2">
+                  <div className="m-2 rounded bg-gray-50 dark:bg-gray-800 p-2">
                     <p className="text-base tracking-normal underline underline-offset-2 font-semibold">
                       About
                     </p>
@@ -383,7 +383,7 @@ const Carrers = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bottom-0 h-36 border-t-2 m-0 py-2 text-center">
+                <div className="bottom-0 h-36 border-t-2 dark:border-t-yellow-50 m-0 py-2 text-center">
                   <Button className="w-[80%] ">
                     <Link
                       href="https://www.google.com/about/careers/applications/jobs/results/99460232238768838-software-student-training-in-engineering-program-step-intern-2024"
