@@ -201,8 +201,8 @@ const Carrers = () => {
                 </div>
               </div>
 
-              <DrawerContent className="h-auto max-h-[85vh]">
-                <DrawerHeader className="border-b border-gray-200">
+              <DrawerContent className="h-auto max-h-[85vh] ">
+                <DrawerHeader className="border-b border-gray-200 rounded">
                   <div className="flex">
                     <div className="ml-2  mr-4 flex items-center">
                       <Image
@@ -324,7 +324,6 @@ const Carrers = () => {
                     </ul>
                   </div>
                 </div>
-                <DrawerFooter></DrawerFooter>
               </DrawerContent>
             </Drawer>
           </TabsContent>
