@@ -421,6 +421,9 @@ const Carrers = () => {
                     </div>
                   </div>
                 </div>
+                <div className="border-t-2 border-gray-500 pr-4 pt-2 flex justify-end w-full">
+                  <Button className="w-[150px]">Apply</Button>
+                </div>
               </div>
             </div>
           </TabsContent>
