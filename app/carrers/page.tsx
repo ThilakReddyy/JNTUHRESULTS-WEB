@@ -52,7 +52,7 @@ const Carrers = () => {
           </TabsContent>
           <TabsContent value="internships" className="flex">
             <Drawer>
-              <div className="overflow-y-auto dark:bg-gray-800 rounded bg-gray-50  p-2 lg:max-w-[420px] border-gray-400 h-[79.5vh]">
+              <div className="overflow-y-auto dark:bg-gray-800 rounded bg-gray-50  p-2 w-full lg:max-w-[420px] border-gray-400 h-[79.5vh]">
                 {internships.map((internship: any) => {
                   return (
                     <div
