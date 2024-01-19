@@ -28,11 +28,7 @@ const MetaData = () => {
         name="google-site-verification"
         content="2arj9D99oUuGh03Qhewo_iEY45zbwhrJqLytiZSmoEg"
       />
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/apple-touch-icon.png"
-      />
+      <link rel="apple-touch-icon" sizes="180x180" href="/favicon-32x32.png" />
       <link
         rel="icon"
         type="image/png"
