@@ -24,7 +24,7 @@ const SideMenubar = () => {
         sidebar ? "left-0 shadow-xl" : "-left-full"
       } lg:left-0 z-10`}
     >
-      <div className=" h-full flex flex-col z-[99]  lg:border-r">
+      <div className="overflow-y-auto h-full flex flex-col z-[99]  lg:border-r">
         <div className="flex flex-col  lg:w-full  ">
           <div className="flex flex-col w-full space-y-1.5 p-3">
             {navitems.map((navitem) => (
