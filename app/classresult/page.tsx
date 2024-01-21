@@ -28,7 +28,7 @@ const ClassResult = () => {
   const onSubmit = async () => {
     const date = Date.now();
     if (currentHours > 7) {
-      // return;
+      return;
     }
 
     const validator = Object.values(form).some((value) => value === "");
@@ -65,8 +65,8 @@ const ClassResult = () => {
           if (redirect === false) {
             setLocalStoragedata(key2, localStorage.value);
             router.push("/classresult/result?roll_key=" + key2);
-            setLoading(false);
             redirect = true;
+            setLoading(false);
           } else {
             updateLocalStoragedata(key2, localStorage.value);
           }
@@ -87,8 +87,8 @@ const ClassResult = () => {
         if (redirect === false) {
           setLocalStoragedata(key2, response);
           router.push("/classresult/result?roll_key=" + key2);
-          setLoading(false);
           redirect = true;
+          setLoading(false);
         } else {
           updateLocalStoragedata(key2, response);
         }
