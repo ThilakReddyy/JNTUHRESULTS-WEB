@@ -10,6 +10,7 @@ import {
   fetchClassResult,
   getLocalStoragedata,
   setLocalStoragedata,
+  updateLocalStoragedata,
 } from "@/components/api/fetchClassResult";
 import { useRouter } from "next/navigation";
 import Footer from "@/components/footer/footer";
@@ -27,7 +28,7 @@ const ClassResult = () => {
   const onSubmit = async () => {
     const date = Date.now();
     if (currentHours > 7) {
-      return;
+      // return;
     }
 
     const validator = Object.values(form).some((value) => value === "");
@@ -38,15 +39,15 @@ const ClassResult = () => {
     }
 
     setLoading(true);
-    router.push("https://jntuhresultsnew.vercel.app/classresult");
-    return;
     const prefixRolls = [
       `${form["regulationName"]}${form["collegeName"]}1${form["degreeName"]}${form["branchName"]}`,
       `${parseInt(form["regulationName"]) + 1}${form["collegeName"]}5${
         form["degreeName"]
       }${form["branchName"]}`,
     ];
-
+    if (form["semesterName"] === "1-1" || form["semesterName"] === "1-2") {
+      prefixRolls.pop();
+    }
     const rollPrefixes = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let redirect = false;
     for (const prefixRoll of prefixRolls) {
@@ -56,52 +57,40 @@ const ClassResult = () => {
           roll_numbers += prefixRoll + rollPrefix + i + ",";
         }
         roll_numbers = roll_numbers.substring(0, roll_numbers.length - 1);
-        const localStorage = getLocalStoragedata(
-          roll_numbers + form["semesterName"],
-        );
-        if (localStorage !== null && localStorage.expiry < date) {
-          setLocalStoragedata(
-            prefixRolls[0] + form["semesterName"],
-            localStorage.value,
-          );
+        const key = roll_numbers + form["semesterName"];
+        const key2 = prefixRolls[0] + form["semesterName"];
+        var localStorage = getLocalStoragedata(key);
+
+        if (localStorage != null && localStorage.expiry > date) {
           if (redirect === false) {
-            router.push(
-              "/classresult/result?prefix_htnos=" +
-                prefixRolls[0] +
-                "," +
-                prefixRolls[1] +
-                "&semester=" +
-                form["semesterName"],
-            );
+            setLocalStoragedata(key2, localStorage.value);
+            router.push("/classresult/result?roll_key=" + key2);
+            setLoading(false);
             redirect = true;
+          } else {
+            updateLocalStoragedata(key2, localStorage.value);
           }
           continue;
         }
-        const response = await fetchClassResult(
+
+        var response = await fetchClassResult(
           roll_numbers,
           form["semesterName"],
         );
         if (response === null || response.length === 0) {
           if (redirect === false) {
             setLoading(false);
-            toast.error("Internal Server Error!!!");
+            toast.error("Internal Server Error!!");
           }
           break;
         }
         if (redirect === false) {
-          setLocalStoragedata(
-            prefixRolls[0] + form["semesterName"],
-            localStorage.value,
-          );
-          router.push(
-            "/classresult/result?prefix_htnos=" +
-              prefixRolls[0] +
-              "," +
-              prefixRolls[1] +
-              "&semester=" +
-              form["semesterName"],
-          );
+          setLocalStoragedata(key2, response);
+          router.push("/classresult/result?roll_key=" + key2);
+          setLoading(false);
           redirect = true;
+        } else {
+          updateLocalStoragedata(key2, response);
         }
       }
     }
