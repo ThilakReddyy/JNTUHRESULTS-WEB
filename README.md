@@ -19,7 +19,7 @@
 <p>To get started, just clone the repository and run <code>npm install && npm run dev</code>:</p>
 
 <pre>
-git clone https://github.com/ThilakReddyy/JNTUHRESULTS-WEB.git
+git clone https://github.com/ThilakReddyy/JNTUHRESULTS-WEB-new-.git
 npm install
 npm run dev
 </pre>
