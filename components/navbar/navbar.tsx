@@ -17,7 +17,12 @@ const Navbar = () => {
       }`}
     >
       <div className="justify-start flex items-center lg:hidden">
-        <button onClick={toggleSidebar} className="cursor-pointer">
+        <button
+          onClick={toggleSidebar}
+          className="curso-pointer"
+          aria-label="sidebarhook"
+          role="button"
+        >
           <HiOutlineBars3BottomLeft size={26} />
         </button>
       </div>
