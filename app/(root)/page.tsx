@@ -32,7 +32,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="z-[20] grid grid-row-2 md:grid-cols-2   items-center pt-10 font-normal text-2xl md:text-6xl">
+      <div className="z-[20] grid grid-row-2 md:grid-cols-2   items-center pt-10 font-normal text-2xl md:text-6xl mb-5">
         <div className="flex justify-center md:justify-end">
           Welcome to&nbsp;
         </div>
@@ -47,7 +47,7 @@ export default function Home() {
       <div className="text-center flex justify-center">
         <div className="home-links flex flex-wrap items-center justify-around max-w-4xl md:mt-6  sm:w-full">
           <Link href="/academicresult">
-            <div className="border  hover:drop-shadow-sm group text-black  dark:text-white border-slate-800 md:border-gray-100 shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
+            <div className="border  hover:drop-shadow-sm group text-black  dark:text-white border-slate-800 md:border-gray-100 shadow-2xl md:min-h-[220px] max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
               <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
                 <div className="flex flex-row items-center justify-start">
                   <span className="p-1 text-black dark:text-white">
@@ -78,7 +78,7 @@ export default function Home() {
           </Link>
 
           <Link href="/resultcontrast">
-            <div className="border border-slate-800 md:border-gray-100  hover:drop-shadow-sm group text-black dark:text-white shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
+            <div className="border border-slate-800 md:border-gray-100  hover:drop-shadow-sm group text-black dark:text-white shadow-2xl md:min-h-[220px]  max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
               <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
                 <div className="flex flex-row items-center justify-start">
                   <span className="p-1">Results Contrast</span>
@@ -105,7 +105,7 @@ export default function Home() {
               </p>
             </div>
           </Link>
-          <Link href="/carrers">
+          <Link href="/carrers" className="md:hidden">
             <div className="border border-slate-800 md:border-gray-100 md:hidden hover:drop-shadow-sm group text-black dark:text-white shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
               <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
                 <div className="flex flex-row items-center justify-start">
