@@ -37,6 +37,9 @@ const AcademicResult = () => {
       const result = await fetchAcademicResult(hallticketno);
       if (result !== null && result !== undefined) {
         router.push("/academicresult/result?htno=" + hallticketno);
+      } else if (result === 422) {
+        setLoading(false);
+        toast.error("Jntuh Servers are down!!!");
       } else {
         setLoading(false);
         toast.error("Internal server Error!!");

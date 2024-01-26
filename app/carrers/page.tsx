@@ -1,23 +1,27 @@
 "use client";
 import { Button } from "@/components/ui/button";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
 import {
   Drawer,
   DrawerContent,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import Image from "next/image";
 import { jobDetails } from "@/constants/jobsdetails";
+import JobsTemplate from "@/components/carrers/jobstemplate";
+import { useState } from "react";
+import JobOverview from "@/components/carrers/joboverview";
+import JobsmdOverview from "@/components/carrers/jobsmdoverview";
 
 const Carrers = () => {
   function shareUrl(link: any, title: string) {
     if (!navigator.share) return;
 
-    const sharedText = `*Check out the JOB title!* \n\n ${title}\n\n\n`;
+    const sharedText = `*Check out the JOB!!!* \n\n ${title}\n\n\n`;
 
     navigator
       .share({
@@ -29,7 +33,9 @@ const Carrers = () => {
       .catch((error) => console.log("Error sharing:", error));
   }
   const internships = jobDetails["internships"];
-  console.log(internships);
+  const jobs = jobDetails["jobs"];
+  const [selectedjob, setSelectedJob] = useState(jobs[0]);
+
   return (
     <>
       <div className="m-2 text-[30%] sm:text-[45%]  md:text-[60%] lg:text-[100%]">
@@ -47,8 +53,16 @@ const Carrers = () => {
               Internship
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="jobs">
-            <div className="flex justify-center">No Job listings yet!!</div>
+          <TabsContent value="jobs" className="lg:flex">
+            <Drawer>
+              <JobsTemplate
+                jobs={jobs}
+                selectedjob={selectedjob}
+                setSelectedJob={setSelectedJob}
+              />
+              <JobsmdOverview selectedjob={selectedjob} />
+            </Drawer>
+            <JobOverview job={selectedjob} />
           </TabsContent>
           <TabsContent value="internships" className="flex">
             <Drawer>
@@ -345,7 +359,7 @@ const Carrers = () => {
                     </div>
                   </div>
                   <div className="bottom-0 h-36 border-t-[1px] dark:border-t-yellow-50 m-0 py-2 text-center">
-                    <Button className="w-[80%] ">
+                    <Button className="w-[80%] " onClick={() => {}}>
                       <Link
                         href="https://www.google.com/about/careers/applications/jobs/results/99460232238768838-software-student-training-in-engineering-program-step-intern-2024"
                         target="_blank"

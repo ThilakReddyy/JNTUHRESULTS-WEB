@@ -3,7 +3,6 @@ import axios from "axios";
 async function getRedisData(htno: string) {
   try {
     const response = await axios.get(`/api/redisdata?htno=${htno}`);
-
     if (response.status === 200) {
       const expiryDate = new Date();
       expiryDate.setMinutes(expiryDate.getMinutes() + 1);
@@ -13,10 +12,11 @@ async function getRedisData(htno: string) {
       };
       localStorage.setItem(htno, JSON.stringify(dataToStore));
       return response.data;
+    } else if (response.status !== 200) {
+      console.log(response.status);
     }
     return null;
   } catch (error) {
-    console.log(error);
     return null;
   }
 }
@@ -24,6 +24,7 @@ async function getRedisData(htno: string) {
 const fetchData = async (htno: string, url: string) => {
   try {
     const response = await axios.get(url, { timeout: 5000 });
+    console.log(response);
     if (response.status == 200 && typeof response.data === "object") {
       const expiryDate = new Date();
       expiryDate.setMinutes(expiryDate.getMinutes() + 1);
@@ -34,8 +35,10 @@ const fetchData = async (htno: string, url: string) => {
       localStorage.setItem(htno, JSON.stringify(dataToStore));
       return response.data;
     }
+    if (response.status == 422) {
+      return 422;
+    }
   } catch (error) {
-    console.log(error);
     return null;
   }
 };
