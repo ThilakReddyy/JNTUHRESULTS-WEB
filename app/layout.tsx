@@ -13,7 +13,7 @@ import { NavBarProvider } from "@/customhooks/navbarhook";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "JNTUH RESULTS - Check Your UG and PG Exam Results Online",
+  title: "JNTUH RESULTS - Check Your UG & PG Exam Results Online",
   description: "Access your overall results of Jntuh",
 };
 

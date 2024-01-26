@@ -28,6 +28,7 @@ const ClassResult = () => {
   const onSubmit = async () => {
     const date = Date.now();
     if (currentHours > 7) {
+      toast.error("Results will only appear between 12 AM and 7 AM");
       return;
     }
 
