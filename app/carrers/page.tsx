@@ -53,6 +53,12 @@ const Carrers = () => {
               Internship
             </TabsTrigger>
           </TabsList>
+
+          <div className="dark:bg-gray-800  bg-gray-50  p-2 my-2 flex justify-center w-full lg:hidden border-gray-400 ">
+            <div className="justify-center flex text-center border-red-400 py-2 rounded border-2 w-[90%] text-red-400">
+              This feature is currently under development.
+            </div>
+          </div>
           <TabsContent value="jobs" className="lg:flex">
             <Drawer>
               <JobsTemplate
