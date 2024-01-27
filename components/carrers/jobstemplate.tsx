@@ -27,9 +27,6 @@ const JobsTemplate = ({
 }: jobTemplateProps) => {
   return (
     <>
-      <div className="dark:bg-gray-800 lg:hidden bg-gray-50  p-2 mb-2 w-full lg:hidden border-gray-400 ">
-        Filters
-      </div>
       <div className="overflow-y-auto dark:bg-gray-800 rounded bg-gray-50  p-2 w-full lg:max-w-[420px] border-gray-400 h-[79.5vh]">
         {jobs.map((job: any) => {
           return (
