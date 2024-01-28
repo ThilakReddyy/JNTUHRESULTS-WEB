@@ -49,27 +49,34 @@ export const getLocalStoragedata = (htno: string, backlog: boolean = false) => {
     if (storageData !== null) {
       const data = JSON.parse(storageData);
       const collegeName = data.value["Details"]["COLLEGE_CODE"];
-      if (backlog === true) {
-        const semesters = data.value["Results"];
-        for (let semester in semesters) {
-          const subjects = semesters[semester];
-          if (typeof subjects === "object") {
-            for (let subject in subjects) {
-              if (
-                !["F", "Ab", "-"].includes(subjects[subject]["subject_grade"])
-              ) {
+      var backlogs = 0;
+      const semesters = data.value["Results"];
+      for (let semester in semesters) {
+        const subjects = semesters[semester];
+        var semester_backlogs = 0;
+        if (typeof subjects === "object") {
+          for (let subject in subjects) {
+            if (
+              !["F", "Ab", "-"].includes(subjects[subject]["subject_grade"])
+            ) {
+              if (backlog) {
                 delete subjects[subject];
               }
-            }
-            if (Object.keys(subjects).length === 0) {
-              delete semesters[semester];
+            } else {
+              backlogs += 1;
+              semester_backlogs += 1;
             }
           }
+          if (Object.keys(subjects).length === 0) {
+            delete semesters[semester];
+          }
+          subjects["backlog"] = semester_backlogs;
         }
       }
-      if (backlog === true && data.value["Results"]["Total"]) {
+      if (backlog && data.value["Results"]["Total"]) {
         delete data.value["Results"]["Total"];
       }
+      data.value["Backlogs"] = backlogs;
       return data;
     }
     return null;

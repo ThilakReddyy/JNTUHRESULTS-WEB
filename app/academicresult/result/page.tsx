@@ -8,6 +8,7 @@ import Print from "@/components/download/print";
 import { CiEdit } from "react-icons/ci";
 import { IoSaveOutline } from "react-icons/io5";
 import ResultDetails from "@/components/result/details";
+import { calculatetotalbacklog } from "@/components/customfunctions/calculatetotalbacklog";
 
 const AcademicResultResult = () => {
   const router = useRouter();
@@ -15,16 +16,22 @@ const AcademicResultResult = () => {
   const details = getLocalStoragedata(String(htno));
   const componentRef = useRef(null);
 
-  const { Details: resultdetails, Results: resultresults } =
-    details?.value || {};
+  const {
+    Details: resultdetails,
+    Results: resultresults,
+    Backlogs: resultbacklogs,
+  } = details?.value || {};
 
   const [renderKey, setRenderKey] = useState(0);
   const [Details] = useState(resultdetails);
   const [Results, setResults] = useState(resultresults);
+  const [backlogs, setBacklogs] = useState(resultbacklogs);
   const [edit, setEdit] = useState(false);
 
+  console.log(resultbacklogs);
   useEffect(() => {
     setResults(calculateResult(Results));
+    setBacklogs(calculatetotalbacklog(Results));
     setRenderKey((prevkey) => prevkey + 1);
   }, [Results]);
 
@@ -90,7 +97,7 @@ const AcademicResultResult = () => {
         {Object.keys(Results).map((value: string, index: number) => {
           return (
             <div key={index}>
-              {value != "Total" ? (
+              {value != "Total" && (
                 <>
                   <table className="dark:border-white w-[100%]">
                     <tbody>
@@ -198,28 +205,45 @@ const AcademicResultResult = () => {
                   <table className="dark:border-white">
                     <tbody>
                       <tr>
-                        <th className="dark:border-white w-[75%]">CGPA</th>
-                        <th className="dark:border-white">
-                          {Results[value]["CGPA"]}
+                        <th className="dark:border-white w-[25%]">Backlogs</th>
+                        <th className="dark:border-white w-[25%] ">
+                          {Results[value]["backlog"]}
+                        </th>
+                        <th className="dark:border-white w-[25%]">SGPA</th>
+                        <th className="dark:border-white ">
+                          {Results[value]["CGPA"] || "-"}
                         </th>
                       </tr>
                     </tbody>
                   </table>
                   <br />
                 </>
-              ) : (
-                <table className="dark:border-white" key={index}>
-                  <tbody>
-                    <tr>
-                      <th className="dark:border-white w-[75%]">TOTAL CGPA</th>
-                      <th className="dark:border-white">{Results[value]}</th>
-                    </tr>
-                  </tbody>
-                </table>
               )}
             </div>
           );
         })}
+        {
+          <table className="dark:border-white">
+            <tbody>
+              <tr>
+                <th className="dark:border-white w-[50%] bg-red-600 text-white ">
+                  Backlogs
+                </th>
+                <th className="dark:border-white w-[50%] bg-green-800 text-white">
+                  TOTAL CGPA
+                </th>
+              </tr>
+              <tr>
+                <th className="dark:border-white w-[50%] text-red-600">
+                  {backlogs}
+                </th>
+                <th className="dark:border-white w-[50%] text-green-800">
+                  {Results["Total"] || "-"}
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        }
         <div className="flex justify-center text-[6px] text-black">
           jntuhresults.vercel.app
         </div>
