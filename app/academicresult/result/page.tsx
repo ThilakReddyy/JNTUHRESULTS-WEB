@@ -222,10 +222,10 @@ const AcademicResultResult = () => {
           <table className="dark:border-white">
             <tbody>
               <tr>
-                <th className="dark:border-white w-[50%] bg-red-600 text-white ">
+                <th className="bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954] dark:border-white">
                   Backlogs
                 </th>
-                <th className="dark:border-white w-[50%] bg-green-800 text-white">
+                <th className="bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954] dark:border-white">
                   TOTAL CGPA
                 </th>
               </tr>
