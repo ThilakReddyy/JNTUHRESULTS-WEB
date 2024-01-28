@@ -205,12 +205,8 @@ const AcademicResultResult = () => {
                   <table className="dark:border-white">
                     <tbody>
                       <tr>
-                        <th className="dark:border-white w-[40%]">Backlogs</th>
-                        <th className="dark:border-white w-[10%] ">
-                          {Results[value]["backlog"]}
-                        </th>
-                        <th className="dark:border-white w-[40%]">SGPA</th>
-                        <th className="dark:border-white w-[10%]">
+                        <th className="dark:border-white w-[75%]">SGPA</th>
+                        <th className="dark:border-white w-[25%]">
                           {Results[value]["CGPA"] || "-"}
                         </th>
                       </tr>
