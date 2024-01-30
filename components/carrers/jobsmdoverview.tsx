@@ -24,7 +24,7 @@ const JobsmdOverview = ({ selectedjob }: jobprops | any) => {
           <div className="flex">
             <div className="ml-2  mr-4 flex items-center min-w-[60px]">
               <Image
-                src="/googleicon.png"
+                src={`/${selectedjob.company.toLowerCase()}icon.png`}
                 width={80}
                 height={80}
                 alt={selectedjob.company}

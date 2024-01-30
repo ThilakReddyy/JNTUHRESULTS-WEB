@@ -17,7 +17,9 @@ interface JobDetailsProps {
     locations: string[];
     minqualifications: string[];
     preferredqualifications: string[];
-    about: string;
+    experience: number;
+    responsibilities: string[];
+    about: string[];
   }[];
 }
 
@@ -534,6 +536,31 @@ export const jobDetails: JobDetailsProps = {
   ],
   internships: [
     {
+      title: "Research Fellow",
+      company: "Microsoft",
+      link: "https://jobs.careers.microsoft.com/global/en/job/1670244/Research-Fellow",
+      locations: ["Bangalore, Karnataka"],
+      experience: 0,
+      minqualifications: [
+        "Candidates should have completed their Bachelor’s (BE/BTech/BS) or Master’s degree (ME/MTech/MS) in Computer Science (or related areas). We evaluate candidates on a combination of factors including academic performance, raw smarts, development skills, and passion for research and software development. ",
+      ],
+      preferredqualifications: [
+        "Candidates should have completed their Bachelor’s (BE/BTech/BS) or Master’s degree (ME/MTech/MS) in Computer Science (or related areas). We evaluate candidates on a combination of factors including academic performance, raw smarts, development skills, and passion for research and software development. ",
+      ],
+      responsibilities: [
+        "RFs spend 1 to 2 years at MSR India. Different projects require a different combination of skills. Current and past RFs have worked on: solving deep theoretical problems, pushing the boundaries of AI, designing new programming languages, designing and implementing security protocols at scale, field work in rural India, increasing the inclusivity of large language models, research on fairness and ethics in AI, and designing and building large-scale software systems and networks. Regardless, they all consistently aim to create academic, industry, and societal impact. ",
+      ],
+      about: [
+        "*Please read the instructions below fully before applying ",
+        "Microsoft Research India invites applications for its Research Fellows Program. The Research Fellows program exposes bright minds in India to world-class research and the state-of-the-art technology. The program prepares students for careers in research, engineering, as well as entrepreneurship. MSR India has some of the best researchers pushing the frontiers of computer science and technology. ",
+
+        "<b>Application Procedure</b>",
+        "Apply with your resume and at least one letter of recommendation. You must also fill out the RF Interest Form at this link: <b><a href='https://forms.office.com/r/3S7kr4gre4'>https://forms.office.com/r/3S7kr4gre4</a></b>. This form allows us to gather your interests so that we can match your application to appropriate projects within MSR. Once you have finished the application process you should see the option to add recommenders in the Action Center. They will then be sent an automated email with a link to upload their recommendation letters.",
+        "The deadline for the application is <b>16 February 2024</b>",
+      ],
+    },
+
+    {
       title:
         "Software Student Training in Engineering Program (STEP) Intern, 2024",
       company: "Google",
@@ -543,6 +570,7 @@ export const jobDetails: JobDetailsProps = {
         "Bangalore, Karnataka",
         "Pune, Maharasthra",
       ],
+      experience: 0,
       minqualifications: [
         "Currently enrolled in a Bachelor's program, majoring or intending to major in Computer Science or related technical field.",
         "Experience in one or more general purpose programming languages.",
@@ -553,15 +581,13 @@ export const jobDetails: JobDetailsProps = {
         "Excellent programming skills (C++, Java, Python).",
         "Ability to complete a full-time, 10-12 week internship between May and August 2024 (exact program dates will be provided at a later point in the process)",
       ],
-      about: `Google is invested in increasing future computer scientists and software developers, particularly those who are historically underrepresented in the field. Many aspiring computer scientists could benefit from a program that bridges the gap between academic study and a professional internship. Google aims to inspire these underrepresented students to continue in the field with such a program.
-
-With this in mind, Google is pleased to announce the 2024 STEP internship in India. It will be open to under-represented groups who will be in the second year of their university studies by the Summer of 2024 and are studying Computer Science or a related subject.
-
-This program includes three main components: a software project, skills-based training, and professional development. This program is open to all qualified University students and is committed to addressing diversity in our company and in the technology industry. Students who are a member of a group that is historically underrepresented in the technology industry are encouraged to apply.
-
-This summer trainee program includes a development project that you will work on with a team of Googlers and other STEP Interns. You will enhance your coding skills, and gain exposure to tools and programming languages. You will attend ongoing technical talks by executive Googlers, match with a Google Engineer, to guide you through your summer experience, and engage in social activities, community building, and networking.
-
-Google is and always will be an engineering company. We hire people with a broad set of technical skills who are ready to address some of technology's greatest challenges and make an impact on millions, if not billions, of users. At Google, engineers not only revolutionize search, they routinely work on massive scalability and storage solutions, large-scale applications and entirely new platforms for developers around the world. From Google Ads to Chrome, Android to YouTube, Social to Local, Google engineers are changing the world one technological achievement after another.`,
+      responsibilities: ["Specific responsibilities vary by project area."],
+      about: [
+        "Google is committed to fostering diversity in computer science by investing in programs that bridge the gap between academic study and professional internships, aiming to inspire and support historically underrepresented students in pursuing careers in the field.",
+        "With this in mind, Google is pleased to announce the 2024 STEP internship in India. It will be open to under-represented groups who will be in the second year of their university studies by the Summer of 2024 and are studying Computer Science or a related subject.",
+        "This program includes three main components: a software project, skills-based training, and professional development. This program is open to all qualified University students and is committed to addressing diversity in our company and in the technology industry. Students who are a member of a group that is historically underrepresented in the technology industry are encouraged to apply. ",
+        "This summer trainee program includes a development project that you will work on with a team of Googlers and other STEP Interns. You will enhance your coding skills, and gain exposure to tools and programming languages. You will attend ongoing technical talks by executive Googlers, match with a Google Engineer, to guide you through your summer experience, and engage in social activities, community building, and networking. ",
+      ],
     },
   ],
 };
