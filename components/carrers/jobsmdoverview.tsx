@@ -143,9 +143,11 @@ const JobsmdOverview = ({ selectedjob }: jobprops | any) => {
             <div className="pl-2 text-xs text-justify">
               {selectedjob.about.map((about: string, index: number) => {
                 return (
-                  <p className="pt-2" key={index}>
-                    {about}
-                  </p>
+                  <p
+                    className="pt-2"
+                    key={index}
+                    dangerouslySetInnerHTML={{ __html: about }}
+                  ></p>
                 );
               })}
             </div>
