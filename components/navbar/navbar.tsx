@@ -70,7 +70,10 @@ const Navbar = () => {
       </div>
       <div className="flex justify-end items-center">
         <span className="flex gap-4 items-center">
-          <Link href="https://github.com/ThilakReddyy/JNTUHRESULTS-WEB">
+          <Link
+            href="https://github.com/ThilakReddyy/JNTUHRESULTS-WEB"
+            aria-label="github link"
+          >
             <AiOutlineGithub size={23} />
           </Link>
           <span className="hidden items-center md:block">

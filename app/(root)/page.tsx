@@ -254,18 +254,21 @@ export default function Home() {
             <a
               href="https://github.com/thilakreddyy"
               className="mx-2 hover:text-gray-900"
+              aria-label="github link"
             >
               <FaGithub />
             </a>
             <a
               href="https://twitter.com/thilakreddyonly"
               className="mx-2 hover:text-gray-900"
+              aria-label="twitter link"
             >
               <FaTwitter />
             </a>
             <a
               href="https://www.instagram.com/__thilak_reddy__/"
               className="mx-2 hover:text-gray-900"
+              aria-label="instagram link"
             >
               <FaInstagram />
             </a>
