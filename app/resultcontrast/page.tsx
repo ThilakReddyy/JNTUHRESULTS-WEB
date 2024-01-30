@@ -39,8 +39,10 @@ const ResultContrast = () => {
       if (
         result !== null &&
         result !== undefined &&
+        result !== 422 &&
         result2 !== null &&
-        result !== undefined
+        result !== undefined &&
+        result2 !== 422
       ) {
         router.push(
           "/resultcontrast/result?htno=" +

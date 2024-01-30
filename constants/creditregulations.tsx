@@ -1,5 +1,20 @@
+interface CreditRegulation {
+  Regular: {
+    [key: string]: {
+      Required: string;
+      Total: string;
+    };
+  };
+  Lateral: {
+    [key: string]: {
+      Required: string;
+      Total: string;
+    };
+  };
+}
+
 interface creditregulationDetailsProps {
-  [key: string]: string | creditregulationDetailsProps;
+  [key: string]: string | creditregulationDetailsProps | CreditRegulation;
 }
 
 export const creditRegulationDetails: creditregulationDetailsProps = {

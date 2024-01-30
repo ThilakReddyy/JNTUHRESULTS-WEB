@@ -35,10 +35,10 @@ const fetchData = async (htno: string, url: string) => {
       localStorage.setItem(htno, JSON.stringify(dataToStore));
       return response.data;
     }
-    if (response.status == 422) {
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response?.status === 422) {
       return 422;
     }
-  } catch (error) {
     return null;
   }
 };
@@ -96,7 +96,9 @@ export async function fetchAcademicResult(htno: string) {
   //primary urls
   const primaryUrl = `https://jntuhresults.up.railway.app/api/academicresult?htno=${htno}`;
   response = await fetchData(htno, primaryUrl);
+  console.log(response);
   if (response !== null) {
+    console.log(response);
     return response;
   }
 
