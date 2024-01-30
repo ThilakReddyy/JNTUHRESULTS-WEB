@@ -78,7 +78,7 @@ const ClassResult = () => {
           roll_numbers,
           form["semesterName"],
         );
-        if (response === null || response.length === 0) {
+        if (response === null || (response.length === 0 && response !== 422)) {
           if (redirect === false) {
             setLoading(false);
             toast.error("Internal Server Error!!");

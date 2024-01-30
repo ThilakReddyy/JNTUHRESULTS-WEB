@@ -1,24 +1,28 @@
 "use client";
-
-import { useState } from "react";
-import Form from "@/components/forms/resulthtnoform";
-import Loading from "@/components/loading/loading";
-import toast from "react-hot-toast";
 import {
   fetchAcademicResult,
   getLocalStoragedata,
 } from "@/components/api/fetchAcademicResult";
-import { useRouter } from "next/navigation";
 import Footer from "@/components/footer/footer";
+import Form from "@/components/forms/resulthtnoform";
+import Loading from "@/components/loading/loading";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
-const BacklogReport = () => {
-  const [hallticketno, sethallticketno] = useState("");
+const CreditChecker = () => {
   const [loading, setLoading] = useState<boolean>(false);
+  const [hallticketno, sethallticketno] = useState<string>("");
   const router = useRouter();
+  useEffect(() => {}, []);
 
   const onSubmit = async () => {
     if (hallticketno.length < 10) {
       toast.error("The Hallticket should be of 10 digits");
+      return;
+    }
+    if (hallticketno[5] !== "A") {
+      toast("The Credits checker is limited to B.Tech degree");
       return;
     }
 
@@ -27,14 +31,17 @@ const BacklogReport = () => {
     try {
       const localStorageResult = getLocalStoragedata(hallticketno);
       if (localStorageResult !== null) {
-        router.push("backlogreport/result?htno=" + hallticketno);
+        router.push("creditchecker/result?htno=" + hallticketno);
         if (Date.now() < localStorageResult["expiry"]) {
           return;
         }
       }
       const result = await fetchAcademicResult(hallticketno);
-      if (result !== null && result !== undefined && result != 422) {
-        router.push("/backlogreport/result?htno=" + hallticketno);
+      if (result !== null && result !== undefined) {
+        router.push("/creditchecker/result?htno=" + hallticketno);
+      } else if (result === 422) {
+        setLoading(false);
+        toast.error("Jntuh Servers are down!!!");
       } else {
         setLoading(false);
         toast.error("Internal server Error!!");
@@ -49,14 +56,14 @@ const BacklogReport = () => {
   ) : (
     <>
       <Form
-        onSubmit={onSubmit}
-        title="Backlog Report"
+        title="Credits Checker"
         hallticketno={hallticketno}
         sethallticketno={sethallticketno}
+        onSubmit={onSubmit}
       />
-
       <Footer />
     </>
   );
 };
-export default BacklogReport;
+
+export default CreditChecker;
