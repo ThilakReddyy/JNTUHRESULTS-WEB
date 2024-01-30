@@ -19,9 +19,7 @@ const Form = ({
   return (
     <div className="flex justify-center  mt-[6%]  mx-[16%] px-10 rounded-md border-black dark:border-white border-2  shadow-2xl   ">
       <div className="pt-[30px] pb-[50px]">
-        <div className="md:text-2xl font-semibold flex justify-center">
-          {title}
-        </div>
+        <div className="md:text-2xl font-semibold text-center">{title}</div>
         <br />
         <br />
         <input
