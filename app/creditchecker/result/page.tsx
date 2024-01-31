@@ -129,16 +129,16 @@ const CreditCheckerResult = () => {
                 You require{" "}
                 <b>{creditregulations[year]["Required"] - totalCredits}</b>{" "}
                 additional credits
-                {year === 4
+                {year === 4 || (year === 3 && htno?.[4] == "5")
                   ? " to graduate from college"
                   : " to advance to the next academic year."}
               </div>
             ) : (
               <div>
                 <b>
-                  {year !== 4
-                    ? "Congratulations you have promoted to the next academic year"
-                    : "Congratulations you have been graduated 🎓"}
+                  {year === 4 || (year === 3 && htno?.[4] == "5")
+                    ? "Congratulations you have been graduated 🎓"
+                    : "Congratulations you have promoted to the next academic year 🎊"}
                 </b>
               </div>
             )}
