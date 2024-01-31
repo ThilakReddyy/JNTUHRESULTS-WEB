@@ -70,7 +70,9 @@ const CreditCheckerResult = () => {
               <table className="dark:border-white">
                 <tbody>
                   <tr className="w-max bg-gray-200 md:bg-gray-300 dark:border-white dark:bg-[#0b3954] ">
-                    <th className="dark:border-white">{index + 1} Year</th>
+                    <th className="dark:border-white">
+                      {studenttype === "Regular" ? index + 1 : index + 2} Year
+                    </th>
                   </tr>
                 </tbody>
               </table>
