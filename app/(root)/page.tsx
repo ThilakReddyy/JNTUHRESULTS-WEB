@@ -32,19 +32,19 @@ export default function Home() {
 
   return (
     <>
-      <div className="z-[20] grid grid-row-2 md:grid-cols-2 lg:hidden  items-center pt-10 font-normal text-2xl md:text-6xl mb-5">
-        <div className="flex justify-center md:justify-end">
+      <div className="z-[20] grid grid-row-2 lg:grid-cols-2 lg:hidden  items-center pt-10 font-normal text-2xl lg:text-6xl mb-5">
+        <div className="flex justify-center lg:justify-end">
           Welcome to&nbsp;
         </div>
         <Link
           href="/"
-          className="text-blue-500 hover:text-blue-600 flex justify-center md:justify-start hover:underline"
+          className="text-blue-500 hover:text-blue-600 flex justify-center lg:justify-start hover:underline"
         >
           {title.substring(0, titleIndex)}
           <span className={`font-extralight ${blind && "opacity-0"}`}>|</span>
         </Link>
       </div>
-      <div className="z-[20] hidden lg:flex justify-center items-center pt-10 font-normal text-2xl md:text-6xl mb-5">
+      <div className="z-[20] hidden lg:flex justify-center items-center pt-10 font-normal text-2xl lg:text-6xl mb-5">
         Welcome to&nbsp;
         <Link
           href="/"
