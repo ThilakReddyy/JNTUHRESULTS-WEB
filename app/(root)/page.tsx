@@ -55,7 +55,7 @@ export default function Home() {
         </Link>
       </div>
       <div className="flex justify-center">
-        <div className="w-[100%] lg:max-w-[40%] text-sm lg:text-lg text-center bg-black text-white py-3 lg:py-2 m-4 rounded dark:text-black dark:bg-gray-200">
+        <div className="w-[100%] lg:max-w-[60%] 2xl:max-w-[40%] text-sm lg:text-lg text-center bg-black text-white py-3 lg:py-2 m-4 rounded dark:text-black dark:bg-gray-200">
           Jawaharlal Nehru Technological University, Hyderabad
         </div>
       </div>
