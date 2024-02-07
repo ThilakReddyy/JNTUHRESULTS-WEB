@@ -1,4 +1,5 @@
 "use client";
+import { homeLinks } from "@/constants/homeLinks";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
@@ -29,7 +30,6 @@ export default function Home() {
 
     typeWriter();
   }, []);
-
   return (
     <>
       <div className="z-[20] grid grid-row-2 lg:grid-cols-2 lg:hidden  items-center pt-10 font-normal text-2xl lg:text-6xl mb-5">
@@ -61,179 +61,39 @@ export default function Home() {
       </div>
       <div className="text-center flex justify-center">
         <div className="home-links flex flex-wrap items-center justify-around max-w-5xl md:mt-6  sm:w-full">
-          <Link href="/academicresult">
-            <div className="border  hover:drop-shadow-sm group text-black  dark:text-white border-slate-800  shadow-2xl md:min-h-[220px] max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
-              <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
-                <div className="flex flex-row items-center justify-start">
-                  <span className="p-1 text-black dark:text-white">
-                    Academic Results
-                  </span>
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    strokeWidth="0"
-                    viewBox="0 0 20 20"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
+          {homeLinks.map((homelink: any, index: number) => {
+            return (
+              <Link href={homelink.link} key={index}>
+                <div className="border  hover:drop-shadow-sm group text-black  dark:text-white border-slate-800  shadow-2xl md:min-h-[220px] max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
+                  <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
+                    <div className="flex flex-row items-center justify-start">
+                      <span className="p-1 text-black dark:text-white">
+                        {homelink.title}
+                      </span>
+                      <svg
+                        stroke="currentColor"
+                        fill="currentColor"
+                        strokeWidth="0"
+                        viewBox="0 0 20 20"
+                        height="1em"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
+                    </div>
+                  </h3>
+                  <p className="group-hover:text-black text-slate-500 mt-4 text-base sm:text-xl">
+                    {homelink.description}
+                  </p>
                 </div>
-              </h3>
-              <p className="group-hover:text-black text-slate-500 mt-4 text-base sm:text-xl">
-                Access your overall academic performance with just an hall
-                ticket.
-              </p>
-            </div>
-          </Link>
-          <Link href="/creditchecker">
-            <div className="border border-slate-800   hover:drop-shadow-sm group text-black  dark:text-white shadow-2xl md:min-h-[220px] max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
-              <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
-                <div className="flex flex-row items-center justify-start">
-                  <span className="p-1">Credit Checker</span>
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    strokeWidth="0"
-                    viewBox="0 0 20 20"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
-              </h3>
-              <p className="group-hover:text-black text-slate-500 mt-4 text-base sm:text-xl">
-                Check your credits to find out how many you need to move on to
-                the next year or to graduate.
-              </p>
-            </div>
-          </Link>
-          <Link href="/carrers">
-            <div className="border border-slate-800   hover:drop-shadow-sm group text-black dark:text-white shadow-2xl md:max-h-[220px] max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
-              <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
-                <div className="flex flex-row items-center justify-start">
-                  <span className="p-1 ">Jobs and Careers</span>
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    strokeWidth="0"
-                    viewBox="0 0 20 20"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
-              </h3>
-              <p className="group-hover:text-black text-slate-500 mt-4 text-base sm:text-xl">
-                Explore career paths!!!.
-                <br />
-                Find internships, jobs, and kickstart your professional journey.
-              </p>
-            </div>
-          </Link>
-
-          <Link href="/backlogreport">
-            <div className="border border-slate-800   hover:drop-shadow-sm group text-black  dark:text-white shadow-3xl  md:min-h-[220px] max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
-              <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
-                <div className="flex flex-row items-center justify-start">
-                  <span className="p-1">Backlog Report</span>
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    strokeWidth="0"
-                    viewBox="0 0 20 20"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
-              </h3>
-              <p className="group-hover:text-black text-slate-500 mt-4 text-base sm:text-xl">
-                Access your overall backlogs report with an hallticket.
-              </p>
-            </div>
-          </Link>
-
-          <Link href="/resultcontrast">
-            <div className="border border-slate-800   hover:drop-shadow-sm group text-black dark:text-white shadow-2xl md:min-h-[220px]  max-w-xs  p-6 mt-6 text-left rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
-              <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
-                <div className="flex flex-row items-center justify-start">
-                  <span className="p-1">Results Contrast</span>
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    strokeWidth="0"
-                    viewBox="0 0 20 20"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
-              </h3>
-              <p className="group-hover:text-black text-slate-500 mt-4 text-base sm:text-xl">
-                Compare your academic performance across all semesters with your
-                classmate.
-              </p>
-            </div>
-          </Link>
-
-          <Link href="/classresult">
-            <div className="border border-slate-800   hover:drop-shadow-sm group text-black dark:text-white shadow-2xl md:min-h-[220px] max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
-              <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
-                <div className="flex flex-row items-center justify-start">
-                  <span className="p-1 ">Class Results</span>
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    strokeWidth="0"
-                    viewBox="0 0 20 20"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
-              </h3>
-              <p className="group-hover:text-black text-slate-500 mt-4 text-base sm:text-xl">
-                View the results of your classmates and compare your performance
-                with theirs.
-              </p>
-            </div>
-          </Link>
+              </Link>
+            );
+          })}
 
           <Link href="/notifications" className="md:hidden">
             <div className="border border-slate-800   hover:drop-shadow-sm group text-black dark:text-white shadow-2xl md:min-h-[220px] max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
@@ -251,8 +111,8 @@ export default function Home() {
                   >
                     <path
                       fillRule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
                       clipRule="evenodd"
+                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
                     ></path>
                   </svg>
                 </div>
