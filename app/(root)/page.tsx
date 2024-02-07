@@ -32,7 +32,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="z-[20] grid grid-row-2 md:grid-cols-2   items-center pt-10 font-normal text-2xl md:text-6xl mb-5">
+      <div className="z-[20] grid grid-row-2 md:grid-cols-2 lg:hidden  items-center pt-10 font-normal text-2xl md:text-6xl mb-5">
         <div className="flex justify-center md:justify-end">
           Welcome to&nbsp;
         </div>
@@ -43,6 +43,21 @@ export default function Home() {
           {title.substring(0, titleIndex)}
           <span className={`font-extralight ${blind && "opacity-0"}`}>|</span>
         </Link>
+      </div>
+      <div className="z-[20] hidden lg:flex justify-center items-center pt-10 font-normal text-2xl md:text-6xl mb-5">
+        Welcome to&nbsp;
+        <Link
+          href="/"
+          className="text-blue-500 hover:text-blue-600  hover:underline"
+        >
+          {title.substring(0, titleIndex)}
+          <span className={`font-extralight ${blind && "opacity-0"}`}>|</span>
+        </Link>
+      </div>
+      <div className="flex justify-center">
+        <div className="w-[100%] lg:max-w-[40%] text-center bg-black text-white py-2 m-5 rounded">
+          Jawaharlal Nehru Technological University, Hyderabad
+        </div>
       </div>
       <div className="text-center flex justify-center">
         <div className="home-links flex flex-wrap items-center justify-around max-w-4xl md:mt-6  sm:w-full">
