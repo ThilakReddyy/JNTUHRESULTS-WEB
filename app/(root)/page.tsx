@@ -55,7 +55,7 @@ export default function Home() {
         </Link>
       </div>
       <div className="flex justify-center">
-        <div className="w-[100%] lg:max-w-[40%] text-center bg-black text-white py-2 m-5 rounded">
+        <div className="w-[100%] lg:max-w-[40%] text-sm lg:text-lg text-center bg-black text-white py-3 lg:py-2 m-4 rounded">
           Jawaharlal Nehru Technological University, Hyderabad
         </div>
       </div>
@@ -121,7 +121,7 @@ export default function Home() {
           </Link>
 
           <Link href="/backlogreport" className="md:hidden">
-            <div className="border border-slate-800 md:border-gray-100  hover:drop-shadow-sm group text-black  dark:text-white shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
+            <div className="border border-slate-800 md:border-gray-100  hover:drop-shadow-sm group text-black  dark:text-white shadow-3xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
               <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
                 <div className="flex flex-row items-center justify-start">
                   <span className="p-1">Backlog Report</span>
