@@ -9,6 +9,7 @@ import { Toaster } from "react-hot-toast";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import MetaData from "@/components/metadata/metadata";
 import { NavBarProvider } from "@/customhooks/navbarhook";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +30,7 @@ export default function RootLayout({
       </head>
       <GoogleAnalytics />
       <body className={inter.className}>
+        <SpeedInsights />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
