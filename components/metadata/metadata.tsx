@@ -29,10 +29,10 @@ const MetaData = () => {
         property="twitter:description"
         content="JNTUH Results, JNTUH results vercel, jntuh vercel, JNTUH B.Tech Results, jntuhresults, jntuh notifications, JNTUH Results Engineering, JNTUH Engineering Results, jntuh bpharmacy results, jntuh bphar results, jntuh mtech results, jntuh mba results, jntuh mca results, jntuh all semester results, jntuh all semester results r18"
       />
-      <meta
-        name="description"
-        content="Easily access your JNTUH results for {relevant course and semester} - Find out your grades, CGPA, backlogs, Jobs, Internships and more in one place. Check now!"
-      />
+      {/* <meta */}
+      {/*   name="description" */}
+      {/*   content="Easily access your JNTUH results for {relevant course and semester} - Find out your grades, CGPA, backlogs, Jobs, Internships and more in one place. Check now!" */}
+      {/* /> */}
       <meta
         name="google-site-verification"
         content="2arj9D99oUuGh03Qhewo_iEY45zbwhrJqLytiZSmoEg"
