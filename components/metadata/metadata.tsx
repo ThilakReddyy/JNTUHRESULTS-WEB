@@ -1,6 +1,11 @@
+"use client";
+import { usePathname } from "next/navigation";
+
 import React from "react";
 
 const MetaData = () => {
+  const pathname = usePathname();
+  console.log(pathname);
   return (
     <>
       <meta property="og:url" content="https://jntuhresults.vercel.app/" />
@@ -67,7 +72,11 @@ const MetaData = () => {
         href="/favicon-16x16.png"
       />
       <link rel="manifest" href="/manifest.json" />
-      <link rel="canonical" href="https://jntuhresults.vercel.app" />
+      <link
+        rel="canonical"
+        href={`https://jntuhresults.vercel.app${pathname}`}
+      />
+
       <link rel="manifest" href="/site.webmanifest" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" />
