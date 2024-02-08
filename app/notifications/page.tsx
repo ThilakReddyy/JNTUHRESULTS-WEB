@@ -8,23 +8,22 @@ import { examYearDetails } from "@/constants/examyear";
 import { AiOutlineShareAlt } from "react-icons/ai";
 import { RiWhatsappLine } from "react-icons/ri";
 import Link from "next/link";
+
 const Notifications = () => {
   const [loading, setLoading] = useState(true);
   const [results, setResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
   const [placeHolder, setPlaceHolder] = useState("");
-  useEffect(() => {
-    const fetch = async () => {
-      const notifications = await fetchNotifications();
-      if (notifications !== null) {
-        setResults(notifications);
-      }
-      setLoading(false);
-    };
-    fetch();
-  }, []);
+  const [loadedCount, setLoadedCount] = useState(10);
+  const [filteredResults, setFilteredResults] = useState<Result[]>([]);
   const sleep = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  interface Result {
+    Result_title: string;
+    Date: string;
+    Link: string;
+  }
 
   function shareUrl(link: any, title: string) {
     if (!navigator.share) return;
@@ -40,6 +39,40 @@ const Notifications = () => {
       .then(() => console.log("Successfully shared!"))
       .catch((error) => console.log("Error sharing:", error));
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const notifications = await fetchNotifications();
+        if (notifications !== null) {
+          setResults(notifications);
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching notifications:", error);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollHeight, scrollTop, clientHeight } =
+        document.documentElement;
+      const isScrolledToBottom = scrollTop + clientHeight >= scrollHeight;
+      if (isScrolledToBottom) {
+        setLoadedCount((prevCount) => prevCount + 20);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   useEffect(() => {
     const searchQueries = [
       "III Year II Semester",
@@ -79,20 +112,20 @@ const Notifications = () => {
   };
 
   const handleYearChange = (event: any) => {
-    console.log(event.target.value);
     setSelectedYear(event.target.value);
+    console.log(event.target.value);
   };
-  interface Result {
-    Result_title: string;
-    Date: string; // Adjust the type accordingly
-    // Add other properties as needed
-    Link: string;
-  }
-  const filteredResults = (results as Result[]).filter((result) => {
-    const title = result.Result_title.toLowerCase();
-    const yearMatch = selectedYear === "" || result.Date.includes(selectedYear);
-    return title.includes(searchQuery.toLowerCase()) && yearMatch;
-  });
+
+  useEffect(() => {
+    var tempres = (results as Result[]).filter((result) => {
+      const title = result.Result_title.toLowerCase();
+      const yearMatch =
+        selectedYear === "" || result.Date.includes(selectedYear);
+      return title.includes(searchQuery.toLowerCase()) && yearMatch;
+    });
+    setFilteredResults(tempres.slice(0, loadedCount));
+  }, [results, searchQuery, selectedYear, setFilteredResults, loadedCount]);
+
   return loading ? (
     <Loading />
   ) : (
