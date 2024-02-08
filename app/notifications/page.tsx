@@ -60,7 +60,7 @@ const Notifications = () => {
     const handleScroll = () => {
       const { scrollHeight, scrollTop, clientHeight } =
         document.documentElement;
-      const isScrolledToBottom = scrollTop + clientHeight >= scrollHeight;
+      const isScrolledToBottom = scrollTop + clientHeight + 300 >= scrollHeight;
       if (isScrolledToBottom) {
         setLoadedCount((prevCount) => prevCount + 20);
       }
