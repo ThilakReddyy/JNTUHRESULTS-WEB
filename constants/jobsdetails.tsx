@@ -536,6 +536,66 @@ export const jobDetails: JobDetailsProps = {
   ],
   internships: [
     {
+      title: "Software Engineering Intern, Summer 2024",
+      company: "Google",
+      locations: [
+        "Bangalore, Karnataka, India",
+        "; Hyderabad, Telangana, India",
+      ],
+      experience: 0,
+      about: [
+        "Join us for a 10-12 week paid internship that offers personal and professional development, and community-building. The Software Engineering Internship program will give you an opportunity to work on computer science solutions, develop scalable, distributed software systems, and also collaborate on multitudes of smaller projects that have universal appeal. ",
+        "Google is and always will be an engineering company. We hire people with a broad set of technical skills who are ready to address some of technology's greatest challenges and make an impact on millions, if not billions, of users. At Google, engineers not only revolutionize search, they routinely work on massive scalability and storage solutions, large-scale applications and entirely new platforms for developers around the world. From Google Ads to Chrome, Android to YouTube, Social to Local, Google engineers are changing the world one technological achievement after another.",
+      ],
+      responsibilities: ["Specific responsibilities vary by project area. "],
+      minqualifications: [
+        "Currently pursuing a Bachelor's, Master's or PhD degree in Computer Science or related technical field.",
+        "Experience in software development in one or more general purpose programming languages.",
+        "Ability to speak and write in English fluently.",
+      ],
+      preferredqualifications: [
+        "Returning to a degree program after completion of the internship.",
+        "Experience in systems software or algorithms.",
+        "Knowledge of Unix/Linux or Windows environments and APIs.",
+        "Familiarity with TCP/IP and network programming.",
+        "Excellent implementation skills (e.g., C++, Java, Python).",
+      ],
+      link: "https://www.google.com/about/careers/applications/jobs/results/132226329299821254-software-engineering-intern-summer-2024",
+    },
+    {
+      title: "Technical Solutions Consultant Intern, Summer 2024",
+      company: "Google",
+      locations: ["Hyderabad, Telangana, India"],
+      experience: 0,
+      about: [
+        "Join us for a unique 12-14 week internship.",
+        "As a Technical Solutions Consultant Intern, you will be part of teams that provide technical support to Google's external partners and clients. As such, you will play a role in supporting external partners and clients, and develop tools to make our operations smarter and scalable. Your projects could range from driving analysis to determine root causes of customer dissatisfaction, building tools to automate and scale operations or developing custom solutions for some of Google's top partners.",
+        "Google is and always will be an engineering company. We hire people with a broad set of technical skills who are ready to address some of technology's greatest challenges and make an impact on millions, if not billions, of users. At Google, engineers not only revolutionize search, they routinely work on massive scalability and storage solutions, large-scale applications and entirely new platforms for developers around the world. From Google Ads to Chrome, Android to YouTube, Social to Local, Google engineers are changing the world one technological achievement after another.",
+      ],
+      responsibilities: [
+        "Collaborate with the Data Warehousing and Analytics team for DSPA organization on Data projects. Build internal analytics solutions that automate business processes. Maintain development practices including technical design, solution development, test documentation/execution, and issue identification and resolution.",
+        "Help partners in their day-to-day challenges by delivering innovative and scalable solutions, and troubleshooting their problems. Drive the development and deployment of these tools with Engineering.",
+        "Create and update documentation as integration methods are applied. Integrate third-party products into internal systems as well as support and upgrade implemented systems.",
+        "Contribute to the development and implementation of algorithms to enhance data quality monitoring processes. Utilize trend analysis techniques to monitor and alert for data quality issues in the warehouse.",
+        "Solve problems that may involve access and analysis data and information to find data patterns, anomalies, and trends.",
+      ],
+      minqualifications: [
+        "Currently pursuing a Bachelor’s or Master’s degree in Computer Science or a related field",
+        "Experience with web technologies and experience with HTTP, HTMP, XML, database design and SQL Query construction, and experience with SQL and data modeling",
+        "Experience in one or more programming languages: C++, Python, or Java",
+        "Ability to communicate in English fluently",
+      ],
+      preferredqualifications: [
+        "Currently pursuing a Master’s in Computer Science or a related technical field and returning to a degree program after the internship ends",
+        "Understanding of data warehousing concepts and analytics",
+        "Familiarity with Machine Learning techniques and trend analysis",
+        "Excellent communication skills, with the ability to convey ideas and information in an effective and clear, concise manner, with internal and external stakeholders",
+        "Available to work full time for 12 weeks during the summer",
+      ],
+      link: "https://www.google.com/about/careers/applications/jobs/results/143854764275180230-technical-solutions-consultant-intern-summer-2024",
+    },
+
+    {
       title: "Research Fellow",
       company: "Microsoft",
       link: "https://jobs.careers.microsoft.com/global/en/job/1670244/Research-Fellow",
@@ -557,36 +617,6 @@ export const jobDetails: JobDetailsProps = {
         "<b>Application Procedure</b>",
         "Apply with your resume and at least one letter of recommendation. You must also fill out the RF Interest Form at this link: <b><a href='https://forms.office.com/r/3S7kr4gre4'>https://forms.office.com/r/3S7kr4gre4</a></b>. This form allows us to gather your interests so that we can match your application to appropriate projects within MSR. Once you have finished the application process you should see the option to add recommenders in the Action Center. They will then be sent an automated email with a link to upload their recommendation letters.",
         "The deadline for the application is <b>16 February 2024</b>",
-      ],
-    },
-
-    {
-      title:
-        "Software Student Training in Engineering Program (STEP) Intern, 2024",
-      company: "Google",
-      link: "https://www.google.com/about/careers/applications/jobs/results/99460232238768838-software-student-training-in-engineering-program-step-intern-2024",
-      locations: [
-        "Hyderabad, Telangana",
-        "Bangalore, Karnataka",
-        "Pune, Maharasthra",
-      ],
-      experience: 0,
-      minqualifications: [
-        "Currently enrolled in a Bachelor's program, majoring or intending to major in Computer Science or related technical field.",
-        "Experience in one or more general purpose programming languages.",
-        "Ability to communicate in English fluently.",
-      ],
-      preferredqualifications: [
-        "Currently enrolled in a full time degree program and returning to the program after the completion of the internship",
-        "Excellent programming skills (C++, Java, Python).",
-        "Ability to complete a full-time, 10-12 week internship between May and August 2024 (exact program dates will be provided at a later point in the process)",
-      ],
-      responsibilities: ["Specific responsibilities vary by project area."],
-      about: [
-        "Google is committed to fostering diversity in computer science by investing in programs that bridge the gap between academic study and professional internships, aiming to inspire and support historically underrepresented students in pursuing careers in the field.",
-        "With this in mind, Google is pleased to announce the 2024 STEP internship in India. It will be open to under-represented groups who will be in the second year of their university studies by the Summer of 2024 and are studying Computer Science or a related subject.",
-        "This program includes three main components: a software project, skills-based training, and professional development. This program is open to all qualified University students and is committed to addressing diversity in our company and in the technology industry. Students who are a member of a group that is historically underrepresented in the technology industry are encouraged to apply. ",
-        "This summer trainee program includes a development project that you will work on with a team of Googlers and other STEP Interns. You will enhance your coding skills, and gain exposure to tools and programming languages. You will attend ongoing technical talks by executive Googlers, match with a Google Engineer, to guide you through your summer experience, and engage in social activities, community building, and networking. ",
       ],
     },
   ],
