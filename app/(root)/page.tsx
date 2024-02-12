@@ -1,4 +1,5 @@
 "use client";
+import Pwa from "@/components/download/pwa";
 import { homeLinks } from "@/constants/homeLinks";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -151,6 +152,9 @@ export default function Home() {
             </div>
           </Link>
         </div>
+      </div>
+      <div className=" fixed bottom-0 my-5 flex w-full justify-center">
+        <Pwa />
       </div>
       <div className="bottom-0 xl:absolute w-full xl:pr-64 font-interer pt-[10px]">
         <hr />
