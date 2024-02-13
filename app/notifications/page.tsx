@@ -87,9 +87,9 @@ const Notifications = () => {
         for (let ind = 0; ind < searchQueries.length; ind++) {
           for (let i = 0; i < searchQueries[ind].length; i++) {
             setPlaceHolder(searchQueries[ind].substring(0, i + 1));
-            await sleep(10);
+            await sleep(100);
           }
-          await sleep(400);
+          await sleep(600);
           for (let i = 0; i < searchQueries[ind].length; i++) {
             setPlaceHolder(
               searchQueries[ind].substring(
@@ -98,7 +98,7 @@ const Notifications = () => {
               ),
             );
 
-            await sleep(10);
+            await sleep(100);
           }
         }
       }
