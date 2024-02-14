@@ -18,16 +18,22 @@ export const homeLinks = [
     link: "/carrers",
   },
   {
+    title: "Syllabus",
+    description:
+      "Access detailed syllabus subject wise for your academic year.",
+    link: "/syllabus",
+  },
+  {
     title: "Backlog Report",
     description: "Access your overall backlogs report with an hallticket",
     link: "/backlogreport",
   },
-  {
-    title: "Results Contrast",
-    description:
-      "Compare your academic performance across all semesters with your classmate.",
-    link: "/resultcontrast",
-  },
+  // {
+  //   title: "Results Contrast",
+  //   description:
+  //     "Compare your academic performance across all semesters with your classmate.",
+  //   link: "/resultcontrast",
+  // },
   {
     title: "Class Results",
     description:
