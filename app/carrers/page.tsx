@@ -1,16 +1,7 @@
 "use client";
-import { Button } from "@/components/ui/button";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Link from "next/link";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import Image from "next/image";
+import { Drawer } from "@/components/ui/drawer";
 import { jobDetails } from "@/constants/jobsdetails";
 import JobsTemplate from "@/components/carrers/jobstemplate";
 import { useState } from "react";

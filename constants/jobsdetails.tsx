@@ -4,6 +4,8 @@ interface JobDetailsProps {
     company: string;
     link: string;
     locations: string[];
+    qualifications: string[];
+
     minqualifications: string[];
     preferredqualifications: string[];
     experience: number;
@@ -15,6 +17,7 @@ interface JobDetailsProps {
     company: string;
     link: string;
     locations: string[];
+    qualifications: string[];
     minqualifications: string[];
     preferredqualifications: string[];
     experience: number;
@@ -40,6 +43,7 @@ export const jobDetails: JobDetailsProps = {
         "Be part of the on-duty rotation and ensure systems remain running.",
         "Partner and collaborateÂ\xa0with other job functions (e.g., product managers, program managers, user experience, etc.) as well different sites spanning the globe.",
       ],
+      qualifications: [],
       minqualifications: [
         "Bachelorâ€™s degree or equivalent practical experience.",
         "1 year of experience with software development in one or more programming languages (e.g., Python, C, C++, Java, JavaScript).",
@@ -69,6 +73,7 @@ export const jobDetails: JobDetailsProps = {
         "Work with partner teams to evaluate testing requirements, come up with test plans, and implement test cases using Google frameworks to accelerate testing of the platform.",
         "Collaborate with other Engineers to deliver a high quality system.",
       ],
+      qualifications: [],
       minqualifications: [
         "Bachelor's degree in Information Technology, Computer Science, Engineering, a related technical field, or equivalent practical experience.",
         "1 year of experience as a Developer, Testing Engineer, or Automation Engineer.",
@@ -98,6 +103,7 @@ export const jobDetails: JobDetailsProps = {
         "Improve product offerings by providing feedback on customer and serviceability needs to internal cross-functional teams including Product Management and Engineering.",
         "Provide internal and external stakeholders with appropriate, timely, and accurate customer and project status updates.",
       ],
+      qualifications: [],
       minqualifications: [
         "Bachelor's degree in computer science, a related technical field, or equivalent practical experience.",
         "3 years of experience troubleshooting technical issues using Web technologies (XML, HTML5, JavaScript).",
@@ -132,6 +138,7 @@ export const jobDetails: JobDetailsProps = {
         "Work closely with multiple Product and Engineering teams to find ways to improve supportability for products, and interact with our Site Reliability Engineering (SRE) teams to drive high-quality production.",
         "Work as part of a team of Engineers/Consultants that globally ensure 24-hour customer support. Work non-standard work hours or shifts, including weekends, as needed.",
       ],
+      qualifications: [],
       minqualifications: [
         "Bachelor's degree in a technical field or equivalent practical experience in technical support, professional services, software development, or product operations management.",
         "Experience reading and debugging in Java, C, C++, .NET, Python, Shell, Perl, or JavaScript.",
@@ -162,6 +169,7 @@ export const jobDetails: JobDetailsProps = {
         "Prepare silicon debug verification strategy, test plan, and readiness for tester.",
         "Participate in post-manufacturing silicon bring-up tasks.",
       ],
+      qualifications: [],
       minqualifications: [
         "Bachelor's degree in Electrical Engineering, Computer Science, or equivalent practical experience.",
         "3 years of experience with DFT features (e.g., JTAG/MBIST) or functional infrastructure/global validation experience.",
@@ -194,6 +202,7 @@ export const jobDetails: JobDetailsProps = {
         "Contribute to existing documentation or educational content and adapt content based on product/program updates and user feedback.",
         "Triage product or system issues and debug/track/resolve by analyzing the sources of issues and the impact on hardware, network, or service operations and quality.",
       ],
+      qualifications: [],
       minqualifications: [
         "Bachelorâ€™s degree or equivalent practical experience.",
         "1 year of experience with software development in one or more programming languages (e.g., Python, C, C++, Java, JavaScript).",
@@ -226,6 +235,7 @@ export const jobDetails: JobDetailsProps = {
         "Develop and share an understanding of Workday global business processes to allow effective troubleshooting and predict downstream implications of issues and system changes.",
         "Provide customer-friendly management and resolution of user inquiries, questions, problems, auditing of process data, and analysis/resolution of problems and special cases. Provide training and communication with Operations, HR Business partners, and other stakeholders.",
       ],
+      qualifications: [],
       minqualifications: [
         "Bachelor's degree or equivalent practical experience.",
         "Certification in Workday in one or more of the following modules: HCM, Reporting, Talent, Performance, Advanced Compensation, or Absence Management.",
@@ -256,6 +266,7 @@ export const jobDetails: JobDetailsProps = {
         "Exercise technical judgment to keep goals for programs, projects, and products attainable within a given timeline.",
         "Communicate with stakeholders with clear quality signal per testing progress and identify opportunities for field automation and process/test coverage improvements.",
       ],
+      qualifications: [],
       minqualifications: [
         "Bachelorâ€™s degree in Engineering or equivalent practical experience.",
         "3 years of experience in mobile phone field testing.",
@@ -288,6 +299,7 @@ export const jobDetails: JobDetailsProps = {
         "Create, maintain, and review Operational best practices across teams.",
         "Drive efficiencies through automation.",
       ],
+      qualifications: [],
       minqualifications: [
         "Bachelor's degree in Electrical Engineering, Computer Science, Computer Engineering, or equivalent practical exprience.",
         "1 year of experience in the networking domain.",
@@ -316,6 +328,7 @@ export const jobDetails: JobDetailsProps = {
         "Use software development and testing skills to implement features on GDCH that are distributed, scalable, and available.",
         "Work with partner teams to build/re-use open source or Google frameworks to accelerate development and delivery of the platform.",
       ],
+      qualifications: [],
       minqualifications: [
         "Bachelor's degree or equivalent practical experience.",
         "2 years of experience with data structures or algorithms in academic or industry settings.",
@@ -344,6 +357,7 @@ export const jobDetails: JobDetailsProps = {
         "Assist in deploying, repairing, and troubleshooting next generation ML platforms providing feedback to local deployment/project teams.",
         "Participate in complex troubleshooting and resolve critical technical issues. Test and troubleshoot new server and network hardware components and designs.",
       ],
+      qualifications: [],
       minqualifications: [
         "Bachelorâ€™s degree or equivalent practical experience.",
         "2 years of experience with operating systems and networking protocols.",
@@ -374,6 +388,7 @@ export const jobDetails: JobDetailsProps = {
         "Contribute to existing documentation or educational content and adapt content based on product/program updates and user feedback.",
         "Triage product or system issues and debug/track/resolve by analyzing the sources of issues and the impact on hardware, network, or service operations and quality.",
       ],
+      qualifications: [],
       minqualifications: [
         "Bachelorâ€™s degree or equivalent practical experience.",
         "1 year of experience with software development in one or more programming languages (e.g., Python, C, C++, Java, JavaScript).",
@@ -404,6 +419,7 @@ export const jobDetails: JobDetailsProps = {
         "Contribute to existing documentation or educational content and adapt content based on product/program updates and user feedback.",
         "Triage product or system issues and debug/track/resolve by analyzing the sources of issues and the impact on hardware, network, or service operations and quality.",
       ],
+      qualifications: [],
       minqualifications: [
         "Bachelorâ€™s degree or equivalent practical experience.",
         "1 year of experience with software development in one or more programming languages (e.g., Python, C, C++, Java, JavaScript).",
@@ -431,6 +447,7 @@ export const jobDetails: JobDetailsProps = {
         "Work closely with multiple Product and Engineering teams to find ways to improve the supportability, products, and interact with our Site Reliability Engineering (SRE) teams to drive high-quality production.",
         "Work as part of a team of engineers/consultants that globally ensure 24-hour customer support.",
       ],
+      qualifications: [],
       minqualifications: [
         "Bachelor's degree in Science, Technology, Engineering, Mathematics, or equivalent practical experience.",
         "Experience in reading or debugging code with one or more of the following: Java, C, C++, Python, Shell, Perl, or JavaScript.",
@@ -462,6 +479,7 @@ export const jobDetails: JobDetailsProps = {
         "Contribute to existing documentation or educational content and adapt content based on product/program updates and user feedback.",
         "Triage product or system issues and debug/track/resolve by analyzing the sources of issues and the impact on hardware, network, or service operations and quality.",
       ],
+      qualifications: [],
       minqualifications: [
         "Bachelorâ€™s degree or equivalent practical experience.\n",
         "1 year of experience with software development in one or more programming languages (e.g., Python, C, C++, Java, JavaScript).",
@@ -491,6 +509,7 @@ export const jobDetails: JobDetailsProps = {
         "Contribute to existing documentation or educational content and adapt content based on product/program updates and user feedback.",
         "Triage product or system issues and debug/track/resolve by analyzing the sources of issues and the impact on hardware, network, or service operations and quality.",
       ],
+      qualifications: [],
       minqualifications: [
         "Bachelorâ€™s degree or equivalent practical experience.",
         "1 year of experience with software development in one or more programming languages (e.g., Python, C, C++, Java, JavaScript).",
@@ -520,6 +539,7 @@ export const jobDetails: JobDetailsProps = {
         "Work closely with cross-functional teams and strive to come up with optimal and creative solutions.Â\xa0",
         "Interface with counterparts, stakeholders and peers to drive team and test strategies and drive to improve software productivity processes and methodologies.",
       ],
+      qualifications: [],
       minqualifications: [
         "Bachelor's degree in Computer Science or equivalent practical experience.",
         "1 year of coding/testing experience on automation (e,g., C++, Java, or Python), debugging and triage.",
@@ -538,16 +558,14 @@ export const jobDetails: JobDetailsProps = {
     {
       title: "Software Engineering Intern, Summer 2024",
       company: "Google",
-      locations: [
-        "Bangalore, Karnataka, India",
-        "; Hyderabad, Telangana, India",
-      ],
+      locations: ["Bangalore, Karnataka, India", "Hyderabad, Telangana, India"],
       experience: 0,
       about: [
         "Join us for a 10-12 week paid internship that offers personal and professional development, and community-building. The Software Engineering Internship program will give you an opportunity to work on computer science solutions, develop scalable, distributed software systems, and also collaborate on multitudes of smaller projects that have universal appeal. ",
         "Google is and always will be an engineering company. We hire people with a broad set of technical skills who are ready to address some of technology's greatest challenges and make an impact on millions, if not billions, of users. At Google, engineers not only revolutionize search, they routinely work on massive scalability and storage solutions, large-scale applications and entirely new platforms for developers around the world. From Google Ads to Chrome, Android to YouTube, Social to Local, Google engineers are changing the world one technological achievement after another.",
       ],
       responsibilities: ["Specific responsibilities vary by project area. "],
+      qualifications: [],
       minqualifications: [
         "Currently pursuing a Bachelor's, Master's or PhD degree in Computer Science or related technical field.",
         "Experience in software development in one or more general purpose programming languages.",
@@ -579,6 +597,7 @@ export const jobDetails: JobDetailsProps = {
         "Contribute to the development and implementation of algorithms to enhance data quality monitoring processes. Utilize trend analysis techniques to monitor and alert for data quality issues in the warehouse.",
         "Solve problems that may involve access and analysis data and information to find data patterns, anomalies, and trends.",
       ],
+      qualifications: [],
       minqualifications: [
         "Currently pursuing a Bachelor’s or Master’s degree in Computer Science or a related field",
         "Experience with web technologies and experience with HTTP, HTMP, XML, database design and SQL Query construction, and experience with SQL and data modeling",
@@ -601,12 +620,11 @@ export const jobDetails: JobDetailsProps = {
       link: "https://jobs.careers.microsoft.com/global/en/job/1670244/Research-Fellow",
       locations: ["Bangalore, Karnataka"],
       experience: 0,
-      minqualifications: [
+      qualifications: [
         "Candidates should have completed their Bachelor’s (BE/BTech/BS) or Master’s degree (ME/MTech/MS) in Computer Science (or related areas). We evaluate candidates on a combination of factors including academic performance, raw smarts, development skills, and passion for research and software development. ",
       ],
-      preferredqualifications: [
-        "Candidates should have completed their Bachelor’s (BE/BTech/BS) or Master’s degree (ME/MTech/MS) in Computer Science (or related areas). We evaluate candidates on a combination of factors including academic performance, raw smarts, development skills, and passion for research and software development. ",
-      ],
+      minqualifications: [],
+      preferredqualifications: [],
       responsibilities: [
         "RFs spend 1 to 2 years at MSR India. Different projects require a different combination of skills. Current and past RFs have worked on: solving deep theoretical problems, pushing the boundaries of AI, designing new programming languages, designing and implementing security protocols at scale, field work in rural India, increasing the inclusivity of large language models, research on fairness and ethics in AI, and designing and building large-scale software systems and networks. Regardless, they all consistently aim to create academic, industry, and societal impact. ",
       ],

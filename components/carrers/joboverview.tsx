@@ -85,26 +85,42 @@ const JobOverview = ({ job }: jobprops | any) => {
       </div>
       <div className=" my-1">
         <div className=" p-8 rounded-b my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ">
-          <div>
-            <div className="font-semibold  text-lg">
-              Minimum qualifications:
+          {job.qualifications.length !== 0 && (
+            <div>
+              <div>
+                <div className="font-semibold  text-lg">Qualifications:</div>
+                <ul className="list-disc pl-8 pt-2">
+                  {job.qualifications.map((qualification: string) => {
+                    return <li key={qualification}>{qualification}</li>;
+                  })}
+                </ul>
+              </div>
             </div>
-            <ul className="list-disc pl-8 pt-2">
-              {job.minqualifications.map((qualification: string) => {
-                return <li key={qualification}>{qualification}</li>;
-              })}
-            </ul>
-          </div>
-          <div>
-            <div className="font-semibold  text-lg pt-4">
-              Preferred qualifications:
+          )}
+          {job.minqualifications.length !== 0 && (
+            <div>
+              <div className="font-semibold  text-lg">
+                Minimum qualifications:
+              </div>
+              <ul className="list-disc pl-8 pt-2">
+                {job.minqualifications.map((qualification: string) => {
+                  return <li key={qualification}>{qualification}</li>;
+                })}
+              </ul>
             </div>
-            <ul className="list-disc pl-8 pt-2">
-              {job.preferredqualifications.map((qualification: string) => {
-                return <li key={qualification}>{qualification}</li>;
-              })}
-            </ul>
-          </div>
+          )}
+          {job.preferredqualifications.length !== 0 && (
+            <div>
+              <div className="font-semibold  text-lg pt-4">
+                Preferred qualifications:
+              </div>
+              <ul className="list-disc pl-8 pt-2">
+                {job.preferredqualifications.map((qualification: string) => {
+                  return <li key={qualification}>{qualification}</li>;
+                })}
+              </ul>
+            </div>
+          )}
         </div>
         <div className=" p-8 rounded-b my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ">
           <div className="font-semibold  text-lg"> About the job:</div>
