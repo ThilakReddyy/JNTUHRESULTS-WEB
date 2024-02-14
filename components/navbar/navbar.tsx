@@ -2,12 +2,19 @@
 import Link from "next/link";
 import Image from "next/image";
 import { AiOutlineGithub } from "react-icons/ai";
+import {
+  MdNotificationsActive,
+  MdOutlineNotificationsActive,
+} from "react-icons/md";
 import { HiOutlineBars3BottomLeft } from "react-icons/hi2";
 import { ModeToggle } from "../ui/toggle";
 import { useSidebarContext } from "@/customhooks/sidebarhook";
 import { useNavBarContext } from "@/customhooks/navbarhook";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const path = usePathname();
+
   const { toggleSidebar } = useSidebarContext();
   const { navbar } = useNavBarContext();
   return (
@@ -70,15 +77,25 @@ const Navbar = () => {
       </div>
       <div className="flex justify-end items-center">
         <span className="flex gap-4 items-center">
+          <span className="hidden items-center md:block">
+            <ModeToggle />
+          </span>
+          {path === "/notifications" ? (
+            <Link href="/" aria-label="home link">
+              <MdOutlineNotificationsActive size={21} />
+            </Link>
+          ) : (
+            <Link href="/notifications" aria-label="notifications link">
+              <MdNotificationsActive size={21} />
+            </Link>
+          )}
           <Link
+            className="hidden"
             href="https://github.com/ThilakReddyy/JNTUHRESULTS-WEB"
             aria-label="github link"
           >
             <AiOutlineGithub size={23} />
           </Link>
-          <span className="hidden items-center md:block">
-            <ModeToggle />
-          </span>
         </span>
       </div>
     </nav>

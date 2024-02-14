@@ -87,7 +87,7 @@ const Syllabus = () => {
   return (
     <>
       <div className="w-[75%]  mt-[6%]  mx-[12.5%]   ">
-        <div className="min-h-[360px] rounded-md border-black dark:border-white border-2  shadow-2xl">
+        <div className="min-h-[350px] rounded-md border-black dark:border-white border-2  shadow-2xl">
           <div className=" pt-[30px] pb-[50px]">
             <div className=" md:text-2xl  font-semibold  ">
               <div className=" md:text-2xl   font-semibold   flex justify-center ">
