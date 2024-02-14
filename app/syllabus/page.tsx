@@ -116,7 +116,7 @@ const Syllabus = () => {
                   ))}
                 </select>
               </div>
-              {regulations.length !== 0 && (
+              {regulations.length !== -1 && (
                 <div className="text-xs w-full px-[15%] md:px-[30%]">
                   <select
                     name="regulation"
@@ -140,7 +140,7 @@ const Syllabus = () => {
                 </div>
               )}
 
-              {semesteryears.length !== 0 && (
+              {semesteryears.length !== -1 && (
                 <div className="text-xs w-full px-[15%] md:px-[30%]">
                   <select
                     name="semesteryear"
@@ -165,7 +165,7 @@ const Syllabus = () => {
                   </select>
                 </div>
               )}
-              {syllabus.length !== 0 && (
+              {syllabus.length !== -1 && (
                 <div className="text-xs w-full px-[15%] md:px-[30%]">
                   <select
                     name="pdf"
