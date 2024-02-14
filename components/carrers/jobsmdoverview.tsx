@@ -10,6 +10,7 @@ interface jobprops {
   company: string;
   link: string;
   locations: string[];
+  qualifications: string[];
   minqualifications: string[];
   preferredqualifications: string[];
   experience: number;
@@ -103,38 +104,61 @@ const JobsmdOverview = ({ selectedjob }: jobprops | any) => {
                 )}
               </ul>
             </div>
-            <div className="mt-4">
-              <p className="font-semibold tracking-normal text-sm">
-                Minimum Qualifications:
-              </p>
-              <ul className="list-disc pl-4">
-                {selectedjob.minqualifications.map(
-                  (qualification: string, index: number) => {
-                    return (
-                      <li className="text-xs pt-2" key={index}>
-                        {qualification}
-                      </li>
-                    );
-                  },
-                )}
-              </ul>
-            </div>
-            <div className="mt-4">
-              <p className="font-semibold tracking-normal text-sm">
-                Preferred Qualifications:
-              </p>
-              <ul className="list-disc pl-4">
-                {selectedjob.preferredqualifications.map(
-                  (qualification: string) => {
-                    return (
-                      <li className="text-xs pt-2" key={qualification}>
-                        {qualification}
-                      </li>
-                    );
-                  },
-                )}
-              </ul>
-            </div>
+            {selectedjob.qualifications.length !== 0 && (
+              <div className="mt-4">
+                <p className="font-semibold tracking-normal text-sm">
+                  Qualifications:
+                </p>
+                <ul className="list-disc pl-4">
+                  {selectedjob.qualifications.map(
+                    (qualification: string, index: number) => {
+                      return (
+                        <li className="text-xs pt-2" key={index}>
+                          {qualification}
+                        </li>
+                      );
+                    },
+                  )}
+                </ul>
+              </div>
+            )}
+            {selectedjob.minqualifications.length !== 0 && (
+              <div className="mt-4">
+                <p className="font-semibold tracking-normal text-sm">
+                  Minimum Qualifications:
+                </p>
+                <ul className="list-disc pl-4">
+                  {selectedjob.minqualifications.map(
+                    (qualification: string, index: number) => {
+                      return (
+                        <li className="text-xs pt-2" key={index}>
+                          {qualification}
+                        </li>
+                      );
+                    },
+                  )}
+                </ul>
+              </div>
+            )}
+
+            {selectedjob.preferredqualifications.length !== 0 && (
+              <div className="mt-4">
+                <p className="font-semibold tracking-normal text-sm">
+                  Preferred Qualifications:
+                </p>
+                <ul className="list-disc pl-4">
+                  {selectedjob.preferredqualifications.map(
+                    (qualification: string) => {
+                      return (
+                        <li className="text-xs pt-2" key={qualification}>
+                          {qualification}
+                        </li>
+                      );
+                    },
+                  )}
+                </ul>
+              </div>
+            )}
           </div>
           <div className="m-2 rounded bg-gray-50 dark:bg-gray-800 p-2">
             <p className="text-base tracking-normal underline underline-offset-2 font-semibold">
