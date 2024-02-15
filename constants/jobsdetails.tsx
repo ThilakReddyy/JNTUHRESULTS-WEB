@@ -16,6 +16,8 @@ interface JobDetailsProps {
     title: string;
     company: string;
     link: string;
+    job_id: string;
+    posted_date: string;
     locations: string[];
     qualifications: string[];
     minqualifications: string[];
@@ -23,6 +25,7 @@ interface JobDetailsProps {
     experience: number;
     responsibilities: string[];
     about: string[];
+    experience_word: string;
   }[];
 }
 
@@ -556,35 +559,23 @@ export const jobDetails: JobDetailsProps = {
   ],
   internships: [
     {
-      title: "Software Engineering Intern, Summer 2024",
-      company: "Google",
-      locations: ["Bangalore, Karnataka, India", "Hyderabad, Telangana, India"],
-      experience: 0,
-      about: [
-        "Join us for a 10-12 week paid internship that offers personal and professional development, and community-building. The Software Engineering Internship program will give you an opportunity to work on computer science solutions, develop scalable, distributed software systems, and also collaborate on multitudes of smaller projects that have universal appeal. ",
-        "Google is and always will be an engineering company. We hire people with a broad set of technical skills who are ready to address some of technology's greatest challenges and make an impact on millions, if not billions, of users. At Google, engineers not only revolutionize search, they routinely work on massive scalability and storage solutions, large-scale applications and entirely new platforms for developers around the world. From Google Ads to Chrome, Android to YouTube, Social to Local, Google engineers are changing the world one technological achievement after another.",
-      ],
-      responsibilities: ["Specific responsibilities vary by project area. "],
-      qualifications: [],
-      minqualifications: [
-        "Currently pursuing a Bachelor's, Master's or PhD degree in Computer Science or related technical field.",
-        "Experience in software development in one or more general purpose programming languages.",
-        "Ability to speak and write in English fluently.",
-      ],
-      preferredqualifications: [
-        "Returning to a degree program after completion of the internship.",
-        "Experience in systems software or algorithms.",
-        "Knowledge of Unix/Linux or Windows environments and APIs.",
-        "Familiarity with TCP/IP and network programming.",
-        "Excellent implementation skills (e.g., C++, Java, Python).",
-      ],
-      link: "https://www.google.com/about/careers/applications/jobs/results/132226329299821254-software-engineering-intern-summer-2024",
-    },
-    {
       title: "Technical Solutions Consultant Intern, Summer 2024",
       company: "Google",
       locations: ["Hyderabad, Telangana, India"],
-      experience: 0,
+      experience_word: "Intern & Apprentice",
+      minqualifications: [
+        "Currently pursuing a Bachelorâ€™s or Masterâ€™s degree in Computer Science or a related field",
+        "Experience with web technologies and experience with HTTP, HTMP, XML, database design and SQL Query construction, and experience with SQL and data modeling",
+        "Experience in one or more programming languages: C++, Python, or Java",
+        " Ability to communicate in English fluently",
+      ],
+      preferredqualifications: [
+        "Currently pursuing a Masterâ€™s in Computer Science or a related technical field and returning to a degree program after the internship ends",
+        "Understanding of data warehousing concepts and analytics",
+        "Familiarity with Machine Learning techniques and trend analysis",
+        "Excellent communication skills, with the ability to convey ideas and information in an effective and clear, concise manner, with internal and external stakeholders",
+        "Available to work full time for 12 weeks during the summer",
+      ],
       about: [
         "Join us for a unique 12-14 week internship.",
         "As a Technical Solutions Consultant Intern, you will be part of teams that provide technical support to Google's external partners and clients. As such, you will play a role in supporting external partners and clients, and develop tools to make our operations smarter and scalable. Your projects could range from driving analysis to determine root causes of customer dissatisfaction, building tools to automate and scale operations or developing custom solutions for some of Google's top partners.",
@@ -597,45 +588,109 @@ export const jobDetails: JobDetailsProps = {
         "Contribute to the development and implementation of algorithms to enhance data quality monitoring processes. Utilize trend analysis techniques to monitor and alert for data quality issues in the warehouse.",
         "Solve problems that may involve access and analysis data and information to find data patterns, anomalies, and trends.",
       ],
+      link: "https://www.google.com/about/careers/applications/jobs/results/143854764275180230-technical-solutions-consultant-intern-summer-2024",
       qualifications: [],
+      job_id: "143854764275180230",
+      experience: 0,
+      posted_date: "",
+    },
+    {
+      title: "Software Engineering Intern, Summer 2024",
+      company: "Google",
+      locations: [
+        "Bangalore, Karnataka, India",
+        " Hyderabad, Telangana, India",
+        " Pune, Maharashtra, India",
+      ],
+      experience_word: "Intern & Apprentice",
       minqualifications: [
-        "Currently pursuing a Bachelor’s or Master’s degree in Computer Science or a related field",
-        "Experience with web technologies and experience with HTTP, HTMP, XML, database design and SQL Query construction, and experience with SQL and data modeling",
-        "Experience in one or more programming languages: C++, Python, or Java",
-        "Ability to communicate in English fluently",
+        "Currently pursuing a Bachelor's, Master's or PhD degree in Computer Science or related technical field.",
+        "Experience in software development in one or more general purpose programming languages.",
+        "Ability to speak and write in English fluently.",
       ],
       preferredqualifications: [
-        "Currently pursuing a Master’s in Computer Science or a related technical field and returning to a degree program after the internship ends",
-        "Understanding of data warehousing concepts and analytics",
-        "Familiarity with Machine Learning techniques and trend analysis",
-        "Excellent communication skills, with the ability to convey ideas and information in an effective and clear, concise manner, with internal and external stakeholders",
-        "Available to work full time for 12 weeks during the summer",
+        "Returning to a degree program after completion of the internship.\n",
+        "Experience in systems software or algorithms.",
+        "\nKnowledge of Unix/Linux or Windows environments and APIs.\n",
+        "Familiarity with TCP/IP and network programming.",
+        "Excellent implementation skills (e.g., C++, Java, Python).",
       ],
-      link: "https://www.google.com/about/careers/applications/jobs/results/143854764275180230-technical-solutions-consultant-intern-summer-2024",
+      about: [
+        "Join us for a 10-12 week paid internship that offers personal and professional development, and community-building. The Software Engineering Internship program will give you an opportunity to work on computer science solutions, develop scalable, distributed software systems, and also collaborate on multitudes of smaller projects that have universal appeal. ",
+        "Google is and always will be an engineering company. We hire people with a broad set of technical skills who are ready to address some of technology's greatest challenges and make an impact on millions, if not billions, of users. At Google, engineers not only revolutionize search, they routinely work on massive scalability and storage solutions, large-scale applications and entirely new platforms for developers around the world. From Google Ads to Chrome, Android to YouTube, Social to Local, Google engineers are changing the world one technological achievement after another.",
+      ],
+      responsibilities: ["Specific responsibilities vary by project area. "],
+      link: "https://www.google.com/about/careers/applications/jobs/results/132226329299821254-software-engineering-intern-summer-2024",
+      qualifications: [],
+      job_id: "132226329299821254",
+      experience: 0,
+      posted_date: "",
     },
-
+    {
+      title: "Research Sciences - Internship Opportunities",
+      company: "Microsoft",
+      locations: ["Bangalore, Karnataka, India"],
+      experience_word: "Internship",
+      qualifications: [
+        "Microsoft is an equal opportunity employer. All qualified applicants will receive consideration for employment without regard to age, ancestry, color, family or medical care leave, gender identity or expression, genetic information, marital status, medical condition, national origin, physical or mental disability, political affiliation, protected veteran status, race, religion, sex (including pregnancy), sexual orientation, or any other characteristic protected by applicable laws, regulations and ordinances.If you need assistance and/or a reasonable accommodation due to a disability during the application or the recruiting process, please send a requestvia the Accommodation request form.",
+        "Benefits/perks listed below may vary depending on the nature of your employment with Microsoft and the country where you work.",
+      ],
+      minqualifications: [
+        "Required/Minimum Qualifications",
+        "· Bachelor's Degree (complete or in progress) in relevant field",
+        "o OR Master's Degree in relevant field",
+        "o OR equivalent experience.",
+      ],
+      preferredqualifications: [
+        "Additional or Preferred Qualifications",
+        "· Master's Degree or PhD in relevant field",
+        "o OR equivalent experience.",
+        "· Experience publishing academic papers as a lead author or essential contributor.",
+        "· Experience participating in a top conference in relevant research domain.",
+      ],
+      about: [
+        "Come build community, explore your passions and do your best work at Microsoft with thousands of University interns from every corner of the world.\u202fThis opportunity will allow you to bring your aspirations, talent, potential—and excitement for the journey ahead.\u202f",
+        "Microsoft works with the world’s best researchers, moving with the current of technology as it rapidly evolves. Together we share the motivation to seek innovative solutions to the world’s toughest challenges and improve the lives of people everywhere.",
+        "Microsoft provides a nurturing environment to support passionate researchers and engineers in AI technology innovation. We are seeking candidates excelling in deep thinking research aspects and fast-paced entrepreneurial execution. The ideal candidates should have the ability to work with researchers and product team colleagues at Microsoft to push forward research agendas, being a team player in a collaborative and supportive environment with outstanding programming skills.",
+        "We are seeking candidates with research skills and technical backgrounds. Applicants should demonstrate depth of knowledge in Natural Language Understanding, Computer Vision, Machine Learning, Algorithmic Foundations of Optimization, Data Mining or Machine Intelligence (Artificial Intelligence) as well as strong academia experience in data processing, experimentation, and modeling.",
+        "At Microsoft, Interns work on real-world projects in collaboration with teams across the world, while having fun along the way. You’ll be empowered to build community, explore your passions and achieve your goals. This is your chance to bring your solutions and ideas to life while working on cutting-edge technology.",
+      ],
+      responsibilities: [
+        "Microsoft’s mission is to empower every person and every organization on the planet to achieve more. As employees we come together with a growth mindset, innovate to empower others, and collaborate to realize our shared goals. Each day we build on our values of respect, integrity, and accountability to create a culture of inclusion where everyone can thrive at work and beyond.",
+        "",
+        "MSR India conducts research in a wide range of areas and Internships are available in all of them. While the internships are offered year round, a majority of them begin in the summer. In the application process, we will try to find the opportunity that best aligns with your interests. During the internship, students are paired with mentors and expected to collaborate with other interns and researchers, present findings, and contribute to the vibrant life of the community. All internships are paid and we will help with visa applications where needed.",
+      ],
+      link: "https://jobs.careers.microsoft.com/global/en/job/1661150",
+      job_id: "1661150",
+      posted_date: "2024-02-09T07:21:00+00:00",
+      experience: 0,
+    },
     {
       title: "Research Fellow",
       company: "Microsoft",
-      link: "https://jobs.careers.microsoft.com/global/en/job/1670244/Research-Fellow",
-      locations: ["Bangalore, Karnataka"],
-      experience: 0,
+      locations: ["Bangalore, Karnataka, India"],
+      experience_word: "Internship",
       qualifications: [
-        "Candidates should have completed their Bachelor’s (BE/BTech/BS) or Master’s degree (ME/MTech/MS) in Computer Science (or related areas). We evaluate candidates on a combination of factors including academic performance, raw smarts, development skills, and passion for research and software development. ",
+        "Candidates should have completed their Bachelor’s (BE/BTech/BS) or Master’s degree (ME/MTech/MS) in Computer Science (or related areas). We evaluate candidates on a combination of factors including academic performance, raw smarts, development skills, and passion for research and software development.",
+        "Microsoft is an equal opportunity employer. All qualified applicants will receive consideration for employment without regard to age, ancestry, color, family or medical care leave, gender identity or expression, genetic information, marital status, medical condition, national origin, physical or mental disability, political affiliation, protected veteran status, race, religion, sex (including pregnancy), sexual orientation, or any other characteristic protected by applicable laws, regulations and ordinances.If you need assistance and/or a reasonable accommodation due to a disability during the application or the recruiting process, please send a requestvia the Accommodation request form.",
+        "Benefits/perks listed below may vary depending on the nature of your employment with Microsoft and the country where you work.",
       ],
       minqualifications: [],
       preferredqualifications: [],
-      responsibilities: [
-        "RFs spend 1 to 2 years at MSR India. Different projects require a different combination of skills. Current and past RFs have worked on: solving deep theoretical problems, pushing the boundaries of AI, designing new programming languages, designing and implementing security protocols at scale, field work in rural India, increasing the inclusivity of large language models, research on fairness and ethics in AI, and designing and building large-scale software systems and networks. Regardless, they all consistently aim to create academic, industry, and societal impact. ",
-      ],
       about: [
-        "*Please read the instructions below fully before applying ",
-        "Microsoft Research India invites applications for its Research Fellows Program. The Research Fellows program exposes bright minds in India to world-class research and the state-of-the-art technology. The program prepares students for careers in research, engineering, as well as entrepreneurship. MSR India has some of the best researchers pushing the frontiers of computer science and technology. ",
-
-        "<b>Application Procedure</b>",
-        "Apply with your resume and at least one letter of recommendation. You must also fill out the RF Interest Form at this link: <b><a href='https://forms.office.com/r/3S7kr4gre4'>https://forms.office.com/r/3S7kr4gre4</a></b>. This form allows us to gather your interests so that we can match your application to appropriate projects within MSR. Once you have finished the application process you should see the option to add recommenders in the Action Center. They will then be sent an automated email with a link to upload their recommendation letters.",
-        "The deadline for the application is <b>16 February 2024</b>",
+        "*Please read the instructions below fully before applying",
+        "Microsoft Research India invites applications for its Research Fellows Program. The Research Fellows program exposes bright minds in India to world-class research and the state-of-the-art technology. The program prepares students for careers in research, engineering, as well as entrepreneurship. MSR India has some of the best researchers pushing the frontiers of computer science and technology.",
+        "Application Procedure",
+        "Apply with your resume and at least one letter of recommendation. You must also fill out the RF Interest Form at this link: https://forms.office.com/r/3S7kr4gre4. This form allows us to gather your interests so that we can match your application to appropriate projects within MSR. Once you have finished the application process you should see the option to add recommenders in the Action Center. They will then be sent an automated email with a link to upload their recommendation letters.",
+        "The deadline for the application is 16 February 2024",
       ],
+      responsibilities: [
+        "RFs spend 1 to 2 years at MSR India. Different projects require a different combination of skills. Current and past RFs have worked on: solving deep theoretical problems, pushing the boundaries of AI, designing new programming languages, designing and implementing security protocols at scale, field work in rural India, increasing the inclusivity of large language models, research on fairness and ethics in AI, and designing and building large-scale software systems and networks. Regardless, they all consistently aim to create academic, industry, and societal impact.",
+      ],
+      link: "https://jobs.careers.microsoft.com/global/en/job/1670244",
+      job_id: "1670244",
+      posted_date: "2023-12-11T16:08:00+00:00",
+      experience: 0,
     },
   ],
 };
