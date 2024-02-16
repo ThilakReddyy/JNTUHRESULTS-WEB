@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { syllabusDetails } from "@/constants/syllabusdetails";
 import Link from "next/link";
+import toast from "react-hot-toast";
 const Syllabus = () => {
   const [degrees, setDegrees] = useState<string[]>([]);
   const [degree, setDegree] = useState<string>("");
@@ -190,7 +191,7 @@ const Syllabus = () => {
               )}
               <div
                 className={`
-                w-full flex justify-center mt-8 ${link === "" ? "hidden" : ""}`}
+                w-full flex justify-center mt-8 `}
               >
                 <button
                   type="submit"
@@ -204,12 +205,19 @@ const Syllabus = () => {
                   md:w-[130px]
                   cursor-pointer
                   "
-                  disabled
-                  onClick={() => {}}
+                  onClick={() => {
+                    if (link === "") {
+                      toast.error("Select all the required fields");
+                    }
+                  }}
                 >
-                  <Link href={link} target="_blank">
-                    Download
-                  </Link>
+                  {link !== "" ? (
+                    <Link href={link} target="_blank">
+                      Download
+                    </Link>
+                  ) : (
+                    "Download"
+                  )}
                 </button>
               </div>
             </div>
