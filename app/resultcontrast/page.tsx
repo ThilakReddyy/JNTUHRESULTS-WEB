@@ -9,6 +9,7 @@ import {
 } from "@/components/api/fetchAcademicResult";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/loading/loading";
+import Footer from "@/components/footer/footer";
 
 const ResultContrast = () => {
   const router = useRouter();
@@ -71,6 +72,7 @@ const ResultContrast = () => {
         sethallticketno2={sethallticketno2}
         onSubmit={onSubmit}
       />
+      <Footer />
     </>
   );
 };

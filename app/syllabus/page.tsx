@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { syllabusDetails } from "@/constants/syllabusdetails";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import Footer from "@/components/footer/footer";
 const Syllabus = () => {
   const [degrees, setDegrees] = useState<string[]>([]);
   const [degree, setDegree] = useState<string>("");
@@ -224,6 +225,7 @@ const Syllabus = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
