@@ -145,34 +145,7 @@ export const navitems = [
     title: "Result Contrast",
   },
   {
-    href: "/carrers",
-    image: (
-      <>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.25"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="lucide lucide-scan-eye"
-        >
-          <path d="M3 7V5a2 2 0 0 1 2-2h2" />
-          <path d="M17 3h2a2 2 0 0 1 2 2v2" />
-          <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
-          <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
-          <circle cx="12" cy="12" r="1" />
-          <path d="M5 12s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5" />
-        </svg>
-      </>
-    ),
-    title: "Jobs & carrers",
-  },
-  {
-    href: "/notifications",
+    href: "/syllabus",
     image: (
       <>
         <svg
@@ -185,15 +158,36 @@ export const navitems = [
           strokeWidth="1.25"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="lucide lucide-bell-dot"
+          className="lucide lucide-book"
         >
-          <path d="M19.4 14.9C20.2 16.4 21 17 21 17H3s3-2 3-9c0-3.3 2.7-6 6-6 .7 0 1.3.1 1.9.3" />
-          <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
-          <circle cx="18" cy="8" r="3" />
+          <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
         </svg>
       </>
     ),
-    title: "Notifications",
+    title: "Syllabus",
+  },
+  {
+    href: "/carrers",
+    image: (
+      <>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.25"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="lucide lucide-briefcase"
+        >
+          <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+        </svg>
+      </>
+    ),
+    title: "Jobs & carrers",
   },
 
   {
