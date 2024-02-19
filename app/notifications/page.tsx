@@ -172,7 +172,18 @@ const Notifications = () => {
           {filteredResults.length === 0 &&
             "No Notifications for this search query"}
           {filteredResults.map((result, index) => (
-            <a key={index} href={result.Link} target="_blank">
+            <Link
+              key={index}
+              href={
+                "notifications/" +
+                result.Link.split("?")[1] +
+                "?" +
+                "title=" +
+                result.Result_title +
+                "&date=" +
+                result.Date
+              }
+            >
               <div className="border border-gray-100 dark:border-slate-800 hover:drop-shadow-sm group text-black shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
                 <h3 className="group-hover:text-black text-lg sm:text-xl font-bold">
                   <div className="flex flex-row items-center justify-start dark:text-white">
@@ -184,7 +195,7 @@ const Notifications = () => {
                   {result.Date}
                 </p>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -195,11 +206,21 @@ const Notifications = () => {
             className="bg-gray-200  dark:bg-gray-800 text-left p-[20px] mb-[3px] pb-[5px] md:hidden"
           >
             <h3 key={index} className="group-hover:text-black  font-bold ">
-              <a href={result?.Link} target="_blank">
+              <Link
+                href={
+                  "notifications/" +
+                  result.Link.split("?")[1] +
+                  "?" +
+                  "title=" +
+                  result.Result_title +
+                  "&date=" +
+                  result.Date
+                }
+              >
                 <div className=" justify-start font-interer  text-base">
                   JNTUH {result.Result_title}
                 </div>
-              </a>
+              </Link>
               <div className="text-xs text-gray-700 dark:text-gray-200 font-semibold flex  py-2 font-interer">
                 <span>{result?.Date} </span>
 
