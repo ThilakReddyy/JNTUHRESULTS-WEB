@@ -1,4 +1,6 @@
 {
+  "manifest_version": 2,
+  "version": "1.1",
   "theme_color": "#0a0a0a",
   "background_color": "#000000",
   "display": "standalone",
