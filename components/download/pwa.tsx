@@ -65,12 +65,14 @@ const Pwa = () => {
           </Link>
         </div>
       ) : (
-        <Button
-          className={`lg:hidden w-[250px] ${deferredPrompt === null ? "hidden" : ""}`}
-          onClick={handleInstallClick}
-        >
-          Download APP
-        </Button>
+        <div className="w-full flex justify-center">
+          <Button
+            className={`lg:hidden w-[250px] ${deferredPrompt === null ? "hidden" : ""}`}
+            onClick={handleInstallClick}
+          >
+            Download APP
+          </Button>
+        </div>
       )}
     </>
   );
