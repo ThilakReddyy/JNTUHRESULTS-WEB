@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
+import { FaWhatsapp } from "react-icons/fa";
+import Link from "next/link";
 
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: ReadonlyArray<string>;
@@ -52,12 +54,25 @@ const Pwa = () => {
   };
 
   return (
-    <Button
-      className={`lg:hidden w-[250px] ${deferredPrompt === null ? "hidden" : ""}`}
-      onClick={handleInstallClick}
-    >
-      Download APP
-    </Button>
+    <>
+      {deferredPrompt === null ? (
+        <div className="w-full  flex justify-end">
+          <Link
+            className="mr-4 border-2 rounded-md bg-black dark:bg-white text-white dark:text-black p-2 shadow-2xl"
+            href="https://whatsapp.com/channel/0029VaPCHEyChq6L8UBGkv1c"
+          >
+            <FaWhatsapp size={24} />
+          </Link>
+        </div>
+      ) : (
+        <Button
+          className={`lg:hidden w-[250px] ${deferredPrompt === null ? "hidden" : ""}`}
+          onClick={handleInstallClick}
+        >
+          Download APP
+        </Button>
+      )}
+    </>
   );
 };
 
