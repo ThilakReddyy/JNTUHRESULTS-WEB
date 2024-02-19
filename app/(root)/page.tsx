@@ -181,7 +181,7 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div className="hidden fixed bottom-0 my-5  w-full justify-center">
+      <div className="fixed bottom-0 my-5  w-full flex justify-center">
         <Pwa />
       </div>
       <div className="bottom-0 xl:absolute w-full xl:pr-64 font-interer pt-[10px]">
