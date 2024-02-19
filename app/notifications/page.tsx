@@ -43,9 +43,17 @@ const Notifications = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const storageData = localStorage.getItem("notifications");
+
+        if (storageData !== null) {
+          setResults(JSON.parse(storageData));
+          setLoading(false);
+        }
         const notifications = await fetchNotifications();
+
         if (notifications !== null) {
           setResults(notifications);
+          localStorage.setItem("notifications", JSON.stringify(notifications));
         }
         setLoading(false);
       } catch (error) {
