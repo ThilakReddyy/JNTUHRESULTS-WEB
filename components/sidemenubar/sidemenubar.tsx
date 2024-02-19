@@ -20,7 +20,7 @@ const SideMenubar = () => {
 
   return (
     <nav
-      className={` h-full flex flex-col w-full lg:w-64 fixed inset-y-0 bg-white dark:bg-black  pt-16 transition-all duration-100 ease-in ${
+      className={` h-full flex flex-col w-full lg:w-64 fixed inset-y-0 bg-white dark:bg-black  pt-16 transition-all duration-150 ease-in ${
         sidebar ? "left-0 shadow-xl" : "-left-full"
       } lg:left-0 z-10`}
     >
