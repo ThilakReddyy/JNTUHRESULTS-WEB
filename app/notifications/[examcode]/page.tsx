@@ -1,17 +1,25 @@
 "use client";
+import { rcrvdetails } from "@/constants/rcrvdetails";
 import Link from "next/link";
 import { redirect, useSearchParams } from "next/navigation";
 import React from "react";
 
 const Examcode = ({ params }: any) => {
   const searchParams = useSearchParams();
-  const title = searchParams.get("title");
+  const title: string | null = searchParams.get("title");
   const date = searchParams.get("date");
+  const formatteddate = searchParams.get("formatted_date");
   var examcode = params["examcode"];
   examcode = examcode.replaceAll("%3D", "=");
   examcode = examcode.replaceAll("%26", "&");
   if (title === null) {
     redirect("/notifications");
+  }
+  const rcrv = title.includes("RC");
+
+  var rcrvdate = null;
+  if (formatteddate !== null) {
+    rcrvdate = rcrvdetails[formatteddate as keyof typeof rcrvdetails];
   }
   return (
     <div className="flex w-full justify-center">
@@ -91,6 +99,16 @@ const Examcode = ({ params }: any) => {
               </tbody>
             </table>
             <p className="text-xs mt-8">Results Published on: {date}</p>
+            {rcrvdate !== null && rcrvdate !== undefined && (
+              <p className="text-xs mt-2">
+                {rcrv ? (
+                  <p>Last date for Challenge Valuation : {rcrvdate}</p>
+                ) : (
+                  <p>Last date for Revaluation/Recounting: {rcrvdate}</p>
+                )}
+              </p>
+            )}
+
             <p className="mt-4 text-justify text-xs">
               <span className="text-gray-600">Note:</span>
               <br />

@@ -23,6 +23,7 @@ const Notifications = () => {
     Result_title: string;
     Date: string;
     Link: string;
+    formatted_date: string;
   }
 
   function shareUrl(link: any, title: string) {
@@ -126,6 +127,7 @@ const Notifications = () => {
 
   useEffect(() => {
     var tempres = (results as Result[]).filter((result) => {
+      console.log(result["formatted_date"]);
       const title = result.Result_title.toLowerCase();
       const yearMatch =
         selectedYear === "" || result.Date.includes(selectedYear);
@@ -189,7 +191,9 @@ const Notifications = () => {
                 "title=" +
                 result.Result_title +
                 "&date=" +
-                result.Date
+                result.Date +
+                "&formatted_date=" +
+                result.formatted_date
               }
             >
               <div className="border border-gray-100 dark:border-slate-800 hover:drop-shadow-sm group text-black shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
@@ -222,7 +226,9 @@ const Notifications = () => {
                   "title=" +
                   result.Result_title +
                   "&date=" +
-                  result.Date
+                  result.Date +
+                  "&formatted_date=" +
+                  result.formatted_date
                 }
               >
                 <div className=" justify-start font-interer  text-base">
