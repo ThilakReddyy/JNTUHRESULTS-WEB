@@ -127,7 +127,6 @@ const Notifications = () => {
 
   useEffect(() => {
     var tempres = (results as Result[]).filter((result) => {
-      console.log(result["formatted_date"]);
       const title = result.Result_title.toLowerCase();
       const yearMatch =
         selectedYear === "" || result.Date.includes(selectedYear);
