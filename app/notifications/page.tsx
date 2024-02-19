@@ -14,6 +14,8 @@ const Notifications = () => {
   const [results, setResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
+  const [selectedDegree, setSelectedDegree] = useState("");
+  const [selectedRegulation, setSelectedRegulation] = useState("");
   const [placeHolder, setPlaceHolder] = useState("");
   const [loadedCount, setLoadedCount] = useState(10);
   const [filteredResults, setFilteredResults] = useState<Result[]>([]);
@@ -124,16 +126,56 @@ const Notifications = () => {
     setSelectedYear(event.target.value);
     console.log(event.target.value);
   };
-
+  const handleDegreeChange = (event: any) => {
+    setSelectedDegree(event.target.value);
+    console.log(event.target.value);
+  };
+  const handleRegulationChange = (event: any) => {
+    setSelectedRegulation(event.target.value);
+    console.log(event.target.value);
+  };
+  const degrees = [
+    "B.Tech",
+    "B.Pharmacy",
+    "M.Tech",
+    "M.Pharmacy",
+    "M.B.A",
+    "M.C.A",
+  ];
+  const regulations = [
+    "R22",
+    "R19",
+    "R18",
+    "R17",
+    "R16",
+    "R15",
+    "R13",
+    "R09",
+    "R07",
+    "R05",
+  ];
   useEffect(() => {
     var tempres = (results as Result[]).filter((result) => {
       const title = result.Result_title.toLowerCase();
       const yearMatch =
         selectedYear === "" || result.Date.includes(selectedYear);
-      return title.includes(searchQuery.toLowerCase()) && yearMatch;
+      return (
+        title.includes(searchQuery.toLowerCase()) &&
+        yearMatch &&
+        title.includes(selectedDegree.toLowerCase()) &&
+        title.includes(selectedRegulation.toLowerCase())
+      );
     });
     setFilteredResults(tempres.slice(0, loadedCount));
-  }, [results, searchQuery, selectedYear, setFilteredResults, loadedCount]);
+  }, [
+    results,
+    searchQuery,
+    selectedYear,
+    setFilteredResults,
+    loadedCount,
+    selectedDegree,
+    selectedRegulation,
+  ]);
 
   return loading ? (
     <Loading />
@@ -172,6 +214,42 @@ const Notifications = () => {
                     </option>
                   );
                 })}
+            </select>
+          </div>
+        </div>
+        <div className="m-5 flex justify-center">
+          <div className="flex">
+            <select
+              className="m-2 h-[35px] rounded w-[120px] text-[14px] p-1 outline-none border-[1px] border-solid border-zinc-200"
+              defaultValue={""}
+              onChange={handleDegreeChange}
+            >
+              <option value="" disabled>
+                Select Degree
+              </option>
+              {degrees.map((degree: string, index: number) => {
+                return (
+                  <option value={degree} key={index}>
+                    {degree}
+                  </option>
+                );
+              })}
+            </select>
+            <select
+              className="m-2 h-[35px] rounded w-[140px] text-[14px] p-1 outline-none border-[1px] border-solid border-zinc-200"
+              defaultValue={""}
+              onChange={handleRegulationChange}
+            >
+              <option value="" disabled>
+                Select Regulation
+              </option>
+              {regulations.map((regulation: string, index: number) => {
+                return (
+                  <option value={regulation} key={index}>
+                    {regulation}
+                  </option>
+                );
+              })}
             </select>
           </div>
         </div>
