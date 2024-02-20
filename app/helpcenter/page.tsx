@@ -5,7 +5,7 @@ const HelpCenter = () => {
     <>
       <div className="flex justify-center  mt-[6%]  mx-[16%] px-10 rounded-md   ">
         <div className=" pt-[30px] pb-[50px]">
-          <div className=" md:text-2xl  font-semibold   flex justify-center ">
+          <div className=" md:text-2xl underline  font-semibold   flex justify-center ">
             Help Center
           </div>
         </div>
@@ -13,7 +13,7 @@ const HelpCenter = () => {
       <div className="text-center flex items-center justify-center">
         <div className="home-links flex flex-wrap items-center justify-around max-w-4xl md:mt-6  sm:w-full">
           <Link href="/faq">
-            <div className="border  hover:drop-shadow-sm group text-black  dark:text-white border-slate-800 md:border-gray-100 shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
+            <div className="border lg:min-h-[220px] hover:drop-shadow-sm group text-black  dark:text-white border-slate-800 md:border-gray-100 shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
               <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
                 <div className="flex flex-row items-center justify-start">
                   <span className="p-1 text-black dark:text-white">
