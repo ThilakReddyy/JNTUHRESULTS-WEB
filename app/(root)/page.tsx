@@ -1,36 +1,11 @@
 "use client";
 import Pwa from "@/components/download/pwa";
 import { homeLinks } from "@/constants/homeLinks";
+import Title from "@/components/homepage/title";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
+
 export default function Home() {
-  const [titleIndex, setTitleIndex] = useState(0);
-  const title = "JNTUH RESULTS!!!";
-  const [blind, setblind] = useState(false);
-  const sleep = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
-
-  useEffect(() => {
-    const typeWriter = async () => {
-      // Wait for 2 seconds before starting the typewriter effect
-      await sleep(200);
-
-      for (let i = 0; i < title.length; i++) {
-        setTitleIndex(i);
-        await sleep(50);
-      }
-      while (true) {
-        for (let i = 0; i < 5; i++) {
-          setblind(true);
-          await sleep(400);
-          setblind(false);
-          await sleep(400);
-        }
-      }
-    };
-
-    typeWriter();
-  }, []);
   return (
     <>
       <div className="z-[20] grid grid-row-2 lg:grid-cols-2 lg:hidden  items-center pt-10 font-normal text-2xl lg:text-6xl mb-5">
@@ -41,8 +16,7 @@ export default function Home() {
           href="/"
           className="text-blue-500 hover:text-blue-600 flex justify-center lg:justify-start hover:underline"
         >
-          {title.substring(0, titleIndex)}
-          <span className={`font-extralight ${blind && "opacity-0"}`}>|</span>
+          <Title />
         </Link>
       </div>
       <div className="z-[20] hidden lg:flex justify-center items-center pt-10 font-normal text-2xl lg:text-6xl mb-5">
@@ -51,8 +25,7 @@ export default function Home() {
           href="/"
           className="text-blue-500 hover:text-blue-600  hover:underline"
         >
-          {title.substring(0, titleIndex)}
-          <span className={`font-extralight ${blind && "opacity-0"}`}>|</span>
+          <Title />
         </Link>
       </div>
       <div className="flex justify-center">
