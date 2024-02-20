@@ -13,7 +13,7 @@ const Faq = () => {
     {
       question: "Was the entire code written by you?",
       answer:
-        "The entire backend logic has been developed by me. You are welcome to use the code in any way you see fit by following the GPT license, and if you have any questions or need assistance, please dont hesitate to reach out to us.",
+        "The entire backend logic has been developed by me. You are welcome to use the code in any way you see fit by following the GNU GENERAL PUBLIC LICENSE, and if you have any questions or need assistance, please dont hesitate to reach out to us.",
     },
     {
       question: "How do I access my grades for all semesters?",
