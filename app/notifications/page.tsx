@@ -9,13 +9,11 @@ import NotificationResults from "@/components/notifications/notificationResults"
 
 const Notifications = () => {
   const [loading, setLoading] = useState(true);
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<Result[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedDegree, setSelectedDegree] = useState("");
   const [selectedRegulation, setSelectedRegulation] = useState("");
-  const [loadedCount, setLoadedCount] = useState(10);
-  const [filteredResults, setFilteredResults] = useState<Result[]>([]);
 
   interface Result {
     Result_title: string;
@@ -48,23 +46,6 @@ const Notifications = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const { scrollHeight, scrollTop, clientHeight } =
-        document.documentElement;
-      const isScrolledToBottom = scrollTop + clientHeight + 300 >= scrollHeight;
-      if (isScrolledToBottom) {
-        setLoadedCount((prevCount) => prevCount + 20);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   const handleSearch = (event: any) => {
     setSearchQuery(event.target.value);
   };
@@ -82,29 +63,6 @@ const Notifications = () => {
     console.log(event.target.value);
   };
 
-  useEffect(() => {
-    var tempres = (results as Result[]).filter((result) => {
-      const title = result.Result_title.toLowerCase();
-      const yearMatch =
-        selectedYear === "" || result.Date.includes(selectedYear);
-      return (
-        title.includes(searchQuery.toLowerCase()) &&
-        yearMatch &&
-        title.includes(selectedDegree.toLowerCase()) &&
-        title.includes(selectedRegulation.toLowerCase())
-      );
-    });
-    setFilteredResults(tempres.slice(0, loadedCount));
-  }, [
-    results,
-    searchQuery,
-    selectedYear,
-    setFilteredResults,
-    loadedCount,
-    selectedDegree,
-    selectedRegulation,
-  ]);
-
   return loading ? (
     <Loading />
   ) : (
@@ -118,7 +76,13 @@ const Notifications = () => {
         handleDegreeChange={handleDegreeChange}
         handleRegulationChange={handleRegulationChange}
       />
-      <NotificationResults filteredResults={filteredResults} />
+      <NotificationResults
+        results={results}
+        searchQuery={searchQuery}
+        selectedDegree={selectedDegree}
+        selectedRegulation={selectedRegulation}
+        selectedYear={selectedYear}
+      />
     </div>
   );
 };

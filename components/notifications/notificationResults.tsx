@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineShareAlt } from "react-icons/ai";
 import { RiWhatsappLine } from "react-icons/ri";
 
@@ -12,10 +12,62 @@ interface Result {
 }
 
 interface notificationResultsProps {
-  filteredResults: Result[];
+  results: Result[];
+  searchQuery: string;
+  selectedDegree: string;
+  selectedRegulation: string;
+  selectedYear: string;
 }
 
-const NotificationResults = ({ filteredResults }: notificationResultsProps) => {
+const NotificationResults = ({
+  results,
+  searchQuery,
+  selectedDegree,
+  selectedRegulation,
+  selectedYear,
+}: notificationResultsProps) => {
+  const [filteredResults, setFilteredResults] = useState<Result[]>([]);
+
+  const [loadedCount, setLoadedCount] = useState(10);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollHeight, scrollTop, clientHeight } =
+        document.documentElement;
+      const isScrolledToBottom = scrollTop + clientHeight + 300 >= scrollHeight;
+      if (isScrolledToBottom) {
+        setLoadedCount((prevCount) => prevCount + 20);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  useEffect(() => {
+    var tempres = (results as Result[]).filter((result) => {
+      const title = result.Result_title.toLowerCase();
+      const yearMatch =
+        selectedYear === "" || result.Date.includes(selectedYear);
+      return (
+        title.includes(searchQuery.toLowerCase()) &&
+        yearMatch &&
+        title.includes(selectedDegree.toLowerCase()) &&
+        title.includes(selectedRegulation.toLowerCase())
+      );
+    });
+    setFilteredResults(tempres.slice(0, loadedCount));
+  }, [
+    results,
+    searchQuery,
+    selectedYear,
+    setFilteredResults,
+    loadedCount,
+    selectedDegree,
+    selectedRegulation,
+  ]);
   function shareUrl(link: any, title: string) {
     if (!navigator.share) return;
 
