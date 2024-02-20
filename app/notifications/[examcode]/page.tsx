@@ -100,13 +100,13 @@ const Examcode = ({ params }: any) => {
             </table>
             <p className="text-xs mt-8">Results Published on: {date}</p>
             {rcrvdate !== null && rcrvdate !== undefined && (
-              <p className="text-xs mt-2">
+              <span className="text-xs mt-2">
                 {rcrv ? (
-                  <p>Last date for Challenge Valuation : {rcrvdate}</p>
+                  <div>Last date for Challenge Valuation : {rcrvdate}</div>
                 ) : (
-                  <p>Last date for Revaluation/Recounting: {rcrvdate}</p>
+                  <div>Last date for Revaluation/Recounting: {rcrvdate}</div>
                 )}
-              </p>
+              </span>
             )}
 
             <p className="mt-4 text-justify text-xs">
