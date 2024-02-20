@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { examYearDetails } from "@/constants/examyear";
 import { AiOutlineShareAlt } from "react-icons/ai";
 import { RiWhatsappLine } from "react-icons/ri";
+import SearchBar from "@/components/notifications/searchBar";
 import Link from "next/link";
 
 const Notifications = () => {
@@ -16,10 +17,8 @@ const Notifications = () => {
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedDegree, setSelectedDegree] = useState("");
   const [selectedRegulation, setSelectedRegulation] = useState("");
-  const [placeHolder, setPlaceHolder] = useState("");
   const [loadedCount, setLoadedCount] = useState(10);
   const [filteredResults, setFilteredResults] = useState<Result[]>([]);
-  const sleep = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
 
   interface Result {
     Result_title: string;
@@ -82,40 +81,6 @@ const Notifications = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
-
-  useEffect(() => {
-    const searchQueries = [
-      "III Year II Semester",
-      "I Year I Semester",
-      "IV year II Semester",
-      "II Year I Semester",
-    ];
-    const typeWriter = async () => {
-      // Wait for 2 seconds before starting the typewriter effect
-      await sleep(200);
-      while (true) {
-        for (let ind = 0; ind < searchQueries.length; ind++) {
-          for (let i = 0; i < searchQueries[ind].length; i++) {
-            setPlaceHolder(searchQueries[ind].substring(0, i + 1));
-            await sleep(100);
-          }
-          await sleep(600);
-          for (let i = 0; i < searchQueries[ind].length; i++) {
-            setPlaceHolder(
-              searchQueries[ind].substring(
-                0,
-                searchQueries[ind].length - i - 1,
-              ),
-            );
-
-            await sleep(100);
-          }
-        }
-      }
-    };
-
-    typeWriter();
   }, []);
 
   const handleSearch = (event: any) => {
@@ -186,16 +151,7 @@ const Notifications = () => {
       </div>
       <form className="md:mx-[12.5%] ">
         <div className="border-2 border-solid border-black dark:border-white">
-          <div className="inline-block w-[100%]">
-            <IoMdSearch className="md:m-[8px] absolute hidden md:block" />
-            <input
-              id="searchKey"
-              className="w-[100%]  h-[35px] text-[16px] outline-none pr-[108px] pl-[10px] md:pl-[31px] border-[1px] border-solid border-t-zinc-200"
-              placeholder={placeHolder}
-              onChange={handleSearch}
-              type="text"
-            />
-          </div>
+          <SearchBar handleSearch={handleSearch} />
           <div className="inline float-right ml-[-96px] z-5 absolute">
             <select
               className="h-[35px] w-[96px] text-[14px] p-1 outline-none border-[1px] border-solid border-t-zinc-200"
