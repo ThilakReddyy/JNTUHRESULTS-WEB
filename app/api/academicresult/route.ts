@@ -19,8 +19,8 @@ class ResultScraper {
 
   constructor(rollNumber: string, url_index: number = 1) {
     const urls: string[] = [
-      "http://results.jntuh.ac.in/resultAction",
       "http://202.63.105.184/resultAction",
+      "http://results.jntuh.ac.in/resultAction",
     ];
     this.url = urls[url_index];
     this.rollNumber = rollNumber;
@@ -490,6 +490,30 @@ class ResultScraper {
   }
 }
 
+async function checkUrl(url: string) {
+  try {
+    const response = await axios.get(url, { timeout: 1000 });
+    return response.status === 200;
+  } catch (error: any) {
+    console.error(`Error checking the ${url}`, error.message);
+    return false;
+  }
+}
+
+async function chooseUrl() {
+  const urls: string[] = [
+    "http://202.63.105.184/resultAction",
+    "http://results.jntuh.ac.in/resultAction",
+  ];
+  for (let i = 0; i < urls.length; i++) {
+    const isUrlvalid = await checkUrl(urls[i]);
+    if (isUrlvalid) {
+      return i;
+    }
+  }
+  return -1;
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 
@@ -511,25 +535,29 @@ export async function GET(request: Request) {
   }
 
   //Extraction
-  const scraper = new ResultScraper(htno.toUpperCase());
+  const urlIndex = await chooseUrl();
+  if (urlIndex === -1) {
+    return Response.json({ data: "Jntuh servers are down!!" }, { status: 422 });
+  }
+  const scraper = new ResultScraper(htno.toUpperCase(), urlIndex);
   const response = await scraper
     .run()
     .then((data) => {
       //setting cache in redis
       const jsonString = JSON.stringify({ data });
       redis
-        .set(htno, jsonString, "EX", 4 * 3600)
+        .set(htno.toUpperCase(), jsonString, "EX", 4 * 3600)
         .then(() => {
           console.log("Data has been set in the Redis cache");
         })
         .catch((error) => {
-          console.log("error in setting up the cache", error);
+          console.error("error in setting up the cache", error);
         });
 
       return { data: data, status: 200 };
     })
     .catch((error) => {
-      console.log(error);
+      console.error("data fetching failed", error);
       return { data: "Internal Server Error", status: 500 };
     });
 
