@@ -2,9 +2,12 @@
 import { rcrvdetails } from "@/constants/rcrvdetails";
 import Link from "next/link";
 import { redirect, useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { MdOutlineFiberNew } from "react-icons/md";
 
 const Examcode = ({ params }: any) => {
+  const [resultnew, setResultnew] = useState(false);
+  const [rcrvdate, setRcrvdate] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const title: string | null = searchParams.get("title");
   const date = searchParams.get("date");
@@ -15,17 +18,35 @@ const Examcode = ({ params }: any) => {
   if (title === null) {
     redirect("/notifications");
   }
+
   const rcrv = title.includes("RC");
 
-  var rcrvdate = null;
-  if (formatteddate !== null) {
-    rcrvdate = rcrvdetails[formatteddate as keyof typeof rcrvdetails];
-  }
+  useEffect(() => {
+    if (formatteddate !== null) {
+      var rcrvdate = rcrvdetails[formatteddate as keyof typeof rcrvdetails];
+      setRcrvdate(rcrvdate);
+      var parts = rcrvdate.split("-");
+      var compareDate = new Date(
+        parseInt(parts[2]),
+        parseInt(parts[1]) - 1,
+        parseInt(parts[0]),
+      );
+      const today = new Date();
+      setResultnew(compareDate > today);
+    }
+  }, [formatteddate, resultnew]);
   return (
     <div className="flex w-full justify-center">
       <div className="flex justify-center m-6 max-w-5xl ">
         <div>
-          <div className="font-bold text-2xl">{title}</div>
+          <div className="xl:flex font-bold text-2xl">
+            {title}
+            <div
+              className={`hidden ${resultnew ? " xl:block" : "xl:hidden"} text-red-500`}
+            >
+              <MdOutlineFiberNew />
+            </div>
+          </div>
           <div className="text-gray-400 text-xs  m-2 md:flex">
             <div className="mr-2 mb-1 flex items-center">
               <svg
