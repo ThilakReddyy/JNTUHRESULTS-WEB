@@ -55,25 +55,14 @@ const Pwa = () => {
 
   return (
     <>
-      {deferredPrompt === null ? (
-        <div className="w-full  flex justify-end">
-          <Link
-            className="mr-4 border-2 rounded-md bg-black dark:bg-white text-white dark:text-black p-2 shadow-2xl"
-            href="https://whatsapp.com/channel/0029VaPCHEyChq6L8UBGkv1c"
-          >
-            <FaWhatsapp size={24} />
-          </Link>
-        </div>
-      ) : (
-        <div className="w-full flex justify-center">
-          <Button
-            className={`lg:hidden w-[250px] ${deferredPrompt === null ? "hidden" : ""}`}
-            onClick={handleInstallClick}
-          >
-            Download APP
-          </Button>
-        </div>
-      )}
+      <div className="w-full flex justify-center">
+        <Button
+          className={`lg:hidden w-[250px] ${deferredPrompt === null ? "hidden" : ""}`}
+          onClick={handleInstallClick}
+        >
+          Download APP
+        </Button>
+      </div>
     </>
   );
 };
