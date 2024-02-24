@@ -56,11 +56,11 @@ const Pwa = () => {
   return (
     <>
       <div
-        className={`lg:hidden bg-opacity-50 backdrop-filter backdrop-blur-sm fixed h-full   my-5  w-full  justify-center ${deferredPrompt === null ? "hidden" : ""}`}
+        className={`lg:hidden bg-opacity-50 backdrop-filter  backdrop-blur-sm fixed h-full   my-5  w-full  justify-center ${deferredPrompt === null ? "hidden" : ""}`}
       >
         <div className="flex justify-center items-center h-full">
           <div
-            className={`lg:w-[30%]  flex justify-center items-center shadow-xl bg-white p-2 rounded-md border m-2 `}
+            className={`md:w-[50%]  flex justify-center dark:bg-[#1B1C1E] items-center shadow-xl bg-white p-2 rounded-md border m-2 `}
           >
             <div className="p-2">
               <div className="flex justify-center font-bold text-lg mb-2">
@@ -74,7 +74,7 @@ const Pwa = () => {
               <div className="flex text-center justify-center text-[10px] text-gray-500 mb-2">
                 Click Button Below for secure Installation of app .
               </div>
-              <div className="flex text-center items-center justify-center text-[10px] text-gray-900 mb-2">
+              <div className="flex text-center items-center justify-center text-[10px] dark:text-gray-100 text-gray-900 mb-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="12"
@@ -85,13 +85,13 @@ const Pwa = () => {
                   strokeWidth="1"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="lucide lucide-shield-check"
+                  className="lucide lucide-shield-check text-gray-900"
                 >
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
                   <path d="m9 12 2 2 4-4" />
                 </svg>
                 &nbsp;Safe and Secure Installation on&nbsp;
-                <span className=" bg-gray-300 flex items-center px-1 py-[1px] rounded text-[8px]">
+                <span className=" bg-gray-300 flex items-center px-1 text-gray-900 py-[1px] rounded text-[8px]">
                   <FaGooglePlay />
                   &nbsp; Google Play
                 </span>
