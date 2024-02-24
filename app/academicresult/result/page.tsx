@@ -38,7 +38,7 @@ const AcademicResultResult = () => {
 
   useEffect(() => {
     toast(
-      "You can now modify your results and access real-time info via the top-right blue button",
+      "You can now modify your results and access real-time info via the top-right blue edit button",
     );
   }, [toastDisplayed]);
 
