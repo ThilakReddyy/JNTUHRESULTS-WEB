@@ -1,5 +1,4 @@
 "use client";
-import Pwa from "@/components/download/pwa";
 import { homeLinks } from "@/constants/homeLinks";
 import Title from "@/components/homepage/title";
 import Link from "next/link";
@@ -153,9 +152,6 @@ export default function Home() {
             </div>
           </Link>
         </div>
-      </div>
-      <div className="lg:flex fixed bottom-0 my-5  w-full  justify-center">
-        <Pwa />
       </div>
       <div className="bottom-0 xl:absolute w-full xl:pr-64 font-interer pt-[10px]">
         <hr />
