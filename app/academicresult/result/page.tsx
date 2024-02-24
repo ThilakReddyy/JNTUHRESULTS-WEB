@@ -9,13 +9,14 @@ import { CiEdit } from "react-icons/ci";
 import { IoSaveOutline } from "react-icons/io5";
 import ResultDetails from "@/components/result/details";
 import { calculatetotalbacklog } from "@/components/customfunctions/calculatetotalbacklog";
+import toast from "react-hot-toast";
 
 const AcademicResultResult = () => {
   const router = useRouter();
   const htno = useSearchParams().get("htno");
   const details = getLocalStoragedata(String(htno));
   const componentRef = useRef(null);
-
+  const [toastDisplayed, setToastDisplayed] = useState(false);
   const {
     Details: resultdetails,
     Results: resultresults,
@@ -34,6 +35,12 @@ const AcademicResultResult = () => {
     setBacklogs(calculatetotalbacklog(Results));
     setRenderKey((prevkey) => prevkey + 1);
   }, [Results]);
+
+  useEffect(() => {
+    toast(
+      "You can now modify your results and access real-time info via the top-right blue button",
+    );
+  }, [toastDisplayed]);
 
   useEffect(() => {
     if (details === null) {
