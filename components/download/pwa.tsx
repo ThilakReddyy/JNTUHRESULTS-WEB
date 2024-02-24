@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaGooglePlay, FaWhatsapp } from "react-icons/fa";
 import Link from "next/link";
 
 interface BeforeInstallPromptEvent extends Event {
@@ -55,13 +55,67 @@ const Pwa = () => {
 
   return (
     <>
-      <div className="w-full flex justify-center">
-        <Button
-          className={`lg:hidden w-[250px] ${deferredPrompt === null ? "hidden" : ""}`}
-          onClick={handleInstallClick}
-        >
-          Download APP
-        </Button>
+      <div
+        className={`lg:hidden bg-opacity-50 backdrop-filter backdrop-blur-sm fixed h-full   my-5  w-full  justify-center ${deferredPrompt === null ? "hidden" : ""}`}
+      >
+        <div className="flex justify-center items-center h-full">
+          <div
+            className={`lg:w-[30%]  flex justify-center items-center shadow-xl bg-white p-2 rounded-md border m-2 `}
+          >
+            <div className="p-2">
+              <div className="flex justify-center font-bold text-lg mb-2">
+                JNTUH RESULTS
+              </div>
+              <div className="flex text-center text-xs mb-1">
+                Ensure uninterrupted access to your results, syllabus, and
+                notifications anytime, anywhere by staying connected through the
+                JNTUH Results app
+              </div>
+              <div className="flex text-center justify-center text-[10px] text-gray-500 mb-2">
+                Click Button Below for secure Installation of app .
+              </div>
+              <div className="flex text-center items-center justify-center text-[10px] text-gray-900 mb-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide lucide-shield-check"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+                &nbsp;Safe and Secure Installation on&nbsp;
+                <span className=" bg-gray-300 flex items-center px-1 py-[1px] rounded text-[8px]">
+                  <FaGooglePlay />
+                  &nbsp; Google Play
+                </span>
+              </div>
+              <div className="flex justify-center">
+                <Button
+                  className={`lg:hidden w-[110px] mr-2 `}
+                  onClick={handleInstallClick}
+                >
+                  Install
+                </Button>
+                <Button
+                  variant="destructive"
+                  className={`lg:hidden w-[110px] `}
+                  onClick={() => {
+                    setDeferredPrompt(null);
+                  }}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
