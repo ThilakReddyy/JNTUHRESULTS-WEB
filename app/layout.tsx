@@ -43,7 +43,10 @@ export default function RootLayout({
               <Navbar />
               <main className="pt-16">
                 <SideMenubar />
-                <div className="lg:ml-64">{children}</div>
+                <div className="lg:ml-64">
+                  <Pwa />
+                  {children}
+                </div>
                 <div className=" md:block">
                   <Toaster position="bottom-right" reverseOrder={false} />
                 </div>
