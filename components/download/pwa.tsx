@@ -58,7 +58,7 @@ const Pwa = () => {
       <div
         className={`lg:hidden bg-opacity-50 backdrop-filter backdrop-blur-sm fixed h-full   my-5  w-full  justify-center ${deferredPrompt === null ? "hidden" : ""}`}
       >
-        <div className="flex justify-center items-center h-full">
+        <div className="flex justify-center fixed top-[27%]">
           <div
             className={`lg:w-[30%]  flex justify-center items-center shadow-xl bg-white p-2 rounded-md border m-2 `}
           >
@@ -96,13 +96,7 @@ const Pwa = () => {
                   &nbsp; Google Play
                 </span>
               </div>
-              <div className="flex justify-center">
-                <Button
-                  className={`lg:hidden w-[110px] mr-2 `}
-                  onClick={handleInstallClick}
-                >
-                  Install
-                </Button>
+              <div className="flex justify-center mr-2">
                 <Button
                   variant="destructive"
                   className={`lg:hidden w-[110px] `}
@@ -111,6 +105,12 @@ const Pwa = () => {
                   }}
                 >
                   Cancel
+                </Button>
+                <Button
+                  className={`lg:hidden w-[110px] ml-2 `}
+                  onClick={handleInstallClick}
+                >
+                  Install
                 </Button>
               </div>
             </div>
