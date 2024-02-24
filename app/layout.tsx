@@ -10,6 +10,7 @@ import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import MetaData from "@/components/metadata/metadata";
 import { NavBarProvider } from "@/customhooks/navbarhook";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Pwa from "@/components/download/pwa";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -42,7 +43,10 @@ export default function RootLayout({
               <Navbar />
               <main className="pt-16">
                 <SideMenubar />
-                <div className="lg:ml-64">{children}</div>
+                <div className="lg:ml-64">
+                  <Pwa />
+                  {children}
+                </div>
                 <div className=" md:block">
                   <Toaster position="bottom-right" reverseOrder={false} />
                 </div>
