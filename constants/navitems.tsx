@@ -24,126 +24,153 @@ export const navitems = [
     ),
     title: "Home",
   },
-  {
-    href: "/academicresult",
-    image: (
-      <>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="22"
-          height="22"
-          viewBox="0 0 24 24"
-          fill="none"
-          strokeWidth="1.25"
-          strokeLinecap="round"
-          stroke="currentColor"
-          strokeLinejoin="round"
-          className="lucide lucide-graduation-cap"
-        >
-          <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-          <path d="M6 12v5c3 3 9 3 12 0v-5" />
-        </svg>
-      </>
-    ),
-    title: "Academic Result",
-  },
-  {
-    href: "/backlogreport",
-    image: (
-      <>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.25"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="lucide lucide-circle-off"
-        >
-          <path d="m2 2 20 20" />
-          <path d="M8.35 2.69A10 10 0 0 1 21.3 15.65" />
-          <path d="M19.08 19.08A10 10 0 1 1 4.92 4.92" />
-        </svg>
-      </>
-    ),
-    title: "Backlog Report",
-  },
-  {
-    href: "/classresult",
-    image: (
-      <>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.25"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="lucide lucide-school"
-        >
-          <path d="m4 6 8-4 8 4" />
-          <path d="m18 10 4 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8l4-2" />
-          <path d="M14 22v-4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4" />
-          <path d="M18 5v17" />
-          <path d="M6 5v17" />
-          <circle cx="12" cy="9" r="2" />
-        </svg>
-      </>
-    ),
-    title: "Class Result",
-  },
-  {
-    href: "/creditchecker",
-    image: (
-      <>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.25"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="lucide lucide-credit-card"
-        >
-          <rect width="20" height="14" x="2" y="5" rx="2" />
-          <line x1="2" x2="22" y1="10" y2="10" />
-        </svg>
-      </>
-    ),
-    title: "Credits Checker",
-  },
-  // {
-  //   href: "/resultcontrast",
-  //   image: (
-  //     <>
-  //       <svg
-  //         xmlns="http://www.w3.org/2000/svg"
-  //         width="20"
-  //         height="20"
-  //         viewBox="0 0 24 24"
-  //         fill="none"
-  //         stroke="currentcolor"
-  //         strokeWidth="1.25"
-  //         strokeLinecap="round"
-  //         strokeLinejoin="round"
-  //         className="lucide lucide-contrast"
-  //       >
-  //         <circle cx="12" cy="12" r="10" />
-  //         <path d="m12 18a6 6 0 0 0 0-12v12z" />
-  //       </svg>
-  //     </>
-  //   ),
-  //   title: "Result Contrast",
-  // },
+  [
+    {
+      href: "/academicresult",
+
+      image: (
+        <>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            strokeWidth="1.25"
+            strokeLinecap="round"
+            stroke="currentColor"
+            strokeLinejoin="round"
+            className="lucide lucide-graduation-cap"
+          >
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c3 3 9 3 12 0v-5" />
+          </svg>
+        </>
+      ),
+      title: "Results",
+    },
+
+    {
+      href: "/academicresult",
+      image: (
+        <>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            strokeWidth="1.25"
+            strokeLinecap="round"
+            stroke="currentColor"
+            strokeLinejoin="round"
+            className="lucide lucide-graduation-cap"
+          >
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c3 3 9 3 12 0v-5" />
+          </svg>
+        </>
+      ),
+      title: "Academic Result",
+    },
+    {
+      href: "/backlogreport",
+      image: (
+        <>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.25"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-circle-off"
+          >
+            <path d="m2 2 20 20" />
+            <path d="M8.35 2.69A10 10 0 0 1 21.3 15.65" />
+            <path d="M19.08 19.08A10 10 0 1 1 4.92 4.92" />
+          </svg>
+        </>
+      ),
+      title: "Backlog Report",
+    },
+    {
+      href: "/classresult",
+      image: (
+        <>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.25"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-school"
+          >
+            <path d="m4 6 8-4 8 4" />
+            <path d="m18 10 4 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8l4-2" />
+            <path d="M14 22v-4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4" />
+            <path d="M18 5v17" />
+            <path d="M6 5v17" />
+            <circle cx="12" cy="9" r="2" />
+          </svg>
+        </>
+      ),
+      title: "Class Result",
+    },
+    {
+      href: "/creditchecker",
+      image: (
+        <>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.25"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-credit-card"
+          >
+            <rect width="20" height="14" x="2" y="5" rx="2" />
+            <line x1="2" x2="22" y1="10" y2="10" />
+          </svg>
+        </>
+      ),
+      title: "Credits Checker",
+    },
+    {
+      href: "/resultcontrast",
+      image: (
+        <>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentcolor"
+            strokeWidth="1.25"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-contrast"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="m12 18a6 6 0 0 0 0-12v12z" />
+          </svg>
+        </>
+      ),
+      title: "Result Contrast",
+    },
+  ],
   {
     href: "/syllabus",
     image: (
