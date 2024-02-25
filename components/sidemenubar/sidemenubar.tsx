@@ -38,7 +38,7 @@ const SideMenubar = () => {
                     <div className="">
                       <div
                         className="flex flex-1 w-full text-sm items-center gap-4  hover:bg-muted rounded-lg transition-background
-                      group text-muted-foreground font-medium py-4 px-3"
+                      group text-muted-foreground font-medium py-4 px-3 mb-1"
                         onClick={() => {
                           setToggleResult(!toggleResult);
                         }}
@@ -98,7 +98,7 @@ const SideMenubar = () => {
                                 }
                               }}
                               className={`flex w-full text-sm items-center gap-4 px-2 py-3 hover:bg-muted rounded-lg transition-background group text-muted-foreground text-medium
-                            p      ${item.href === path ? "text-primary bg-muted" : "text-muted-foreground"}`}
+                                 ${item.href === path ? "text-primary bg-muted" : "text-muted-foreground"}`}
                             >
                               {item.title}
                             </Link>
