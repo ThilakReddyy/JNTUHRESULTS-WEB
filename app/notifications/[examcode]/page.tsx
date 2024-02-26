@@ -24,15 +24,17 @@ const Examcode = ({ params }: any) => {
   useEffect(() => {
     if (formatteddate !== null) {
       var rcrvdate = rcrvdetails[formatteddate as keyof typeof rcrvdetails];
-      setRcrvdate(rcrvdate);
-      var parts = rcrvdate.split("-");
-      var compareDate = new Date(
-        parseInt(parts[2]),
-        parseInt(parts[1]) - 1,
-        parseInt(parts[0]),
-      );
-      const today = new Date();
-      setResultnew(compareDate > today);
+      if (rcrvdate !== undefined) {
+        setRcrvdate(rcrvdate);
+        var parts = rcrvdate.split("-");
+        var compareDate = new Date(
+          parseInt(parts[2]),
+          parseInt(parts[1]) - 1,
+          parseInt(parts[0]),
+        );
+        const today = new Date();
+        setResultnew(compareDate > today);
+      }
     }
   }, [formatteddate, resultnew]);
   return (
