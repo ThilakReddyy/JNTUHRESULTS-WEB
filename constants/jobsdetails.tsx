@@ -32,6 +32,36 @@ interface JobDetailsProps {
 export const jobDetails: JobDetailsProps = {
   jobs: [
     {
+      title: "IN-Technical Specialist",
+      company: "Apple",
+      locations: ["India"],
+      experience: 0,
+      about: [
+        "Do you love how it feels to help others?  After customers purchase our products, you’re the one who helps them get more out of their new Apple technology. Your day in the Apple Store is filled with a range of focused support and service tasks. Whether you’re helping customers get started with the Mac or finding answers to their questions about other Apple devices, you’re ready to share knowledge and provide exceptional assistance. You gain satisfaction from bringing resolution and insight to each customer, elevating his or her relationship with Apple to the next level.",
+        "Both full-time and part-time jobs are available.",
+      ],
+      responsibilities: [
+        "As a Technical Specialist, you help new owners get started and current ones get quick, efficient support — developing strong, positive relationships with Apple. When a customer needs assistance, you quickly assess their situation. Sometimes you take care of customers with advice or a solution on the spot, using your knowledge of current Apple technology to help with iPod, iPhone and iPad devices. At other times, you refer customers to support team members who get them up and running again. You even provide personal training for new customers, helping them acquire the basic skills they need to get started on photo, video and music projects. The entire store team benefits from your commitment to providing the best care for customers. By helping Apple maintain strong relationships with customers, you are instrumental to our success.",
+        "Discover even more benefits of doing what you love. Apple’s most important resource, our soul, is our people. Apple benefits help further the well-being of our employees and their families in meaningful ways. No matter where you work at Apple, you can take advantage of our health and wellness resources and time-away programmes. We’re proud to provide stock grants to employees at all levels of the company, and we also give employees the option to buy Apple stock at a discount — both offer everyone at Apple the chance to share in the company’s success. You’ll discover many more benefits of working at Apple, such as programmes that match your charitable contributions, reimburse you for continuing your education and give you special employee pricing on Apple product",
+      ],
+      qualifications: [],
+      minqualifications: [
+        "Ability to assess customers’ support needs when they arrive, then provide solutions or refer them to other team members",
+        "Flexibility to regularly rotate through different technical specialities and skill sets",
+        "Ability to thrive on change as products evolve",
+        "Contribute to an inclusive environment through respecting each others’ differences and having the curiosity to learn.",
+        "Demonstrate Apple’s values of inclusion and diversity in daily activities.",
+      ],
+      preferredqualifications: [
+        "You have excellent time management skills and can make decisions quickly.",
+        "You maintain composure and customer focus while troubleshooting and solving issues.",
+        "You reassure customers when delivering product diagnoses and potential solutions.",
+        "You’re fluent in the local language.",
+      ],
+      link: "https://jobs.apple.com/en-in/details/200314122/in-technical-specialist?team=APPST",
+    },
+
+    {
       title: "Software Engineer, Full-stack, Core",
       company: "Google",
       locations: ["Hyderabad, Telangana, India"],
