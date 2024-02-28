@@ -32,96 +32,97 @@ const SideMenubar = () => {
             {navitems.map((navitem, index: number) => {
               const isArray = Array.isArray(navitem);
 
-              return (
-                <>
-                  {isArray ? (
-                    <div className="">
-                      <div
-                        className="flex flex-1 w-full text-sm items-center gap-4  hover:bg-muted rounded-lg transition-background
+              if (isArray) {
+                return (
+                  <div className="" key={index}>
+                    <div
+                      className="flex flex-1 w-full text-sm items-center gap-4  hover:bg-muted rounded-lg transition-background
                       group text-muted-foreground font-medium py-4 px-3 mb-1"
-                        onClick={() => {
-                          setToggleResult(!toggleResult);
-                        }}
-                      >
-                        {navitem[0].image}
-                        <span className="flex-grow">{navitem[0].title}</span>
-                        <div className="">
-                          {toggleResult ? (
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              className="lucide lucide-chevron-down"
-                            >
-                              <path d="m6 9 6 6 6-6" />
-                            </svg>
-                          ) : (
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              className="lucide lucide-chevron-right"
-                            >
-                              <path d="m9 18 6-6-6-6" />
-                            </svg>
-                          )}
-                        </div>
-                      </div>
-                      <div
-                        className={`px-3 border-l-2 mx-5 ${toggleResult ? "block" : "hidden"}`}
-                      >
-                        {navitem.map((item, index) => {
-                          const path = "/" + pathname.split("/")[1];
-
-                          if (index == 0) {
-                            return;
-                          }
-                          return (
-                            <Link
-                              href={item?.href}
-                              key={item.href}
-                              onClick={() => {
-                                if (pathname !== item.href) {
-                                  toggleSidebar();
-                                }
-                              }}
-                              className={`flex w-full text-sm items-center gap-4 px-2 py-3 hover:bg-muted rounded-lg transition-background group text-muted-foreground text-medium
-                                 ${item.href === path ? "text-primary bg-muted" : "text-muted-foreground"}`}
-                            >
-                              {item.title}
-                            </Link>
-                          );
-                        })}
+                      onClick={() => {
+                        setToggleResult(!toggleResult);
+                      }}
+                    >
+                      {navitem[0].image}
+                      <span className="flex-grow">{navitem[0].title}</span>
+                      <div className="">
+                        {toggleResult ? (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="lucide lucide-chevron-down"
+                          >
+                            <path d="m6 9 6 6 6-6" />
+                          </svg>
+                        ) : (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="lucide lucide-chevron-right"
+                          >
+                            <path d="m9 18 6-6-6-6" />
+                          </svg>
+                        )}
                       </div>
                     </div>
-                  ) : (
-                    <Link
-                      href={navitem.href}
-                      onClick={() => {
-                        if (pathname !== navitem.href) {
-                          toggleSidebar();
-                        }
-                      }}
-                      className={getButtonClass(navitem.href)}
+                    <div
+                      className={`px-3 border-l-2 mx-5 ${toggleResult ? "block" : "hidden"}`}
                     >
-                      {navitem.image}
-                      {navitem.title}
-                    </Link>
-                  )}
-                </>
-              );
+                      {navitem.map((item, index) => {
+                        const path = "/" + pathname.split("/")[1];
+
+                        if (index == 0) {
+                          return;
+                        }
+                        return (
+                          <Link
+                            href={item?.href}
+                            key={item.href}
+                            onClick={() => {
+                              if (pathname !== item.href) {
+                                toggleSidebar();
+                              }
+                            }}
+                            className={`flex w-full text-sm items-center gap-4 px-2 py-3 hover:bg-muted rounded-lg transition-background group text-muted-foreground text-medium
+                                 ${item.href === path ? "text-primary bg-muted" : "text-muted-foreground"}`}
+                          >
+                            {item.title}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              } else {
+                return (
+                  <Link
+                    href={navitem.href}
+                    key={navitem.href}
+                    onClick={() => {
+                      if (pathname !== navitem.href) {
+                        toggleSidebar();
+                      }
+                    }}
+                    className={getButtonClass(navitem.href)}
+                  >
+                    {navitem.image}
+                    {navitem.title}
+                  </Link>
+                );
+              }
             })}
           </div>
         </div>
