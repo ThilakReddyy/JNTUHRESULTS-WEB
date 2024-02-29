@@ -1,4 +1,5 @@
 "use client";
+import ExamResults from "@/components/examresults/examresults";
 import { rcrvdetails } from "@/constants/rcrvdetails";
 import Link from "next/link";
 import { redirect, useSearchParams } from "next/navigation";
@@ -45,9 +46,7 @@ const Examcode = ({ params }: any) => {
             {title}
             <div
               className={`hidden ${resultnew ? " xl:block" : "xl:hidden"} text-red-500`}
-            >
-              <MdOutlineFiberNew />
-            </div>
+            ></div>
           </div>
           <div className="text-gray-400 text-xs  m-2 md:flex">
             <div className="mr-2 mb-1 flex items-center">
@@ -89,7 +88,10 @@ const Examcode = ({ params }: any) => {
               </div>
             </div>
           </div>
+
           <div className="border-t  border-gray-400 pt-6">
+            <ExamResults title={title} query={examcode} />
+            <div className="flex justify-center my-4 font-bold">OR</div>{" "}
             <div className="font-bold justify-center flex p-2">
               Direct Links
             </div>
@@ -131,7 +133,6 @@ const Examcode = ({ params }: any) => {
                 )}
               </span>
             )}
-
             <p className="mt-4 text-justify text-xs">
               <span className="text-gray-600">Note:</span>
               <br />
