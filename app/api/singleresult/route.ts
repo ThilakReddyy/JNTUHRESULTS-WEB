@@ -3,6 +3,7 @@ import cheerio from "cheerio";
 
 function scrapeResults(response: any) {
   const ret_response: any = {};
+
   const $ = cheerio.load(response);
   const details = $("table").eq(0).find("tr");
   const htno = details.eq(0).find("td").eq(1).text();
@@ -95,6 +96,11 @@ export async function GET(request: Request) {
   for (const url of urls) {
     try {
       const response = await fetchData(url + payloadData);
+      if (response["Results"]) {
+        if (Object.keys(response["Results"]).length == 0) {
+          return Response.json("Internal Server Error", { status: 500 });
+        }
+      }
       return Response.json(response, { status: 200 });
     } catch (error: any) {
       console.error(error.message);
