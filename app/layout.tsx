@@ -44,7 +44,7 @@ export default function RootLayout({
               <main className="pt-16">
                 <SideMenubar />
                 <div className="lg:ml-64">
-                  {/* <Pwa /> */}
+                  <Pwa />
                   {children}
                 </div>
                 <div className=" md:block">
