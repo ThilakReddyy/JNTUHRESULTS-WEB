@@ -28,6 +28,7 @@ const Form = ({
           border-[1px] border-double border-black dark:border-white rounded 
           shadow-xl
           "
+          name="htno1"
           type="text"
           value={hallticketno}
           onChange={(event) => {
@@ -50,6 +51,7 @@ const Form = ({
           border-[1px] border-double border-black dark:border-white rounded 
           shadow-xl
           "
+            name="htno2"
             type="text"
             value={hallticketno2 ?? ""}
             onChange={(event) => {
