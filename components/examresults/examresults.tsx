@@ -84,6 +84,7 @@ const ExamResults = ({ title, query }: { title: string; query: string }) => {
           border-[1px] border-double border-black dark:border-white rounded
           shadow-xl
           "
+                    name="htno1"
                     placeholder="Enter your Hall ticket No."
                     type="text"
                     value={singleHtno}
@@ -117,6 +118,7 @@ const ExamResults = ({ title, query }: { title: string; query: string }) => {
           border-[1px] border-double border-black dark:border-white rounded
           shadow-xl
           "
+                    name="htno1"
                     placeholder="Enter from Hall ticket No."
                     type="text"
                     value={multiHtno[0]}
@@ -135,6 +137,7 @@ const ExamResults = ({ title, query }: { title: string; query: string }) => {
           border-[1px] border-double border-black dark:border-white rounded
           shadow-xl
           "
+                    name="htno2"
                     placeholder="Enter to Hall ticket No."
                     type="text"
                     value={multiHtno[1]}
@@ -148,6 +151,7 @@ const ExamResults = ({ title, query }: { title: string; query: string }) => {
                 </div>
                 <div className="flex mt-8 justify-center w-full">
                   <Button
+                    type="submit"
                     className="w-24 h-8 text-[80%] md:w-32"
                     onClick={onMultiResultSubmit}
                   >
