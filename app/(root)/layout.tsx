@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "JNTUH RESULTS - Check Your UG & PG Exam Results Online",
+  title: "JNTUH RESULTS - Check Your UG & PG Exam Results Online ",
   description:
-    "Easily access your JNTUH results for relevant course and semester - Find out your grades, CGPA, backlogs, Jobs, Internships and more in one place. Check now!",
+    "Get your JNTUH exam results for UG & PG courses effortlessly. Access your grades, CGPA, identify backlogs, and explore job & internship opportunities - all on one platform. Check your results now!",
 };
 
 export default function RootLayout({

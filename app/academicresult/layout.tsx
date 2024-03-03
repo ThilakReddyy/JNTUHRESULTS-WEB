@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "JNTUH RESULTS | ACADEMIC RESULT",
-  description: "Check out academic result with in a go.",
+  description:
+    "Find your JNTUH academic results quickly and effortlessly. Easy access, comprehensive information, all in one place",
 };
 
 export default function RootLayout({
