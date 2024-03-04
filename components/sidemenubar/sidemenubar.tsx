@@ -37,7 +37,7 @@ const SideMenubar = () => {
                   <div className="" key={index}>
                     <div
                       className="flex flex-1 w-full text-sm items-center gap-4  hover:bg-muted rounded-lg transition-background
-                      group text-muted-foreground font-medium py-4 px-3 mb-1"
+                      group text-muted-foreground font-medium py-4 px-3 mb-1 cursor-pointer"
                       onClick={() => {
                         setToggleResult(!toggleResult);
                       }}
