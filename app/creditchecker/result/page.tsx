@@ -58,98 +58,100 @@ const CreditCheckerResult = () => {
   });
   const year = keys.length + studentType;
   return (
-    <div className="m-2 text-[30%] sm:text-[45%] md:text-[60%] lg:text-[100%]">
-      <div className="text-center font-bold my-5 text-xs lg:text-2xl">
-        <div className="justify-center">CREDITS CHECKER</div>
-      </div>
-      {/* Render the ResultDetails component */}
-      <ResultDetails Details={Details} />
-      <>
-        {keys.map((subkeys, index) => {
-          return (
-            <div key={index} className="my-2">
-              <table className="dark:border-white">
-                <tbody>
-                  <tr className="w-max bg-gray-200 md:bg-gray-300 dark:border-white dark:bg-[#0b3954] ">
-                    <th className="dark:border-white">
-                      {studenttype === "Regular" ? index + 1 : index + 2} Year
-                    </th>
-                  </tr>
-                </tbody>
-              </table>
-              <div className="dark:border-white border border-black border-solid">
+    <>
+      <div className="m-2 text-[30%] sm:text-[45%] md:text-[60%] lg:text-[100%]">
+        <div className="text-center font-bold my-5 text-xs lg:text-2xl">
+          <div className="justify-center">CREDITS CHECKER</div>
+        </div>
+        {/* Render the ResultDetails component */}
+        <ResultDetails Details={Details} />
+        <>
+          {keys.map((subkeys, index) => {
+            return (
+              <div key={index} className="my-2">
                 <table className="dark:border-white">
                   <tbody>
-                    <tr className="w-max bg-gray-200 md:bg-gray-300  dark:border-white dark:bg-[#0b3954]">
-                      <th className="dark:border-white w-[50%]">SEMESTER</th>
-                      <th className="dark:border-white ">CREDITS</th>
-                    </tr>
-                    {subkeys.map((key, ind) => {
-                      return (
-                        <tr className="w-max " key={index + ind}>
-                          <th className="dark:border-white">{key}</th>
-                          <th className="dark:border-white">
-                            {Results[key]["credits"]}
-                          </th>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-                <table className="dark:border-white mt-1">
-                  <tbody>
-                    <tr>
-                      <th className="bg-gray-200 md:gray-300 w-[50%] dark:border-white dark:bg-[#0b3954]">
-                        Credits Obtained
-                      </th>
+                    <tr className="w-max bg-gray-200 md:bg-gray-300 dark:border-white dark:bg-[#0b3954] ">
                       <th className="dark:border-white">
-                        {credits[index]["credits_received"]}/
-                        {credits[index]["total_credits"]}
+                        {studenttype === "Regular" ? index + 1 : index + 2} Year
                       </th>
                     </tr>
                   </tbody>
                 </table>
+                <div className="dark:border-white border border-black border-solid">
+                  <table className="dark:border-white">
+                    <tbody>
+                      <tr className="w-max bg-gray-200 md:bg-gray-300  dark:border-white dark:bg-[#0b3954]">
+                        <th className="dark:border-white w-[50%]">SEMESTER</th>
+                        <th className="dark:border-white ">CREDITS</th>
+                      </tr>
+                      {subkeys.map((key, ind) => {
+                        return (
+                          <tr className="w-max " key={index + ind}>
+                            <th className="dark:border-white">{key}</th>
+                            <th className="dark:border-white">
+                              {Results[key]["credits"]}
+                            </th>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                  <table className="dark:border-white mt-1">
+                    <tbody>
+                      <tr>
+                        <th className="bg-gray-200 md:gray-300 w-[50%] dark:border-white dark:bg-[#0b3954]">
+                          Credits Obtained
+                        </th>
+                        <th className="dark:border-white">
+                          {credits[index]["credits_received"]}/
+                          {credits[index]["total_credits"]}
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-            </div>
-          );
-        })}
-        <table className="dark:border-white">
-          <tbody>
-            <tr>
-              <th className="bg-gray-200 md:gray-300 w-[50%] dark:border-white dark:bg-[#0b3954]">
-                Total Credits
-              </th>
-              <th className="w-[50%] dark:border-white">
-                {totalCredits}/{creditregulations[year]["Total"]}
-              </th>
-            </tr>
-          </tbody>
-        </table>
-        <div className="text-center text-sm border-black border my-2  p-[0.5px]">
-          <div className="border-black border text-[70%] md:text-[100%] py-1 bg-gray-200 dark:bg-[#0b3954] border-separate border-spacing-4 m-[0.5px]">
-            {totalCredits < creditregulations[year]["Required"] ? (
-              <div>
-                You require{" "}
-                <b>{creditregulations[year]["Required"] - totalCredits}</b>{" "}
-                additional credits
-                {year === 4 || (year === 3 && htno?.[4] == "5")
-                  ? " to graduate from college"
-                  : " to advance to the next academic year."}
-              </div>
-            ) : (
-              <div>
-                <b>
+            );
+          })}
+          <table className="dark:border-white">
+            <tbody>
+              <tr>
+                <th className="bg-gray-200 md:gray-300 w-[50%] dark:border-white dark:bg-[#0b3954]">
+                  Total Credits
+                </th>
+                <th className="w-[50%] dark:border-white">
+                  {totalCredits}/{creditregulations[year]["Total"]}
+                </th>
+              </tr>
+            </tbody>
+          </table>
+          <div className="text-center text-sm border-black border my-2  p-[0.5px]">
+            <div className="border-black border text-[70%] md:text-[100%] py-1 bg-gray-200 dark:bg-[#0b3954] border-separate border-spacing-4 m-[0.5px]">
+              {totalCredits < creditregulations[year]["Required"] ? (
+                <div>
+                  You require{" "}
+                  <b>{creditregulations[year]["Required"] - totalCredits}</b>{" "}
+                  additional credits
                   {year === 4 || (year === 3 && htno?.[4] == "5")
-                    ? "Congratulations you have been graduated 🎓"
-                    : "Congratulations you have promoted to the next academic year 🎊"}
-                </b>
-              </div>
-            )}
+                    ? " to graduate from college"
+                    : " to advance to the next academic year."}
+                </div>
+              ) : (
+                <div>
+                  <b>
+                    {year === 4 || (year === 3 && htno?.[4] == "5")
+                      ? "Congratulations you have been graduated 🎓"
+                      : "Congratulations you have promoted to the next academic year 🎊"}
+                  </b>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      </>
+        </>
+      </div>
       <QuickNavigation htno={htno} />
-    </div>
+    </>
   );
 };
 
