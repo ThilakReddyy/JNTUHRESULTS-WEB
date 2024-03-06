@@ -30,41 +30,42 @@ const BacklogReportResult = () => {
       </div>
     </>
   ) : (
-    <div className="m-2 text-[30%] sm:text-[45%]  md:text-[60%] lg:text-[100%]">
-      <div className="text-center font-bold my-5 text-xs lg:text-2xl">
-        BACKLOG REPORT
-      </div>
+    <>
+      <div className="m-2 text-[30%] sm:text-[45%]  md:text-[60%] lg:text-[100%]">
+        <div className="text-center font-bold my-5 text-xs lg:text-2xl">
+          BACKLOG REPORT
+        </div>
+        {/* Render Details */}
+        <ResultDetails Details={Details} />
 
-      {/* Render Details */}
-      <ResultDetails Details={Details} />
-
-      {Object.keys(Results).map((value: string, index: number) => {
-        return (
-          <div key={index}>
-            {value != "Total" ? (
-              <>
-                <table className="dark:border-white w-[100%]">
-                  <tbody>
-                    <tr>
-                      <th className="bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954] dark:border-white">
-                        {value} Results
-                      </th>
-                    </tr>
-                  </tbody>
-                </table>
-                <table className="dark:border-white">
-                  <tbody>
-                    <tr className="w-max bg-gray-200 md:bg-gray-300 dark:border-white dark:bg-[#0b3954]">
-                      <th className="dark:border-white">SUBJECT_CODE</th>
-                      <th className="dark:border-white">SUBJECT_NAME</th>
-                      <th className="dark:border-white">INTERNAL</th>
-                      <th className="dark:border-white">EXTERNAL</th>
-                      <th className="dark:border-white">TOTAL</th>
-                      <th className="dark:border-white">GRADE</th>
-                      <th className="dark:border-white">CREDITS</th>
-                    </tr>
-                    {Object.values(Results[value as keyof typeof Results]).map(
-                      (value: any, index: number) => {
+        {Object.keys(Results).map((value: string, index: number) => {
+          return (
+            <div key={index}>
+              {value != "Total" ? (
+                <>
+                  <table className="dark:border-white w-[100%]">
+                    <tbody>
+                      <tr>
+                        <th className="bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954] dark:border-white">
+                          {value} Results
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table className="dark:border-white">
+                    <tbody>
+                      <tr className="w-max bg-gray-200 md:bg-gray-300 dark:border-white dark:bg-[#0b3954]">
+                        <th className="dark:border-white">SUBJECT_CODE</th>
+                        <th className="dark:border-white">SUBJECT_NAME</th>
+                        <th className="dark:border-white">INTERNAL</th>
+                        <th className="dark:border-white">EXTERNAL</th>
+                        <th className="dark:border-white">TOTAL</th>
+                        <th className="dark:border-white">GRADE</th>
+                        <th className="dark:border-white">CREDITS</th>
+                      </tr>
+                      {Object.values(
+                        Results[value as keyof typeof Results],
+                      ).map((value: any, index: number) => {
                         if (typeof value === "object") {
                           return (
                             <tr key={index}>
@@ -92,38 +93,38 @@ const BacklogReportResult = () => {
                             </tr>
                           );
                         }
-                      },
-                    )}
+                      })}
+                    </tbody>
+                  </table>
+                  <br />
+                </>
+              ) : (
+                <table className="dark:border-white" key={index}>
+                  <tbody>
+                    <tr>
+                      <th className="dark:border-white w-[75%]">TOTAL CGPA</th>
+                      <th className="dark:border-white">
+                        {Results[value as keyof typeof Results]}
+                      </th>
+                    </tr>
                   </tbody>
                 </table>
-                <br />
-              </>
-            ) : (
-              <table className="dark:border-white" key={index}>
-                <tbody>
-                  <tr>
-                    <th className="dark:border-white w-[75%]">TOTAL CGPA</th>
-                    <th className="dark:border-white">
-                      {Results[value as keyof typeof Results]}
-                    </th>
-                  </tr>
-                </tbody>
-              </table>
-            )}
-          </div>
-        );
-      })}
-      {Object.keys(Results).length === 0 && (
-        <table className="dark:border-white">
-          <tbody>
-            <tr>
-              <th className="dark:border-white">NO BACKLOGS</th>
-            </tr>
-          </tbody>
-        </table>
-      )}
+              )}
+            </div>
+          );
+        })}
+        {Object.keys(Results).length === 0 && (
+          <table className="dark:border-white">
+            <tbody>
+              <tr>
+                <th className="dark:border-white">NO BACKLOGS</th>
+              </tr>
+            </tbody>
+          </table>
+        )}
+      </div>
       <QuickNavigation htno={htno} />
-    </div>
+    </>
   );
 };
 
