@@ -9,7 +9,9 @@ import { CiEdit } from "react-icons/ci";
 import { IoSaveOutline } from "react-icons/io5";
 import ResultDetails from "@/components/result/details";
 import { calculatetotalbacklog } from "@/components/customfunctions/calculatetotalbacklog";
-import toast from "react-hot-toast";
+import { GrAdd, GrSubtract } from "react-icons/gr";
+import Link from "next/link";
+import QuickNavigation from "@/components/navbar/quicknavigation";
 
 const AcademicResultResult = () => {
   const router = useRouter();
@@ -28,7 +30,6 @@ const AcademicResultResult = () => {
   const [Results, setResults] = useState(resultresults);
   const [backlogs, setBacklogs] = useState(resultbacklogs);
   const [edit, setEdit] = useState(false);
-
   console.log(resultbacklogs);
   useEffect(() => {
     setResults(calculateResult(Results));
@@ -253,6 +254,7 @@ const AcademicResultResult = () => {
           jntuhresults.vercel.app
         </div>
       </div>
+      <QuickNavigation htno={htno} />
       <Print componentRef={componentRef} />
     </>
   );
