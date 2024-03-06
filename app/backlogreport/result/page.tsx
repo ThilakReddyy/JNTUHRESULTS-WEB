@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { getLocalStoragedata } from "@/components/api/fetchAcademicResult";
 import ResultDetails from "@/components/result/details";
+import QuickNavigation from "@/components/navbar/quicknavigation";
 
 const BacklogReportResult = () => {
   const router = useRouter();
@@ -121,6 +122,7 @@ const BacklogReportResult = () => {
           </tbody>
         </table>
       )}
+      <QuickNavigation htno={htno} />
     </div>
   );
 };

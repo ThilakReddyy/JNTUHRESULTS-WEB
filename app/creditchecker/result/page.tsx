@@ -5,6 +5,7 @@ import { getLocalStoragedata } from "@/components/api/fetchAcademicResult";
 import { DivideArrayIntoSubArray } from "@/components/customfunctions/divideArrayIntosubArrays";
 import { creditRegulationDetails } from "@/constants/creditregulations";
 import ResultDetails from "@/components/result/details";
+import QuickNavigation from "@/components/navbar/quicknavigation";
 
 const CreditCheckerResult = () => {
   const router = useRouter();
@@ -147,6 +148,7 @@ const CreditCheckerResult = () => {
           </div>
         </div>
       </>
+      <QuickNavigation htno={htno} />
     </div>
   );
 };
