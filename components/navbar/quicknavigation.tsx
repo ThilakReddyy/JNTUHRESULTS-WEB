@@ -10,7 +10,7 @@ const QuickNavigation = ({ htno }: { htno: string | null }) => {
   }
   return (
     <>
-      <div className="fixed bottom-0  right-0 m-5 rounded-full bg-black dark:bg-white dark:text-black  text-white border p-2 z-[401] cursor-pointer">
+      <div className="fixed bottom-0  right-0 m-5 rounded-full bg-black dark:bg-white dark:text-black  text-white border p-2 z-[401] ">
         <GrAdd
           className={`${extraItems ? "hidden" : ""}`}
           onClick={() => {
@@ -34,19 +34,19 @@ const QuickNavigation = ({ htno }: { htno: string | null }) => {
         <div className="flex flex-col justify-center">
           <Link
             href={`/academicresult/result?htno=${htno}`}
-            className="py-2 border  border-b-0 border-t-rounded flex rounded-t justify-center  text-blue-600"
+            className="py-2 border  border-b-0 border-t-rounded flex rounded-t justify-center  text-blue-600 cursor-pointer"
           >
             Academic Result
           </Link>
           <Link
             href={`/backlogreport/result?htno=${htno}`}
-            className="py-2 border px-2 flex justify-center  text-blue-600"
+            className="py-2 border px-2 flex justify-center  text-blue-600 cusor-pointer"
           >
             Backlog Report
           </Link>
           <Link
             href={`/creditchecker/result?htno=${htno}`}
-            className="p-2 border border-t-0 flex justify-center rounded-b  text-blue-600"
+            className="p-2 border border-t-0 flex justify-center rounded-b  text-blue-600 cursor-pointer"
           >
             Credits Checker
           </Link>
