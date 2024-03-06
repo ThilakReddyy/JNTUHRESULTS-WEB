@@ -9,8 +9,6 @@ import { CiEdit } from "react-icons/ci";
 import { IoSaveOutline } from "react-icons/io5";
 import ResultDetails from "@/components/result/details";
 import { calculatetotalbacklog } from "@/components/customfunctions/calculatetotalbacklog";
-import { GrAdd, GrSubtract } from "react-icons/gr";
-import Link from "next/link";
 import QuickNavigation from "@/components/navbar/quicknavigation";
 
 const AcademicResultResult = () => {
