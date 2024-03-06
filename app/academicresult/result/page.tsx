@@ -170,7 +170,9 @@ const AcademicResultResult = () => {
                                     </select>
                                   </th>
                                 ) : (
-                                  <th className="dark:border-white">
+                                  <th
+                                    className={`dark:border-white ${["f", "ab", "-"].includes(subjectvalue["subject_grade"].toLowerCase()) ? "text-red-500" : ""}`}
+                                  >
                                     {subjectvalue["subject_grade"]}
                                   </th>
                                 )}
