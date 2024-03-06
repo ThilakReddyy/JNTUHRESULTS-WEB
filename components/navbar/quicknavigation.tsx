@@ -29,7 +29,7 @@ const QuickNavigation = ({ htno }: { htno: string | null }) => {
       ></div>
 
       <div
-        className={`${extraItems ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} transition-opacity z-[401] duration-300 fixed bottom-10 right-2 m-5 rounded bg-white text-black text-[12px] border p-2 cursor-pointer w-[80%]`}
+        className={`${extraItems ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} transition-opacity z-[401] duration-300 fixed bottom-10 right-2 m-5 rounded bg-white text-black text-[12px] border p-2 w-[80%]`}
       >
         <div className="flex flex-col justify-center">
           <Link
@@ -40,7 +40,7 @@ const QuickNavigation = ({ htno }: { htno: string | null }) => {
           </Link>
           <Link
             href={`/backlogreport/result?htno=${htno}`}
-            className="py-2 border px-2 flex justify-center  text-blue-600 cusor-pointer"
+            className="py-2 border px-2 flex justify-center  text-blue-600 cursor-pointer"
           >
             Backlog Report
           </Link>
