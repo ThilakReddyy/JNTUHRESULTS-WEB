@@ -64,7 +64,7 @@ const NotificationPopUp = () => {
                 </Button>
               </div>
             </div>
-            <div className="border-t ">
+            <div className=" h-[412px] p-2 overflow-auto">
               {results.map((result: any, index: number) => {
                 return (
                   <div key={index} className="border-t mb-1">
