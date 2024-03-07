@@ -543,6 +543,9 @@ export async function GET(request: Request) {
   const response = await scraper
     .run()
     .then((data) => {
+      if (Object.keys(data["Details"]).length === 0) {
+        return { data: "Internal Server Error", status: 500 };
+      }
       //setting cache in redis
       const jsonString = JSON.stringify({ data });
       redis
