@@ -11,6 +11,7 @@ import MetaData from "@/components/metadata/metadata";
 import { NavBarProvider } from "@/customhooks/navbarhook";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Pwa from "@/components/download/pwa";
+import NotificationPopUp from "@/components/notifications/popup";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,7 +45,8 @@ export default function RootLayout({
               <main className="pt-16">
                 <SideMenubar />
                 <div className="lg:ml-64">
-                  <Pwa />
+                  <NotificationPopUp />
+                  {/* <Pwa /> */}
                   {children}
                 </div>
                 <div className=" md:block">
