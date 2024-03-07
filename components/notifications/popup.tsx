@@ -26,13 +26,22 @@ const NotificationPopUp = () => {
       try {
         const storageData = localStorage.getItem("notifications");
 
+        const today = new Date().toISOString().split("T")[0].toString();
+        // const today = "2024-03-04";
         if (storageData !== null) {
-          setResults(JSON.parse(storageData).slice(0, 5));
+          const storagedata = JSON.parse(storageData);
+          var tempres = (storagedata as Result[]).filter((result) => {
+            return result.formatted_date === today;
+          });
+          setResults(tempres);
         }
         const notifications = await fetchNotifications();
-
         if (notifications !== null) {
           localStorage.setItem("notifications", JSON.stringify(notifications));
+          var tempres = (notifications as Result[]).filter((result) => {
+            return result.formatted_date === today;
+          });
+          setResults(tempres);
         }
       } catch (error) {
         console.error("Error fetching notifications:", error);
@@ -43,14 +52,14 @@ const NotificationPopUp = () => {
 
   return (
     <div
-      className={`lg:hidden bg-opacity-50 backdrop-filter  backdrop-blur-sm fixed h-full   my-5  w-full  justify-center ${path !== "/" || hidden ? "hidden" : ""}`}
+      className={`lg:hidden bg-opacity-50 backdrop-filter  backdrop-blur-sm fixed h-full   my-5  w-full  justify-center ${path !== "/" || hidden || results.length === 0 ? "hidden" : ""}`}
     >
       <div className="flex justify-center items-center h-full">
         <div
           className={`md:w-[50%] font-bold text-center flex justify-center dark:bg-[#1B1C1E] w-full  items-center shadow-xl bg-white p-2 rounded-md border m-2 `}
         >
           <div className="text-center">
-            <div className="my-2 flex justify-around">
+            <div className="py-2 flex justify-around ">
               <div></div>
               <div>Results have been Released!!!</div>
               <div className="flex items-center">
@@ -67,8 +76,13 @@ const NotificationPopUp = () => {
             <div className=" h-[412px] p-2 overflow-auto">
               {results.map((result: any, index: number) => {
                 return (
-                  <div key={index} className="border-t mb-1">
-                    <div>{result["Result_title"]}</div>
+                  <div
+                    key={index}
+                    className={`border px-1 py-2 ${index === 0 ? "" : "border-t-0"}`}
+                  >
+                    <div className="font-sans text-sm ">
+                      {result["Result_title"]}
+                    </div>
                     <table className="dark:border-white">
                       <tbody className="text-xs md:text-lg">
                         <tr>
