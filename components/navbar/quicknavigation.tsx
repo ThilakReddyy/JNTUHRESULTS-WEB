@@ -25,7 +25,7 @@ const QuickNavigation = ({ htno }: { htno: string | null }) => {
         />
       </div>
       <div
-        className={`${extraItems ? "fixed w-[100%] h-[100%] blur-2xl bg-opacity-50 backdrop-filter  backdrop-blur-sm bottom-0 z-[400] top-[64px] text-white" : ""}`}
+        className={`${extraItems ? "fixed w-[100%] h-[100%] bg-opacity-50 backdrop-filter  backdrop-blur-sm bottom-0 z-[400] top-[64px] text-white" : ""}`}
       ></div>
 
       <div
