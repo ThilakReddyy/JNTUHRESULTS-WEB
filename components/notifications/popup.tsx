@@ -45,7 +45,7 @@ const NotificationPopUp = () => {
     <div
       className={`lg:hidden bg-opacity-50 backdrop-filter  backdrop-blur-sm fixed h-full   my-5  w-full  justify-center ${path !== "/" || hidden ? "hidden" : ""}`}
     >
-      <div className="flex justify-center h-full">
+      <div className="flex justify-center items-center h-full">
         <div
           className={`md:w-[50%] font-bold text-center flex justify-center dark:bg-[#1B1C1E] w-full  items-center shadow-xl bg-white p-2 rounded-md border m-2 `}
         >
