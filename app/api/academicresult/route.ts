@@ -19,8 +19,8 @@ class ResultScraper {
 
   constructor(rollNumber: string, url_index: number = 1) {
     const urls: string[] = [
-      "http://results.jntuh.ac.in/resultAction",
       "http://202.63.105.184/resultAction",
+      "http://results.jntuh.ac.in/resultAction",
     ];
     this.url = urls[url_index];
     this.rollNumber = rollNumber;
@@ -503,8 +503,8 @@ async function checkUrl(url: string) {
 
 async function chooseUrl() {
   const urls: string[] = [
-    "http://results.jntuh.ac.in/resultAction",
     "http://202.63.105.184/resultAction",
+    "http://results.jntuh.ac.in/resultAction",
   ];
   for (let i = 0; i < urls.length; i++) {
     const isUrlvalid = await checkUrl(urls[i]);
