@@ -129,16 +129,18 @@ const CreditCheckerResult = () => {
           <div className="text-center text-sm border-black border my-2  p-[0.5px]">
             <div className="border-black border text-[70%] md:text-[100%] py-1 bg-gray-200 dark:bg-[#0b3954] border-separate border-spacing-4 m-[0.5px]">
               {totalCredits < creditregulations[year]["Required"] ? (
-                <div>
+                <div className="text-black">
                   You require{" "}
-                  <b>{creditregulations[year]["Required"] - totalCredits}</b>{" "}
+                  <b className="text-red-500">
+                    {creditregulations[year]["Required"] - totalCredits}
+                  </b>{" "}
                   additional credits
                   {year === 4 || (year === 3 && htno?.[4] == "5")
                     ? " to graduate from college"
                     : " to advance to the next academic year."}
                 </div>
               ) : (
-                <div>
+                <div className="text-green-800">
                   <b>
                     {year === 4 || (year === 3 && htno?.[4] == "5")
                       ? "Congratulations you have been graduated 🎓"
