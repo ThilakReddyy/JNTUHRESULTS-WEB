@@ -94,9 +94,16 @@ export async function fetchAcademicResult(htno: string) {
   }
 
   //primary urls
+  const urls = [
+    "https://jntuhresults.up.railway.app/api/academicresult?htno=",
+    "/api/academicresult?htno=",
+    "https://jntuhresultss.vercel.app/api/academicresult?htno=",
+    "https://jntuhresultsss.vercel.app/api/academicresult?htno=",
+  ];
+  const primaryUrl = urls[3] + htno;
   // const primaryUrl = `https://jntuhresults.up.railway.app/api/academicresult?htno=${htno}`;
   //const primaryUrl = `/api/academicresult?htno=${htno}`;
-  const primaryUrl = `https://jntuhresultsss.vercel.app/api/academicresult?htno=${htno}`;
+  // const primaryUrl = `https://jntuhresultsss.vercel.app/api/academicresult?htno=${htno}`;
   // const primaryUrl = `https://jntuhresultss.vercel.app/api/academicresult?htno=${htno}`;
   response = await fetchData(htno, primaryUrl);
   console.log(response);
