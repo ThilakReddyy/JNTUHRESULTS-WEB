@@ -12,6 +12,8 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const AcademicResult = () => {
+  const sleep = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
+
   const [hallticketno, sethallticketno] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -34,8 +36,9 @@ const AcademicResult = () => {
           return;
         }
       }
-      const result = await fetchAcademicResult(hallticketno);
-      // const result = null;
+      // const result = await fetchAcademicResult(hallticketno);
+      const result = null;
+      sleep(2000);
       if (result !== null && result !== undefined && result !== 422) {
         router.push("/academicresult/result?htno=" + hallticketno);
       } else if (result === 422) {
