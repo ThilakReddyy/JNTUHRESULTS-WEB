@@ -93,8 +93,6 @@ export async function fetchAcademicResult(htno: string) {
   if (response != null) {
     return response;
   }
-  await sleep(2000);
-  return null;
 
   //primary urls
   const urls = [
