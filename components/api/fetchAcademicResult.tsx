@@ -85,7 +85,6 @@ export const getLocalStoragedata = (htno: string, backlog: boolean = false) => {
     return null;
   }
 };
-const sleep = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export async function fetchAcademicResult(htno: string) {
   //Redis Data
@@ -101,6 +100,7 @@ export async function fetchAcademicResult(htno: string) {
     "https://jntuhresultss.vercel.app/api/academicresult?htno=",
     "https://jntuhresultsss.vercel.app/api/academicresult?htno=",
   ];
+  console.log("came here");
   const primaryUrl = urls[3] + htno;
   // const primaryUrl = `https://jntuhresults.up.railway.app/api/academicresult?htno=${htno}`;
   //const primaryUrl = `/api/academicresult?htno=${htno}`;
