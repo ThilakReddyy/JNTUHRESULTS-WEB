@@ -27,7 +27,7 @@ const NotificationPopUp = () => {
         const storageData = localStorage.getItem("notifications");
 
         const today = new Date().toISOString().split("T")[0].toString();
-        // const today = "2024-03-04";
+        // const today = "2024-03-07";
         if (storageData !== null) {
           const storagedata = JSON.parse(storageData);
           var tempres = (storagedata as Result[]).filter((result) => {
