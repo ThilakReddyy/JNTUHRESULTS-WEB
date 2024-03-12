@@ -85,6 +85,7 @@ export const getLocalStoragedata = (htno: string, backlog: boolean = false) => {
     return null;
   }
 };
+const sleep = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export async function fetchAcademicResult(htno: string) {
   //Redis Data
@@ -92,6 +93,8 @@ export async function fetchAcademicResult(htno: string) {
   if (response != null) {
     return response;
   }
+  await sleep(2000);
+  return null;
 
   //primary urls
   const urls = [
