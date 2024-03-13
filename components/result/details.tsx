@@ -6,7 +6,7 @@ interface ResultDetailsProps {
 
 const ResultDetails = ({ Details }: ResultDetailsProps) => {
   return (
-    <table className="w-[100%] my-2  border-black dark:border-white   ">
+    <table className="w-[100%] my-2  border-black dark:border-white  rounded ">
       <tbody>
         <tr className="w-max bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954]">
           {Object.keys(Details).map((value: string, index: number) => (

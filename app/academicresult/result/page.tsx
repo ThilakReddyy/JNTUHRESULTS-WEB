@@ -105,7 +105,7 @@ const AcademicResultResult = () => {
             <div key={index}>
               {value != "Total" && (
                 <>
-                  <table className="dark:border-white w-[100%]">
+                  <table className="dark:border-white w-[100%] rounded-t">
                     <tbody>
                       <tr>
                         <th className="bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954] dark:border-white">
@@ -210,7 +210,7 @@ const AcademicResultResult = () => {
                       )}
                     </tbody>
                   </table>
-                  <table className="dark:border-white">
+                  <table className="dark:border-white rounded-b">
                     <tbody>
                       <tr>
                         <th className="dark:border-white w-[75%]">SGPA</th>
@@ -227,7 +227,7 @@ const AcademicResultResult = () => {
           );
         })}
         {
-          <table className="dark:border-white">
+          <table className="dark:border-white rounded">
             <tbody>
               <tr>
                 <th className="bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954] dark:border-white">
