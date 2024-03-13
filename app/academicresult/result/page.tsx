@@ -117,13 +117,13 @@ const AcademicResultResult = () => {
                   <table className="dark:border-white">
                     <tbody>
                       <tr className="w-max bg-gray-200 md:bg-gray-300 dark:border-white dark:bg-[#0b3954]">
-                        <th className="dark:border-white">SUBJECT_CODE</th>
-                        <th className="dark:border-white">SUBJECT_NAME</th>
-                        <th className="dark:border-white">INTERNAL</th>
-                        <th className="dark:border-white">EXTERNAL</th>
-                        <th className="dark:border-white">TOTAL</th>
-                        <th className="dark:border-white">GRADE</th>
-                        <th className="dark:border-white">CREDITS</th>
+                        <th className="dark:border-white px-1">SUBJECT_CODE</th>
+                        <th className="dark:border-white px-1">SUBJECT_NAME</th>
+                        <th className="dark:border-white px-1">INTERNAL</th>
+                        <th className="dark:border-white px-1">EXTERNAL</th>
+                        <th className="dark:border-white px-1">TOTAL</th>
+                        <th className="dark:border-white px-1">GRADE</th>
+                        <th className="dark:border-white px-1">CREDITS</th>
                       </tr>
                       {Object.values(Results[value]).map(
                         (subjectvalue: any, index: number) => {
