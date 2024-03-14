@@ -12,6 +12,7 @@ import { NavBarProvider } from "@/customhooks/navbarhook";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Pwa from "@/components/download/pwa";
 import NotificationPopUp from "@/components/notifications/popup";
+import NoticePopup from "@/components/homepage/notice";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -47,6 +48,7 @@ export default function RootLayout({
                 <div className="lg:ml-64">
                   {/* <NotificationPopUp /> */}
                   {/* <Pwa /> */}
+                  <NoticePopup />
                   {children}
                 </div>
                 <div className=" md:block">
