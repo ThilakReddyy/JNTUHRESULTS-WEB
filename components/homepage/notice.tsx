@@ -1,63 +1,97 @@
 "use client";
 
-import Link from "next/link";
-
 import React, { useEffect, useState } from "react";
-import { fetchNotifications } from "../api/fetchNotifications";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
-
-const NotificationPopUp = () => {
-  const [results, setResults] = useState<Result[]>([]);
-  const [hidden, setHidden] = useState(false);
+import Link from "next/link";
+const NoticePopup = () => {
   const pathname = usePathname();
+  const [hidden, setHidden] = useState(false);
+
   const path = "/" + pathname.split("/")[1];
-
-  console.log(path);
-  interface Result {
-    Result_title: string;
-    Date: string;
-    Link: string;
-    formatted_date: string;
-  }
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const storageData = localStorage.getItem("notifications");
-
-        const today = new Date().toISOString().split("T")[0].toString();
-        // const today = "2024-03-07";
-        if (storageData !== null) {
-          const storagedata = JSON.parse(storageData);
-          var tempres = (storagedata as Result[]).filter((result) => {
-            return result.formatted_date === today;
-          });
-          setResults(tempres);
-        }
-        const notifications = await fetchNotifications();
-        if (notifications !== null) {
-          localStorage.setItem("notifications", JSON.stringify(notifications));
-          var tempres = (notifications as Result[]).filter((result) => {
-            return result.formatted_date === today;
-          });
-          setResults(tempres);
-        }
-      } catch (error) {
-        console.error("Error fetching notifications:", error);
-      }
-    };
-    fetchData();
-  }, []);
 
   return (
     <div
-      className={`lg:hidden bg-opacity-50 backdrop-filter  backdrop-blur-sm fixed h-full   my-5  w-full  justify-center`}
+      className={`lg:hidden bg-opacity-50 backdrop-filter  backdrop-blur-sm fixed h-full   my-5  w-full  justify-center ${path !== "/" || hidden ? "hidden" : ""}`}
     >
       <div className="flex justify-center items-center h-full">
-        <div className=" h-[412px] p-2 overflow-auto"></div>
+        <div
+          className={`md:w-[50%] border-black font-bold text-center flex justify-center dark:bg-[#1B1C1E] w-full  items-center shadow-xl bg-white p-2 rounded-md border m-2 `}
+        >
+          <div className="text-center w-full">
+            <div className="py-2 flex  justify-around  border-b">
+              <div></div>
+              <div className="p-2">Announcement!!!</div>
+              <div className="flex items-center">
+                <Button
+                  onClick={() => {
+                    setHidden(true);
+                  }}
+                  className="h-[2px] rounded w-[2px] px-[10px] text-[10px]"
+                >
+                  X
+                </Button>
+              </div>
+            </div>
+            <div className=" max-h-[420px] p-2 overflow-auto">
+              <p className="font-medium text-start text-sm ">
+                <p>Hello everyone,</p>
+                <br />
+                <p className="text-sm font-normal text-justify">
+                  &nbsp;&nbsp;&nbsp;I&apos;m Thilak, the one behind the JNTUH
+                  Results Vercel application. From a mere idea born out of
+                  curiosity when preparing for my placement, it has now become
+                  an indispensable tool for the entire JNTUH community.
+                </p>
+                <br />
+                <p className="text-sm font-normal text-justify">
+                  Our platform has beeen serviceable tool for students accessing
+                  results. It has been working swiftly and efficiently through
+                  continuous refinement till now. This application has been an
+                  important step of my life being my first project.
+                </p>
+                <br />
+                <p className="text-sm font-normal text-justify">
+                  For those keen on developing a similar solution to JNTUH
+                  Results on Vercel, here is the complete{" "}
+                  <Link
+                    href="https://raw.githubusercontent.com/ThilakReddyy/JNTUHRESULTS-SERVICE/main/jntuhresults/Executables/jntuhresultscraper.py"
+                    target="_blank"
+                    className="text-blue-500"
+                  >
+                    core code
+                  </Link>{" "}
+                  but all I ask is to give proper credits or attribution is
+                  given to the originator, recognizing the hard work and
+                  commitment. 🙌{" "}
+                </p>
+                <br />
+                <p className="text-sm font-normal text-justify">
+                  Additionally, we&apos;re creating an application called intuit
+                  for job and internship opportunities. If anyone out there has
+                  experience handling sizable databases exceeding half a million
+                  entries and anyone who is intersted in joining the project,
+                  feel free to reach out to me on &nbsp;
+                  <Link
+                    href="https://www.instagram.com/__thilak_reddy__/"
+                    target="_blank"
+                    className="text-blue-500"
+                  >
+                    Instagram
+                  </Link>
+                  , Twitter, or whichever plaform you prefer. 🚀
+                </p>
+                <br />
+                <p className="text-sm font-normal text-justify">
+                  Thank you for your unwavering support. 🙏 Let&apos;s keep
+                  innovating together! 🌱
+                </p>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
-export default NotificationPopUp;
+export default NoticePopup;
