@@ -12,17 +12,17 @@ const NoticePopup = () => {
 
   return (
     <div
-      className={`lg:hidden bg-opacity-50 backdrop-filter  backdrop-blur-sm fixed h-full   my-5  w-full  justify-center ${path !== "/" || hidden ? "hidden" : ""}`}
+      className={` bg-opacity-50 backdrop-filter  backdrop-blur-sm fixed h-full   my-5    justify-center ${path !== "/" || hidden ? "hidden" : ""}`}
     >
-      <div className="flex justify-center items-start h-full">
+      <div className="flex justify-center items-start md:mt-16 h-full">
         <div
-          className={`md:w-[50%] border-black font-bold text-center flex justify-center dark:bg-[#1B1C1E] w-full  items-center shadow-xl bg-white p-2 rounded-md border m-2 `}
+          className={`md:w-[80%] border-black dark:border-white font-bold text-center flex md:items-center justify-center dark:bg-[#1B1C1E] w-full  items-center shadow-xl bg-white p-2 rounded-md border m-2 `}
         >
           <div className="text-center w-full">
             <div className="py-2 flex  justify-around  border-b">
-              <div></div>
-              <div className="p-2">Announcement!!!</div>
-              <div className="flex items-center">
+              <div className="w-full"></div>
+              <div className="p-2 w-full">Announcement!!!</div>
+              <div className="flex items-center justify-end w-full">
                 <Button
                   onClick={() => {
                     setHidden(true);
@@ -34,7 +34,7 @@ const NoticePopup = () => {
               </div>
             </div>
             <div className=" max-h-[480px] p-2 overflow-auto">
-              <div className="font-medium text-start text-sm ">
+              <div className="font-medium text-start text-sm p-2 ">
                 <p>Hello everyone,</p>
                 <br />
                 <p className="text-sm font-normal text-justify">
