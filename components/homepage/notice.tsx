@@ -16,7 +16,7 @@ const NoticePopup = () => {
     >
       <div className="flex justify-center items-start md:mt-16 h-full">
         <div
-          className={`md:w-[80%] border-black dark:border-white font-bold text-center flex md:items-center justify-center dark:bg-[#1B1C1E] w-full  items-center shadow-xl bg-white p-2 rounded-md border m-2 `}
+          className={`md:w-[60%] border-black dark:border-white font-bold text-center flex md:items-center justify-center dark:bg-[#1B1C1E] w-full  items-center shadow-xl bg-white p-2 rounded-md border m-2 `}
         >
           <div className="text-center w-full">
             <div className="py-2 flex  justify-around  border-b">
@@ -61,9 +61,8 @@ const NoticePopup = () => {
                   >
                     core code
                   </Link>{" "}
-                  but all I ask is to give proper credits or attribution is
-                  given to the originator, recognizing the hard work and
-                  commitment. 🙌{" "}
+                  but proper credits or attribution is given to the originator,
+                  recognizing the hard work and commitment. 🙌{" "}
                 </p>
                 <br />
                 <p className="text-sm font-normal text-justify">
