@@ -14,7 +14,7 @@ const NoticePopup = () => {
     <div
       className={`lg:hidden bg-opacity-50 backdrop-filter  backdrop-blur-sm fixed h-full   my-5  w-full  justify-center ${path !== "/" || hidden ? "hidden" : ""}`}
     >
-      <div className="flex justify-center items-center h-full">
+      <div className="flex justify-center items-start h-full">
         <div
           className={`md:w-[50%] border-black font-bold text-center flex justify-center dark:bg-[#1B1C1E] w-full  items-center shadow-xl bg-white p-2 rounded-md border m-2 `}
         >
@@ -33,8 +33,8 @@ const NoticePopup = () => {
                 </Button>
               </div>
             </div>
-            <div className=" max-h-[420px] p-2 overflow-auto">
-              <p className="font-medium text-start text-sm ">
+            <div className=" max-h-[480px] p-2 overflow-auto">
+              <div className="font-medium text-start text-sm ">
                 <p>Hello everyone,</p>
                 <br />
                 <p className="text-sm font-normal text-justify">
@@ -86,7 +86,7 @@ const NoticePopup = () => {
                   Thank you for your unwavering support. 🙏 Let&apos;s keep
                   innovating together! 🌱
                 </p>
-              </p>
+              </div>
             </div>
           </div>
         </div>
