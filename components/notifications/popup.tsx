@@ -6,9 +6,10 @@ import React, { useEffect, useState } from "react";
 import { fetchNotifications } from "../api/fetchNotifications";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
+import { NotificationList } from "@/constants/notifications";
 
 const NotificationPopUp = () => {
-  const [results, setResults] = useState<Result[]>([]);
+  const [results, setResults] = useState<Result[]>(NotificationList);
   const [hidden, setHidden] = useState(false);
   const pathname = usePathname();
   const path = "/" + pathname.split("/")[1];
@@ -35,6 +36,7 @@ const NotificationPopUp = () => {
           });
           setResults(tempres);
         }
+        // return;
         const notifications = await fetchNotifications();
         if (notifications !== null) {
           localStorage.setItem("notifications", JSON.stringify(notifications));
