@@ -101,7 +101,7 @@ export async function fetchAcademicResult(htno: string) {
     "https://jntuhresultsss.vercel.app/api/academicresult?htno=",
   ];
   console.log("came here");
-  const primaryUrl = urls[3] + htno;
+  const primaryUrl = urls[2] + htno;
   // const primaryUrl = `https://jntuhresults.up.railway.app/api/academicresult?htno=${htno}`;
   //const primaryUrl = `/api/academicresult?htno=${htno}`;
   // const primaryUrl = `https://jntuhresultsss.vercel.app/api/academicresult?htno=${htno}`;
