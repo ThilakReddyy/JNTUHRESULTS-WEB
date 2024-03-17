@@ -100,19 +100,19 @@ export async function fetchAcademicResult(htno: string) {
     "https://jntuhresultss.vercel.app/api/academicresult?htno=",
     "https://jntuhresultsss.vercel.app/api/academicresult?htno=",
   ];
-  console.log("came here");
-  const primaryUrl = urls[2] + htno;
-  response = await fetchData(htno, primaryUrl);
-  console.log(response);
-  if (response !== null) {
-    console.log(response);
-    return response;
-  }
-  //Rechecking Redis Data
-  response = await getRedisData(htno);
-  if (response != null) {
-    return response;
-  }
+  // console.log("came here");
+  // const primaryUrl = urls[2] + htno;
+  // response = await fetchData(htno, primaryUrl);
+  // console.log(response);
+  // if (response !== null) {
+  //   console.log(response);
+  //   return response;
+  // }
+  // //Rechecking Redis Data
+  // response = await getRedisData(htno);
+  // if (response != null) {
+  //   return response;
+  // }
   const secondaryUrl = urls[0] + htno;
   response = await fetchData(htno, secondaryUrl);
   console.log(response);
