@@ -102,17 +102,24 @@ export async function fetchAcademicResult(htno: string) {
   ];
   console.log("came here");
   const primaryUrl = urls[2] + htno;
-  // const primaryUrl = `https://jntuhresults.up.railway.app/api/academicresult?htno=${htno}`;
-  //const primaryUrl = `/api/academicresult?htno=${htno}`;
-  // const primaryUrl = `https://jntuhresultsss.vercel.app/api/academicresult?htno=${htno}`;
-  // const primaryUrl = `https://jntuhresultss.vercel.app/api/academicresult?htno=${htno}`;
   response = await fetchData(htno, primaryUrl);
   console.log(response);
   if (response !== null) {
     console.log(response);
     return response;
   }
-
+  //Rechecking Redis Data
+  response = await getRedisData(htno);
+  if (response != null) {
+    return response;
+  }
+  const secondaryUrl = urls[0] + htno;
+  response = await fetchData(htno, secondaryUrl);
+  console.log(response);
+  if (response !== null) {
+    console.log(response);
+    return response;
+  }
   //Rechecking Redis Data
   response = await getRedisData(htno);
   if (response != null) {
