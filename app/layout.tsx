@@ -46,7 +46,7 @@ export default function RootLayout({
               <main className="pt-16">
                 <SideMenubar />
                 <div className="lg:ml-64">
-                  {/* <NotificationPopUp /> */}
+                  <NotificationPopUp />
                   {/* <Pwa /> */}
                   {/* <NoticePopup /> */}
                   {children}
