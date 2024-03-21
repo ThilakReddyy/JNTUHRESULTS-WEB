@@ -30,7 +30,7 @@ const Footer = () => {
           Thilak Reddy
         </a>
         <br />
-        <p className={` ${path == "/academicresult" ? "block" : "hidden"}`}>
+        <p className={` ${path == "/academicresultk" ? "block" : "hidden"}`}>
           In collaboration with{" "}
           <a
             target="_blank"
