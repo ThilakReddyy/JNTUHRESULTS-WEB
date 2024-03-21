@@ -8,6 +8,7 @@ export default function Home() {
   return (
     <>
       <div className="z-[20] grid grid-row-2 lg:grid-cols-2 lg:hidden  items-center pt-10 font-normal text-2xl lg:text-6xl mb-5">
+        <h1 className="hidden">JNTUH RESULTS</h1>
         <div className="flex justify-center lg:justify-end">
           Welcome to&nbsp;
         </div>
