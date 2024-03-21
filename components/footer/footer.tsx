@@ -52,7 +52,7 @@ const Footer = () => {
         </p>
       </span>
       <span className="mt-4 block text-center mx-[18%] mb-4 text-[75%] sm:text-[100%]">
-        Support this app by clicking here,
+        Support this app by clicking{" "}
         <Link
           className=" underline	underline-offset-1"
           href="upi://pay?pn=Thilak%20Reddy&pa=9381339131@ibl"
