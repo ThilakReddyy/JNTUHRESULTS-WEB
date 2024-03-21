@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 
 const Title = () => {
-  const title = "JNTUH RESULTS!!!";
+  const title = "JNTUH RESULTS!!";
   const sleep = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
   const [blind, setblind] = useState(false);
   useEffect(() => {
+    // Wait for 2 seconds before starting the typewriter effect
     const typeWriter = async () => {
-      // Wait for 2 seconds before starting the typewriter effect
       await sleep(200);
 
       for (let i = 0; i < title.length; i++) {
@@ -29,10 +29,11 @@ const Title = () => {
   }, []);
   const [titleIndex, setTitleIndex] = useState(0);
   return (
-    <>
-      {title.substring(0, titleIndex)}
+    <div className="flex">
+      <h1>{title}</h1>
+      {/* <h1>{title.substring(0, titleIndex)}</h1> */}
       <span className={`font-extralight ${blind && "opacity-0"}`}>|</span>
-    </>
+    </div>
   );
 };
 
