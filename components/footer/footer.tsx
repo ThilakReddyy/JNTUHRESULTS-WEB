@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 const Footer = () => {
   const path = usePathname();
 
@@ -49,6 +50,15 @@ const Footer = () => {
             Syed Ansar
           </a>
         </p>
+      </span>
+      <span className="mt-4 block text-center mx-[18%] mb-4 text-[75%] sm:text-[100%]">
+        If you found this app helpful, you can support me by{" "}
+        <Link
+          className=" underline	underline-offset-1"
+          href="upi://pay?pa=ThilakReddy&pa=9381339131@ibl"
+        >
+          clicking here.
+        </Link>
       </span>
     </div>
   );
