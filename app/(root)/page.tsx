@@ -1,4 +1,3 @@
-"use client";
 import { homeLinks } from "@/constants/homeLinks";
 import Title from "@/components/homepage/title";
 import Link from "next/link";
