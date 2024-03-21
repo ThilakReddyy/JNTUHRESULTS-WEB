@@ -55,7 +55,7 @@ const Footer = () => {
         If you found this app helpful, you can support me by{" "}
         <Link
           className=" underline	underline-offset-1"
-          href="upi://pay?pa=ThilakReddy&pa=9381339131@ibl"
+          href="upi://pay?pn=Thilak%20Reddy&pa=9381339131@ibl"
         >
           clicking here.
         </Link>
