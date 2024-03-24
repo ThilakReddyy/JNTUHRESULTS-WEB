@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { FaTelegram } from "react-icons/fa";
 const NoticePopup = () => {
   const pathname = usePathname();
   const [hidden, setHidden] = useState(false);
@@ -12,9 +13,9 @@ const NoticePopup = () => {
 
   return (
     <div
-      className={` bg-opacity-50 backdrop-filter  backdrop-blur-sm fixed h-full   my-5    justify-center ${path !== "/" || hidden ? "hidden" : ""}`}
+      className={` bg-opacity-50 backdrop-filter  backdrop-blur-sm fixed h-full w-full   my-5    justify-center ${path !== "/" || hidden ? "hidden" : ""}`}
     >
-      <div className="flex justify-center items-start md:mt-16 h-full">
+      <div className="flex justify-center items-start w-full md:mt-16 h-full">
         <div
           className={`md:w-[60%] border-black dark:border-white font-bold text-center flex md:items-center justify-center dark:bg-[#1B1C1E] w-full  items-center shadow-xl bg-white p-2 rounded-md border m-2 `}
         >
@@ -52,24 +53,43 @@ const NoticePopup = () => {
                 </p>
                 <br />
                 <p className="text-sm font-normal text-justify">
-                  For those keen on developing a similar solution to JNTUH
-                  Results on Vercel, here is the complete{" "}
+                  For those interested in developing a similar solution to JNTUH
+                  Results on Vercel, I&apos;m sharing the complete{" "}
                   <Link
                     href="https://raw.githubusercontent.com/ThilakReddyy/JNTUHRESULTS-SERVICE/main/jntuhresults/Executables/jntuhresultscraper.py"
                     target="_blank"
                     className="text-blue-500"
                   >
                     core code
+                  </Link>
+                  . If any college wishes to create a similar application using
+                  local Excel sheets directly provided by JNTUH University,
+                  contact me on{" "}
+                  <Link
+                    href="https://www.instagram.com/__thilak_reddy__/"
+                    target="_blank"
+                    className="text-blue-500"
+                  >
+                    Instagram
                   </Link>{" "}
-                  but proper credits or attribution is given to the originator,
-                  recognizing the hard work and commitment. 🙌{" "}
+                  or via{" "}
+                  <Link
+                    target="_blank"
+                    href="mailto:thilakreddypothuganti@gmail.com"
+                    className="text-blue-500"
+                  >
+                    mail
+                  </Link>
+                  . If you are using the core code for developing the project,
+                  please ensure proper credits or attribution is given to
+                  acknowledge the hard work and commitment involved. 🙌{" "}
                 </p>
                 <br />
                 <p className="text-sm font-normal text-justify">
                   Additionally, we&apos;re creating an application called intuit
                   for job and internship opportunities. If anyone out there has
                   experience handling sizable databases exceeding half a million
-                  entries and anyone who is intersted in joining the project,
+                  entries or anyone who is intersted in joining the project,
                   feel free to reach out to me on &nbsp;
                   <Link
                     href="https://www.instagram.com/__thilak_reddy__/"
@@ -85,6 +105,14 @@ const NoticePopup = () => {
                   Thank you for your unwavering support. 🙏 Let&apos;s keep
                   innovating together! 🌱
                 </p>
+                <Link
+                  href="https://t.me/jntuhvercel"
+                  target="_blank"
+                  className="flex dark:bg-white p-2 bg-black text-white dark:text-black justify-center items-center mt-4"
+                >
+                  Join us on Telegram{"  "}
+                  <FaTelegram size={18} className="ml-1" />
+                </Link>
               </div>
             </div>
           </div>
