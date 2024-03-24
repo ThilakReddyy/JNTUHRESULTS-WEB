@@ -1,5 +1,5 @@
-import { homeLinks } from "@/constants/homeLinks";
 import Title from "@/components/homepage/title";
+import { homeLinks } from "@/constants/homeLinks";
 import Link from "next/link";
 import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
 

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { syllabusDetails } from "@/constants/syllabusdetails";
 import Link from "next/link";
 import toast from "react-hot-toast";
@@ -14,7 +14,6 @@ const Syllabus = () => {
   const [syllabus, setSyllabus] = useState<{ title: string; link: string }[]>(
     [],
   );
-  const [syllabusPdf, setSyllabusPdf] = useState(null);
   const [link, setLink] = useState("");
   useEffect(() => {
     const keys: string[] = Object.keys(syllabusDetails);
