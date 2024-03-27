@@ -60,13 +60,9 @@ const NoticePopup = () => {
                     target="_blank"
                     className="text-blue-500"
                   >
-                    core code.
+                    core code
                   </Link>
-                </p>
-                <br />
-                <p className="text-sm font-normal text-justify">
-                  {" "}
-                  If any college wishes to create a similar application using
+                  . If any college wishes to create a similar application using
                   local Excel sheets directly provided by JNTUH University,
                   contact me on{" "}
                   <Link
@@ -82,12 +78,9 @@ const NoticePopup = () => {
                     href="mailto:thilakreddypothuganti@gmail.com"
                     className="text-blue-500"
                   >
-                    mail.
+                    mail
                   </Link>
-                </p>
-                <br />
-                <p>
-                  If you are using the core code for developing the project,
+                  . If you are using the core code for developing the project,
                   please ensure proper credits or attribution is given to
                   acknowledge the hard work and commitment involved. 🙌{" "}
                 </p>
