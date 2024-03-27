@@ -63,6 +63,7 @@ const NoticePopup = () => {
                     core code.
                   </Link>
                 </p>
+                <br />
                 <p className="text-sm font-normal text-justify">
                   {" "}
                   If any college wishes to create a similar application using
