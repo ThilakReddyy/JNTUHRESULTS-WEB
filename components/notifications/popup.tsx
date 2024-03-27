@@ -11,7 +11,7 @@ import { FaTelegram } from "react-icons/fa";
 import NoticePopup from "../homepage/notice";
 
 const NotificationPopUp = () => {
-  const [results, setResults] = useState<Result[]>(NotificationList);
+  const [results, setResults] = useState<Result[]>([]);
   const [hidden, setHidden] = useState(false);
   const pathname = usePathname();
   const path = "/" + pathname.split("/")[1];
@@ -30,6 +30,11 @@ const NotificationPopUp = () => {
         const storageData = localStorage.getItem("notifications");
 
         const today = new Date().toISOString().split("T")[0].toString();
+        var tempres = (NotificationList as Result[]).filter((result) => {
+          return result.formatted_date === today;
+        });
+        setResults(tempres);
+
         // const today = "2024-03-20";
         if (storageData !== null) {
           const storagedata = JSON.parse(storageData);
