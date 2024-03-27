@@ -60,9 +60,12 @@ const NoticePopup = () => {
                     target="_blank"
                     className="text-blue-500"
                   >
-                    core code
+                    core code.
                   </Link>
-                  . If any college wishes to create a similar application using
+                </p>
+                <p className="text-sm font-normal text-justify">
+                  {" "}
+                  If any college wishes to create a similar application using
                   local Excel sheets directly provided by JNTUH University,
                   contact me on{" "}
                   <Link
