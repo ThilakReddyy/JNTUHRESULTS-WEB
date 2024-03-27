@@ -7,9 +7,11 @@ import NoticeText from "./noticetext";
 const NoticePopup = () => {
   const pathname = usePathname();
   const [hidden, setHidden] = useState(false);
-
+  const [showtext, setShowText] = useState(false);
   const path = "/" + pathname.split("/")[1];
-
+  useEffect(() => {
+    setShowText(true);
+  }, []);
   return (
     <div
       className={` bg-opacity-50 backdrop-filter  backdrop-blur-sm fixed h-full w-full   my-5    justify-center ${path !== "/" || hidden ? "hidden" : ""}`}
@@ -33,7 +35,7 @@ const NoticePopup = () => {
                 </Button>
               </div>
             </div>
-            <NoticeText />
+            {showtext && <NoticeText />}
           </div>
         </div>
       </div>
