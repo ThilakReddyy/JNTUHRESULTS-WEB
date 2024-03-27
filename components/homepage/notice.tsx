@@ -82,9 +82,12 @@ const NoticePopup = () => {
                     href="mailto:thilakreddypothuganti@gmail.com"
                     className="text-blue-500"
                   >
-                    mail
+                    mail.
                   </Link>
-                  . If you are using the core code for developing the project,
+                </p>
+                <br />
+                <p>
+                  If you are using the core code for developing the project,
                   please ensure proper credits or attribution is given to
                   acknowledge the hard work and commitment involved. 🙌{" "}
                 </p>
