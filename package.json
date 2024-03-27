@@ -36,6 +36,7 @@
     "react-icons": "^4.12.0",
     "react-spinners": "^0.13.8",
     "react-to-print": "^2.14.15",
+    "read-excel-file": "^5.7.1",
     "redis": "^4.6.11",
     "start": "^5.1.0",
     "tailwind-merge": "^2.0.0",
