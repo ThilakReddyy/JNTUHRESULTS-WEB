@@ -30,12 +30,12 @@ const NotificationPopUp = () => {
         const storageData = localStorage.getItem("notifications");
 
         const today = new Date().toISOString().split("T")[0].toString();
+        // const today = "2024-03-20";
         var tempres = (NotificationList as Result[]).filter((result) => {
           return result.formatted_date === today;
         });
         setResults(tempres);
 
-        // const today = "2024-03-20";
         if (storageData !== null) {
           const storagedata = JSON.parse(storageData);
           var tempres = (storagedata as Result[]).filter((result) => {
@@ -129,16 +129,16 @@ const NotificationPopUp = () => {
                       </div>
                     );
                   })}
-                  <div>
-                    <Link
-                      href="https://t.me/jntuhvercel"
-                      target="_blank"
-                      className="flex dark:bg-white p-2 bg-black text-white dark:text-black justify-center items-center mt-4"
-                    >
-                      Join us on Telegram{"  "}
-                      <FaTelegram size={18} className="ml-1" />
-                    </Link>
-                  </div>
+                </div>
+                <div>
+                  <Link
+                    href="https://t.me/jntuhvercel"
+                    target="_blank"
+                    className="flex dark:bg-white p-2 bg-black text-white dark:text-black justify-center items-center mt-4"
+                  >
+                    Join us on Telegram{"  "}
+                    <FaTelegram size={18} className="ml-1" />
+                  </Link>
                 </div>
               </div>
             </div>
