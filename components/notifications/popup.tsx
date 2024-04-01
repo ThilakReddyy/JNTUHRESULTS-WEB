@@ -84,7 +84,7 @@ const NotificationPopUp = () => {
                     </Button>
                   </div>
                 </div>
-                <div className=" h-[412px] p-2 overflow-auto">
+                <div className=" h-[390px] p-2 overflow-auto">
                   {results.map((result: any, index: number) => {
                     return (
                       <div
