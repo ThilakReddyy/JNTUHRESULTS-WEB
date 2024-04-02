@@ -6,10 +6,11 @@ import { useEffect, useState } from "react";
 
 import NotificationForm from "@/components/notifications/notificationForm";
 import NotificationResults from "@/components/notifications/notificationResults";
+import { NotificationList } from "@/constants/notifications";
 
 const Notifications = () => {
   const [loading, setLoading] = useState(true);
-  const [results, setResults] = useState<Result[]>([]);
+  const [results, setResults] = useState<Result[]>(NotificationList);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedDegree, setSelectedDegree] = useState("");
@@ -25,19 +26,24 @@ const Notifications = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const storageData = localStorage.getItem("notifications");
-
-        if (storageData !== null) {
-          setResults(JSON.parse(storageData));
-          setLoading(false);
-        }
-        const notifications = await fetchNotifications();
-
-        if (notifications !== null) {
-          setResults(notifications);
-          localStorage.setItem("notifications", JSON.stringify(notifications));
-        }
+        console.log("fetchData from locla ");
         setLoading(false);
+        return;
+        // const storageData = localStorage.getItem("notifications");
+        //
+        // if (storageData !== null) {
+        //   setResults(JSON.parse(storageData));
+        //   setLoading(false);
+        // }
+        //
+        // // return;
+        // const notifications = await fetchNotifications();
+        //
+        // if (notifications !== null) {
+        //   setResults(notifications);
+        //   localStorage.setItem("notifications", JSON.stringify(notifications));
+        // }
+        // setLoading(false);
       } catch (error) {
         console.error("Error fetching notifications:", error);
         setLoading(false);
