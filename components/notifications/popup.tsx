@@ -43,7 +43,7 @@ const NotificationPopUp = () => {
           });
           setResults(tempres);
         }
-        // return;
+        return;
         const notifications = await fetchNotifications();
         if (notifications !== null) {
           localStorage.setItem("notifications", JSON.stringify(notifications));
