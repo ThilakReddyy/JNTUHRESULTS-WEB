@@ -31,11 +31,13 @@ const NotificationPopUp = () => {
 
         const today = new Date().toISOString().split("T")[0].toString();
         // const today = "2024-04-01";
+
         var tempres = (NotificationList as Result[]).filter((result) => {
           return result.formatted_date === today;
         });
+        console.log(tempres);
         setResults(tempres);
-
+        return;
         if (storageData !== null) {
           const storagedata = JSON.parse(storageData);
           var tempres = (storagedata as Result[]).filter((result) => {
@@ -43,7 +45,6 @@ const NotificationPopUp = () => {
           });
           setResults(tempres);
         }
-        return;
         const notifications = await fetchNotifications();
         if (notifications !== null) {
           localStorage.setItem("notifications", JSON.stringify(notifications));
