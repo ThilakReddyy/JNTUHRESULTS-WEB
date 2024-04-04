@@ -38,13 +38,13 @@ const NotificationPopUp = () => {
         console.log(tempres);
         setResults(tempres);
         return;
-        if (storageData !== null) {
-          const storagedata = JSON.parse(storageData);
-          var tempres = (storagedata as Result[]).filter((result) => {
-            return result.formatted_date === today;
-          });
-          setResults(tempres);
-        }
+        // if (storageData !== null) {
+        //   const storagedata = JSON.parse(storageData);
+        //   var tempres = (storagedata as Result[]).filter((result) => {
+        //     return result.formatted_date === today;
+        //   });
+        //   setResults(tempres);
+        // }
         const notifications = await fetchNotifications();
         if (notifications !== null) {
           localStorage.setItem("notifications", JSON.stringify(notifications));
