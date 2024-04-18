@@ -1,6 +1,60 @@
 export const NotificationList = [
   {
     Result_title:
+      "B.Pharmacy I Year II Semester (R22) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=932&etype=r17&type=intgrade",
+    Date: "18-APRIL-2024",
+    formatted_date: "2024-04-18",
+  },
+  {
+    Result_title:
+      "B.Pharmacy I Year II Semester (R17) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=933&etype=r17&type=intgrade",
+    Date: "18-APRIL-2024",
+    formatted_date: "2024-04-18",
+  },
+  {
+    Result_title:
+      "B.Pharmacy I Year II Semester (R16) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=934&etype=r17&type=intgrade",
+    Date: "18-APRIL-2024",
+    formatted_date: "2024-04-18",
+  },
+  {
+    Result_title:
+      "B.Pharmacy I Year I Semester (R22) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=935&etype=r17&type=intgrade",
+    Date: "18-APRIL-2024",
+    formatted_date: "2024-04-18",
+  },
+  {
+    Result_title:
+      "B.Pharmacy I Year I Semester (R17) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=936&etype=r17&type=intgrade",
+    Date: "18-APRIL-2024",
+    formatted_date: "2024-04-18",
+  },
+  {
+    Result_title:
+      "B.Pharmacy I Year I Semester (R16) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=937&etype=r17&type=intgrade",
+    Date: "18-APRIL-2024",
+    formatted_date: "2024-04-18",
+  },
+  {
+    Result_title: "B.Pharmacy I Year (R15) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=938",
+    Date: "18-APRIL-2024",
+    formatted_date: "2024-04-18",
+  },
+  {
+    Result_title: "B.Pharmacy I Year (R13) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=939",
+    Date: "18-APRIL-2024",
+    formatted_date: "2024-04-18",
+  },
+  {
+    Result_title:
       "B.Pharmacy III Year II Semester (R17) Supplementary Examinations Results",
     Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=bpharmacy&examCode=924&etype=r17&type=intgrade",
     Date: "16-APRIL-2024",
