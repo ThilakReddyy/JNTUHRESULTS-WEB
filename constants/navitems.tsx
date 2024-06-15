@@ -49,7 +49,29 @@ export const navitems = [
       ),
       title: "Results",
     },
-
+    {
+      href: "/academicallresult",
+      image: (
+        <>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            strokeWidth="1.25"
+            strokeLinecap="round"
+            stroke="currentColor"
+            strokeLinejoin="round"
+            className="lucide lucide-graduation-cap"
+          >
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c3 3 9 3 12 0v-5" />
+          </svg>
+        </>
+      ),
+      title: "All Results",
+    },
     {
       href: "/academicresult",
       image: (
@@ -73,6 +95,7 @@ export const navitems = [
       ),
       title: "Academic Result",
     },
+
     {
       href: "/backlogreport",
       image: (
