@@ -75,44 +75,49 @@ const Faq = () => {
         <center>
           <div className="max-w-[1024px] font-interer px-[15px]">
             <div className="max-w-[540px] w-[100%] ">
-              {faqs.map((value, index) => {
-                return (
-                  <section
-                    key={index}
-                    className="my-[16px] rounded-[4px] border-[1px] border-solid   "
-                  >
-                    <div className="overflow-hidden flex grid-rows-2 p-[13px] bg-[#fff] dark:bg-black rounded-[4px]">
-                      <button
-                        className="text-[14px] text-black dark:text-white  w-full text-left "
-                        onClick={() => {
-                          const newVisibility = [...answerVisibility];
-                          newVisibility[index] = !newVisibility[index];
-                          setAnswerVisibility(newVisibility);
-                        }}
-                      >
-                        {value.question}
-                      </button>
-                      <AiOutlineDownCircle
-                        className={`text-2xl text-right ${
-                          answerVisibility[index] ? "hidden" : "block"
-                        }`}
-                      />
-                      <AiOutlineUpCircle
-                        className={`text-2xl text-right  ${
-                          answerVisibility[index] ? "block" : "hidden"
-                        }`}
-                      />
-                    </div>
-                    <div
-                      className={`text-justify px-[13px] bg-[OEOEOE] overflow-hidden transition-max-height duration-200 ease-out text-[14px] text-[#1a1a1a] dark:text-white py-[17px] ${
-                        answerVisibility[index] ? "" : "hidden"
-                      }`}
+              {faqs.map(
+                (
+                  value: { question: String; answer: String },
+                  index: number,
+                ) => {
+                  return (
+                    <section
+                      key={index}
+                      className="my-[16px] rounded-[4px] border-[1px] border-solid   "
                     >
-                      <p>{value.answer}</p>
-                    </div>
-                  </section>
-                );
-              })}
+                      <div className="overflow-hidden flex grid-rows-2 p-[13px] bg-[#fff] dark:bg-black rounded-[4px]">
+                        <button
+                          className="text-[14px] text-black dark:text-white  w-full text-left "
+                          onClick={() => {
+                            const newVisibility = [...answerVisibility];
+                            newVisibility[index] = !newVisibility[index];
+                            setAnswerVisibility(newVisibility);
+                          }}
+                        >
+                          {value.question}
+                        </button>
+                        <AiOutlineDownCircle
+                          className={`text-2xl text-right ${
+                            answerVisibility[index] ? "hidden" : "block"
+                          }`}
+                        />
+                        <AiOutlineUpCircle
+                          className={`text-2xl text-right  ${
+                            answerVisibility[index] ? "block" : "hidden"
+                          }`}
+                        />
+                      </div>
+                      <div
+                        className={`text-justify px-[13px] bg-[OEOEOE] overflow-hidden transition-max-height duration-200 ease-out text-[14px] text-[#1a1a1a] dark:text-white py-[17px] ${
+                          answerVisibility[index] ? "" : "hidden"
+                        }`}
+                      >
+                        <p>{value.answer}</p>
+                      </div>
+                    </section>
+                  );
+                },
+              )}
             </div>
           </div>
         </center>
