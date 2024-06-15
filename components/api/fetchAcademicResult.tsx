@@ -127,3 +127,27 @@ export async function fetchAcademicResult(htno: string) {
   }
   return null;
 }
+
+export async function fetchAcademicallResult(htno: string) {
+  const url =
+    "https://jntuhresults.up.railway.app/api/academicallresult?htno=" + htno;
+  try {
+    const response = await axios.get(url, { timeout: 7000 });
+    console.log(response);
+    if (response.status == 200 && typeof response.data === "object") {
+      const expiryDate = new Date();
+      expiryDate.setMinutes(expiryDate.getMinutes() + 1);
+      const dataToStore = {
+        value: response.data,
+        expiry: expiryDate.getTime(),
+      };
+      localStorage.setItem(htno + "all", JSON.stringify(dataToStore));
+      return response.data;
+    }
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response?.status === 422) {
+      return 422;
+    }
+    return null;
+  }
+}
