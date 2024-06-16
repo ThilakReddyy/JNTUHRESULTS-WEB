@@ -76,6 +76,16 @@ const AcademicAllResultResult = () => {
                             <th className="bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954] dark:border-white">
                               Exam Code: {examcode}
                             </th>
+
+                            <th className="bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954] dark:border-white">
+                              <a
+                                href={`http://results.jntuh.ac.in/results/resultAction?degree=btech&examCode=${examcode}&etype=r16&result=null&grad=null&type=grade16&htno=${htno}`}
+                                target="_blank"
+                                className="underline"
+                              >
+                                Direct Link
+                              </a>
+                            </th>
                           </tr>
                         </tbody>
                       </table>
