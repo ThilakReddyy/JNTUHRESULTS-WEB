@@ -27,15 +27,16 @@ const NotificationPopUp = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const storageData = localStorage.getItem("notifications");
+        // const storageData = localStorage.getItem("notifications");
 
         const today = new Date().toISOString().split("T")[0].toString();
-        // const today = "2024-04-16";
+        const tomorrow = "2024-06-25";
 
         var tempres = (NotificationList as Result[]).filter((result) => {
-          return result.formatted_date === today;
+          return (
+            result.formatted_date === today || result.formatted_date == tomorrow
+          );
         });
-        console.log(tempres);
         setResults(tempres);
         return;
         // if (storageData !== null) {
