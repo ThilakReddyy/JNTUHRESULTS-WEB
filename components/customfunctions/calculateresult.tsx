@@ -1,4 +1,4 @@
-export function calculateResult(result: any) {
+export function calculateResult(result: any, specialGrade: Boolean = false) {
   // Define a type for the gradeMapper object
   type GradeMapper = {
     [key: string]: number;
@@ -11,6 +11,17 @@ export function calculateResult(result: any) {
     "B+": 7,
     B: 6,
     C: 5,
+    F: 0,
+    P: 0,
+    Ab: 0,
+    "-": 0,
+  };
+  const gradeMapperR22Bpharmacy: GradeMapper = {
+    O: 10,
+    A: 9,
+    B: 8,
+    C: 7,
+    D: 6,
     F: 0,
     P: 0,
     Ab: 0,
@@ -31,9 +42,12 @@ export function calculateResult(result: any) {
 
         if (typeof subject === "object" && !Array.isArray(subject)) {
           const { subject_grade, subject_credits } = subject;
-
-          if (subject_grade in gradeMapper) {
-            const gradePoint = gradeMapper[subject_grade];
+          var gradeMap = gradeMapper;
+          if (specialGrade) {
+            gradeMap = gradeMapperR22Bpharmacy;
+          }
+          if (subject_grade in gradeMap) {
+            const gradePoint = gradeMap[subject_grade];
             const credits = parseFloat(subject_credits);
             // If grade point is 0 for any subject, set the entire CGPA to 0
             if (gradePoint === 0) {
