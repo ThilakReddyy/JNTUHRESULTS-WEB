@@ -97,6 +97,8 @@ export async function fetchAcademicResult(htno: string) {
   const urls = [
     "https://jntuhresults.up.railway.app/api/academicresult?htno=",
     "/api/academicresult?htno=",
+    "http://localhost:8000/api/academicresult?htno=",
+    "/api/academicresult?htno=",
     "https://jntuhresultss.vercel.app/api/academicresult?htno=",
     "https://jntuhresultsss.vercel.app/api/academicresult?htno=",
   ];

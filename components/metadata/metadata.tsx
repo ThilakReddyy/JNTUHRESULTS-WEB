@@ -5,7 +5,6 @@ import React from "react";
 
 const MetaData = () => {
   const pathname = usePathname();
-  console.log(pathname);
   return (
     <>
       <meta property="og:url" content="https://jntuhresults.vercel.app/" />

@@ -39,7 +39,6 @@ const AcademicAllResult = () => {
       }
       const result = await fetchAcademicallResult(hallticketno);
       if (result !== null && result !== undefined && result !== 422) {
-        console.log(result);
         router.push("/academicallresult/result?htno=" + hallticketno);
       } else if (result === 422) {
         setLoading(false);

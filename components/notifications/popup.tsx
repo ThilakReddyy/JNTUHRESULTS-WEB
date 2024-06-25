@@ -16,7 +16,6 @@ const NotificationPopUp = () => {
   const pathname = usePathname();
   const path = "/" + pathname.split("/")[1];
 
-  console.log(path);
   interface Result {
     Result_title: string;
     Date: string;
@@ -30,12 +29,9 @@ const NotificationPopUp = () => {
         // const storageData = localStorage.getItem("notifications");
 
         const today = new Date().toISOString().split("T")[0].toString();
-        const tomorrow = "2024-06-25";
 
         var tempres = (NotificationList as Result[]).filter((result) => {
-          return (
-            result.formatted_date === today || result.formatted_date == tomorrow
-          );
+          return result.formatted_date === today;
         });
         setResults(tempres);
         return;

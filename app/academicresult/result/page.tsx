@@ -30,10 +30,17 @@ const AcademicResultResult = () => {
   const [edit, setEdit] = useState(false);
   console.log(resultbacklogs);
   useEffect(() => {
-    setResults(calculateResult(Results));
-    setBacklogs(calculatetotalbacklog(Results));
-    setRenderKey((prevkey) => prevkey + 1);
-  }, [Results]);
+    const firstTwodigits: string | undefined = htno?.substring(0, 2);
+    if (firstTwodigits != undefined) {
+      if (htno?.["5"] == "R" && parseInt(firstTwodigits) >= 22) {
+        setResults(calculateResult(Results, true));
+      } else {
+        setResults(calculateResult(Results));
+      }
+      setBacklogs(calculatetotalbacklog(Results));
+      setRenderKey((prevkey) => prevkey + 1);
+    }
+  }, [Results, htno]);
 
   useEffect(() => {
     // toast(

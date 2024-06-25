@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { getLocalStoragedata } from "@/components/api/fetchAcademicResult";
 import Print from "@/components/download/print";
 import ResultDetails from "@/components/result/details";
 
@@ -19,7 +18,6 @@ const AcademicAllResultResult = () => {
 
   const details = JSON.parse(String(storageData));
 
-  console.log(details);
   const { Details: resultdetails, Results: resultresults } =
     details?.value?.data || {};
 
