@@ -1,6 +1,5 @@
 "use client";
 
-import AdComponent from "@/components/ads/adcomponent";
 import {
   fetchAcademicResult,
   fetchAcademicallResult,
@@ -66,7 +65,6 @@ const AcademicAllResult = () => {
         onSubmit={onSubmit}
       />
       <Footer />
-      <AdComponent />
     </>
   );
 };

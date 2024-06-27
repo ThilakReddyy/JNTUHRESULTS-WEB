@@ -1,6 +1,5 @@
 "use client";
 
-import AdComponent from "@/components/ads/adcomponent";
 import {
   fetchAcademicResult,
   getLocalStoragedata,
@@ -65,7 +64,6 @@ const AcademicResult = () => {
         onSubmit={onSubmit}
       />
       <Footer />
-      <AdComponent />
     </>
   );
 };
