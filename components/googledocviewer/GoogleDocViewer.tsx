@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Loading from "../loading/loading";
 
 interface GoogleDocViewerProps {
   url: string;
@@ -12,8 +13,26 @@ const GoogleDocViewer: React.FC<GoogleDocViewerProps> = ({
   height = "580px",
 }) => {
   const src = `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
-
-  return <iframe src={src} style={{ width, height }} frameBorder="0"></iframe>;
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const iframe = document.getElementById("doc-iframe") as HTMLIFrameElement;
+    if (iframe) {
+      iframe.onload = () => {
+        setIsLoading(false);
+      };
+    }
+  }, []);
+  return (
+    <>
+      {isLoading && <Loading splNote={true} />}
+      <iframe
+        id="doc-iframe"
+        src={src}
+        style={{ width, height }}
+        frameBorder="0"
+      ></iframe>
+    </>
+  );
 };
 
 export default GoogleDocViewer;

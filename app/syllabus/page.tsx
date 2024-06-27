@@ -5,7 +5,12 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import Footer from "@/components/footer/footer";
 import GoogleDocViewer from "@/components/googledocviewer/GoogleDocViewer";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 const Syllabus = () => {
   const [degrees, setDegrees] = useState<string[]>([]);
   const [degree, setDegree] = useState<string>("");
@@ -209,8 +214,6 @@ const Syllabus = () => {
                     onClick={() => {
                       if (link === "") {
                         toast.error("Select all the required fields");
-                      } else {
-                        toast.success("kindly wait for few seconds");
                       }
                     }}
                   >
