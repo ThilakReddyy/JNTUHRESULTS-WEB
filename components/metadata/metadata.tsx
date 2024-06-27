@@ -85,11 +85,11 @@ const MetaData = () => {
       <link rel="manifest" href="/site.webmanifest" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" />
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5512897194230969"
-        crossOrigin="anonymous"
-      ></script>
+      {/* <script */}
+      {/*   async */}
+      {/*   src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5512897194230969" */}
+      {/*   crossOrigin="anonymous" */}
+      {/* ></script> */}
       <link
         href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Inter:wght@300&family=Roboto+Slab&display=swap"
         rel="stylesheet"
