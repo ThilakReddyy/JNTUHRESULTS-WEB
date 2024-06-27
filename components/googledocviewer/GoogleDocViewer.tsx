@@ -9,7 +9,7 @@ interface GoogleDocViewerProps {
 const GoogleDocViewer: React.FC<GoogleDocViewerProps> = ({
   url,
   width = "100%",
-  height = "650px",
+  height = "580px",
 }) => {
   const src = `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
 
