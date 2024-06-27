@@ -4,6 +4,8 @@ import { syllabusDetails } from "@/constants/syllabusdetails";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import Footer from "@/components/footer/footer";
+import GoogleDocViewer from "@/components/googledocviewer/GoogleDocViewer";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 const Syllabus = () => {
   const [degrees, setDegrees] = useState<string[]>([]);
   const [degree, setDegree] = useState<string>("");
@@ -193,6 +195,31 @@ const Syllabus = () => {
                 className={`
                 w-full flex justify-center mt-8 `}
               >
+                <Dialog>
+                  <DialogTrigger
+                    disabled={link == ""}
+                    className="block lg:hidden cursor-pointer text-sm md:text-lg
+                  px-3 py-1
+                  rounded
+                  bg-black dark:bg-gray-300
+                  dark:text-black text-white
+                  w-[80px]
+                  md:w-[130px]
+                  "
+                    onClick={() => {
+                      if (link === "") {
+                        toast.error("Select all the required fields");
+                      }
+                    }}
+                  >
+                    Open
+                  </DialogTrigger>
+                  <DialogContent>
+                    <div className="mt-4">
+                      {link === "" ? <></> : <GoogleDocViewer url={link} />}
+                    </div>
+                  </DialogContent>
+                </Dialog>
                 <button
                   type="submit"
                   className="
@@ -204,6 +231,8 @@ const Syllabus = () => {
                   w-[100px]
                   md:w-[130px]
                   cursor-pointer
+                  hidden
+                  lg:block
                   "
                   onClick={() => {
                     if (link === "") {
@@ -224,6 +253,7 @@ const Syllabus = () => {
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );
