@@ -209,12 +209,14 @@ const Syllabus = () => {
                     onClick={() => {
                       if (link === "") {
                         toast.error("Select all the required fields");
+                      } else {
+                        toast.success("kindly wait for few seconds");
                       }
                     }}
                   >
                     Open
                   </DialogTrigger>
-                  <DialogContent>
+                  <DialogContent className="w-[95%] my-2 bg-transparent pt-8 pb-1  px-1">
                     <div className="mt-4">
                       {link === "" ? <></> : <GoogleDocViewer url={link} />}
                     </div>
