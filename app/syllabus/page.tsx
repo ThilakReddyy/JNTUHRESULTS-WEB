@@ -4,14 +4,6 @@ import { syllabusDetails } from "@/constants/syllabusdetails";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import Footer from "@/components/footer/footer";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 const Syllabus = () => {
   const [degrees, setDegrees] = useState<string[]>([]);
   const [degree, setDegree] = useState<string>("");
@@ -19,7 +11,6 @@ const Syllabus = () => {
   const [regulation, setRegulation] = useState("");
   const [semesteryears, setSemesterYears] = useState<string[]>([]);
   const [semesteryear, setSemesterYear] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
   const [syllabus, setSyllabus] = useState<{ title: string; link: string }[]>(
     [],
   );
@@ -198,39 +189,41 @@ const Syllabus = () => {
                   </select>
                 </div>
               )}
-              <Dialog>
-                <DialogTrigger
-                  className="justify-center flex w-full"
-                  disabled={link == ""}
-                >
-                  <div className={`w-full flex justify-center mt-8 `}>
-                    <div
-                      className="
-                        text-sm md:text-lg
-                        px-3 py-1
-                        rounded
-                        bg-black dark:bg-gray-300
-                        dark:text-black text-white
-                        w-[100px]
-                        md:w-[130px]
-                        cursor-pointer
+              <div
+                className={`
+                w-full flex justify-center mt-8 `}
+              >
+                <button
+                  type="submit"
+                  className="
+                  text-sm md:text-lg
+                  px-3 py-1
+                  rounded
+                  bg-black dark:bg-gray-300
+                  dark:text-black text-white
+                  w-[100px]
+                  md:w-[130px]
+                  cursor-pointer
                   "
-                    >
+                  onClick={() => {
+                    if (link === "") {
+                      toast.error("Select all the required fields");
+                    }
+                  }}
+                >
+                  {link !== "" ? (
+                    <Link href={link} target="_blank">
                       Download
-                    </div>
-                  </div>
-                </DialogTrigger>
-                <DialogContent className="w-[100%] mx-2 rounded">
-                  <div className="bg-white rounded shadow-lg mt-5">
-                    <iframe src={link} width="100%" height="600px"></iframe>
-                  </div>
-                </DialogContent>
-              </Dialog>
+                    </Link>
+                  ) : (
+                    "Download"
+                  )}
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <></>
       <Footer />
     </>
   );
