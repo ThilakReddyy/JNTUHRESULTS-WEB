@@ -1,6 +1,13 @@
 export const NotificationList = [
   {
     Result_title:
+      "B.Tech IV Year II Semester (R18) Minor Degree Program Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1794&etype=r17&type=intgrade",
+    Date: "26-JUN-2024",
+    formatted_date: "2024-06-26",
+  },
+  {
+    Result_title:
       "B.Tech IV Year II Semester (R18) Regular Examinations Results",
     Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1790&etype=r17&type=intgrade",
     Date: "25-JUNE-2024",
