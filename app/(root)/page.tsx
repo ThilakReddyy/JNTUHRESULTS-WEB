@@ -32,7 +32,7 @@ export default function Home() {
           Jawaharlal Nehru Technological University, Hyderabad
         </div>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center lg:hidden">
         <AdComponent />
       </div>
       <div className="text-center flex justify-center">
