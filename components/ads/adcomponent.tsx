@@ -1,4 +1,5 @@
 // components/AdComponent.tsx
+"use client";
 import { useEffect } from "react";
 
 const AdComponent = () => {
