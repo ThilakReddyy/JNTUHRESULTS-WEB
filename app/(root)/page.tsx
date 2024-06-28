@@ -1,3 +1,4 @@
+import AdComponent from "@/components/ads/adcomponent";
 import Title from "@/components/homepage/title";
 import { homeLinks } from "@/constants/homeLinks";
 import Link from "next/link";
@@ -31,6 +32,7 @@ export default function Home() {
           Jawaharlal Nehru Technological University, Hyderabad
         </div>
       </div>
+      <AdComponent />
       <div className="text-center flex justify-center">
         <div className="home-links flex flex-wrap items-center justify-around max-w-5xl md:mt-6  sm:w-full">
           {homeLinks.map((homelink: any, index: number) => {
