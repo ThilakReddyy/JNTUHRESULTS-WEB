@@ -33,7 +33,7 @@ export default function Home() {
         </div>
       </div>
       <div className="flex justify-center lg:hidden">
-        <AdComponent />
+        {/* <AdComponent /> */}
       </div>
       <div className="text-center flex justify-center">
         <div className="home-links flex flex-wrap items-center justify-around max-w-5xl md:mt-6  sm:w-full">
