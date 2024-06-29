@@ -31,7 +31,7 @@ const ResultDetails = ({ Details }: ResultDetailsProps) => {
         <tbody>
           <tr className="">
             <th
-              key="branch"
+              key="college_name_key"
               className=" dark:border-white max bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954]"
             >
               COLLEGE NAME
@@ -44,10 +44,10 @@ const ResultDetails = ({ Details }: ResultDetailsProps) => {
             </th>
           </tr>
           <tr className="">
-            <th key="branch" className=" dark:border-white">
+            <th key="college_name" className=" dark:border-white">
               {collegedata[Details["COLLEGE_CODE"]]}
             </th>
-            <th key="branch" className=" dark:border-white">
+            <th key="branch_detail" className=" dark:border-white">
               {branchDetails[Details["Roll_No"].substring(6, 8)]}
             </th>
           </tr>
