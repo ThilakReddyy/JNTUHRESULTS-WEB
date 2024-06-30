@@ -70,7 +70,7 @@ const Footer = () => {
           {/* </Link> */}, thanks!
         </span>
       </div>
-      {/* <AdComponent /> */}
+      <AdComponent />
     </>
   );
 };

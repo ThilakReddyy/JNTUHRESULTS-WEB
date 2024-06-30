@@ -83,7 +83,7 @@ const Faq = () => {
                   return (
                     <section
                       key={index}
-                      className="my-[16px] rounded-[4px] border-[1px] border-solid   "
+                      className={`my-[16px] rounded-[4px] border-[1px] border-solid  ${answerVisibility[index] && " border border-black dark:border-white"} `}
                     >
                       <div className="overflow-hidden flex grid-rows-2 p-[13px] bg-[#fff] dark:bg-black rounded-[4px]">
                         <button
@@ -108,7 +108,7 @@ const Faq = () => {
                         />
                       </div>
                       <div
-                        className={`text-justify px-[13px] bg-[OEOEOE] overflow-hidden transition-max-height duration-200 ease-out text-[14px] text-[#1a1a1a] dark:text-white py-[17px] ${
+                        className={`text-justify px-[13px] dark:bg-[#181A20]  border-t border-black dark:border-white overflow-hidden transition-max-height duration-200 ease-out text-[14px] text-[#1a1a1a] dark:text-white py-[17px] ${
                           answerVisibility[index] ? "" : "hidden"
                         }`}
                       >
