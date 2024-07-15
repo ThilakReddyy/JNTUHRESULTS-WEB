@@ -131,10 +131,26 @@ export async function fetchAcademicResult(htno: string) {
 }
 
 export async function fetchAcademicallResult(htno: string) {
+  const result = await getRedisData(htno + "ALL");
+  if (result != null) {
+    console.log(result);
+    const expiryDate = new Date();
+    expiryDate.setMinutes(expiryDate.getMinutes() + 1);
+    const dataToStore = {
+      value: result,
+      expiry: expiryDate.getTime(),
+    };
+    localStorage.setItem(htno + "all", JSON.stringify(dataToStore));
+
+    return result;
+  }
+  console.log("not in redis");
+
   const url =
     "https://jntuhresults.up.railway.app/api/academicallresult?htno=" + htno;
   try {
     const response = await axios.get(url, { timeout: 7000 });
+
     console.log(response);
     if (response.status == 200 && typeof response.data === "object") {
       const expiryDate = new Date();
@@ -144,6 +160,7 @@ export async function fetchAcademicallResult(htno: string) {
         expiry: expiryDate.getTime(),
       };
       localStorage.setItem(htno + "all", JSON.stringify(dataToStore));
+
       return response.data;
     }
   } catch (error) {

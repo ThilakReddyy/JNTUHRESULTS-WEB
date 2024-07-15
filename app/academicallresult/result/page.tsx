@@ -17,7 +17,7 @@ const AcademicAllResultResult = () => {
   const details = JSON.parse(String(storageData));
 
   const { Details: resultdetails, Results: resultresults } =
-    details?.value?.data || {};
+    details?.value?.data || details?.value || {};
 
   const [renderKey] = useState(0);
   const [Details] = useState(resultdetails);
