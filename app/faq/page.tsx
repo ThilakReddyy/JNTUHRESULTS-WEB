@@ -1,5 +1,7 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { AiOutlineDownCircle, AiOutlineUpCircle } from "react-icons/ai";
 import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
 
@@ -62,7 +64,10 @@ const Faq = () => {
   const [answerVisibility, setAnswerVisibility] = useState(
     Array(faqs.length).fill(false),
   );
-
+  const clearLocalStorageAndReload = () => {
+    localStorage.clear();
+    toast.success("Cache has been cleared!!");
+  };
   return (
     <>
       <section className="pt-[75px] ">
@@ -122,6 +127,9 @@ const Faq = () => {
           </div>
         </center>
       </section>
+      <div className="text-center pb-4">
+        <Button onClick={clearLocalStorageAndReload}>Clear cache</Button>
+      </div>
       <div className="bottom-0 md:hidden w-full font-interer pt-[10px]">
         <hr />
         <center>
