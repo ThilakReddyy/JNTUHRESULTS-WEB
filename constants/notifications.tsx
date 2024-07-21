@@ -1,6 +1,34 @@
 export const NotificationList = [
   {
     Result_title:
+      "B.Tech IV Year I Semester (R18) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1795&etype=r17&type=intgrade",
+    Date: "21-JULY-2024",
+    formatted_date: "2024-07-21",
+  },
+  {
+    Result_title:
+      "B.Tech IV Year I Semester (R16) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1796&etype=r17&type=intgrade",
+    Date: "21-JULY-2024",
+    formatted_date: "2024-07-21",
+  },
+  {
+    Result_title:
+      "B.Tech IV Year I Semester (R15) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1797",
+    Date: "21-JULY-2024",
+    formatted_date: "2024-07-21",
+  },
+  {
+    Result_title:
+      "B.Tech IV Year I Semester (R13) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1798",
+    Date: " 21-JULY-2024",
+    formatted_date: "2024-07-21",
+  },
+  {
+    Result_title:
       " RC/RV B.Tech IV Year II Semester (R18) Minor degree Regular Examinations Results",
     Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1794&etype=r17&result=gradercrv&type=rcrvintgrade",
     Date: "21-JULY-2024",
