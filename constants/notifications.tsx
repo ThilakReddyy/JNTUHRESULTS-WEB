@@ -1,6 +1,34 @@
 export const NotificationList = [
   {
     Result_title:
+      " RC/RV B.Tech IV Year II Semester (R18) Minor degree Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1794&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "21-JULY-2024",
+    formatted_date: "2024-07-21",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy IV Year II Semester (R17) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=949&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "21-JULY-2024",
+    formatted_date: "2024-07-21",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy IV Year II Semester (R16) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=950&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "21-JULY-2024",
+    formatted_date: "2024-07-21",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy IV Year II Semester (R13) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=952&etype=rcrv",
+    Date: " 21-JULY-2024",
+    formatted_date: "2024-07-21",
+  },
+  {
+    Result_title:
       "B.Pharmacy IV Year II Semester (R17) Regular Examinations Results",
     Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=949&etype=r17&type=intgrade",
     Date: "28-JUN-2024",
