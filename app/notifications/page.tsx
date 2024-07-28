@@ -26,9 +26,8 @@ const Notifications = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("fetchData from locla ");
+        console.log("fetchData from local ");
         setLoading(false);
-        return;
         // const storageData = localStorage.getItem("notifications");
         //
         // if (storageData !== null) {
@@ -37,13 +36,13 @@ const Notifications = () => {
         // }
         //
         // // return;
-        // const notifications = await fetchNotifications();
-        //
-        // if (notifications !== null) {
-        //   setResults(notifications);
-        //   localStorage.setItem("notifications", JSON.stringify(notifications));
-        // }
-        // setLoading(false);
+        const notifications = await fetchNotifications();
+
+        if (notifications !== null) {
+          setResults(notifications);
+          localStorage.setItem("notifications", JSON.stringify(notifications));
+        }
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching notifications:", error);
         setLoading(false);

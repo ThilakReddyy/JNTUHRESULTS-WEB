@@ -4,7 +4,6 @@ import { rcrvdetails } from "@/constants/rcrvdetails";
 import Link from "next/link";
 import { redirect, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { MdOutlineFiberNew } from "react-icons/md";
 
 const Examcode = ({ params }: any) => {
   const [resultnew, setResultnew] = useState(false);
@@ -90,8 +89,6 @@ const Examcode = ({ params }: any) => {
           </div>
 
           <div className="border-t  border-gray-400 pt-6">
-            <ExamResults title={title} query={examcode} />
-            <div className="flex justify-center my-4 font-bold">OR</div>{" "}
             <div className="font-bold justify-center flex p-2">
               Direct Links
             </div>
@@ -123,6 +120,8 @@ const Examcode = ({ params }: any) => {
                 </tr>
               </tbody>
             </table>
+            <div className="flex justify-center my-4 font-bold">OR</div>{" "}
+            <ExamResults title={title} query={examcode} />
             <p className="text-xs mt-8">Results Published on: {date}</p>
             {rcrvdate !== null && rcrvdate !== undefined && (
               <span className="text-xs mt-2">
