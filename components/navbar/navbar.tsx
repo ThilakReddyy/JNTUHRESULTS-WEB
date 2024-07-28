@@ -89,13 +89,6 @@ const Navbar = () => {
               <MdNotificationsActive size={21} />
             </Link>
           )}
-          <Link
-            className="hidden"
-            href="https://github.com/ThilakReddyy/JNTUHRESULTS-WEB"
-            aria-label="github link"
-          >
-            <AiOutlineGithub size={23} />
-          </Link>
         </span>
       </div>
     </nav>
