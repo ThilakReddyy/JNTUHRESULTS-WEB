@@ -13,10 +13,7 @@ const ResultDetails = ({ Details }: ResultDetailsProps) => {
         <tbody>
           <tr className="w-max bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954]">
             {Object.keys(Details).map((value: string, index: number) => (
-              <th
-                key={index}
-                className={`dark:border-white  ${index == 0 && "rounded-tl"} ${index == 3 && "rounded-tr"}`}
-              >
+              <th key={index} className=" dark:border-white">
                 {value}
               </th>
             ))}
@@ -47,10 +44,10 @@ const ResultDetails = ({ Details }: ResultDetailsProps) => {
             </th>
           </tr>
           <tr className="">
-            <th key="college_name" className={`dark:border-white  rounded-bl`}>
+            <th key="college_name" className=" dark:border-white">
               {collegedata[Details["COLLEGE_CODE"]]}
             </th>
-            <th key="branch_detail" className={`dark:border-white  rounded-br`}>
+            <th key="branch_detail" className=" dark:border-white">
               {branchDetails[Details["Roll_No"].substring(6, 8)]}
             </th>
           </tr>
