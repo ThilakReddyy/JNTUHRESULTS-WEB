@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import NotificationForm from "@/components/notifications/notificationForm";
 import NotificationResults from "@/components/notifications/notificationResults";
 import { NotificationList } from "@/constants/notifications";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Notifications = () => {
   const [loading, setLoading] = useState(true);
@@ -71,24 +72,38 @@ const Notifications = () => {
   return loading ? (
     <Loading />
   ) : (
-    <div className="m-2 text-[30%] sm:text-[45%]  md:text-[60%] lg:text-[100%]">
-      <div className="text-center font-bold my-5 text-xs lg:text-2xl">
-        NOTIFICATIONS
-      </div>
-      <NotificationForm
-        handleSearch={handleSearch}
-        handleYearChange={handleYearChange}
-        handleDegreeChange={handleDegreeChange}
-        handleRegulationChange={handleRegulationChange}
-      />
-      <NotificationResults
-        results={results}
-        searchQuery={searchQuery}
-        selectedDegree={selectedDegree}
-        selectedRegulation={selectedRegulation}
-        selectedYear={selectedYear}
-      />
-    </div>
+    <Tabs defaultValue="resultnotifications" className="m-2">
+      <TabsList className="w-full">
+        <TabsTrigger value="resultnotifications" className="w-full my-5 ">
+          Result Updates
+        </TabsTrigger>
+        <TabsTrigger value="examnotifications" className="w-full">
+          General Updates
+        </TabsTrigger>
+      </TabsList>
+      <TabsContent value="resultnotifications">
+        <div className="m-2 text-[30%] sm:text-[45%]  md:text-[60%] lg:text-[100%]">
+          <NotificationForm
+            handleSearch={handleSearch}
+            handleYearChange={handleYearChange}
+            handleDegreeChange={handleDegreeChange}
+            handleRegulationChange={handleRegulationChange}
+          />
+          <NotificationResults
+            results={results}
+            searchQuery={searchQuery}
+            selectedDegree={selectedDegree}
+            selectedRegulation={selectedRegulation}
+            selectedYear={selectedYear}
+          />
+        </div>
+      </TabsContent>
+      <TabsContent value="examnotifications">
+        <div className="text-center flex justify-center items-center h-[500px] font-bold my-5 text-xs lg:text-2xl">
+          Coming Soon!!
+        </div>
+      </TabsContent>
+    </Tabs>
   );
 };
 
