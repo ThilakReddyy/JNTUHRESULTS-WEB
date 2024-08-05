@@ -3,12 +3,14 @@ import Loading from "../loading/loading";
 
 interface GoogleDocViewerProps {
   url: string;
+  splNote: string;
   width?: string;
   height?: string;
 }
 
 const GoogleDocViewer: React.FC<GoogleDocViewerProps> = ({
   url,
+  splNote,
   width = "100%",
   height = "580px",
 }) => {
@@ -24,7 +26,7 @@ const GoogleDocViewer: React.FC<GoogleDocViewerProps> = ({
   }, []);
   return (
     <>
-      {isLoading && <Loading splNote={true} />}
+      {isLoading && <Loading splNote={splNote} />}
       <iframe
         id="doc-iframe"
         src={src}

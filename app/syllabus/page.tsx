@@ -221,7 +221,11 @@ const Syllabus = () => {
                   </DialogTrigger>
                   <DialogContent className="w-[95%] my-2 bg-transparent pt-8 pb-1  px-1">
                     <div className="mt-4">
-                      {link === "" ? <></> : <GoogleDocViewer url={link} />}
+                      {link === "" ? (
+                        <></>
+                      ) : (
+                        <GoogleDocViewer url={link} splNote={"Syllabus"} />
+                      )}
                     </div>
                   </DialogContent>
                 </Dialog>

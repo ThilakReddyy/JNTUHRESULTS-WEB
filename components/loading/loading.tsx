@@ -1,6 +1,6 @@
 import { useTheme } from "next-themes";
 import { HashLoader } from "react-spinners";
-const Loading = ({ splNote = false }) => {
+const Loading = ({ splNote = "Result" }) => {
   const { theme } = useTheme();
   const color = theme == "light" ? "#000000" : "#ffffff";
   return (
@@ -10,15 +10,9 @@ const Loading = ({ splNote = false }) => {
           <span className="hidden lg:block">
             Please wait a moment while we retrieve the results for you...
           </span>
-          {splNote ? (
-            <span className="block lg:hidden">
-              Kindly wait!! syllabus is loading...
-            </span>
-          ) : (
-            <span className="block lg:hidden">
-              Kindly wait!! Results are loading...
-            </span>
-          )}
+          <span className="block lg:hidden">
+            Kindly wait!! {splNote} is loading...
+          </span>
         </div>
       </div>
       <div className="flex relative  justify-center m-10">
