@@ -1,33 +1,78 @@
-export const academicCalendars = {
-  "2023-2024": {
-    btech: {
-      "1": {
-        "Academic Calender of B.Tech.I YEAR I & II SEMESTERS":
-          "https://jntuh.ac.in/uploads/bulletins/AcademicCalenderofB.Tech.IYEARI_IISEMESTERS.pdf",
-      },
-      "2": {
-        "Academic Calender of B.Tech.II YEAR I & II SEMESTERS":
-          "https://jntuh.ac.in/uploads/bulletins/B.TechIIYEARIIISEMESTERS.pdf",
-      },
-      "3": {
-        "Academic Calender of B.Tech.III YEAR I & II SEMESTERS":
-          "https://jntuh.ac.in/uploads/bulletins/B.Tech.B.Pharm.IIIYEARIIISEMESTERS.pdf",
-      },
-      "4": {
-        "Revised Academic Calender of B.Tech.IV YEAR I & II SEMESTERS":
-          "https://jntuh.ac.in/uploads/calendars/Revised_B._Tech_.B_._Pharm_._IV_YEAR_I_II_Semesters_Academic_Calendar_for_2023-24_.pdf",
-      },
-    },
-  },
+// Define the type for a single academic calendar entry
+export interface CalendarEntry {
+  [key: string]: string;
+}
+
+// Define the type for the year-wise academic calendar
+export interface AcademicYearDetails {
+  [key: string]: CalendarEntry;
+}
+
+// Define the type for the degree-wise academic calendar
+export interface DegreeDetails {
+  [key: string]: AcademicYearDetails;
+}
+
+// Define the type for the overall academic calendar
+export interface AcademicCalendars {
+  [key: string]: DegreeDetails;
+}
+
+// Example usage with the provided data
+export const academicCalendars: AcademicCalendars = {
   "2024-2025": {
-    btech: {
-      "1st": {},
+    "B.Tech": {
+      // "1st": {},
       "2nd": {
         "Academic Calender of B.Tech.II YEAR I & II SEMESTERS":
           "https://jntuh.ac.in/uploads/calendars/20240802094745683.pdf",
       },
-      "3rd": {},
-      "4th": {},
+      // "3rd": {},
+      // "4th": {},
+    },
+    "B.Pharmacy": {
+      // "1st": {},
+      // "2nd": {},
+      // "3rd": {},
+      // "4th": {},
+    },
+  },
+  "2023-2024": {
+    "B.Tech": {
+      "1st": {
+        "Academic Calender of B.Tech.I YEAR I & II SEMESTERS":
+          "https://jntuh.ac.in/uploads/bulletins/AcademicCalenderofB.Tech.IYEARI_IISEMESTERS.pdf",
+      },
+      "2nd": {
+        "Academic Calender of B.Tech.II YEAR I & II SEMESTERS":
+          "https://jntuh.ac.in/uploads/bulletins/B.TechIIYEARIIISEMESTERS.pdf",
+      },
+      "3rd": {
+        "Academic Calender of B.Tech.III YEAR I & II SEMESTERS":
+          "https://jntuh.ac.in/uploads/bulletins/B.Tech.B.Pharm.IIIYEARIIISEMESTERS.pdf",
+      },
+      "4th": {
+        "Revised Academic Calender of B.Tech.IV YEAR I & II SEMESTERS":
+          "https://jntuh.ac.in/uploads/calendars/Revised_B._Tech_.B_._Pharm_._IV_YEAR_I_II_Semesters_Academic_Calendar_for_2023-24_.pdf",
+      },
+    },
+    "B.Pharmacy": {
+      "1st": {
+        "Academic Calender of B. Pharm. I YEAR I & II SEMESTERS":
+          "https://jntuh.ac.in/uploads/bulletins/B.Pharm.IYEARIIISEMESTERS.pdf",
+      },
+      "2nd": {
+        "Academic Calender of B.Pharm. II YEAR I & II SEMESTERS":
+          "https://jntuh.ac.in/uploads/bulletins/B.TechIIYEARIIISEMESTERS.pdf",
+      },
+      "3rd": {
+        "Academic Calender of B.Pharm. III YEAR I & II SEMESTERS":
+          "https://jntuh.ac.in/uploads/bulletins/B.Tech.B.Pharm.IIIYEARIIISEMESTERS.pdf",
+      },
+      "4th": {
+        "Revised Academic Calender of B.Pharm. IV YEAR I & II SEMESTERS":
+          "https://jntuh.ac.in/uploads/calendars/Revised_B._Tech_.B_._Pharm_._IV_YEAR_I_II_Semesters_Academic_Calendar_for_2023-24_.pdf",
+      },
     },
   },
 };
