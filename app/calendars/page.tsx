@@ -160,7 +160,7 @@ const Calendars = () => {
                   Open
                 </DialogTrigger>
                 <DialogContent className="w-[95%] my-2 bg-transparent pt-8 pb-1 px-1">
-                  {link && <GoogleDocViewer url={link} />}
+                  {link && <GoogleDocViewer url={link} splNote={"calendar"} />}
                 </DialogContent>
               </Dialog>
               <button
