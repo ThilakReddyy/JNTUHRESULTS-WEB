@@ -22,12 +22,18 @@ export interface AcademicCalendars {
 export const academicCalendars: AcademicCalendars = {
   "2024-2025": {
     "B.Tech": {
-      // "1st": {},
+      "1st": {
+        "Academic Calender of B.Tech. I YEAR I & II SEMESTERS":
+          "https://jntuh.ac.in/uploads/calendars/B.Tech_._I_YEAR_I_II_SEMESTERS_.pdf",
+      },
       "2nd": {
         "Academic Calender of B.Tech.II YEAR I & II SEMESTERS":
           "https://jntuh.ac.in/uploads/calendars/20240802094745683.pdf",
       },
-      // "3rd": {},
+      "3rd": {
+        "Academic Calender of B.Tech.II YEAR I & II SEMESTERS":
+          "https://jntuh.ac.in/uploads/calendars/B._Tech_._III_YEAR_I_II_SEMESTERS_.pdf",
+      },
       // "4th": {},
     },
     "B.Pharmacy": {
