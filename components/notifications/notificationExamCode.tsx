@@ -9,6 +9,7 @@ import {
 } from "next/navigation";
 import { useEffect, useState } from "react";
 import ExamResults from "../examresults/examresults";
+import { romanToNumeral } from "@/constants/romantoNumeral";
 
 const NotificationExamCode = ({ params }: { params: any }) => {
   const searchParams: ReadonlyURLSearchParams = useSearchParams();
@@ -27,7 +28,14 @@ const NotificationExamCode = ({ params }: { params: any }) => {
   const rcrv = title.includes("RC");
 
   useEffect(() => {
-    document.title = "JNTUH " + title;
+    let documentTitle = title;
+    for (let key in romanToNumeral) {
+      const value = romanToNumeral[key];
+      const regex = new RegExp(key, "g");
+      documentTitle = documentTitle.replace(regex, value.toString());
+    }
+    document.title = "JNTUH " + documentTitle;
+
     if (formatteddate !== null) {
       var rcrvdate = rcrvdetails[formatteddate as keyof typeof rcrvdetails];
       if (rcrvdate !== undefined) {
