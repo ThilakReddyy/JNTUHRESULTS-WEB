@@ -27,7 +27,7 @@ const NotificationExamCode = ({ params }: { params: any }) => {
   const rcrv = title.includes("RC");
 
   useEffect(() => {
-    document.title = title + " | JNTUH Vercel";
+    document.title = "JNTUH " + title;
     if (formatteddate !== null) {
       var rcrvdate = rcrvdetails[formatteddate as keyof typeof rcrvdetails];
       if (rcrvdate !== undefined) {
