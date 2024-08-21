@@ -1,6 +1,96 @@
 export const NotificationList = [
   {
     Result_title:
+      " RC/RV B.Tech IV Year I Semester (R18) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=btech&examCode=1795&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "21-AUG-2024",
+    formatted_date: "2024-08-21",
+  },
+  {
+    Result_title:
+      " RC/RV B.Tech IV Year I Semester (R16) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=btech&examCode=1796&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "21-AUG-2024",
+    formatted_date: "2024-08-21",
+  },
+  {
+    Result_title:
+      "RC/RV B.Tech IV Year I Semester (R15) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=btech&examCode=1797&etype=rcrv",
+    Date: "21-AUG-2024",
+    formatted_date: "2024-08-21",
+  },
+  {
+    Result_title:
+      "RC/RV B.Tech IV Year I Semester (R13) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=btech&examCode=1798&etype=rcrv",
+    Date: "21-AUG-2024",
+    formatted_date: "2024-08-21",
+  },
+  {
+    Result_title:
+      "B.Tech I Year II Semester (R22) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=btech&examCode=1800&etype=r17&type=intgrade",
+    Date: "21-AUG-2024",
+    formatted_date: "2024-08-21",
+  },
+  {
+    Result_title:
+      "B.Tech I Year II Semester (R18) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=btech&examCode=1801&etype=r17&type=intgrade",
+    Date: "21-AUG-2024",
+    formatted_date: "2024-08-21",
+  },
+  {
+    Result_title:
+      "B.Tech I Year II Semester (R16) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=btech&examCode=1802&etype=r17&type=intgrade",
+    Date: "21-AUG-2024",
+    formatted_date: "2024-08-21",
+  },
+  {
+    Result_title:
+      "B.Tech I Year I Semester (R22) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=btech&examCode=1803&etype=r17&type=intgrade",
+    Date: "21-AUG-2024",
+    formatted_date: "2024-08-21",
+  },
+  {
+    Result_title:
+      "B.Tech I Year I Semester (R18) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=btech&examCode=1804&etype=r17&type=intgrade",
+    Date: "21-AUG-2024",
+    formatted_date: "2024-08-21",
+  },
+  {
+    Result_title:
+      "B.Tech I Year I Semester (R16) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=btech&examCode=1805&etype=r17&type=intgrade",
+    Date: "21-AUG-2024",
+    formatted_date: "2024-08-21",
+  },
+  {
+    Result_title: "B.Tech I Year (R15) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=btech&examCode=1806",
+    Date: "21-AUG-2024",
+    formatted_date: "2024-08-21",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy IV Year I Semester (R17) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=bpharmacy&examCode=953&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "21-AUG-2024",
+    formatted_date: "2024-08-21",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy IV Year I Semester (R13) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=bpharmacy&examCode=956&etype=rcrv",
+    Date: " 21-AUG-2024",
+    formatted_date: "2024-08-21",
+  },
+  {
+    Result_title:
       "B.Tech IV Year I Semester (R18) Supplementary Examinations Results",
     Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1795&etype=r17&type=intgrade",
     Date: "21-JULY-2024",
