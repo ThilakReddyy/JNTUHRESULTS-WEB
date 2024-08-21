@@ -56,7 +56,7 @@ const AcademicAllResultResult = () => {
                 <table className="dark:border-white w-[100%] rounded-t">
                   <tbody>
                     <tr>
-                      <th className="bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954] dark:border-white">
+                      <th className="bg-gray-200 md:bg-gray-300  dark:border-white">
                         {value} Results
                       </th>
                     </tr>

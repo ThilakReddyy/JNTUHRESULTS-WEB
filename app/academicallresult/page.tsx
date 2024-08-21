@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  fetchAcademicResult,
   fetchAcademicallResult,
   getLocalStoragedata,
 } from "@/components/api/fetchAcademicResult";

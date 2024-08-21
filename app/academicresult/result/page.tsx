@@ -121,7 +121,7 @@ const AcademicResultResult = () => {
                       </tr>
                     </tbody>
                   </table>
-                  <table className="dark:border-white dark:bg-gray-900">
+                  <table className="dark:border-white ">
                     <tbody>
                       <tr className="w-max bg-gray-200 md:bg-gray-300 dark:border-white dark:bg-[#0b3954]">
                         <th className="dark:border-white px-1">SUBJECT_CODE</th>
