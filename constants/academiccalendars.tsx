@@ -80,5 +80,11 @@ export const academicCalendars: AcademicCalendars = {
           "https://jntuh.ac.in/uploads/calendars/Revised_B._Tech_.B_._Pharm_._IV_YEAR_I_II_Semesters_Academic_Calendar_for_2023-24_.pdf",
       },
     },
+    "M. Tech": {
+      "1st": {
+        "Academic Calender of M. Tech. I YEAR I & II SEMESTERS":
+          "https://jntuh.ac.in/uploads/calendars/M._Tech_._I_YEAR_I_II_SEMESTERS_.pdf",
+      },
+    },
   },
 };
