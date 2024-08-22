@@ -23,7 +23,7 @@ const Navbar = () => {
         navbar ? "block" : "hidden"
       }`}
     >
-      <div className="justify-start flex items-center lg:hidden">
+      <div className="justify-start flex items-center lg:hidden cursor-pointer">
         <button
           onClick={toggleSidebar}
           className="curso-pointer"
@@ -33,7 +33,10 @@ const Navbar = () => {
           <HiOutlineBars3BottomLeft size={26} />
         </button>
       </div>
-      <div className="flex justify-center lg:justify-start items-center">
+      <Link
+        className="flex justify-center lg:justify-start items-center cursor-pointer"
+        href="/"
+      >
         <div className="md:hidden">
           <span className="dark:hidden">
             <Image
@@ -74,7 +77,7 @@ const Navbar = () => {
             />
           </span>
         </div>
-      </div>
+      </Link>
       <div className="flex justify-end items-center">
         <span className="flex gap-4 items-center">
           <span className="hidden items-center md:block">
