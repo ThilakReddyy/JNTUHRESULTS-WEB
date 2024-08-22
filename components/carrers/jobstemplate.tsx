@@ -39,11 +39,11 @@ const JobsTemplate = ({
                 job === selectedjob ? "lg:border-blue-500" : ""
               }`}
             >
-              <div className="flex">
-                <div className="justify-start  font-medium max-w-[90%] lg:max-w-[70%]">
+              <div className="flex w-full">
+                <div className="justify-start  flex flex-1 font-medium  ">
                   {job.title}
                 </div>
-                <div className="lg:w-[100%] min-w-[10%] flex justify-end ">
+                <div className=" min-w-[10%] flex  justify-end ">
                   <svg
                     onClick={() => {}}
                     xmlns="http://www.w3.org/2000/svg"
