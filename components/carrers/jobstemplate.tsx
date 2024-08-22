@@ -111,7 +111,7 @@ const JobsTemplate = ({
                 </div>
               </div>
               <div className="mt-4 text-xs flex">
-                <Button className="text-xs">
+                <Button className="text-xs w-[100px]">
                   <Link href={job.link} target="_blank">
                     Apply
                   </Link>

@@ -79,7 +79,7 @@ const JobOverview = ({ job }: jobprops | any) => {
         </div>
         <div className="border-t-2 border-gray-500 pr-4 pt-2 flex justify-end w-full">
           <Link href={job.link} target="_blank">
-            <Button className="w-[150px]">Apply</Button>
+            <Button className="w-[180px]">Apply</Button>
           </Link>
         </div>
       </div>
