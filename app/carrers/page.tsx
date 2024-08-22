@@ -37,17 +37,17 @@ const Carrers = () => {
       <div className="flex justify-center mt-5 items-center">
         <Tabs defaultValue="internships" className="w-full px-2">
           <TabsList className="flex justify-center">
-            <TabsTrigger value="jobs" className="w-full">
-              JOBS
-            </TabsTrigger>
             <TabsTrigger value="internships" className="w-full">
               Internship
+            </TabsTrigger>
+            <TabsTrigger value="jobs" className="w-full">
+              JOBS
             </TabsTrigger>
           </TabsList>
 
           <div className="dark:bg-gray-800  bg-gray-50  p-2 my-2 flex justify-center w-full lg:hidden border-gray-400 ">
             <div className="justify-center flex text-center border-red-400 py-2 rounded border-2 w-[90%] text-red-400">
-              This feature is currently under development.
+              This feature might be released in a month.
             </div>
           </div>
           <TabsContent value="jobs" className="lg:flex">
