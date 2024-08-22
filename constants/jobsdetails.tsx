@@ -59,7 +59,7 @@ export const jobDetails: JobDetailsProps = {
       ],
       minqualifications: [],
       preferredqualifications: [],
-      link: "https://www.google.com/about/careers/applications/jobs/results/132262270928331462-software-engineer-fullstack-core",
+      link: "https://university-uber.icims.com/jobs/130707/2024-software-engineer-i%3a-india/job",
     },
   ],
   internships: [
