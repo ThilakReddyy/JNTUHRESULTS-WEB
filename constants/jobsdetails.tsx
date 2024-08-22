@@ -590,7 +590,7 @@ export const jobDetails: JobDetailsProps = {
   internships: [
     {
       job_id: "85255437783311046",
-      title: "Software Engineering Intern, Summer 2025",
+      title: "Student Researcher, PhD, 2024",
       company: "Google",
       experience: 0,
       experience_word: "Intern & Apprentice",
