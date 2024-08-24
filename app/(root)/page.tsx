@@ -18,7 +18,7 @@ export default function Home() {
           <Title />
         </Link>
       </div>
-      <div className="z-[20] hidden lg:flex justify-center items-center pt-10 font-normal text-2xl lg:text-6xl mb-5">
+      <div className="z-[20] hidden lg:flex justify-center items-center pt-10 font-normal text-xl xl:text-4xl 2xl:text-6xl  mb-5">
         Welcome to&nbsp;
         <Link
           href="/"
