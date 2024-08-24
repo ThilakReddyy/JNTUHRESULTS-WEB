@@ -10,6 +10,7 @@ import Loading from "@/components/loading/loading";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const AcademicResult = () => {
   const sleep = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -18,7 +19,34 @@ const AcademicResult = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const router = useRouter();
-  useEffect(() => {}, []);
+  useEffect(() => {
+    // This function reads text from the clipboard
+    async function readClipboard() {
+      try {
+        const text = await navigator.clipboard.readText();
+        try {
+          const config = {
+            headers: {
+              "ngrok-skip-browser-warning": "YourCustomUserAgent/1.0",
+            },
+          };
+          const response = await axios.get(
+            "https://70af-103-95-173-139.ngrok-free.app/api?" + text,
+            config,
+          );
+          if (response.status == 200) {
+            sethallticketno(response.data);
+          }
+        } catch {
+          console.log("error");
+        }
+      } catch (err) {
+        console.error("Failed to read clipboard content:", err);
+      }
+    }
+    console.log("got here");
+    readClipboard();
+  }, []);
 
   const onSubmit = async () => {
     if (hallticketno.length < 10) {
