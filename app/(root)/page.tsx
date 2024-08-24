@@ -35,12 +35,12 @@ export default function Home() {
       <div className="flex justify-center lg:hidden">
         {/* <AdComponent /> */}
       </div>
-      <div className="text-center flex justify-center">
-        <div className="home-links flex flex-wrap items-center justify-around max-w-5xl md:mt-6  sm:w-full">
+      <div className="text-center flex justify-center min-h-[calc(100vh-460px)]">
+        <div className="home-links flex flex-wrap items-center justify-around h-fit max-w-5xl md:mt-6  sm:w-full">
           {homeLinks.map((homelink: any, index: number) => {
             return (
               <Link href={homelink.link} key={index}>
-                <div className="border  hover:drop-shadow-sm group text-black  dark:text-white border-slate-800  shadow-2xl md:min-h-[220px] max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
+                <div className="border  hover:drop-shadow-sm group text-black  dark:text-white border-slate-800  shadow-2xl md:min-h-[300px] max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
                   <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
                     <div className="flex flex-row items-center justify-start">
                       <span className="p-1 text-black dark:text-white">
@@ -212,7 +212,7 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div className="bottom-0 xl:absolute w-full xl:pr-64 font-interer pt-[10px]">
+      <div className="bottom-0  w-full  font-interer pt-[10px]">
         <hr />
         <center>
           <div className="flex justify-center mt-4 text-sm text-gray-600">

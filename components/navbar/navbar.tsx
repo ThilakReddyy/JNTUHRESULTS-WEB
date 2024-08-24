@@ -85,11 +85,11 @@ const Navbar = () => {
           </span>
           {path === "/notifications" ? (
             <Link href="/" aria-label="home link">
-              <MdOutlineNotificationsActive size={21} />
+              <MdOutlineNotificationsActive size={24} />
             </Link>
           ) : (
             <Link href="/notifications" aria-label="notifications link">
-              <MdNotificationsActive size={21} />
+              <MdNotificationsActive size={24} />
             </Link>
           )}
         </span>
