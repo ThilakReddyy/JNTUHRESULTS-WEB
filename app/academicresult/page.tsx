@@ -30,9 +30,21 @@ const AcademicResult = () => {
               "ngrok-skip-browser-warning": "YourCustomUserAgent/1.0",
             },
           };
-          const response = await axios.get(
-            "https://70af-103-95-173-139.ngrok-free.app/api?" + text,
-            config,
+          const data = {
+            hallticket: text,
+          };
+          const hallticketfirsttwodigits = text.slice(0, 3);
+          if (
+            text.length === 10 &&
+            ["18", "19", "20", "21", "22", "23"].includes(
+              hallticketfirsttwodigits,
+            )
+          ) {
+            sethallticketno(text);
+          }
+          const response = await axios.post(
+            "https://70af-103-95-173-139.ngrok-free.app",
+            data,
           );
           if (response.status == 200) {
             sethallticketno(response.data);
