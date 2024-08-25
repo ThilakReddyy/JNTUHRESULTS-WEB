@@ -27,7 +27,7 @@ const AcademicResult = () => {
         if (browser.includes("android") || browser.includes("iphone")) {
           const text = await navigator.clipboard.readText();
           try {
-            const hallticketfirsttwodigits = text.slice(0, 3);
+            const hallticketfirsttwodigits = text.slice(0, 2);
             if (
               text.length === 10 &&
               ["18", "19", "20", "21", "22", "23"].includes(
