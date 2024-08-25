@@ -41,7 +41,7 @@ const AcademicResult = () => {
             const queryOpts = {
               name: "clipboard-read",
               allowWithoutGesture: false,
-            };
+            } as any;
             const permissionStatus =
               await navigator.permissions.query(queryOpts);
 
