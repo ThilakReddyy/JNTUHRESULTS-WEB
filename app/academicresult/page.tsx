@@ -19,46 +19,7 @@ const AcademicResult = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const router = useRouter();
-  useEffect(() => {
-    // This function reads text from the clipboard
-    async function readClipboard() {
-      try {
-        const text = await navigator.clipboard.readText();
-        try {
-          const config = {
-            headers: {
-              "ngrok-skip-browser-warning": "YourCustomUserAgent/1.0",
-            },
-          };
-          const data = {
-            hallticket: text,
-          };
-          const hallticketfirsttwodigits = text.slice(0, 3);
-          if (
-            text.length === 10 &&
-            ["18", "19", "20", "21", "22", "23"].includes(
-              hallticketfirsttwodigits,
-            )
-          ) {
-            sethallticketno(text);
-          }
-          const response = await axios.post(
-            "https://70af-103-95-173-139.ngrok-free.app",
-            data,
-          );
-          if (response.status == 200) {
-            sethallticketno(response.data);
-          }
-        } catch {
-          console.log("error");
-        }
-      } catch (err) {
-        console.error("Failed to read clipboard content:", err);
-      }
-    }
-    console.log("got here");
-    readClipboard();
-  }, []);
+  useEffect(() => {}, []);
 
   const onSubmit = async () => {
     if (hallticketno.length < 10) {
