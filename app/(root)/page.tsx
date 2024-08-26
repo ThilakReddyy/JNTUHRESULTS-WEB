@@ -40,7 +40,7 @@ export default function Home() {
           {homeLinks.map((homelink: any, index: number) => {
             return (
               <Link href={homelink.link} key={index}>
-                <div className="border  hover:drop-shadow-sm group text-black  dark:text-white border-slate-800  shadow-2xl md:min-h-[300px] max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
+                <div className="border  hover:drop-shadow-sm group text-black  dark:text-white border-slate-800  shadow-2xl md:min-h-[250px] max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
                   <h3 className="group-hover:text-black text-lg sm:text-2xl font-bold">
                     <div className="flex flex-row items-center justify-start">
                       <span className="p-1 text-black dark:text-white">
@@ -212,7 +212,7 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div className="bottom-0  w-full  font-interer pt-[10px]">
+      <div className="bottom-0  w-full lg:w-[calc(100vw-16rem)] lg:absolute  font-interer pt-[10px]">
         <hr />
         <center>
           <div className="flex justify-center mt-4 text-sm text-gray-600">
