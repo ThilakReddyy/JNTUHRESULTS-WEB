@@ -4,6 +4,9 @@ import { useCallback, useEffect, useState } from "react";
 import CareerFilters from "@/components/carrers/carrerfilters";
 import axios from "axios";
 import Jobs from "@/components/carrers/jobs";
+import { Button } from "@/components/ui/button";
+import { Building2Icon, MapPinIcon, Share2Icon } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 interface JobDetail {
   job_id: string;
   title: string;
@@ -27,6 +30,7 @@ const Carrers = () => {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [totalPages, setTotalPages] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   function shareUrl(link: any, title: string) {
     if (!navigator.share) return;
 
@@ -55,6 +59,7 @@ const Carrers = () => {
   const getJobDetails = useCallback(
     async (pageIncrement: number = 0) => {
       try {
+        if (page <= 1) setIsLoading(true);
         var pagination = "page=" + page + "&pageSize=" + pageSize;
         var query = "";
         if (form.job == "intern") {
@@ -93,6 +98,7 @@ const Carrers = () => {
       } catch (err) {
         console.log("Error occured while fetching jobs");
       }
+      setIsLoading(false);
     },
     [form, page, pageSize],
   );
@@ -117,11 +123,49 @@ const Carrers = () => {
 
       <div className="flex  flex-col   items-center lg:w-[calc(100vw-272px)]  gap-2 m-2">
         <CareerFilters form={form} setForm={setForme} getJobs={getJobDetails} />
-        <Jobs
-          jobDetails={jobs}
-          incrementPage={incrementPage}
-          canIncrement={page < totalPages}
-        />
+
+        {isLoading ? (
+          <>
+            <div className="w-full flex gap-2 lg:mr-2">
+              <div className="overflow-y-auto dark:bg-gray-800 rounded bg-gray-50   p-2 w-full lg:max-w-[420px] border-gray-400 h-[83vh] flex">
+                <div className="w-full justify-start">
+                  {Array.from({ length: 10 }, (_, index) => (
+                    <div
+                      key={index}
+                      className="rounded md:cursor-pointer mb-4 bg-white dark:bg-gray-900 border border-[#dadce0] p-4 gap-6 flex flex-col"
+                    >
+                      <div className="flex text-sm justify-between font-medium">
+                        <Skeleton className="h-6 w-[250px]" />
+                        <div>
+                          <Skeleton className="h-6 w-[20px]" />
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-10 mr-4">
+                        <div className="flex gap-2 text-xs font-normal justify-center">
+                          <Skeleton className="h-6 w-[20px]" />
+                          <Skeleton className="h-6 w-[100px]" />
+                        </div>
+                        <div className="flex gap-1 text-xs font-normal justify-center">
+                          <Skeleton className="h-6 w-[20px]" />
+                          <Skeleton className="h-6 w-[100px]" />
+                        </div>
+                      </div>
+                      <div className="text-xs flex">
+                        <Skeleton className="w-[120px] h-[35px]" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          <Jobs
+            jobDetails={jobs}
+            incrementPage={incrementPage}
+            canIncrement={page < totalPages}
+          />
+        )}
       </div>
     </div>
   );
