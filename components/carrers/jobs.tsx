@@ -52,7 +52,7 @@ const Jobs: React.FC<JobsProps> = ({ jobDetails, incrementPage }) => {
 
   return (
     <div className="w-full flex gap-2">
-      <div className="overflow-y-auto dark:bg-gray-800 rounded bg-gray-50   p-2 w-full lg:max-w-[420px] border-gray-400 h-[77vh] flex">
+      <div className="overflow-y-auto dark:bg-gray-800 rounded bg-gray-50   p-2 w-full lg:max-w-[420px] border-gray-400 h-[84vh] flex">
         <div className="w-full justify-start">
           {jobDetails.map((jobDetail) => (
             <div
@@ -253,7 +253,7 @@ const Jobs: React.FC<JobsProps> = ({ jobDetails, incrementPage }) => {
       </div>
 
       <div className="w-full hidden lg:block">
-        <div className="hidden lg:block w-full  overflow-y-auto h-[77.5vh]">
+        <div className="hidden lg:block w-full  overflow-y-auto h-[84.5vh]  rounded-b">
           <div className="pb-2 rounded-b border-t-4 border-blue-500 dark:bg-gray-900  w-full bg-gray-100 ">
             <div className="m-8 flex">
               <div className="border-gray-500 dark:bg-gray-900 border  h-fit  bg-white p-4 w-fit rounded">
