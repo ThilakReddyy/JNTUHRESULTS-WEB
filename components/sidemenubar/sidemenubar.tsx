@@ -23,7 +23,7 @@ const SideMenubar = () => {
   return (
     <nav
       className={` h-full flex flex-col w-full lg:w-64 fixed inset-y-0 bg-white dark:bg-[#181A20]  pt-16 transition-all duration-150 ease-in ${
-        sidebar ? "left-0 shadow-xl" : "-left-full"
+        sidebar ? "left-0 " : "-left-full"
       } lg:left-0 z-10`}
     >
       <div className="overflow-y-auto h-full flex flex-col z-[99]  lg:border-r">
