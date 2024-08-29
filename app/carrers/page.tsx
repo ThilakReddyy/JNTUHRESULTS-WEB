@@ -1,14 +1,32 @@
 "use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Drawer } from "@/components/ui/drawer";
-import { jobDetails } from "@/constants/jobsdetails";
-import JobsTemplate from "@/components/carrers/jobstemplate";
-import { useState } from "react";
-import JobOverview from "@/components/carrers/joboverview";
-import JobsmdOverview from "@/components/carrers/jobsmdoverview";
+import { useCallback, useEffect, useState } from "react";
+import CareerFilters from "@/components/carrers/carrerfilters";
+import axios from "axios";
+import Jobs from "@/components/carrers/jobs";
+interface JobDetail {
+  job_id: string;
+  title: string;
+  company: string;
+  experience: number;
+  experience_word: string;
+  remote: string;
+  posted_date: string; // ISO 8601 date string
+  link: string;
+  expired: boolean;
+  locations: string[];
+  abouts: string[];
+  qualifications: string[];
+  responsibilities: string[];
+  preferredqualifications: string[];
+  minqualifications: string[];
+}
 
 const Carrers = () => {
+  const [jobs, setJobs] = useState<JobDetail[]>([]);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [totalPages, setTotalPages] = useState(0);
   function shareUrl(link: any, title: string) {
     if (!navigator.share) return;
 
@@ -23,58 +41,89 @@ const Carrers = () => {
       .then(() => console.log("Successfully shared!"))
       .catch((error) => console.log("Error sharing:", error));
   }
-  const internships = jobDetails["internships"];
-  const jobs = jobDetails["jobs"];
-  const [selectedjob, setSelectedJob] = useState(jobs[0]);
-  const [selectedInternship, setSelectedInternship] = useState(internships[0]);
+
+  const [form, setForme] = useState<{ [key: string]: string }>({
+    job: "fulltime",
+    type: "",
+    experience: "0",
+    location: "India",
+    company: "",
+    status: "",
+    dateposted: "",
+  });
+
+  const getJobDetails = useCallback(
+    async (pageIncrement: number = 0) => {
+      try {
+        var pagination = "page=" + page + "&pageSize=" + pageSize;
+        var query = "";
+        if (form.job == "intern") {
+          query += "&experience_word=intern";
+        }
+        if (form.type !== "") {
+          if (form.type == "remote") {
+            query += "&remote=T";
+          } else {
+            query += "&remote=F";
+          }
+        }
+        if (form.experience !== "") {
+          query += "&experience=" + form.experience;
+        }
+        if (form.location !== "") {
+          query += "&location_name=" + form.location;
+        }
+        if (form.status != "") {
+          query += "&expired=" + form.status;
+        }
+        if (form.company !== "") {
+          query += "&company=" + form.company;
+        }
+        const url =
+          "https://jobss.up.railway.app/job_opportunities?" +
+          pagination +
+          query;
+        const response = await axios.get(url);
+        if (response.status === 200) {
+          setTotalPages(response.data.totalPages);
+          setPage(response.data.currentPage);
+          setPageSize(response.data.pageSize);
+          if (page > 1) {
+            setJobs((jobs) => [...jobs, ...response.data.jobs]);
+          } else {
+            setJobs(response.data.jobs);
+          }
+        }
+      } catch (err) {
+        console.log("Error occured while fetching jobs");
+      }
+    },
+    [form, page, pageSize],
+  );
+
+  useEffect(() => {
+    getJobDetails();
+  }, [page, getJobDetails]);
+
+  const incrementPage = () => {
+    if (page < totalPages) {
+      setPage(() => page + 1);
+    }
+  };
+
   return (
-    <>
-      <div className="m-2 text-[30%] sm:text-[45%]  md:text-[60%] lg:text-[100%]">
-        <div className="text-center font-bold my-5 text-xs lg:text-2xl">
+    <div className="h-[calc(100vh-64px)] ">
+      <div className=" text-[30%] sm:text-[45%]  md:text-[60%] lg:text-[100%]">
+        <div className="text-center font-bold py-5 text-xs lg:text-2xl">
           JOBS & CARRERS
         </div>
       </div>
-      <div className="flex justify-center mt-5 items-center">
-        <Tabs defaultValue="internships" className="w-full px-2">
-          <TabsList className="flex justify-center">
-            <TabsTrigger value="internships" className="w-full">
-              Internship
-            </TabsTrigger>
-            <TabsTrigger value="jobs" className="w-full">
-              JOBS
-            </TabsTrigger>
-          </TabsList>
 
-          <div className="dark:bg-gray-800  bg-gray-50  p-2 my-2 flex justify-center w-full lg:hidden border-gray-400 ">
-            <div className="justify-center flex text-center border-red-400 py-2 rounded border-2 w-[90%] text-red-400">
-              This feature might be released in a month.
-            </div>
-          </div>
-          <TabsContent value="jobs" className="lg:flex">
-            <Drawer>
-              <JobsTemplate
-                jobs={jobs}
-                selectedjob={selectedjob}
-                setSelectedJob={setSelectedJob}
-              />
-              <JobsmdOverview selectedjob={selectedjob} />
-            </Drawer>
-            <JobOverview job={selectedjob} />
-          </TabsContent>
-          <TabsContent value="internships" className="flex">
-            <Drawer>
-              <JobsTemplate
-                jobs={internships}
-                selectedjob={selectedInternship}
-                setSelectedJob={setSelectedInternship}
-              />
-              <JobsmdOverview selectedjob={selectedInternship} />
-            </Drawer>
-            <JobOverview job={selectedInternship} />
-          </TabsContent>
-        </Tabs>
+      <div className="flex  flex-col   items-center lg:w-[calc(100vw-272px)]  gap-2 m-2">
+        <CareerFilters form={form} setForm={setForme} getJobs={getJobDetails} />
+        <Jobs jobDetails={jobs} incrementPage={incrementPage} />
       </div>
-    </>
+    </div>
   );
 };
 
