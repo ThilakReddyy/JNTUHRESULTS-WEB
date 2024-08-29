@@ -141,7 +141,7 @@ const CareerFilters: React.FC<CareerFilterProps> = ({
 
   return (
     <>
-      <div className="h-12 border w-full p-2 rounded-md overflow-y-scroll overflow-x-none scroll-smooth">
+      <div className="h-12 border w-full p-2 rounded-md overflow-y-scroll overflow-x-none scroll-smooth no-scrollbar">
         <div className="md:justify-normal justify-around md:flex items-center grid grid-cols-3 overflow-x-none">
           <div className="flex justify-center md:px-2">
             <Select
