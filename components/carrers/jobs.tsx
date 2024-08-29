@@ -5,9 +5,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
@@ -34,10 +32,15 @@ interface JobDetail {
 
 interface JobsProps {
   jobDetails: JobDetail[];
+  canIncrement: Boolean;
   incrementPage: () => void;
 }
 
-const Jobs: React.FC<JobsProps> = ({ jobDetails, incrementPage }) => {
+const Jobs: React.FC<JobsProps> = ({
+  jobDetails,
+  canIncrement,
+  incrementPage,
+}) => {
   const [selectedJob, setSelectedJob] = useState<JobDetail | null>(null);
 
   useEffect(() => {
@@ -72,7 +75,7 @@ const Jobs: React.FC<JobsProps> = ({ jobDetails, incrementPage }) => {
                   <Share2Icon size={16} />
                 </div>
               </div>
-              <div className="flex items-center gap-2 justify-between mr-12">
+              <div className="flex items-center gap-12   mr-12">
                 <div className="flex gap-2 text-xs  font-normal justify-center">
                   <Building2Icon size={16} />
                   <span>{jobDetail.company}</span>
@@ -245,10 +248,18 @@ const Jobs: React.FC<JobsProps> = ({ jobDetails, incrementPage }) => {
             </div>
           ))}
           <div
-            onClick={() => {
-              incrementPage();
-            }}
-          ></div>
+            className={`w-full flex justify-center ${canIncrement ? "" : "hidden"}`}
+          >
+            <Button
+              variant="ghost"
+              className="bg-gray-500 mb-2 text-white px-2 rounded py-2 text-xs h-fit"
+              onClick={() => {
+                incrementPage();
+              }}
+            >
+              Load more
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -268,26 +279,7 @@ const Jobs: React.FC<JobsProps> = ({ jobDetails, incrementPage }) => {
                 <div>
                   <div>{selectedJob?.title}</div>
                   <div className="flex items-center my-1 justify-start w-full font-light text-base">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-building-2"
-                    >
-                      <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
-                      <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
-                      <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
-                      <path d="M10 6h4" />
-                      <path d="M10 10h4" />
-                      <path d="M10 14h4" />
-                      <path d="M10 18h4" />
-                    </svg>
+                    <Building2Icon size={16} />
                     <div className="text-sm font-normal ml-1">
                       {selectedJob?.company}
                     </div>
