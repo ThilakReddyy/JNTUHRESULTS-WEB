@@ -113,5 +113,5 @@ td {
 
 .no-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: 0.25px; /* Firefox */
 }
