@@ -141,8 +141,8 @@ const CareerFilters: React.FC<CareerFilterProps> = ({
 
   return (
     <>
-      <div className="h-12 border w-full p-2 rounded-md overflow-y-scroll overflow-x-none scroll-smooth no-scrollbar">
-        <div className="md:justify-normal justify-around md:flex items-center grid grid-cols-3 overflow-x-none">
+      <div className="h-14 border w-full p-2 rounded-md overflow-y-scroll overflow-x-none scroll-smooth no-scrollbar">
+        <div className="md:justify-normal justify-around lg:flex items-center grid grid-cols-3 overflow-x-none">
           <div className="flex justify-center md:px-2">
             <Select
               onValueChange={(event) => {
@@ -177,7 +177,7 @@ const CareerFilters: React.FC<CareerFilterProps> = ({
               </SelectContent>
             </Select>
           </div>
-          <div className="md:flex hidden ">
+          <div className="lg:flex hidden ">
             {filterKeys.map((key) => (
               <div className="flex justify-center md:px-2 w-full" key={key}>
                 <Select
@@ -201,7 +201,7 @@ const CareerFilters: React.FC<CareerFilterProps> = ({
               </div>
             ))}
           </div>
-          <div className="flex justify-center items-center md:hidden">
+          <div className="flex justify-center items-center lg:hidden">
             <Drawer>
               <DrawerTrigger>
                 <div className="w-fit min-w-[90px] flex justify-center border-[#E2E8F0] gap-1 items-center h-8 text-xs rounded-full border border-solid">
@@ -221,9 +221,9 @@ const CareerFilters: React.FC<CareerFilterProps> = ({
                   <div className="w-[40%] border-r p-4 gap-2 flex flex-col overflow-scroll">
                     {filterKeys.map((key) => (
                       <div
-                        className={`p-4 flex text-xs gap-2 rounded-lg items-center text-[#3F3F3F] dark:text-white ${
+                        className={`p-4 flex text-xs gap-2 rounded-lg items-center text-[#3F3F3F]  ${
                           isActive === key
-                            ? "bg-[#E5F0FD] dark:text-[#3F3F3F]"
+                            ? "bg-[#E5F0FD] dark:bg-[#3F3F3F]"
                             : ""
                         } cursor-pointer`}
                         key={key}
