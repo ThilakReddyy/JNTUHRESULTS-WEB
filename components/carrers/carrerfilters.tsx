@@ -141,8 +141,8 @@ const CareerFilters: React.FC<CareerFilterProps> = ({
 
   return (
     <>
-      <div className="h-12 border w-full p-2 rounded-md">
-        <div className="md:justify-normal justify-around md:flex items-center grid grid-cols-3 overflow-auto">
+      <div className="h-12 border w-full p-2 rounded-md overflow-y-scroll overflow-x-none scroll-smooth">
+        <div className="md:justify-normal justify-around md:flex items-center grid grid-cols-3 overflow-x-none">
           <div className="flex justify-center md:px-2">
             <Select
               onValueChange={(event) => {
@@ -179,12 +179,16 @@ const CareerFilters: React.FC<CareerFilterProps> = ({
           </div>
           <div className="md:flex hidden ">
             {filterKeys.map((key) => (
-              <div className="flex justify-center md:px-2" key={key}>
-                <Select onValueChange={handleOptionChange} value={form[key]}>
-                  <SelectTrigger className="min-w-[100px] w-fit h-8  text-black font-semibold text-xs rounded-full">
+              <div className="flex justify-center md:px-2 w-full" key={key}>
+                <Select
+                  onValueChange={handleOptionChange}
+                  value={form[key]}
+                  onOpenChange={() => setIsActive(key)}
+                >
+                  <SelectTrigger className="min-w-[130px]  w-fit h-8 focus:outline-offset-0 focus:ring-offset-0 focus:ring-0  text-black dark:text-white font-semibold text-xs rounded-full">
                     <SelectValue placeholder={filters[key].name} />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="w-fit">
                     <SelectGroup>
                       {filters[key].options.map((option) => (
                         <SelectItem value={option.key} key={option.key}>

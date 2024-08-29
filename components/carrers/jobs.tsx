@@ -1,5 +1,5 @@
 "use client";
-import { Building2Icon, MapPinIcon, Share2Icon } from "lucide-react";
+import { Building2Icon, MapIcon, MapPinIcon, Share2Icon } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
@@ -256,7 +256,7 @@ const Jobs: React.FC<JobsProps> = ({ jobDetails, incrementPage }) => {
         <div className="hidden lg:block w-full  overflow-y-auto h-[84.5vh]  rounded-b">
           <div className="pb-2 rounded-b border-t-4 border-blue-500 dark:bg-gray-900  w-full bg-gray-100 ">
             <div className="m-8 flex">
-              <div className="border-gray-500 dark:bg-gray-900 border  h-fit  bg-white p-4 w-fit rounded">
+              <div className="border-gray-500 dark:bg-gray-900 border  h-fit min-h-[120px] items-center flex bg-white p-4 w-fit rounded">
                 <Image
                   src={`/${selectedJob?.company.toLowerCase()}icon.png`}
                   width={80}
@@ -292,25 +292,13 @@ const Jobs: React.FC<JobsProps> = ({ jobDetails, incrementPage }) => {
                       {selectedJob?.company}
                     </div>
                   </div>
-                  <div className="flex items-center my-2 justify-start w-full font-light text-base">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-map-pin"
-                    >
-                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                    <div className="pl-1 text-sm lg:pl-2 flex">
+                  <div
+                    className={`flex  my-2 justify-start items-center w-full font-light text-base ${selectedJob != undefined && selectedJob?.locations != undefined && selectedJob?.locations?.length > 3 && "items-start"}`}
+                  >
+                    <MapPinIcon className="flex justify-start" size={16} />
+                    <div className="pl-1 text-sm lg:pl-2  grid lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-4">
                       {selectedJob?.locations.map((location: string) => {
-                        return <span key={location}>{location};</span>;
+                        return <span key={location}>{location};&nbsp; </span>;
                       })}
                     </div>
                   </div>
@@ -324,7 +312,9 @@ const Jobs: React.FC<JobsProps> = ({ jobDetails, incrementPage }) => {
             </div>
           </div>
           <div className=" my-1">
-            <div className=" p-8 rounded-b my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ">
+            <div
+              className={` p-8 rounded-b my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ${selectedJob?.qualifications.length === 0 && selectedJob?.minqualifications.length === 0 && selectedJob?.preferredqualifications.length === 0 && "hidden"}`}
+            >
               {selectedJob?.qualifications.length !== 0 && (
                 <div>
                   <div>
@@ -384,7 +374,9 @@ const Jobs: React.FC<JobsProps> = ({ jobDetails, incrementPage }) => {
                 })}
               </ul>
             </div>
-            <div className=" p-8 pt-4 rounded-b my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ">
+            <div
+              className={` p-8 pt-4 rounded-b my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ${selectedJob?.responsibilities.length === 0 && "hidden"}`}
+            >
               <div className="font-semibold  text-lg">Responsibilities</div>
               <ul className=" pl-8 pt-1 list-disc">
                 {selectedJob?.responsibilities.map((responsibility: string) => {
