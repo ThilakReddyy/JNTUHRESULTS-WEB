@@ -61,11 +61,7 @@ const Carrers = () => {
           query += "&experience_word=intern";
         }
         if (form.type !== "") {
-          if (form.type == "remote") {
-            query += "&remote=T";
-          } else {
-            query += "&remote=F";
-          }
+          query += "&remote=" + form.type;
         }
         if (form.experience !== "") {
           query += "&experience=" + form.experience;

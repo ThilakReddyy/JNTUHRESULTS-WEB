@@ -255,8 +255,8 @@ const Jobs: React.FC<JobsProps> = ({ jobDetails, incrementPage }) => {
       <div className="w-full hidden lg:block">
         <div className="hidden lg:block w-full  overflow-y-auto h-[84.5vh]  rounded-b">
           <div className="pb-2 rounded-b border-t-4 border-blue-500 dark:bg-gray-900  w-full bg-gray-100 ">
-            <div className="m-8 flex">
-              <div className="border-gray-500 dark:bg-gray-900 border  h-fit min-h-[120px] items-center flex bg-white p-4 w-fit rounded">
+            <div className="m-8 mr-4 flex">
+              <div className="border-gray-500 dark:bg-gray-900 border  h-fit min-h-[120px] min-w-[120px] items-center flex bg-white p-4 w-fit rounded">
                 <Image
                   src={`/${selectedJob?.company.toLowerCase()}icon.png`}
                   width={80}
@@ -264,7 +264,7 @@ const Jobs: React.FC<JobsProps> = ({ jobDetails, incrementPage }) => {
                   alt={`${selectedJob?.company.toLowerCase()}icon`}
                 />
               </div>
-              <div className="text-lg font-medium mx-8 flex items-center">
+              <div className="text-lg font-medium ml-8 flex items-center">
                 <div>
                   <div>{selectedJob?.title}</div>
                   <div className="flex items-center my-1 justify-start w-full font-light text-base">
@@ -293,10 +293,12 @@ const Jobs: React.FC<JobsProps> = ({ jobDetails, incrementPage }) => {
                     </div>
                   </div>
                   <div
-                    className={`flex  my-2 justify-start items-center w-full font-light text-base ${selectedJob != undefined && selectedJob?.locations != undefined && selectedJob?.locations?.length > 3 && "items-start"}`}
+                    className={`flex  my-2 h-fit justify-start  w-full font-light text-base `}
                   >
-                    <MapPinIcon className="flex justify-start" size={16} />
-                    <div className="pl-1 text-sm lg:pl-2  grid lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-4">
+                    <div className="h-full pt-1">
+                      <MapPinIcon className="flex justify-start" size={16} />
+                    </div>
+                    <div className="pl-1 text-sm lg:pl-2 w-full  grid lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-4">
                       {selectedJob?.locations.map((location: string) => {
                         return <span key={location}>{location};&nbsp; </span>;
                       })}
