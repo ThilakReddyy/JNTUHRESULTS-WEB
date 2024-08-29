@@ -117,7 +117,11 @@ const Carrers = () => {
 
       <div className="flex  flex-col   items-center lg:w-[calc(100vw-272px)]  gap-2 m-2">
         <CareerFilters form={form} setForm={setForme} getJobs={getJobDetails} />
-        <Jobs jobDetails={jobs} incrementPage={incrementPage} />
+        <Jobs
+          jobDetails={jobs}
+          incrementPage={incrementPage}
+          canIncrement={page < totalPages}
+        />
       </div>
     </div>
   );

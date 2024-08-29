@@ -292,7 +292,6 @@ const CareerFilters: React.FC<CareerFilterProps> = ({
                   </DrawerClose>
                   <div
                     onClick={() => {
-                      console.log("jobs");
                       getJobs();
                     }}
                   >
