@@ -205,7 +205,9 @@ const CareerFilters: React.FC<CareerFilterProps> = ({
                         key={key}
                         onClick={() => setIsActive(key)}
                       >
-                        {filters[key].name}
+                        <span className="text-[#3F3F3F] dark:text-white">
+                          {filters[key].name}
+                        </span>
                         {form[key] !== "" && (
                           <div className="bg-red-600 rounded-full w-1 h-1 flex justify-center"></div>
                         )}
