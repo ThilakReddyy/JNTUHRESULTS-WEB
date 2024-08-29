@@ -54,8 +54,8 @@ const Jobs: React.FC<JobsProps> = ({
   }
 
   return (
-    <div className="w-full flex gap-2">
-      <div className="overflow-y-auto dark:bg-gray-800 rounded bg-gray-50   p-2 w-full lg:max-w-[420px] border-gray-400 h-[76vh] flex">
+    <div className="w-full flex gap-2 lg:mr-2">
+      <div className="overflow-y-auto dark:bg-gray-800 rounded bg-gray-50   p-2 w-full lg:max-w-[420px] border-gray-400 h-[83vh] flex">
         <div className="w-full justify-start">
           {jobDetails.map((jobDetail) => (
             <div
@@ -76,9 +76,10 @@ const Jobs: React.FC<JobsProps> = ({
                 </div>
               </div>
               <div className="flex items-center gap-10 mr-4   ">
+                {" "}
                 <div className="flex gap-2 text-xs  font-normal justify-center">
-                  <Building2Icon size={16} />
-                  <span>{jobDetail.company}</span>
+                  {" "}
+                  <Building2Icon size={16} /> <span>{jobDetail.company}</span>{" "}
                 </div>
                 {jobDetail.locations.length > 0 && (
                   <div className="flex gap-1 text-xs  font-normal justify-center">
@@ -264,8 +265,8 @@ const Jobs: React.FC<JobsProps> = ({
       </div>
 
       <div className="w-full hidden lg:block">
-        <div className="hidden lg:block w-full  overflow-y-auto h-[84.5vh]  rounded-b">
-          <div className="pb-2 rounded-b border-t-4 border-blue-500 dark:bg-gray-900  w-full bg-gray-100 ">
+        <div className="hidden lg:block w-full  overflow-y-auto h-[83vh]  rounded-b ">
+          <div className="pb-2 rounded-b border-t-4 border-t-blue-500 border border-gray-800 dark:bg-gray-900  w-full bg-gray-100 ">
             <div className="m-8 mr-4 flex">
               <div className="border-gray-500 dark:bg-gray-900 border  h-fit min-h-[120px] min-w-[120px] items-center flex bg-white p-4 w-fit rounded">
                 <Image
@@ -300,14 +301,17 @@ const Jobs: React.FC<JobsProps> = ({
               </div>
             </div>
             <div className="border-t-2 border-gray-500 pr-4 pt-2 flex justify-end w-full">
-              <Link href="https://helloworld.com" target="_blank">
+              <Link
+                href={selectedJob ? selectedJob?.link : "#"}
+                target="_blank"
+              >
                 <Button className="w-[180px]">Apply</Button>
               </Link>
             </div>
           </div>
           <div className=" my-1">
             <div
-              className={` p-8 rounded-b my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ${selectedJob?.qualifications.length === 0 && selectedJob?.minqualifications.length === 0 && selectedJob?.preferredqualifications.length === 0 && "hidden"}`}
+              className={`border border-gray-800 p-8 rounded-b my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ${selectedJob?.qualifications.length === 0 && selectedJob?.minqualifications.length === 0 && selectedJob?.preferredqualifications.length === 0 && "hidden"}`}
             >
               {selectedJob?.qualifications.length !== 0 && (
                 <div>
@@ -354,7 +358,7 @@ const Jobs: React.FC<JobsProps> = ({
                 </div>
               )}
             </div>
-            <div className=" p-8 rounded-b my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ">
+            <div className=" p-8 rounded-b border border-gray-800 my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ">
               <div className="font-semibold  text-lg"> About the job:</div>
               <ul className=" pl-4 pt-1">
                 {selectedJob?.abouts.map((qualification: string) => {
@@ -369,7 +373,7 @@ const Jobs: React.FC<JobsProps> = ({
               </ul>
             </div>
             <div
-              className={` p-8 pt-4 rounded-b my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ${selectedJob?.responsibilities.length === 0 && "hidden"}`}
+              className={` p-8 pt-4 border border-gray-800 rounded-b my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ${selectedJob?.responsibilities.length === 0 && "hidden"}`}
             >
               <div className="font-semibold  text-lg">Responsibilities</div>
               <ul className=" pl-8 pt-1 list-disc">

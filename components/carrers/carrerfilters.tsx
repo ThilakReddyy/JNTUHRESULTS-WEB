@@ -164,9 +164,9 @@ const CareerFilters: React.FC<CareerFilterProps> = ({
               </SelectContent>
             </Select>
           </div>
-          <div className="flex justify-center border-x md:px-2">
-            <Select defaultValue="date">
-              <SelectTrigger className="w-fit min-w-[100px] h-8 text-xs rounded-full">
+          <div className="flex justify-center border-x md:px-2 ">
+            <Select>
+              <SelectTrigger className="w-fit min-w-[100px] h-8 text-xs rounded-full bg-transparent">
                 <SelectValue placeholder="Sort By" />
               </SelectTrigger>
               <SelectContent>
