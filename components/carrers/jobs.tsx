@@ -55,7 +55,7 @@ const Jobs: React.FC<JobsProps> = ({
 
   return (
     <div className="w-full flex gap-2">
-      <div className="overflow-y-auto dark:bg-gray-800 rounded bg-gray-50   p-2 w-full lg:max-w-[420px] border-gray-400 h-[84vh] flex">
+      <div className="overflow-y-auto dark:bg-gray-800 rounded bg-gray-50   p-2 w-full lg:max-w-[420px] border-gray-400 h-[76vh] flex">
         <div className="w-full justify-start">
           {jobDetails.map((jobDetail) => (
             <div
@@ -75,7 +75,7 @@ const Jobs: React.FC<JobsProps> = ({
                   <Share2Icon size={16} />
                 </div>
               </div>
-              <div className="flex items-center gap-12   mr-12">
+              <div className="flex items-center gap-10 mr-4   ">
                 <div className="flex gap-2 text-xs  font-normal justify-center">
                   <Building2Icon size={16} />
                   <span>{jobDetail.company}</span>
