@@ -113,11 +113,11 @@ const Carrers = () => {
 
   return (
     <div className="h-[calc(100vh-64px)] ">
-      <div className=" text-[30%] sm:text-[45%]  md:text-[60%] lg:text-[100%]">
-        <div className="text-center font-bold py-5 text-xs lg:text-2xl">
-          JOBS & CARRERS
-        </div>
-      </div>
+      {/* <div className=" text-[30%] sm:text-[45%]  md:text-[60%] lg:text-[100%]"> */}
+      {/*   <div className="text-center font-bold py-5 text-xs lg:text-2xl"> */}
+      {/*     JOBS & CARRERS */}
+      {/*   </div> */}
+      {/* </div> */}
 
       <div className="flex  flex-col   items-center lg:w-[calc(100vw-272px)]  gap-2 m-2">
         <CareerFilters form={form} setForm={setForme} getJobs={getJobDetails} />
