@@ -60,7 +60,7 @@ const Jobs: React.FC<JobsProps> = ({ jobDetails, incrementPage }) => {
               onClick={() => {
                 setSelectedJob(jobDetail);
               }}
-              className={`rounded  md:cursor-pointer mb-4 bg-white dark:bg-gray-900 border border-[#dadce0] p-4 gap-6 flex flex-col  ${
+              className={`rounded  md:cursor-pointer mb-4 bg-white dark:bg-gray-900 border border-[#dadce0] p-4 gap-6 flex flex-col   ${
                 selectedJob?.job_id === jobDetail.job_id
                   ? "lg:border-blue-500"
                   : ""
