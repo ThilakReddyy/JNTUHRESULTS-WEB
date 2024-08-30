@@ -55,7 +55,7 @@ const Jobs: React.FC<JobsProps> = ({
 
   return (
     <div className="w-full flex gap-2 lg:mr-2">
-      <div className="overflow-y-auto dark:bg-gray-800 rounded bg-gray-50   p-2 w-full lg:max-w-[420px] border-gray-400 h-[83vh] flex">
+      <div className="overflow-y-auto dark:bg-gray-800 rounded bg-gray-50   p-2 w-full lg:max-w-[420px] border-gray-300 h-[83vh] flex">
         <div className="w-full justify-start">
           {jobDetails.map((jobDetail) => (
             <div
@@ -96,7 +96,7 @@ const Jobs: React.FC<JobsProps> = ({
                 </Button>
                 <Drawer>
                   <DrawerTrigger>
-                    <div className="text-xs inline-flex items-center justify-center whitespace-nowrap rounded  font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none  disabled:opacity-50 lg:hidden ml-4 px-4  h-[35px] py-[10px] border-solid border border-black  hover:bg-gray-400 dark:border-white dark:hover:bg-gray-700  ">
+                    <div className="text-xs inline-flex items-center justify-center whitespace-nowrap rounded  font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none  disabled:opacity-50 lg:hidden ml-4 px-4  h-[35px] py-[10px] border-solid border border-black  hover:bg-gray-300 dark:border-white dark:hover:bg-gray-700  ">
                       Learn more
                     </div>
                   </DrawerTrigger>
@@ -266,7 +266,7 @@ const Jobs: React.FC<JobsProps> = ({
 
       <div className="w-full hidden lg:block">
         <div className="hidden lg:block w-full  overflow-y-auto h-[83vh]  rounded-b ">
-          <div className="pb-2 rounded-b border-t-4 border-t-blue-500 border border-gray-800 dark:bg-gray-900  w-full bg-gray-100 ">
+          <div className="pb-2 rounded-b border-t-4 border-t-blue-500 border border-gray-300 dark:bg-gray-900  w-full bg-gray-100 ">
             <div className="m-8 mr-4 flex">
               <div className="border-gray-500 dark:bg-gray-900 border  h-fit min-h-[120px] min-w-[120px] items-center flex bg-white p-4 w-fit rounded">
                 <Image
@@ -311,7 +311,7 @@ const Jobs: React.FC<JobsProps> = ({
           </div>
           <div className=" my-1">
             <div
-              className={`border border-gray-800 p-8 rounded-b my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ${selectedJob?.qualifications.length === 0 && selectedJob?.minqualifications.length === 0 && selectedJob?.preferredqualifications.length === 0 && "hidden"}`}
+              className={`border border-gray-300 p-8 rounded-b my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ${selectedJob?.qualifications.length === 0 && selectedJob?.minqualifications.length === 0 && selectedJob?.preferredqualifications.length === 0 && "hidden"}`}
             >
               {selectedJob?.qualifications.length !== 0 && (
                 <div>
@@ -358,7 +358,7 @@ const Jobs: React.FC<JobsProps> = ({
                 </div>
               )}
             </div>
-            <div className=" p-8 rounded-b border border-gray-800 my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ">
+            <div className=" p-8 rounded-b border border-gray-300 my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ">
               <div className="font-semibold  text-lg"> About the job:</div>
               <ul className=" pl-4 pt-1">
                 {selectedJob?.abouts.map((qualification: string) => {
@@ -373,7 +373,7 @@ const Jobs: React.FC<JobsProps> = ({
               </ul>
             </div>
             <div
-              className={` p-8 pt-4 border border-gray-800 rounded-b my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ${selectedJob?.responsibilities.length === 0 && "hidden"}`}
+              className={` p-8 pt-4 border border-gray-300 rounded-b my-1 dark:bg-gray-900 rounded  w-full bg-gray-100 ${selectedJob?.responsibilities.length === 0 && "hidden"}`}
             >
               <div className="font-semibold  text-lg">Responsibilities</div>
               <ul className=" pl-8 pt-1 list-disc">
