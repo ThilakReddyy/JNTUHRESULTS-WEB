@@ -56,8 +56,8 @@ const Carrers = () => {
     dateposted: "",
   });
 
-  const getJobDetails = useCallback(
-    async (pageIncrement: number = 0) => {
+  useEffect(() => {
+    const getJobDetails = async () => {
       try {
         if (page <= 1) setIsLoading(true);
         var pagination = "page=" + page + "&pageSize=" + pageSize;
@@ -99,13 +99,61 @@ const Carrers = () => {
         console.log("Error occured while fetching jobs");
       }
       setIsLoading(false);
-    },
-    [form, page, pageSize],
-  );
+    };
+    if (page == 1) {
+      getJobDetails();
+    }
+
+    setPage(1);
+  }, [form]);
 
   useEffect(() => {
+    const getJobDetails = async () => {
+      try {
+        if (page <= 1) setIsLoading(true);
+        var pagination = "page=" + page + "&pageSize=" + pageSize;
+        var query = "";
+        if (form.job == "intern") {
+          query += "&experience_word=intern";
+        }
+        if (form.type !== "") {
+          query += "&remote=" + form.type;
+        }
+        if (form.experience !== "") {
+          query += "&experience=" + form.experience;
+        }
+        if (form.location !== "") {
+          query += "&location_name=" + form.location;
+        }
+        if (form.status != "") {
+          query += "&expired=" + form.status;
+        }
+        if (form.company !== "") {
+          query += "&company=" + form.company;
+        }
+        const url =
+          "https://jobss.up.railway.app/job_opportunities?" +
+          pagination +
+          query;
+        const response = await axios.get(url);
+        if (response.status === 200) {
+          setTotalPages(response.data.totalPages);
+          setPage(response.data.currentPage);
+          setPageSize(response.data.pageSize);
+          if (page > 1) {
+            setJobs((jobs) => [...jobs, ...response.data.jobs]);
+          } else {
+            setJobs(response.data.jobs);
+          }
+        }
+      } catch (err) {
+        console.log("Error occured while fetching jobs");
+      }
+      setIsLoading(false);
+    };
+
     getJobDetails();
-  }, [page, getJobDetails]);
+  }, [page, pageSize]);
 
   const incrementPage = () => {
     if (page < totalPages) {
@@ -122,7 +170,7 @@ const Carrers = () => {
       {/* </div> */}
 
       <div className="flex  flex-col   items-center lg:w-[calc(100vw-272px)]  gap-2 m-2">
-        <CareerFilters form={form} setForm={setForme} getJobs={getJobDetails} />
+        <CareerFilters form={form} setForm={setForme} />
 
         {isLoading ? (
           <>

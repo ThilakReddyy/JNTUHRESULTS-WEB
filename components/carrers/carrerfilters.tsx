@@ -23,8 +23,8 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { countries } from "@/constants/countries";
-import { jobDetails } from "@/constants/jobsdetails";
 import axios from "axios";
+import { Input } from "../ui/input";
 
 interface Option {
   label: string;
@@ -47,14 +47,9 @@ interface Filters {
 interface CareerFilterProps {
   form: Form;
   setForm: React.Dispatch<React.SetStateAction<{ [key: string]: string }>>;
-  getJobs: () => {};
 }
 
-const CareerFilters: React.FC<CareerFilterProps> = ({
-  form,
-  setForm,
-  getJobs,
-}) => {
+const CareerFilters: React.FC<CareerFilterProps> = ({ form, setForm }) => {
   const [isActive, setIsActive] = useState<string>("type");
   const [options, setOptions] = useState<Option[]>([]);
 
@@ -177,29 +172,37 @@ const CareerFilters: React.FC<CareerFilterProps> = ({
               </SelectContent>
             </Select>
           </div>
-          <div className="lg:flex hidden ">
-            {filterKeys.map((key) => (
-              <div className="flex justify-center md:px-2 w-full" key={key}>
-                <Select
-                  onValueChange={handleOptionChange}
-                  value={form[key]}
-                  onOpenChange={() => setIsActive(key)}
-                >
-                  <SelectTrigger className="min-w-[130px]  w-fit h-8 focus:outline-offset-0 focus:ring-offset-0 focus:ring-0  text-black dark:text-white font-semibold text-xs rounded-full">
-                    <SelectValue placeholder={filters[key].name} />
-                  </SelectTrigger>
-                  <SelectContent className="w-fit">
-                    <SelectGroup>
-                      {filters[key].options.map((option) => (
-                        <SelectItem value={option.key} key={option.key}>
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
-            ))}
+          <div className="lg:flex hidden lg:flex-1">
+            <div className="flex flex-1">
+              {filterKeys.map((key) => (
+                <div className="flex justify-center md:px-2 w-full" key={key}>
+                  <Select
+                    onValueChange={handleOptionChange}
+                    value={form[key]}
+                    onOpenChange={() => setIsActive(key)}
+                  >
+                    <SelectTrigger className="min-w-[130px]  w-fit h-8 focus:outline-offset-0 focus:ring-offset-0 focus:ring-0  text-black dark:text-white font-semibold text-xs rounded-full">
+                      <SelectValue placeholder={filters[key].name} />
+                    </SelectTrigger>
+                    <SelectContent className="w-fit">
+                      <SelectGroup>
+                        {filters[key].options.map((option) => (
+                          <SelectItem value={option.key} key={option.key}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-1 border-l border-solid px-2">
+              <Input
+                className="md:h-[32px]"
+                placeholder="Search the job here..."
+              />
+            </div>
           </div>
           <div className="flex justify-center items-center lg:hidden">
             <Drawer>
@@ -290,11 +293,7 @@ const CareerFilters: React.FC<CareerFilterProps> = ({
                       Cancel Filter
                     </div>
                   </DrawerClose>
-                  <div
-                    onClick={() => {
-                      getJobs();
-                    }}
-                  >
+                  <div>
                     <DrawerClose>
                       <div className="h-10 px-4 py-2 justify-end flex gap-1 items-center bg-blue-600 rounded-full text-xs dark:text-white  text-primary-foreground hover:bg-primary/90">
                         <ArrowRightIcon size="16" />
