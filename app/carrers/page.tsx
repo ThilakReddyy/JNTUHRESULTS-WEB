@@ -48,6 +48,7 @@ const Carrers = () => {
 
   const [form, setForme] = useState<{ [key: string]: string }>({
     job: "fulltime",
+    title: "",
     type: "",
     experience: "0",
     location: "India",
@@ -79,6 +80,9 @@ const Carrers = () => {
         }
         if (form.company !== "") {
           query += "&company=" + form.company;
+        }
+        if (form.title !== "") {
+          query += "&title=" + form.title;
         }
         const url =
           "https://jobss.up.railway.app/job_opportunities?" +
@@ -130,6 +134,9 @@ const Carrers = () => {
         }
         if (form.company !== "") {
           query += "&company=" + form.company;
+        }
+        if (form.title !== "") {
+          query += "&title=" + form.title;
         }
         const url =
           "https://jobss.up.railway.app/job_opportunities?" +
