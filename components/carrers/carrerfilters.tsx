@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "../ui/button";
-import { ArrowRightIcon, ListFilter, XIcon } from "lucide-react";
+import { ArrowRightIcon, ListFilter, SearchIcon, XIcon } from "lucide-react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import {
@@ -53,6 +53,7 @@ const CareerFilters: React.FC<CareerFilterProps> = ({ form, setForm }) => {
   const [isActive, setIsActive] = useState<string>("type");
   const [options, setOptions] = useState<Option[]>([]);
 
+  const [searchInput, setSearchInput] = useState("");
   const [filters, setFilters] = useState<Filters>({
     type: {
       name: "Type",
@@ -98,6 +99,13 @@ const CareerFilters: React.FC<CareerFilterProps> = ({ form, setForm }) => {
   useEffect(() => {
     setOptions(filters[isActive]?.options || []);
   }, [isActive, filters]);
+
+  const handleSearch = () => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      title: searchInput,
+    }));
+  };
 
   useEffect(() => {
     const getCompanies = async () => {
@@ -197,11 +205,20 @@ const CareerFilters: React.FC<CareerFilterProps> = ({ form, setForm }) => {
                 </div>
               ))}
             </div>
-            <div className="flex flex-1 border-l border-solid px-2">
+            <div className="flex flex-1 border-l gap-1 border-solid px-2 ">
               <Input
                 className="md:h-[32px]"
                 placeholder="Search the job here..."
+                onChange={(event) => {
+                  setSearchInput(event.target.value);
+                }}
               />
+              <div
+                className="p-2 flex border max-h-[32px] rounded justify-center items-center cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700 dark:bg-black"
+                onClick={handleSearch}
+              >
+                <SearchIcon size={18} />
+              </div>
             </div>
           </div>
           <div className="flex justify-center items-center lg:hidden">
