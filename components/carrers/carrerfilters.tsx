@@ -254,15 +254,15 @@ const CareerFilters: React.FC<CareerFilterProps> = ({
                         Clear
                       </Button>
                     </div>
-                    <div className="p-4 overflow-scroll">
+                    <div className="p-4 overflow-auto">
                       <RadioGroup
                         value={form[isActive]}
                         onValueChange={handleOptionChange}
-                        className="overflow-scroll h-fit"
+                        className="overflow-none h-fit"
                       >
                         {options.map((option) => (
                           <div
-                            className="flex items-center space-x-2"
+                            className="flex items-center space-x-2 "
                             key={option.key}
                           >
                             <RadioGroupItem
