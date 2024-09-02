@@ -102,13 +102,16 @@ const Jobs: React.FC<JobsProps> = ({
                   </DrawerTrigger>
                   <DrawerContent className="h-auto max-h-[85vh] lg:hidden ">
                     <DrawerHeader className="flex justify-between border-b">
-                      <div className="flex flex-col">
+                      <div
+                        className="flex flex-col gap-2
+                        "
+                      >
                         <div className="flex">
-                          <div className="ml-2  mr-4 flex items-center min-w-[60px]">
+                          <div className="ml-2  mr-4 mb-2 border p-2 rounded flex justify-center items-center w-[80px] h-[80px]">
                             <Image
                               src={`/${jobDetail.company.toLowerCase()}icon.png`}
-                              width={80}
-                              height={80}
+                              width={50}
+                              height={50}
                               alt={jobDetail.company}
                             />
                           </div>
