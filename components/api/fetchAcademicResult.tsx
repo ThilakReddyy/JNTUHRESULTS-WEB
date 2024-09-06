@@ -20,7 +20,18 @@ async function getRedisData(htno: string) {
     return null;
   }
 }
-
+const grades_to_gpa: { [key: string]: number } = {
+  O: 10,
+  "A+": 9,
+  A: 8,
+  "B+": 7,
+  B: 6,
+  C: 5,
+  D: 5,
+  F: 0,
+  Ab: 0,
+  "-": 0,
+};
 const fetchData = async (htno: string, url: string) => {
   try {
     const response = await axios.get(url, { timeout: 7000 });
@@ -130,17 +141,83 @@ export async function fetchAcademicResult(htno: string) {
   return null;
 }
 
+interface Subject {
+  subject_code: string;
+  subject_name: string;
+  subject_internal: string;
+  subject_external: string;
+  subject_total: string;
+  subject_grade: string;
+  subject_credits: string;
+}
+
+interface ExamResults {
+  [examCode: string]: Array<{
+    [subjectCode: string]: Subject;
+  }>;
+}
+
+interface Results {
+  [semester: string]: ExamResults;
+}
+
+interface AcademicResult {
+  Details: any;
+  Results: Results;
+}
+
+function computationAcademicResult(result: AcademicResult) {
+  const results = result.Results;
+  const semesterKeys = Object.keys(results);
+  const academicResults: {
+    [semester: string]: { [subjectCode: string]: Subject };
+  } = {};
+
+  for (const semesterKey of semesterKeys) {
+    academicResults[semesterKey] = {};
+    const examCodeResults = Object.values(results[semesterKey]);
+
+    examCodeResults.forEach((examCodeResultArray) => {
+      examCodeResultArray.forEach((subjects) => {
+        const subjectKeys = Object.keys(subjects);
+        subjectKeys.forEach((subjectKey) => {
+          if (subjectKey in academicResults[semesterKey]) {
+            const previousSubjectGrade =
+              academicResults[semesterKey][subjectKey]["subject_grade"];
+            if (
+              grades_to_gpa[previousSubjectGrade] <=
+              grades_to_gpa[subjects[subjectKey]["subject_grade"]]
+            ) {
+              academicResults[semesterKey][subjectKey] = subjects[subjectKey];
+            }
+          } else {
+            academicResults[semesterKey][subjectKey] = subjects[subjectKey];
+          }
+        });
+      });
+    });
+  }
+  const academicresult = { Details: result.Details, Results: academicResults };
+  const expiryDate = new Date();
+  expiryDate.setMinutes(expiryDate.getMinutes() + 1);
+  const dataToStore = {
+    value: academicresult,
+    expiry: expiryDate.getTime(),
+  };
+  localStorage.setItem(result.Details["Roll_No"], JSON.stringify(dataToStore));
+}
+
 export async function fetchAcademicallResult(htno: string) {
   const result = await getRedisData(htno + "ALL");
   if (result != null) {
-    console.log(result);
-    const expiryDate = new Date();
-    expiryDate.setMinutes(expiryDate.getMinutes() + 1);
-    const dataToStore = {
-      value: result,
-      expiry: expiryDate.getTime(),
-    };
-    localStorage.setItem(htno + "all", JSON.stringify(dataToStore));
+    computationAcademicResult(result);
+    // const expiryDate = new Date();
+    // expiryDate.setMinutes(expiryDate.getMinutes() + 1);
+    // const dataToStore = {
+    //   value: result,
+    //   expiry: expiryDate.getTime(),
+    // };
+    // localStorage.setItem(htno + "all", JSON.stringify(dataToStore));
 
     return result;
   }
@@ -153,14 +230,16 @@ export async function fetchAcademicallResult(htno: string) {
 
     console.log(response);
     if (response.status == 200 && typeof response.data === "object") {
-      const expiryDate = new Date();
-      expiryDate.setMinutes(expiryDate.getMinutes() + 1);
-      const dataToStore = {
-        value: response.data,
-        expiry: expiryDate.getTime(),
-      };
-      localStorage.setItem(htno + "all", JSON.stringify(dataToStore));
+      // const expiryDate = new Date();
+      // expiryDate.setMinutes(expiryDate.getMinutes() + 1);
+      // const dataToStore = {
+      //   value: response.data,
+      //   expiry: expiryDate.getTime(),
+      // };
+      // localStorage.setItem(htno + "all", JSON.stringify(dataToStore));
+      //
 
+      computationAcademicResult(response.data);
       return response.data;
     }
   } catch (error) {
