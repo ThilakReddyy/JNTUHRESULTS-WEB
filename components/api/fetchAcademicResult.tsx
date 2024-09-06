@@ -170,22 +170,23 @@ function computationAcademicResult(result: AcademicResult) {
   const results = result.Results;
   const semesterKeys = Object.keys(results);
   const academicResults: {
-    [semester: string]: { [subjectCode: string]: Subject };
+    [semester: string]: { [subjectCode: string]: Subject | number };
   } = {};
 
   for (const semesterKey of semesterKeys) {
     academicResults[semesterKey] = {};
     const examCodeResults = Object.values(results[semesterKey]);
-
     examCodeResults.forEach((examCodeResultArray) => {
       examCodeResultArray.forEach((subjects) => {
         const subjectKeys = Object.keys(subjects);
         subjectKeys.forEach((subjectKey) => {
           if (subjectKey in academicResults[semesterKey]) {
-            const previousSubjectGrade =
-              academicResults[semesterKey][subjectKey]["subject_grade"];
+            const prevSubjectGrade = (
+              academicResults[semesterKey][subjectKey] as Subject
+            ).subject_grade;
+
             if (
-              grades_to_gpa[previousSubjectGrade] <=
+              grades_to_gpa[prevSubjectGrade] <=
               grades_to_gpa[subjects[subjectKey]["subject_grade"]]
             ) {
               academicResults[semesterKey][subjectKey] = subjects[subjectKey];
@@ -197,6 +198,15 @@ function computationAcademicResult(result: AcademicResult) {
       });
     });
   }
+  Object.keys(academicResults).forEach((semesterKey) => {
+    var totalCredits = 0;
+    Object.values(academicResults[semesterKey]).forEach((subjectValue) => {
+      if (typeof subjectValue !== "number") {
+        totalCredits += parseFloat((subjectValue as Subject).subject_credits);
+      }
+    });
+    academicResults[semesterKey]["credits"] = totalCredits;
+  });
   const academicresult = { Details: result.Details, Results: academicResults };
   const expiryDate = new Date();
   expiryDate.setMinutes(expiryDate.getMinutes() + 1);
