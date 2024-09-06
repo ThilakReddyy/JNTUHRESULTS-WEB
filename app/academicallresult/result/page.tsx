@@ -8,7 +8,7 @@ const AcademicAllResultResult = () => {
   const router = useRouter();
   const htno = useSearchParams().get("htno");
 
-  const storageData = localStorage.getItem(String(htno) + "all");
+  const storageData = localStorage.getItem(String(htno) + "ALL");
   const componentRef = useRef(null);
   if (storageData == null) {
     router.push("/academicallresult");
@@ -68,9 +68,7 @@ const AcademicAllResultResult = () => {
                       {Results[value][examcode].map(
                         (subexam: any, index: number) => {
                           const exms = Object.keys(subexam)[0];
-                          const rcrv = subexam[exms]["subject_internal"]
-                            .toLowerCase()
-                            .includes("change in grade");
+                          const rcrv = subexam[exms]["rcrv"];
 
                           return (
                             <div key={index}>
