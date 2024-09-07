@@ -1,6 +1,7 @@
 "use client";
 import {
   fetchAcademicResult,
+  fetchAcademicallResult,
   getLocalStoragedata,
 } from "@/components/api/fetchAcademicResult";
 import Footer from "@/components/footer/footer";
@@ -36,7 +37,7 @@ const CreditChecker = () => {
           return;
         }
       }
-      const result = await fetchAcademicResult(hallticketno);
+      const result = await fetchAcademicallResult(hallticketno);
       if (result !== null && result !== undefined && result !== 422) {
         router.push("/creditchecker/result?htno=" + hallticketno);
       } else if (result === 422) {

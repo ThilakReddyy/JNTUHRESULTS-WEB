@@ -6,6 +6,7 @@ import Loading from "@/components/loading/loading";
 import toast from "react-hot-toast";
 import {
   fetchAcademicResult,
+  fetchAcademicallResult,
   getLocalStoragedata,
 } from "@/components/api/fetchAcademicResult";
 import { useRouter } from "next/navigation";
@@ -32,7 +33,7 @@ const BacklogReport = () => {
           return;
         }
       }
-      const result = await fetchAcademicResult(hallticketno);
+      const result = await fetchAcademicallResult(hallticketno);
       if (result !== null && result !== undefined && result != 422) {
         router.push("/backlogreport/result?htno=" + hallticketno);
       } else {
