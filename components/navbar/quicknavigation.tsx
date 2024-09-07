@@ -2,15 +2,20 @@
 import React, { useState } from "react";
 import { GrAdd, GrSubtract } from "react-icons/gr";
 import Link from "next/link";
+import { useSidebarContext } from "@/customhooks/sidebarhook";
 
 const QuickNavigation = ({ htno }: { htno: string | null }) => {
   const [extraItems, setExtraItems] = useState(false);
+
+  const { sidebar } = useSidebarContext();
   if (htno === null) {
     return null;
   }
   return (
     <>
-      <div className="fixed bottom-0   right-0 m-5 cursor-pointer rounded-full bg-black dark:bg-white dark:text-black   text-white border p-2 z-[401] ">
+      <div
+        className={`fixed bottom-0   right-0 m-5 cursor-pointer rounded-full bg-black dark:bg-white dark:text-black   text-white border p-2 z-[401] ${sidebar ? "hidden" : ""}`}
+      >
         <GrAdd
           className={`${extraItems ? "hidden" : ""}`}
           onClick={() => {
@@ -33,8 +38,14 @@ const QuickNavigation = ({ htno }: { htno: string | null }) => {
       >
         <div className="flex flex-col justify-center ">
           <Link
-            href={`/academicresult/result?htno=${htno}`}
+            href={`/academicallresult/result?htno=${htno}`}
             className="py-2 border  border-b-0 border-t-rounded flex rounded-t px-20  justify-center  text-blue-600 cursor-pointer"
+          >
+            Academic All Result
+          </Link>
+          <Link
+            href={`/academicresult/result?htno=${htno}`}
+            className="py-2 border  border-b-0  flex px-20  justify-center  text-blue-600 cursor-pointer"
           >
             Academic Result
           </Link>

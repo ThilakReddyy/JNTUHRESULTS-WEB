@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Print from "@/components/download/print";
 import ResultDetails from "@/components/result/details";
+import QuickNavigation from "@/components/navbar/quicknavigation";
 
 const AcademicAllResultResult = () => {
   const router = useRouter();
@@ -170,6 +171,8 @@ const AcademicAllResultResult = () => {
           jntuhresults.vercel.app
         </div>
       </div>
+
+      <QuickNavigation htno={htno} />
       <Print componentRef={componentRef} />
     </>
   );
