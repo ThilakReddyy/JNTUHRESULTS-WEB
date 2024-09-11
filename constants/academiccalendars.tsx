@@ -31,16 +31,20 @@ export const academicCalendars: AcademicCalendars = {
           "https://jntuh.ac.in/uploads/calendars/20240802094745683.pdf",
       },
       "3rd": {
-        "Academic Calender of B.Tech.II YEAR I & II SEMESTERS":
+        "Academic Calender of B.Tech.III YEAR I & II SEMESTERS":
           "https://jntuh.ac.in/uploads/calendars/B._Tech_._III_YEAR_I_II_SEMESTERS_.pdf",
       },
-      // "4th": {},
+      "4th": {
+        "Academic Calender of B.Tech.IV YEAR I & II SEMESTERS":
+          "https://jntuh.ac.in/uploads/calendars/B._Tech_.B_._Pharm_._IV_YEAR_I_II_SEMESTERS_.pdf",
+      },
+      //
     },
     "B.Pharmacy": {
-      // "1st": {},
-      // "2nd": {},
-      // "3rd": {},
-      // "4th": {},
+      "4th": {
+        "Academic Calender of B.Pharmacy.IV YEAR I & II SEMESTERS":
+          "https://jntuh.ac.in/uploads/calendars/B._Tech_.B_._Pharm_._IV_YEAR_I_II_SEMESTERS_.pdf",
+      },
     },
   },
   "2023-2024": {
