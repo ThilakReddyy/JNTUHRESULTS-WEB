@@ -27,8 +27,10 @@ const ClassResult = () => {
 
   const onSubmit = async () => {
     const date = Date.now();
-    if (currentHours > 7) {
-      toast.error("Results will only appear between 12 AM and 7 AM");
+    if (currentHours > 5) {
+      toast.error(
+        (message :"Results will only appear between 12 AM and 5 AM"),
+      );
       return;
     }
 
@@ -228,7 +230,7 @@ const ClassResult = () => {
                 </select>
                 {currentHours > 7 && (
                   <div className="text-center pt-4 text-red-600">
-                    Results will only appear from 12 AM to 7 AM
+                    Results will only appear from 12 AM to 5 AM
                   </div>
                 )}
                 <div className="flex justify-center mt-[30px]">
