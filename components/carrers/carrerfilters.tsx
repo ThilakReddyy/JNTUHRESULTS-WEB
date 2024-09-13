@@ -91,7 +91,24 @@ const CareerFilters: React.FC<CareerFilterProps> = ({ form, setForm }) => {
     },
     dateposted: {
       name: "Date Posted",
-      options: [], // Date posted options should be set dynamically or from a source
+      options: [
+        {
+          key: "today",
+          label: "Today",
+        },
+        {
+          key: "yesterday",
+          label: "Yesterday",
+        },
+        {
+          key: "past_7_days",
+          label: "Past 7 Days",
+        },
+        {
+          key: "before_past_7_days",
+          label: "Before Past 7 Days",
+        },
+      ], // Date posted options should be set dynamically or from a source
     },
   });
 

@@ -81,8 +81,14 @@ const Carrers = () => {
         if (form.company !== "") {
           query += "&company=" + form.company;
         }
+        if (form.date_posted !== "") {
+          query += "&title=" + form.title;
+        }
         if (form.title !== "") {
           query += "&title=" + form.title;
+        }
+        if (form.dateposted !== "") {
+          query += "&date_filter=" + form.dateposted;
         }
         const url =
           "https://jobss.up.railway.app/job_opportunities?" +
