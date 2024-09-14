@@ -236,7 +236,7 @@ export async function fetchAcademicallResult(htno: string) {
   const url =
     "https://jntuhresults.up.railway.app/api/academicallresult?htno=" + htno;
   try {
-    const response = await axios.get(url, { timeout: 7000 });
+    const response = await axios.get(url, { timeout: 10 * 1000 });
 
     console.log(response);
     if (response.status == 200 && typeof response.data === "object") {
