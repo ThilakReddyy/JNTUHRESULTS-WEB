@@ -221,13 +221,6 @@ export async function fetchAcademicallResult(htno: string) {
   const result = await getRedisData(htno + "ALL");
   if (result != null) {
     computationAcademicResult(result);
-    // const expiryDate = new Date();
-    // expiryDate.setMinutes(expiryDate.getMinutes() + 1);
-    // const dataToStore = {
-    //   value: result,
-    //   expiry: expiryDate.getTime(),
-    // };
-    // localStorage.setItem(htno + "all", JSON.stringify(dataToStore));
 
     return result;
   }
@@ -236,19 +229,9 @@ export async function fetchAcademicallResult(htno: string) {
   const url =
     "https://jntuhresults.up.railway.app/api/academicallresult?htno=" + htno;
   try {
-    const response = await axios.get(url, { timeout: 10 * 1000 });
+    const response = await axios.get(url, { timeout: 4 * 1000 });
 
-    console.log(response);
     if (response.status == 200 && typeof response.data === "object") {
-      // const expiryDate = new Date();
-      // expiryDate.setMinutes(expiryDate.getMinutes() + 1);
-      // const dataToStore = {
-      //   value: response.data,
-      //   expiry: expiryDate.getTime(),
-      // };
-      // localStorage.setItem(htno + "all", JSON.stringify(dataToStore));
-      //
-
       computationAcademicResult(response.data);
       return response.data;
     }
