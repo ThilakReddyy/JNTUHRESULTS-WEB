@@ -69,7 +69,7 @@ const Carrers = () => {
         if (form.type !== "") {
           query += "&remote=" + form.type;
         }
-        if (form.experience !== "") {
+        if (form.experience !== "" && form.job !== "intern") {
           query += "&experience=" + form.experience;
         }
         if (form.location !== "") {
