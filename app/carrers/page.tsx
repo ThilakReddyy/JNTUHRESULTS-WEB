@@ -50,7 +50,7 @@ const Carrers = () => {
     job: "fulltime",
     title: "",
     type: "",
-    experience: "0",
+    experience: "",
     location: "India",
     company: "",
     status: "",
