@@ -21,7 +21,8 @@ const Footer = () => {
         <center>
           <hr className="w-[64%]  text-[#808080]" />
         </center>
-        <span className="mt-4 block text-center mx-[18%] mb-4 text-[75%] sm:text-[100%]">
+
+        <span className="mt-4  text-center mx-[18%] mb-4 text-[75%] sm:text-[100%] hidden">
           Made with ❤ by &nbsp;
           <a
             target="_blank"
@@ -71,6 +72,10 @@ const Footer = () => {
           {/*   here */}
           {/* </Link> */}, thanks!
         </span>
+      </div>
+      <div className=" fixed bottom-0  text-center  mb-4 pt-2 text-[60%] sm:text-[100%] w-full border-t-2 flex flex-col items-center">
+        <span>This is an website created by a Individual creator.</span>
+        <span>Not an official JNTUH website</span>
       </div>
       <AdComponent />
     </>
