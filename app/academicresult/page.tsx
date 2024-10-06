@@ -72,9 +72,9 @@ const AcademicResult = () => {
         toast.error("Jntuh Servers are down!!!");
       } else {
         setLoading(false);
-        // toast.error("Jntuh Servers are down!!!");
+        toast.error("Jntuh Servers are down!!!");
         // toast.error("Internal server Error!!");
-        toast("Your Roll Number is queued.\n Kindly check after few minutes");
+        // toast("Your Roll Number is queued.\n Kindly check after few minutes");
       }
     } catch (error) {
       console.log("Error while fetching the academic result :", error);
