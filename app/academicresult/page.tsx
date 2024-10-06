@@ -73,7 +73,7 @@ const AcademicResult = () => {
       } else {
         setLoading(false);
         // toast.error("Jntuh Servers are down!!!");
-        toast.error("Internal server Error!!");
+        toast.error("Request Timeout!!");
         // toast("Your Roll Number is queued.\n Kindly check after few minutes");
       }
     } catch (error) {
