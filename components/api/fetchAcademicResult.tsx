@@ -229,7 +229,7 @@ export async function fetchAcademicallResult(htno: string) {
   const url =
     "https://jntuhresults.up.railway.app/api/academicallresult?htno=" + htno;
   try {
-    const response = await axios.get(url, { timeout: 4 * 1000 });
+    const response = await axios.get(url, { timeout: 20 * 1000 });
 
     if (response.status == 200 && typeof response.data === "object") {
       computationAcademicResult(response.data);
