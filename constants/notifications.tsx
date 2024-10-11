@@ -1,5 +1,148 @@
 export const NotificationList = [
   {
+    Result_title: "  M.Tech. IV Semester (R22) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mtech&examCode=415&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title:
+      "  M.Tech. IV Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mtech&examCode=416&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title:
+      "  M.Tech. III Semester (R22) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mtech&examCode=417&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title:
+      "  M.Tech. III Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mtech&examCode=418&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title: "  M.Tech. II Semester (R22) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mtech&examCode=419&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title:
+      "  M.Tech. II Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mtech&examCode=420&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title:
+      "  M.Tech. I Semester (R22) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mtech&examCode=421&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title:
+      "  M.Tech. I Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mtech&examCode=422&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title: "  M.B.A. II Semester (R22) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mba&examCode=410&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title:
+      "  M.B.A. II Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mba&examCode=411&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title:
+      "  M.B.A. I Semester (R22) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mba&examCode=412&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title:
+      "  M.B.A. I Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mba&examCode=413&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title: "  M.C.A. II Semester (R22) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mca&examCode=525&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title:
+      "  M.C.A. II Semester (R20) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mca&examCode=526&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title:
+      "  M.C.A. II Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mca&examCode=527&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title:
+      "  M.C.A. II Semester (R17) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mca&examCode=528&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title:
+      "  M.C.A. I Semester (R22) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mca&examCode=529&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title:
+      "  M.C.A. I Semester (R20) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mca&examCode=530&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title:
+      "  M.C.A. I Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mca&examCode=531&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title:
+      "  M.C.A. I Semester (R17) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mca&examCode=532&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
+    Result_title:
+      "  M.C.A. I Semester (R15) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mca&examCode=533&grad=pg&etype=null&result=grade&type=intgrade",
+    Date: "07-OCT-2024",
+    formatted_date: "2024-10-07",
+  },
+  {
     Result_title:
       " RC/RV B.Tech I Year II Semester (R22) Regular Examinations Results",
     Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1800&etype=r17&result=gradercrv&type=rcrvintgrade",
