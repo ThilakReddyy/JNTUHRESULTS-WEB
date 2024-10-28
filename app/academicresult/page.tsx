@@ -25,7 +25,7 @@ const AcademicResult = () => {
     async function readClipboard() {
       try {
         const browser = navigator.userAgent.toLowerCase();
-        if (!browser.includes("android") || browser.includes("iphone")) {
+        if (browser.includes("android") || browser.includes("iphone")) {
           const text = await navigator.clipboard.readText();
           try {
             const hallticketfirsttwodigits = text.slice(0, 2);
