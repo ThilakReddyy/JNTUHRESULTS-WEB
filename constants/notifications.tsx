@@ -1,5 +1,94 @@
 export const NotificationList = [
   {
+    Result_title: "  M.Pharmacy IV Semester (R22) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mpharmacy&examCode=241&grad=pg&etype=null&result=grade22&type=intgrade",
+    Date: "26-OCT-2024",
+    formatted_date: "2024-10-26",
+  },
+  {
+    Result_title:
+      "  M.Pharmacy IV Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mpharmacy&examCode=242&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "26-OCT-2024",
+    formatted_date: "2024-10-26",
+  },
+  {
+    Result_title:
+      "  M.Pharmacy III Semester (R22) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mpharmacy&examCode=243&grad=pg&etype=null&result=grade22&type=intgrade",
+    Date: "26-OCT-2024",
+    formatted_date: "2024-10-26",
+  },
+  {
+    Result_title:
+      "  M.Pharmacy III Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mpharmacy&examCode=244&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "26-OCT-2024",
+    formatted_date: "2024-10-26",
+  },
+  {
+    Result_title: "  M.Pharmacy II Semester (R22) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mpharmacy&examCode=245&grad=pg&etype=null&result=grade22&type=intgrade",
+    Date: "26-OCT-2024",
+    formatted_date: "2024-10-26",
+  },
+  {
+    Result_title:
+      "  M.Pharmacy II Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mpharmacy&examCode=246&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "26-OCT-2024",
+    formatted_date: "2024-10-26",
+  },
+  {
+    Result_title:
+      "  M.Pharmacy I Semester (R22) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mpharmacy&examCode=247&grad=pg&etype=null&result=grade22&type=intgrade",
+    Date: "26-OCT-2024",
+    formatted_date: "2024-10-26",
+  },
+  {
+    Result_title:
+      "  M.Pharmacy I Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mpharmacy&examCode=248&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "26-OCT-2024",
+    formatted_date: "2024-10-26",
+  },
+  {
+    Result_title:
+      "  RC/RV  M.B.A. IV Semester (R22) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mba&examCode=406&grad=pg&etype=r16&result=gradercrv&type=rcrvintgrade",
+    Date: "26-OCT-2024",
+    formatted_date: "2024-10-26",
+  },
+  {
+    Result_title:
+      "  RC/RV  M.B.A. IV Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mba&examCode=407&grad=pg&etype=r16&result=gradercrv&type=rcrvintgrade",
+    Date: "26-OCT-2024",
+    formatted_date: "2024-10-26",
+  },
+  {
+    Result_title:
+      "  RC/RV  M.B.A. III Semester (R22) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mba&examCode=408&grad=pg&etype=r16&result=gradercrv&type=rcrvintgrade",
+    Date: "26-OCT-2024",
+    formatted_date: "2024-10-26",
+  },
+  {
+    Result_title:
+      "  RC/RV  M.B.A. III Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mba&examCode=409&grad=pg&etype=r16&result=gradercrv&type=rcrvintgrade",
+    Date: "26-OCT-2024",
+    formatted_date: "2024-10-26",
+  },
+  {
+    Result_title:
+      "B.Pharmacy I Year II Semester (R22) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=&examCode=969&etype=r22&type=intgrade",
+    Date: "17-OCT-2024",
+    formatted_date: "2024-10-17",
+  },
+  {
     Result_title:
       "B.Pharmacy I Year II Semester (R22) Regular Examinations Results",
     Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=&examCode=969&etype=r22&type=intgrade",
