@@ -73,10 +73,6 @@ const Footer = () => {
           {/* </Link> */}, thanks!
         </span>
       </div>
-      <div className=" fixed bottom-0  text-center  mb-4 pt-2 text-[60%] sm:text-[100%] w-full border-t-2 flex flex-col items-center">
-        <span>This is an website created by a Individual creator.</span>
-        <span>Not an official JNTUH website</span>
-      </div>
       <AdComponent />
     </>
   );
