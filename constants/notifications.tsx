@@ -1,6 +1,223 @@
 export const NotificationList = [
   {
     Result_title:
+      " RC/RV B.Tech III Year II Semester (R18) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1823&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Tech III Year II Semester (R16) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1824&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      "RC/RV B.Tech III Year II Semester (R15) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1825&etype=rcrv",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      "RC/RV B.Tech III Year II Semester  (R13) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1826&etype=rcrv",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Tech III Year II Semester (R18) Minor degree Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1827&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Tech III Year I Semester (R18) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1828&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Tech III Year I Semester (R16) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1829&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      "RC/RV B.Tech III Year I Semester  (R13) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1831&etype=rcrv",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy III Year II Semester (R17) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=961&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy III Year II Semester (R16) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=962&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy III Year II Semester (R15) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=963&etype=rcrv",
+    Date: " 30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy III Year II Semester (R13) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=964&etype=rcrv",
+    Date: " 30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy I Year I Semester (R22) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=972&etype=r22&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy I Year I Semester (R17) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=973&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy I Year I Semester (R16) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=974&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy I Year I Semester (R15) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=975&etype=rcrv",
+    Date: " 30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy I Year I Semester(R13) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=976&etype=rcrv",
+    Date: " 30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy I Year II Semester (R22) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=969&etype=r22&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy I Year II Semester (R17) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=970&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy III Year I Semester (R17) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=965&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy III Year I Semester (R15) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=967&etype=rcrv",
+    Date: " 30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy III Year I Semester (R13) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=968&etype=rcrv",
+    Date: " 30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy II Year II Semester (R22) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=977&etype=r22&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy II Year II Semester (R17) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=978&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy II Year II Semester (R16) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=979&etype=r17&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV B.Pharmacy II Year II Semester(R13) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=981&etype=rcrv",
+    Date: " 30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV M. Pharmacy III Semester (R22) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mpharmacy&examCode=243&grad=pg&etype=r16&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV M. Pharmacy II Semester (R22) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mpharmacy&examCode=245&grad=pg&etype=r16&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      "  RC/RV M.Pharmacy II Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mpharmacy&examCode=246&grad=pg&etype=r16&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      " RC/RV M. Pharmacy I Semester (R22) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mpharmacy&examCode=247&grad=pg&etype=r16&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
+      "  RC/RV M.Pharmacy I Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=mpharmacy&examCode=248&grad=pg&etype=r16&result=gradercrv&type=rcrvintgrade",
+    Date: "30-NOV-2024",
+    formatted_date: "2024-11-30",
+  },
+  {
+    Result_title:
       " RC/RV B.Pharmacy II Year I Semester (R22) Supplementary Examinations Results",
     Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=bpharmacy&examCode=982&etype=r22&result=gradercrv&type=rcrvintgrade",
     Date: "07-NOV-2024",
