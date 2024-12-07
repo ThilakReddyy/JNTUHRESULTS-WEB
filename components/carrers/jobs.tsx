@@ -1,6 +1,6 @@
 "use client";
 import { Building2Icon, MapIcon, MapPinIcon, Share2Icon } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import {
@@ -43,11 +43,42 @@ const Jobs: React.FC<JobsProps> = ({
 }) => {
   const [selectedJob, setSelectedJob] = useState<JobDetail | null>(null);
 
+  const scrollableRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     if (jobDetails.length > 0) {
       setSelectedJob(jobDetails[0]);
     }
   }, [jobDetails]);
+  useEffect(() => {
+    const scrollableElement = scrollableRef.current;
+
+    const handleScroll = () => {
+      if (
+        scrollableElement &&
+        scrollableElement.scrollHeight - scrollableElement.scrollTop ===
+          scrollableElement.clientHeight
+      ) {
+        onScrollEnd();
+      }
+    };
+
+    if (scrollableElement) {
+      scrollableElement.addEventListener("scroll", handleScroll);
+    }
+
+    // Cleanup listener on unmount
+    return () => {
+      if (scrollableElement) {
+        scrollableElement.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+
+  const onScrollEnd = () => {
+    console.log("Reached the end of the scrollable element");
+    incrementPage();
+    // Add your logic here
+  };
 
   if (jobDetails.length === 0) {
     return <div className="text-x mt-16">No Internships or Jobs to show</div>;
@@ -55,7 +86,10 @@ const Jobs: React.FC<JobsProps> = ({
 
   return (
     <div className="w-full flex gap-2 lg:mr-2">
-      <div className="overflow-y-auto dark:bg-gray-800 rounded bg-gray-50   p-2 w-full lg:max-w-[420px] border-gray-300 h-[83vh] flex">
+      <div
+        className="overflow-y-auto dark:bg-gray-800 rounded bg-gray-50   p-2 w-full lg:max-w-[420px] border-gray-300 h-[83vh] flex "
+        ref={scrollableRef}
+      >
         <div className="w-full justify-start">
           {jobDetails.map((jobDetail) => (
             <div

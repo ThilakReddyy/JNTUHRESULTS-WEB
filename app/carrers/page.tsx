@@ -168,7 +168,7 @@ const Carrers = () => {
 
   const incrementPage = () => {
     if (page < totalPages) {
-      setPage(() => page + 1);
+      setPage((page) => page + 1);
     }
   };
 
