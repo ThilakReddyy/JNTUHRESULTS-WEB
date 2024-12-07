@@ -291,11 +291,8 @@ const Jobs: React.FC<JobsProps> = ({
             <Button
               variant="ghost"
               className="bg-gray-500 mb-2 text-white px-2 rounded py-2 text-xs h-fit"
-              onClick={() => {
-                incrementPage();
-              }}
             >
-              Load more
+              Loading...
             </Button>
           </div>
         </div>
