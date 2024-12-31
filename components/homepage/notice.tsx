@@ -65,6 +65,7 @@ const NoticePopup = () => {
                           <a
                             className="text-blue-600 hover:underline px-2 cursor-pointer"
                             href={internship.link}
+                            target="_blank"
                           >
                             Link
                           </a>
