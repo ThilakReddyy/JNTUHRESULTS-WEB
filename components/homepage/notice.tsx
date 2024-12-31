@@ -61,12 +61,14 @@ const NoticePopup = () => {
                         <td className="px-2">
                           <p>{internship.company}</p>
                         </td>
-                        <a
-                          className="text-blue-600 hover:underline px-2 cursor-pointer"
-                          href={internship.link}
-                        >
-                          Link
-                        </a>
+                        <td>
+                          <a
+                            className="text-blue-600 hover:underline px-2 cursor-pointer"
+                            href={internship.link}
+                          >
+                            Link
+                          </a>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
