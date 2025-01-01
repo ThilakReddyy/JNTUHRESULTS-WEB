@@ -10,9 +10,7 @@ import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import MetaData from "@/components/metadata/metadata";
 import { NavBarProvider } from "@/customhooks/navbarhook";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Pwa from "@/components/download/pwa";
 import NotificationPopUp from "@/components/notifications/popup";
-import NoticePopup from "@/components/homepage/notice";
 
 const inter = Inter({ subsets: ["latin"] });
 
