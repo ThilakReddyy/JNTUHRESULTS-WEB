@@ -46,7 +46,6 @@ export default function RootLayout({
                 <div className="lg:ml-64">
                   <NotificationPopUp />
                   {/* <Pwa /> */}
-                  {/* <NoticePopup /> */}
                   {children}
                 </div>
                 <div className=" md:block">
