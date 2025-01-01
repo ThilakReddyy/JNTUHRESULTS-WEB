@@ -14,7 +14,7 @@ const NoticePopup = () => {
 
   return (
     <div
-      className={`  bg-opacity-50 md:hidden backdrop-filter  backdrop-blur-sm fixed h-full w-full   my-5    justify-center ${path !== "/" || hidden ? "hidden" : ""}`}
+      className={`hidden  bg-opacity-50 md:hidden backdrop-filter  backdrop-blur-sm fixed h-full w-full   my-5    justify-center ${path !== "/" || hidden ? "hidden" : ""}`}
     >
       <div className="flex justify-center items-start w-full md:mt-16 h-full">
         <div
