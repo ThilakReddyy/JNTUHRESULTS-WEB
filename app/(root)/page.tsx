@@ -212,7 +212,7 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div className="bottom-0  w-full lg:w-[calc(100vw-16rem)] lg:absolute  font-interer pt-[10px]">
+      <div className="bottom-0  w-full lg:w-[calc(100vw-16rem)]   font-interer pt-[20px]">
         <hr />
         <center>
           <div className="flex justify-center mt-4 text-sm text-gray-600">
