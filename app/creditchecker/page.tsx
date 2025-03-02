@@ -18,6 +18,8 @@ const CreditChecker = () => {
   useEffect(() => {}, []);
 
   const onSubmit = async () => {
+    toast("Service Temporarily down!!!");
+    return;
     if (hallticketno.length < 10) {
       toast.error("The Hallticket should be of 10 digits");
       return;

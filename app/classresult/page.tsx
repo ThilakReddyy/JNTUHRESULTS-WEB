@@ -26,6 +26,8 @@ const ClassResult = () => {
   });
 
   const onSubmit = async () => {
+    toast.error("Service Temporarily down!!!");
+    return;
     const date = Date.now();
     if (currentHours > 5) {
       toast.error("Results will only appear between 12 AM and 5 AM");

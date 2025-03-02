@@ -3,30 +3,29 @@ import { collegedata } from "@/constants/colleges";
 import React from "react";
 
 interface ResultDetailsProps {
-  Details: Record<string, any>;
+  details: Record<string, any>;
 }
 
-const ResultDetails = ({ Details }: ResultDetailsProps) => {
+const ResultDetails = ({ details }: ResultDetailsProps) => {
   return (
     <>
       <table className="w-[100%] mt-2  border-black dark:border-white  rounded-t ">
         <tbody>
           <tr className="w-max bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954]">
-            {Object.keys(Details).map((value: string, index: number) => (
-              <th key={index} className=" dark:border-white">
-                {value}
-              </th>
-            ))}
+            <th className=" dark:border-white">Name</th>
+            <th className=" dark:border-white">Roll Number</th>
+            <th className=" dark:border-white">College Code</th>
+            <th className=" dark:border-white">Father Name</th>
           </tr>
           <tr>
-            {Object.values(Details).map((value: any, index: number) => (
-              <th key={index} className="dark:border-white">
-                {value}
-              </th>
-            ))}
+            <th className=" dark:border-white">{details.name}</th>
+            <th className=" dark:border-white">{details.rollNumber}</th>
+            <th className=" dark:border-white">{details.collegeCode}</th>
+            <th className=" dark:border-white">{details.fatherName}</th>
           </tr>
         </tbody>
       </table>
+
       <table className="w-[100%] mb-2   border-black dark:border-white  rounded-b ">
         <tbody>
           <tr className="">
@@ -45,10 +44,10 @@ const ResultDetails = ({ Details }: ResultDetailsProps) => {
           </tr>
           <tr className="">
             <th key="college_name" className=" dark:border-white">
-              {collegedata[Details["COLLEGE_CODE"]]}
+              {collegedata[details["collegeCode"]]}
             </th>
             <th key="branch_detail" className=" dark:border-white">
-              {branchDetails[Details["Roll_No"].substring(6, 8)]}
+              {branchDetails[details["rollNumber"].substring(6, 8)]}
             </th>
           </tr>
         </tbody>

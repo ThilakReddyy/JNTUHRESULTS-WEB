@@ -1,10 +1,5 @@
 "use client";
 
-import {
-  fetchAcademicResult,
-  fetchAcademicallResult,
-  getLocalStoragedata,
-} from "@/components/api/fetchAcademicResult";
 import Footer from "@/components/footer/footer";
 import Form from "@/components/forms/resulthtnoform";
 import Loading from "@/components/loading/loading";
@@ -12,10 +7,10 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { fetchAcademicResult } from "@/components/api/fetchResults";
+import { sleep } from "@/components/customfunctions/timer";
 
 const AcademicResult = () => {
-  const sleep = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
-
   const [hallticketno, sethallticketno] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -54,34 +49,19 @@ const AcademicResult = () => {
       toast.error("The Hallticket should be of 10 digits");
       return;
     }
-    setLoading(true);
 
+    toast.loading("Result are been fetched");
     try {
-      const localStorageResult = getLocalStoragedata(hallticketno);
-      if (localStorageResult !== null) {
-        router.push("academicresult/result?htno=" + hallticketno);
-        if (Date.now() < localStorageResult["expiry"]) {
-          return;
-        }
-      }
-      const result = await fetchAcademicallResult(hallticketno);
-
-      // const result = 422;
-      if (result !== null && result !== undefined && result !== 422) {
+      await sleep(0.5);
+      toast.dismiss();
+      const result = await fetchAcademicResult(hallticketno);
+      if (result) {
         router.push("/academicresult/result?htno=" + hallticketno);
-      } else if (result === 422) {
-        setLoading(false);
-        toast.error("Jntuh Servers are down!!!");
-      } else {
-        setLoading(false);
-        // toast.error("Jntuh Servers are down!!!");
-        toast.error("Request Timeout!!");
-        // toast("Your Roll Number is queued.\n Kindly check after few minutes");
       }
     } catch (error) {
       console.log("Error while fetching the academic result :", error);
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   return loading ? (
