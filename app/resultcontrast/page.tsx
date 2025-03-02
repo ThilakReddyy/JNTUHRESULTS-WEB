@@ -17,6 +17,8 @@ const ResultContrast = () => {
   const [hallticketno, sethallticketno] = useState("");
   const [hallticketno2, sethallticketno2] = useState("");
   const onSubmit = async () => {
+    toast.error("Service Temporarily down!!!");
+    return;
     if (hallticketno.length < 10 || hallticketno2.length < 10) {
       toast.error("The Hallticket should be of 10 digits");
       return;
