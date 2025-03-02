@@ -4,13 +4,14 @@ import { useState } from "react";
 import Form from "@/components/forms/resulthtnoform";
 import Loading from "@/components/loading/loading";
 import toast from "react-hot-toast";
-import {
-  fetchAcademicResult,
-  fetchAcademicallResult,
-  getLocalStoragedata,
-} from "@/components/api/fetchAcademicResult";
+
 import { useRouter } from "next/navigation";
 import Footer from "@/components/footer/footer";
+import { sleep } from "@/components/customfunctions/timer";
+import {
+  fetchAcademicResult,
+  fetchBacklogReport,
+} from "@/components/api/fetchResults";
 
 const BacklogReport = () => {
   const [hallticketno, sethallticketno] = useState("");
@@ -23,27 +24,22 @@ const BacklogReport = () => {
       return;
     }
 
-    setLoading(true);
-
+    toast.loading("Result are been fetched");
+    await sleep(1.5);
     try {
-      const localStorageResult = getLocalStoragedata(hallticketno);
-      if (localStorageResult !== null) {
-        router.push("backlogreport/result?htno=" + hallticketno);
-        if (Date.now() < localStorageResult["expiry"]) {
-          return;
-        }
-      }
-      const result = await fetchAcademicallResult(hallticketno);
-      if (result !== null && result !== undefined && result != 422) {
+      const result = await fetchBacklogReport(hallticketno);
+      toast.dismiss();
+      if (result) {
         router.push("/backlogreport/result?htno=" + hallticketno);
       } else {
-        setLoading(false);
-        toast.error("Internal server Error!!");
+        toast.loading("Hallticket has been queued!!!");
+        await sleep(1.5);
       }
     } catch (error) {
       console.log("Error while fetching the academic result :", error);
-      setLoading(false);
     }
+    setLoading(false);
+    toast.dismiss();
   };
   return loading ? (
     <Loading />

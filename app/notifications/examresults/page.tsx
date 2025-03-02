@@ -25,7 +25,7 @@ const NotificationExamResults = () => {
         </div>
       </div>
       <div className="m-2 text-[30%]  sm:text-[45%] border-t-gray-700 border-t pt-4 md:text-[60%] lg:text-[100%]">
-        <ResultDetails Details={storageJson["Details"]} />
+        {/* <ResultDetails Details={storageJson["Details"]} /> */}
         <div className="font-bold text-center">
           <table className="dark:border-white">
             <tbody>

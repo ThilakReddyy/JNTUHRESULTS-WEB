@@ -64,7 +64,7 @@ const CreditCheckerResult = () => {
           <div className="justify-center">CREDITS CHECKER</div>
         </div>
         {/* Render the ResultDetails component */}
-        <ResultDetails Details={Details} />
+        {/* <ResultDetails Details={Details} /> */}
         <>
           {keys.map((subkeys, index) => {
             return (

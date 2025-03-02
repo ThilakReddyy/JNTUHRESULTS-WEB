@@ -4,6 +4,7 @@ import {
   fetchAcademicallResult,
   getLocalStoragedata,
 } from "@/components/api/fetchAcademicResult";
+import { fetchAllResult } from "@/components/api/fetchResults";
 import Footer from "@/components/footer/footer";
 import Form from "@/components/forms/resulthtnoform";
 import Loading from "@/components/loading/loading";
@@ -26,31 +27,22 @@ const AcademicAllResult = () => {
       return;
     }
 
-    setLoading(true);
-
+    toast.loading("Result are been fetched");
+    await sleep(1.5);
     try {
-      const localStorageResult = getLocalStoragedata(hallticketno + "all");
-      if (localStorageResult !== null) {
-        router.push("academicallresult/result?htno=" + hallticketno);
-        if (Date.now() < localStorageResult["expiry"]) {
-          return;
-        }
-      }
-      const result = await fetchAcademicallResult(hallticketno);
-      if (result !== null && result !== undefined && result !== 422) {
+      const result = await fetchAllResult(hallticketno);
+      toast.dismiss();
+      if (result) {
         router.push("/academicallresult/result?htno=" + hallticketno);
-      } else if (result === 422) {
-        setLoading(false);
-        toast.error("Jntuh Servers are down!!!");
       } else {
-        setLoading(false);
-        // toast.error("Jntuh Servers are down!!!");
-        toast.error("Internal server Error!!");
+        toast.loading("Hallticket has been queued!!!");
+        await sleep(1.5);
       }
     } catch (error) {
       console.log("Error while fetching the academic result :", error);
-      setLoading(false);
     }
+    setLoading(false);
+    toast.dismiss();
   };
 
   return loading ? (

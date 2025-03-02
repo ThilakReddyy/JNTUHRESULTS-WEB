@@ -38,7 +38,7 @@ const ClassResultResult = () => {
       {results?.map((result: any, index: number) => {
         return (
           <div key={index}>
-            <ResultDetails Details={result["Details"]} />
+            {/* <ResultDetails Details={result["Details"]} /> */}
             <ResultResults Results={result["Results"]} />
           </div>
         );

@@ -1,29 +1,22 @@
 "use client";
-import { useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { getLocalStoragedata } from "@/components/api/fetchAcademicResult";
 import ResultDetails from "@/components/result/details";
 import QuickNavigation from "@/components/navbar/quicknavigation";
+import { getFromLocalStorage } from "@/components/customfunctions/localStorage";
+import AcademicResult from "@/components/result/academicresult";
 
 const BacklogReportResult = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const htno = searchParams.get("htno");
-  const details = getLocalStoragedata(String(htno), true);
-  console.log(details);
-  let Details = {};
-  let Results = {};
-  useEffect(() => {
-    if (details === null) {
-      router.push("/backlogreport");
-    }
-  }, [details, router]);
-  if (details !== null) {
-    const resultDetails = details.value;
-    Details = resultDetails["Details"];
-    Results = resultDetails["Results"];
+  const backlogreport = getFromLocalStorage(htno + "-Backlogreport");
+
+  if (backlogreport === null) {
+    router.push("/backlogreport");
   }
-  return details === null ? (
+  console.log(backlogreport.results);
+
+  return backlogreport === null ? (
     <>
       <div className="m-2 text-[30%] sm:text-[45%] md:text-[60%] lg:text-[100%]">
         Details not found
@@ -36,88 +29,28 @@ const BacklogReportResult = () => {
           BACKLOG REPORT
         </div>
         {/* Render Details */}
-        <ResultDetails Details={Details} />
-
-        {Object.keys(Results).map((value: string, index: number) => {
-          return (
-            <div key={index}>
-              {value != "Total" ? (
-                <>
-                  <table className="dark:border-white w-[100%]">
-                    <tbody>
-                      <tr>
-                        <th className="bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954] dark:border-white">
-                          {value} Results
-                        </th>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <table className="dark:border-white">
-                    <tbody>
-                      <tr className="w-max bg-gray-200 md:bg-gray-300 dark:border-white dark:bg-[#0b3954]">
-                        <th className="dark:border-white">SUBJECT_CODE</th>
-                        <th className="dark:border-white">SUBJECT_NAME</th>
-                        <th className="dark:border-white">INTERNAL</th>
-                        <th className="dark:border-white">EXTERNAL</th>
-                        <th className="dark:border-white">TOTAL</th>
-                        <th className="dark:border-white">GRADE</th>
-                        <th className="dark:border-white">CREDITS</th>
-                      </tr>
-                      {Object.values(
-                        Results[value as keyof typeof Results],
-                      ).map((value: any, index: number) => {
-                        if (typeof value === "object") {
-                          return (
-                            <tr key={index}>
-                              <th className="dark:border-white">
-                                {value["subject_code"]}
-                              </th>
-                              <th className="dark:border-white">
-                                {value["subject_name"]}
-                              </th>
-                              <th className="dark:border-white">
-                                {value["subject_internal"]}
-                              </th>
-                              <th className="dark:border-white">
-                                {value["subject_external"]}
-                              </th>
-                              <th className="dark:border-white">
-                                {value["subject_total"]}
-                              </th>
-                              <th className="dark:border-white">
-                                {value["subject_grade"]}
-                              </th>
-                              <th className="dark:border-white">
-                                {value["subject_credits"]}
-                              </th>
-                            </tr>
-                          );
-                        }
-                      })}
-                    </tbody>
-                  </table>
-                  <br />
-                </>
-              ) : (
-                <table className="dark:border-white" key={index}>
-                  <tbody>
-                    <tr>
-                      <th className="dark:border-white w-[75%]">TOTAL CGPA</th>
-                      <th className="dark:border-white">
-                        {Results[value as keyof typeof Results]}
-                      </th>
-                    </tr>
-                  </tbody>
-                </table>
-              )}
-            </div>
-          );
-        })}
-        {Object.keys(Results).length === 0 && (
-          <table className="dark:border-white">
+        <ResultDetails details={backlogreport.details} />
+        {backlogreport.results.totalBacklogs != 0 ? (
+          <>
+            <table className="dark:border-white my-2">
+              <tbody>
+                <tr>
+                  <th className="dark:border-white w-[50%] bg-gray-200">
+                    Total Backlogs
+                  </th>
+                  <th className="dark:border-white">
+                    {backlogreport.results.totalBacklogs}
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+            <AcademicResult result={backlogreport.results} academic={false} />
+          </>
+        ) : (
+          <table className="dark:border-white my-2">
             <tbody>
               <tr>
-                <th className="dark:border-white">NO BACKLOGS</th>
+                <th className="dark:border-white ">No Backlogs</th>
               </tr>
             </tbody>
           </table>
