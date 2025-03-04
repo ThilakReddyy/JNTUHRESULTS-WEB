@@ -54,7 +54,6 @@ const AcademicResult = () => {
 
     setIsCooldown(true);
     toast.loading("Result are been fetched");
-    await sleep(0.5);
     try {
       const result = await fetchAcademicResult(hallticketno);
       toast.dismiss();
