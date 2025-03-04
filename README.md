@@ -1,7 +1,7 @@
 # [JNTUH RESULTS](http://results.jntuh.ac.in/) - WEB </h1>
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/fd2876a01109454886ce0c49811c3450)](https://app.codacy.com/gh/ThilakReddyy/JNTUHRESULTS-WEB/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
-[![License](https://img.shields.io/github/license/thilakreddyy/jntuhresults-web.svg)](https://github.com/ThilakReddyy/JNTUHRESULTS-web/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/ThilakReddyy/jntuhresults-web)](https://github.com/ThilakReddyy/jntuhresults-web/blob/main/LICENSE)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/thilakreddyy/jntuhresults-web.svg)
 [![Website](https://img.shields.io/website?url=http%3A%2F%2Fjntuhresults.vercel.app&Website-Jntuh%20Results-blue?style=flat&logo=world&logoColor=white)](http://jntuhresults.vercel.app/)
 
@@ -19,7 +19,7 @@
 <p>To get started, just clone the repository and run <code>npm install && npm run dev</code>:</p>
 
 <pre>
-git clone https://github.com/ThilakReddyy/JNTUHRESULTS-WEB-new-.git
+git clone https://github.com/ThilakReddyy/JNTUHRESULTS-WEB.git
 npm install
 npm run dev
 </pre>
