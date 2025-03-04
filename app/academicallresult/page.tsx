@@ -31,17 +31,12 @@ const AcademicAllResult = () => {
     }
 
     setIsCooldown(true);
-    toast.loading("Results are being fetched");
-    await sleep(1500);
 
     try {
       const result = await fetchAllResult(hallticketno);
       toast.dismiss();
       if (result) {
         router.push("/academicallresult/result?htno=" + hallticketno);
-      } else {
-        toast.loading("Hallticket has been queued!!!");
-        await sleep(1500);
       }
     } catch (error) {
       console.log("Error while fetching the academic result:", error);
