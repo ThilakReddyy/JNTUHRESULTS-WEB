@@ -5,6 +5,7 @@ interface CollegeData {
 export const collegedata: CollegeData = {
   "8P": "A A R Mahaveer Engineering College",
   "9G": "AARUSHI GROUP OF INSTITUTIONS",
+  VD: "JNTUH University College of Engineering Manthani",
   AG: "ACE Engineering College",
   DN: "ADUSUMILLI VIJAYA COLLEGE OF ENGINEERING & RESEARCH CENTRE",
   "5G": "ADUSUMILLI VIJAYA INSTITUTE OF TECHNOLOGY & RESEARCH CENTRE",
