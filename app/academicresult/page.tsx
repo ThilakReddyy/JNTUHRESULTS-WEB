@@ -59,14 +59,16 @@ const AcademicResult = () => {
       toast.dismiss();
       if (result) {
         router.push("/academicresult/result?htno=" + hallticketno);
+      } else {
+        sleep(1.5);
       }
     } catch (error) {
       console.log("Error while fetching the academic result :", error);
     }
     setLoading(false);
-    toast.dismiss();
     setTimeout(() => {
       setIsCooldown(false);
+      toast.dismiss();
     }, 10000);
   };
 
