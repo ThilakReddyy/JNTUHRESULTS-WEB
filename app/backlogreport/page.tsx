@@ -16,14 +16,18 @@ import {
 const BacklogReport = () => {
   const [hallticketno, sethallticketno] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [isCooldown, setIsCooldown] = useState<boolean>(false);
+
   const router = useRouter();
 
   const onSubmit = async () => {
+    if (isCooldown) return;
     if (hallticketno.length < 10) {
       toast.error("The Hallticket should be of 10 digits");
       return;
     }
 
+    setIsCooldown(true);
     toast.loading("Result are been fetched");
     await sleep(1.5);
     try {
@@ -31,15 +35,15 @@ const BacklogReport = () => {
       toast.dismiss();
       if (result) {
         router.push("/backlogreport/result?htno=" + hallticketno);
-      } else {
-        toast.loading("Hallticket has been queued!!!");
-        await sleep(1.5);
       }
     } catch (error) {
       console.log("Error while fetching the academic result :", error);
     }
     setLoading(false);
     toast.dismiss();
+    setTimeout(() => {
+      setIsCooldown(false);
+    }, 10000);
   };
   return loading ? (
     <Loading />
@@ -50,6 +54,7 @@ const BacklogReport = () => {
         title="Backlog Report"
         hallticketno={hallticketno}
         sethallticketno={sethallticketno}
+        isDisabled={isCooldown}
       />
 
       <Footer />

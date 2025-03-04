@@ -13,6 +13,7 @@ import { sleep } from "@/components/customfunctions/timer";
 const AcademicResult = () => {
   const [hallticketno, sethallticketno] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [isCooldown, setIsCooldown] = useState<boolean>(false);
 
   const router = useRouter();
   useEffect(() => {
@@ -45,16 +46,18 @@ const AcademicResult = () => {
   }, []);
 
   const onSubmit = async () => {
+    if (isCooldown) return;
     if (hallticketno.length < 10) {
       toast.error("The Hallticket should be of 10 digits");
       return;
     }
 
+    setIsCooldown(true);
     toast.loading("Result are been fetched");
+    await sleep(0.5);
     try {
-      await sleep(0.5);
-      toast.dismiss();
       const result = await fetchAcademicResult(hallticketno);
+      toast.dismiss();
       if (result) {
         router.push("/academicresult/result?htno=" + hallticketno);
       }
@@ -62,6 +65,10 @@ const AcademicResult = () => {
       console.log("Error while fetching the academic result :", error);
     }
     setLoading(false);
+    toast.dismiss();
+    setTimeout(() => {
+      setIsCooldown(false);
+    }, 10000);
   };
 
   return loading ? (
@@ -73,6 +80,7 @@ const AcademicResult = () => {
         hallticketno={hallticketno}
         sethallticketno={sethallticketno}
         onSubmit={onSubmit}
+        isDisabled={isCooldown}
       />
       <Footer />
     </>

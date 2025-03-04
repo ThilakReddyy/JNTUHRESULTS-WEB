@@ -73,6 +73,7 @@ const ResultContrast = () => {
         hallticketno2={hallticketno2}
         sethallticketno2={sethallticketno2}
         onSubmit={onSubmit}
+        isDisabled={false}
       />
       <Footer />
     </>

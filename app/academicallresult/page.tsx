@@ -13,22 +13,27 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const AcademicAllResult = () => {
-  const sleep = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
+  const sleep = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
 
   const [hallticketno, sethallticketno] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [isCooldown, setIsCooldown] = useState<boolean>(false);
 
   const router = useRouter();
-  useEffect(() => {}, []);
 
   const onSubmit = async () => {
+    if (isCooldown) return;
+
     if (hallticketno.length < 10) {
       toast.error("The Hallticket should be of 10 digits");
       return;
     }
 
-    toast.loading("Result are been fetched");
-    await sleep(1.5);
+    setIsCooldown(true);
+    toast.loading("Results are being fetched");
+    await sleep(1500);
+
     try {
       const result = await fetchAllResult(hallticketno);
       toast.dismiss();
@@ -36,13 +41,19 @@ const AcademicAllResult = () => {
         router.push("/academicallresult/result?htno=" + hallticketno);
       } else {
         toast.loading("Hallticket has been queued!!!");
-        await sleep(1.5);
+        await sleep(1500);
       }
     } catch (error) {
-      console.log("Error while fetching the academic result :", error);
+      console.log("Error while fetching the academic result:", error);
     }
+
     setLoading(false);
     toast.dismiss();
+
+    // Cooldown period (10 seconds)
+    setTimeout(() => {
+      setIsCooldown(false);
+    }, 10000);
   };
 
   return loading ? (
@@ -54,9 +65,11 @@ const AcademicAllResult = () => {
         hallticketno={hallticketno}
         sethallticketno={sethallticketno}
         onSubmit={onSubmit}
+        isDisabled={isCooldown} // Pass this prop to disable button
       />
       <Footer />
     </>
   );
 };
+
 export default AcademicAllResult;
