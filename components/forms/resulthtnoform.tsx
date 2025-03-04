@@ -6,6 +6,7 @@ interface FormProps {
   sethallticketno: (value: string) => void;
   sethallticketno2?: (value: string) => void;
   onSubmit: () => void;
+  isDisabled: boolean;
 }
 
 const Form = ({
@@ -15,6 +16,7 @@ const Form = ({
   sethallticketno,
   sethallticketno2,
   onSubmit,
+  isDisabled,
 }: FormProps) => {
   return (
     <div className="flex justify-center  mt-[6%]  mx-[16%] px-10 rounded-md border-black dark:border-white border-2  shadow-2xl   ">
@@ -77,6 +79,7 @@ const Form = ({
             dark:text-black text-white
             w-[100px]
             "
+            disabled={isDisabled}
             onClick={onSubmit}
           >
             Result

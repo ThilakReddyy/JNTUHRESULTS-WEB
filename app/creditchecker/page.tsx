@@ -63,6 +63,7 @@ const CreditChecker = () => {
         hallticketno={hallticketno}
         sethallticketno={sethallticketno}
         onSubmit={onSubmit}
+        isDisabled={false}
       />
       <Footer />
     </>
