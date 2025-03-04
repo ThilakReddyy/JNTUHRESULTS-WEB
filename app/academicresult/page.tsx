@@ -53,14 +53,10 @@ const AcademicResult = () => {
     }
 
     setIsCooldown(true);
-    toast.loading("Result are been fetched");
     try {
       const result = await fetchAcademicResult(hallticketno);
-      toast.dismiss();
       if (result) {
         router.push("/academicresult/result?htno=" + hallticketno);
-      } else {
-        sleep(1.5);
       }
     } catch (error) {
       console.log("Error while fetching the academic result :", error);
