@@ -20,3 +20,20 @@ type Semester = {
 };
 
 type StudentResults = Semester[];
+
+interface SemesterWiseCredits {
+  [semester: string]: number;
+}
+
+interface AcademicYear {
+  semesterWiseCredits: SemesterWiseCredits;
+  creditsObtained: number;
+  totalCredits: number;
+}
+
+interface StudentCredits {
+  academicYears: AcademicYear[];
+  totalCredits: number;
+  totalObtainedCredits: number;
+  totalRequiredCredits: number;
+}
