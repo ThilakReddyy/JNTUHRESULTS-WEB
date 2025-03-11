@@ -68,7 +68,7 @@ const CreditsCheckerResult = ({
             <b>
               You require{" "}
               <b className="text-red-500">
-                {results.totalCredits - results.totalRequiredCredits}
+                {results.totalRequiredCredits - results.totalObtainedCredits}
               </b>{" "}
               {year === "4" ? (
                 <>additional credits to graduate from college</>
