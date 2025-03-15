@@ -20,17 +20,20 @@ export const fetchAcademicResult = async (htno: string) => {
       toast.dismiss();
       return true;
     }
+
+    toast.dismiss();
     if (response.data.status === "success") {
-      toast.dismiss();
       toast(response.data.message);
     } else if (response.data.status === "failure") {
-      toast.dismiss();
       toast.error(response.data.message);
     }
 
     return false;
   } catch {
+    toast.dismiss();
+
     toast.error("SERVER ISSUE!!");
+    return false;
   }
 };
 
@@ -83,7 +86,9 @@ export const fetchBacklogReport = async (htno: string) => {
 
     return false;
   } catch {
+    toast.dismiss();
     toast.error("SERVER ISSUE!!");
+    return false;
   }
 };
 

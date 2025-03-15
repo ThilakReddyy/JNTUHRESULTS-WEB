@@ -37,3 +37,16 @@ interface StudentCredits {
   totalObtainedCredits: number;
   totalRequiredCredits: number;
 }
+
+interface ResultDetailsProps {
+  details: Record<string, any>;
+}
+interface AcademicResultProps {
+  result: Record<string, any>;
+  academic: boolean;
+}
+
+interface AcademicResulProps {
+  details: Record<string, any>;
+  results: Record<string, any>;
+}

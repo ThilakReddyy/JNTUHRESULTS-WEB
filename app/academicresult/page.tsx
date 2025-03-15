@@ -41,7 +41,6 @@ const AcademicResult = () => {
         console.error("Failed to read clipboard content:", err);
       }
     }
-    console.log("got here");
     readClipboard();
   }, []);
 
