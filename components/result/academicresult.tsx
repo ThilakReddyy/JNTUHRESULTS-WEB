@@ -1,8 +1,3 @@
-interface AcademicResultProps {
-  result: Record<string, any>;
-  academic: boolean;
-}
-
 const AcademicResult = ({ result, academic = false }: AcademicResultProps) => {
   return (
     <div className="flex flex-col gap-2">

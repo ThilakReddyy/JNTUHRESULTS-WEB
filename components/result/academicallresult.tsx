@@ -7,7 +7,6 @@ const AcademicAllResult = ({
   results: StudentResults;
   htno: string;
 }) => {
-  console.log(results);
   return (
     <div className="flex flex-col gap-2">
       {results.map((semester: Semester, index: number) => {

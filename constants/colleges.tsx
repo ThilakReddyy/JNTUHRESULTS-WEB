@@ -240,7 +240,7 @@ export const collegedata: CollegeData = {
   "7X": "Madhira Educational Society Group of Institutions",
   AE: "Madhira Institute of Technolagy & Science",
   G7: "Madhira Institute of Technology & Sciences",
-  // "26": "Mahatma Gandhi Institute of Technology",
+  "26": "Mahatma Gandhi Institute of Technology",
   E3: "Mahaveer Institute of Science & Technology",
   "59": "Maheshwara Institute of Technology",
   FD: "Maheswara College of Pharmacy",
