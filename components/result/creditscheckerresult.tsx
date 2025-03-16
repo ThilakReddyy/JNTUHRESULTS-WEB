@@ -46,6 +46,18 @@ const CreditsCheckerResult = ({
                   )}
                 </tbody>
               </table>
+              <table className="border dark:border-white w-full">
+                <tbody>
+                  <tr>
+                    <th className="bg-gray-200 md:bg-gray-300 w-[50%] dark:border-white dark:bg-[#0b3954]    text-center">
+                      Credits Received
+                    </th>
+                    <th className="w-[50%] dark:border-white   text-center">
+                      {result.creditsObtained}/{result.totalCredits}
+                    </th>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         );
