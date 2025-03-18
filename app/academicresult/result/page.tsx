@@ -8,12 +8,14 @@ import AcademicResult from "@/components/result/academicresult";
 import TotalResult from "@/components/result/totalResult";
 import ResultDetailsSkeleton from "@/components/skeleton/ResultDetailsSkeleton";
 import AcademicResultSkeleton from "@/components/skeleton/AcademicResultsSkeleton";
+import Print from "@/components/download/print";
 
 const AcademicResultResult = () => {
   const router = useRouter();
   const htno = useSearchParams().get("htno");
   const [academicResult, setAcademicResult] =
     useState<AcademicResulProps | null>(null);
+  const componentRef = useRef(null);
   useEffect(() => {
     const academicResult = getFromLocalStorage(
       String(htno) + "-AcademicResult",
@@ -27,7 +29,10 @@ const AcademicResultResult = () => {
 
   return (
     <>
-      <div className="m-2 text-[30%]  sm:text-[45%]  md:text-[60%] lg:text-[100%]">
+      <div
+        className="m-2 text-[30%]  sm:text-[45%]  md:text-[60%] lg:text-[100%]"
+        ref={componentRef}
+      >
         <div className="text-center grid grid-cols-3 font-bold my-5 text-xs lg:text-2xl">
           <div></div>
           <div className="justify-center">ACADEMIC RESULTS</div>
@@ -52,8 +57,8 @@ const AcademicResultResult = () => {
       <div className="flex justify-center text-[6px] text-black">
         jntuhresults.vercel.app
       </div>
-      <QuickNavigation htno={htno} />
-      {/* <Print componentRef={componentRef} /> */}
+      {/* <QuickNavigation htno={htno} /> */}
+      <Print componentRef={componentRef} />
     </>
   );
 };

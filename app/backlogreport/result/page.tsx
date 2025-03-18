@@ -4,6 +4,8 @@ import ResultDetails from "@/components/result/details";
 import QuickNavigation from "@/components/navbar/quicknavigation";
 import { getFromLocalStorage } from "@/components/customfunctions/localStorage";
 import AcademicResult from "@/components/result/academicresult";
+import Print from "@/components/download/print";
+import { useRef } from "react";
 
 const BacklogReportResult = () => {
   const router = useRouter();
@@ -11,10 +13,10 @@ const BacklogReportResult = () => {
   const htno = searchParams.get("htno");
   const backlogreport = getFromLocalStorage(htno + "-Backlogreport");
 
+  const componentRef = useRef(null);
   if (backlogreport === null) {
     router.push("/backlogreport");
   }
-  console.log(backlogreport.results);
 
   return backlogreport === null ? (
     <>
@@ -24,7 +26,10 @@ const BacklogReportResult = () => {
     </>
   ) : (
     <>
-      <div className="m-2 text-[30%] sm:text-[45%]  md:text-[60%] lg:text-[100%]">
+      <div
+        className="m-2 text-[30%] sm:text-[45%]  md:text-[60%] lg:text-[100%]"
+        ref={componentRef}
+      >
         <div className="text-center font-bold my-5 text-xs lg:text-2xl">
           BACKLOG REPORT
         </div>
@@ -56,7 +61,8 @@ const BacklogReportResult = () => {
           </table>
         )}
       </div>
-      <QuickNavigation htno={htno} />
+
+      <Print componentRef={componentRef} />
     </>
   );
 };

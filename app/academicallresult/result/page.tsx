@@ -5,11 +5,13 @@ import ResultDetails from "@/components/result/details";
 import QuickNavigation from "@/components/navbar/quicknavigation";
 import { getFromLocalStorage } from "@/components/customfunctions/localStorage";
 import AcademicAllResult from "@/components/result/academicallresult";
+import Print from "@/components/download/print";
 
 const AcademicAllResultResult = () => {
   const router = useRouter();
   const htno = useSearchParams().get("htno");
 
+  const componentRef = useRef(null);
   const allResult = getFromLocalStorage(String(htno) + "-AllResult");
 
   if (allResult === null) {
@@ -24,7 +26,10 @@ const AcademicAllResultResult = () => {
     </>
   ) : (
     <>
-      <div className="m-2 text-[30%]  sm:text-[45%]  md:text-[60%] lg:text-[100%]">
+      <div
+        className="m-2 text-[30%]  sm:text-[45%]  md:text-[60%] lg:text-[100%]"
+        ref={componentRef}
+      >
         <div className="text-center grid grid-cols-3 font-bold my-5 text-xs lg:text-2xl">
           <div></div>
           <div className="justify-center">ACADEMIC All RESULTS</div>
@@ -42,7 +47,7 @@ const AcademicAllResultResult = () => {
         </div>
       </div>
 
-      <QuickNavigation htno={htno} />
+      <Print componentRef={componentRef} />
     </>
   );
 };
