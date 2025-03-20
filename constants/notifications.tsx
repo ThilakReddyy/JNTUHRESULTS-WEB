@@ -1,5 +1,53 @@
 export const NotificationList = [
   {
+    Result_title:
+      "B.Pharmacy IV Year I Semester (R17) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=bpharmacy&examCode=987&etype=r17&type=intgrade",
+    Date: "19-MAR-2025",
+    formatted_date: "2025-03-19",
+  },
+  {
+    Result_title:
+      "B.Pharmacy IV Year I Semester (R16) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=bpharmacy&examCode=988&etype=r17&type=intgrade",
+    Date: "19-MAR-2025",
+    formatted_date: "2025-03-19",
+  },
+  {
+    Result_title:
+      "B.Pharmacy IV Year I Semester (R15) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=bpharmacy&examCode=989",
+    Date: "19-MAR-2025",
+    formatted_date: "2025-03-19",
+  },
+  {
+    Result_title:
+      "  M.B.A. IV Semester (R22) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=mba&examCode=415&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "19-MAR-2025",
+    formatted_date: "2025-03-19",
+  },
+  {
+    Result_title:
+      "  M.B.A. IV Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=mba&examCode=416&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "19-MAR-2025",
+    formatted_date: "2025-03-19",
+  },
+  {
+    Result_title: "  M.B.A. III Semester (R22) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=mba&examCode=417&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "19-MAR-2025",
+    formatted_date: "2025-03-19",
+  },
+  {
+    Result_title:
+      "  M.B.A. III Semester (R19) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=mba&examCode=418&grad=pg&etype=null&result=grade17&type=intgrade",
+    Date: "19-MAR-2025",
+    formatted_date: "2025-03-19",
+  },
+  {
     Result_title: "B.Tech I Year I Semester (R22) Regular Examinations Results",
     Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=btech&examCode=1851&etype=r17&type=intgrade",
     Date: "17-MAR-2025",
