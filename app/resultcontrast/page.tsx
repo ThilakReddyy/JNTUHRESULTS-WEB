@@ -10,6 +10,7 @@ import {
 import { useRouter } from "next/navigation";
 import Loading from "@/components/loading/loading";
 import Footer from "@/components/footer/footer";
+import { fetchCreditContrastReport } from "@/components/api/fetchResults";
 
 const ResultContrast = () => {
   const router = useRouter();
@@ -17,51 +18,33 @@ const ResultContrast = () => {
   const [hallticketno, sethallticketno] = useState("");
   const [hallticketno2, sethallticketno2] = useState("");
   const onSubmit = async () => {
-    toast.error("Service Temporarily down!!!");
-    return;
     if (hallticketno.length < 10 || hallticketno2.length < 10) {
       toast.error("The Hallticket should be of 10 digits");
       return;
     }
 
-    setLoading(true);
-
     try {
-      const localStorageResult = getLocalStoragedata(hallticketno);
-      const localStorageResult2 = getLocalStoragedata(hallticketno2);
-      if (localStorageResult !== null && localStorageResult2 != null) {
-        if (
-          Date.now() < localStorageResult["expiry"] &&
-          Date.now() < localStorageResult2["expiry"]
-        ) {
-          return;
-        }
-      }
-      const result = await fetchAcademicResult(hallticketno);
-      const result2 = await fetchAcademicResult(hallticketno2);
-      if (
-        result !== null &&
-        result !== undefined &&
-        result !== 422 &&
-        result2 !== null &&
-        result !== undefined &&
-        result2 !== 422
-      ) {
+      const result = await fetchCreditContrastReport(
+        hallticketno,
+        hallticketno2,
+      );
+      if (result) {
         router.push(
           "/resultcontrast/result?htno=" +
             hallticketno +
             "&htno2=" +
             hallticketno2,
         );
-      } else {
-        setLoading(false);
-        toast.error("Internal server Error!!");
       }
+      setTimeout(() => {
+        toast.dismiss();
+      }, 2000);
     } catch (error) {
       console.log("Error while fetching the academic result :", error);
-      setLoading(false);
     }
+    setLoading(false);
   };
+
   return loading ? (
     <Loading />
   ) : (
