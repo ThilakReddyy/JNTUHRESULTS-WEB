@@ -3,6 +3,7 @@ import { getFromLocalStorage } from "@/components/customfunctions/localStorage";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 interface AttributeRowProps {
   label: string;
@@ -26,35 +27,18 @@ const AttributeRow: React.FC<AttributeRowProps> = ({
 function ResultContrastPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [results, setResults] = useState<AcademicResulProps[] | null>(null);
+  const [results, setResults] = useState<CreditContrastReport | null>(null);
   useEffect(() => {
+    toast.dismiss();
     const htno = searchParams.get("htno")?.toUpperCase();
     const htno2 = searchParams.get("htno2")?.toUpperCase();
     const localkey = htno + "-" + htno2 + "-CreditContrastreport";
     const results = getFromLocalStorage(localkey);
     setResults(results);
     if (results == null) {
-      router.push("/resultcontrast");
+      // router.push("/resultcontrast");
+      return;
     }
-    const semester1 = results[0]["results"]["semesters"];
-    const semester2 = results[1]["results"]["semesters"];
-    const semesters: any = {};
-    if (semester1.length > semester2.length) {
-      for (const semester of semester1) {
-        semesters[semester["semester"]] = [semester, null];
-      }
-      for (const semester of semester2) {
-        semesters[semester["semester"]][1] = semester;
-      }
-    } else {
-      for (const semester of semester2) {
-        semesters[semester["semester"]] = [null, semester];
-      }
-      for (const semester of semester1) {
-        semesters[semester["semester"]][0] = semester;
-      }
-    }
-    console.log(semesters);
   }, [searchParams, router]);
 
   return results == null ? (
@@ -84,58 +68,53 @@ function ResultContrastPage() {
           </tr>
           <AttributeRow
             label="Name"
-            value1={results[0]["details"]["name"]}
-            value2={results[1]["details"]["name"]}
+            value1={results.studentProfiles[0]["name"]}
+            value2={results.studentProfiles[1]["name"]}
           />
           <AttributeRow
             label="Roll No"
-            value1={results[0]["details"]["rollNumber"]}
-            value2={results[1]["details"]["rollNumber"]}
+            value1={results.studentProfiles[0]["rollNumber"]}
+            value2={results.studentProfiles[1]["rollNumber"]}
           />
           <AttributeRow
             label="College Code"
-            value1={results[0]["details"]["collegeCode"]}
-            value2={results[1]["details"]["collegeCode"]}
+            value1={results.studentProfiles[0]["collegeCode"]}
+            value2={results.studentProfiles[1]["collegeCode"]}
           />
           <AttributeRow
             label="Father's Name"
-            value1={results[0]["details"]["fatherName"]}
-            value2={results[1]["details"]["fatherName"]}
+            value1={results.studentProfiles[0]["fatherName"]}
+            value2={results.studentProfiles[1]["fatherName"]}
           />
         </tbody>
       </table>
-      {/* <table className="w-[100%] mt-4 border-black dark:border-white   "> */}
-      {/*   <tbody> */}
-      {/*     <tr className="w-max bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954]"> */}
-      {/*       <th className=" dark:border-white">Academic Results</th> */}
-      {/*     </tr> */}
-      {/*   </tbody> */}
-      {/* </table> */}
-      {/* <table className="w-[100%] border-black dark:border-white"> */}
-      {/*   <tbody> */}
-      {/*     <tr className="w-max bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954]"> */}
-      {/*       <th className=" dark:border-white w-1/3">Student Attribute</th> */}
-      {/*       <th className=" dark:border-white w-1/3">Student 1</th> */}
-      {/*       <th className=" dark:border-white w-1/3">Student 2</th> */}
-      {/*     </tr> */}
-      {/* {semesters.map((semester, index) => ( */}
-      {/*   <AttributeRow */}
-      {/*     key={index} */}
-      {/*     label={`${semester} CGPA | CREDITS`} */}
-      {/*     value1={ */}
-      {/*       resultsFirstData[semester]?.CGPA */}
-      {/*         ? `${resultsFirstData[semester].CGPA} | ${resultsFirstData[semester].credits}` */}
-      {/*         : "-" */}
-      {/*     } */}
-      {/*     value2={ */}
-      {/*       resultsSecondData[semester]?.CGPA */}
-      {/*         ? `${resultsSecondData[semester].CGPA} | ${resultsSecondData[semester].credits}` */}
-      {/*         : "-" */}
-      {/*     } */}
-      {/*   /> */}
-      {/* ))} */}
-      {/*   </tbody> */}
-      {/* </table> */}
+      <table className="w-[100%] mt-4 border-black dark:border-white   ">
+        <tbody>
+          <tr className="w-max bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954]">
+            <th className=" dark:border-white">Academic Results</th>
+          </tr>
+        </tbody>
+      </table>
+      <table className="w-[100%] border-black dark:border-white">
+        <tbody>
+          <tr className="w-max bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954]">
+            <th className=" dark:border-white w-1/3">Student Attribute</th>
+            <th className=" dark:border-white w-1/3">Student 1</th>
+            <th className=" dark:border-white w-1/3">Student 2</th>
+          </tr>
+          {results.semesters.map((semester, index: number) => {
+            console.log(semester);
+            return (
+              <AttributeRow
+                key={index}
+                label={`${semester[0].semester} -   CGPA | CREDITS `}
+                value1={`${semester[0].semesterSGPA} | ${semester[0].semesterCredits}`}
+                value2={`${semester[1].semesterSGPA} | ${semester[1].semesterCredits}`}
+              />
+            );
+          })}
+        </tbody>
+      </table>
       <table className="w-[100%] mt-4 border-black dark:border-white   ">
         <tbody>
           <tr className="w-max bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954]">
@@ -152,23 +131,23 @@ function ResultContrastPage() {
           </tr>
           <AttributeRow
             label="Total CGPA"
-            value1={results[0]["results"]["CGPA"]}
-            value2={results[1]["results"]["CGPA"]}
+            value1={results.studentProfiles[0]["CGPA"]}
+            value2={results.studentProfiles[1]["CGPA"]}
           />
-          <AttributeRow
-            label="Percentage"
-            value1={` ${((results[0]["results"]["CGPA"] - 0.5) * 10).toString()} %`}
-            value2={` ${((results[1]["results"]["CGPA"] - 0.5) * 10).toString()} %`}
-          />
+          {/* <AttributeRow */}
+          {/*   label="Percentage" */}
+          {/*   value1={` ${((results.studentProfiles[0]["CGPA"]) - 0.5) * 10).toString()} %`} */}
+          {/*   value2={` ${((results[1]["results"]["CGPA"] - 0.5) * 10).toString()} %`} */}
+          {/* /> */}
           <AttributeRow
             label="Credits Obtained"
-            value1={results[0]["results"]["credits"]}
-            value2={results[1]["results"]["credits"]}
+            value1={results.studentProfiles[0]["credits"]}
+            value2={results.studentProfiles[1]["credits"]}
           />
           <AttributeRow
             label="Backlogs"
-            value1={results[0]["results"]["backlogs"]}
-            value2={results[1]["results"]["backlogs"]}
+            value1={results.studentProfiles[0]["backlogs"]}
+            value2={results.studentProfiles[1]["backlogs"]}
           />
         </tbody>
       </table>
