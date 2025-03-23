@@ -36,7 +36,7 @@ function ResultContrastPage() {
     const results = getFromLocalStorage(localkey);
     setResults(results);
     if (results == null) {
-      // router.push("/resultcontrast");
+      router.push("/resultcontrast");
       return;
     }
   }, [searchParams, router]);
@@ -108,8 +108,16 @@ function ResultContrastPage() {
               <AttributeRow
                 key={index}
                 label={`${semester[0].semester} -   CGPA | CREDITS `}
-                value1={`${semester[0].semesterSGPA} | ${semester[0].semesterCredits}`}
-                value2={`${semester[1].semesterSGPA} | ${semester[1].semesterCredits}`}
+                value1={
+                  semester[0].semesterCredits !== "-"
+                    ? `${semester[0].semesterSGPA} | ${semester[0].semesterCredits}`
+                    : "-"
+                }
+                value2={
+                  semester[1].semesterCredits !== "-"
+                    ? `${semester[1].semesterSGPA} | ${semester[0].semesterCredits}`
+                    : "-"
+                }
               />
             );
           })}
@@ -131,8 +139,16 @@ function ResultContrastPage() {
           </tr>
           <AttributeRow
             label="Total CGPA"
-            value1={results.studentProfiles[0]["CGPA"]}
-            value2={results.studentProfiles[1]["CGPA"]}
+            value1={
+              results.studentProfiles[0]["backlogs"] == "0"
+                ? results.studentProfiles[0]["CGPA"]
+                : "-"
+            }
+            value2={
+              results.studentProfiles[1]["backlogs"] == "0"
+                ? results.studentProfiles[1]["CGPA"]
+                : "-"
+            }
           />
           {/* <AttributeRow */}
           {/*   label="Percentage" */}
