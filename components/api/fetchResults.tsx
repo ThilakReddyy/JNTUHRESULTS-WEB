@@ -133,7 +133,7 @@ export const fetchCreditContrastReport = async (
 
     toast.loading("Result are been fetched");
     response = await axios.get(url, { timeout: 20 * 1000 });
-    if (response.data.length > 0) {
+    if ("studentProfiles" in response.data) {
       saveToLocalStorage(
         htno1 + "-" + htno2 + "-CreditContrastreport",
         JSON.stringify(response.data),

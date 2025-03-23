@@ -50,3 +50,27 @@ interface AcademicResulProps {
   details: Record<string, any>;
   results: Record<string, any>;
 }
+
+interface StudentProfile {
+  name: string;
+  rollNumber: string;
+  collegeCode: string;
+  fatherName: string;
+  CGPA: string;
+  backlogs: string;
+  credits: string;
+}
+
+interface SemesterRecord {
+  semester: string;
+  semesterSGPA: string;
+  semesterCredits: string;
+  semesterGrades: string;
+  backlogs: number;
+  failed: boolean;
+}
+
+interface CreditContrastReport {
+  studentProfiles: StudentProfile[];
+  semesters: SemesterRecord[][];
+}
