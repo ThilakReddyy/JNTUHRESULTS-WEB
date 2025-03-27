@@ -115,3 +115,17 @@ td {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: 0.25px; /* Firefox */
 }
+
+@keyframes blurFadeOut {
+  from {
+    filter: blur(10px);
+  }
+  to {
+    filter: blur(0px);
+  }
+}
+
+.animate-blur-fade {
+  @apply transition-all;
+  animation: blurFadeOut 0.5s ease-out forwards;
+}
