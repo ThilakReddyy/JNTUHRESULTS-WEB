@@ -23,7 +23,9 @@ const ExamResults = ({ title, query }: { title: string; query: string }) => {
       const redirectUrl =
         "http://results.jntuh.ac.in/results/resultAction?" +
         query +
-        "&htno=18E51A0479&result=null&grad=null";
+        "&htno=" +
+        singleHtno +
+        "&result=null&grad=null";
 
       window.open(redirectUrl, "_blank");
     } catch (e: any) {
