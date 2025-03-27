@@ -19,23 +19,13 @@ const ExamResults = ({ title, query }: { title: string; query: string }) => {
       toast.error("Kindly check the Hall ticket Number");
       return;
     }
-    const encodedquery = encodeURIComponent(query);
-    console.log(encodedquery);
     try {
-      const response = await axios.get(
-        `/api/singleresult?query=${encodedquery}&htno=${singleHtno}`,
-      );
-      if (response.status === 200) {
-        localStorage.setItem(
-          singleHtno + encodedquery,
-          JSON.stringify(response.data),
-        );
-        router.push(
-          `/notifications/examresults?query=${encodedquery}&htno=${singleHtno}&title=${title}`,
-        );
-      } else {
-        toast.error("Internal Server Error!!!");
-      }
+      const redirectUrl =
+        "http://results.jntuh.ac.in/results/resultAction?" +
+        query +
+        "&htno=18E51A0479&result=null&grad=null";
+
+      window.open(redirectUrl, "_blank");
     } catch (e: any) {
       console.log(e);
       toast.error("Internal Server Error!!!");
