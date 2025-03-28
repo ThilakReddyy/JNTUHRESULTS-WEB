@@ -4,14 +4,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
 import { rollNumberEndings } from "@/constants/rollNumberendings";
-import axios from "axios";
-import { useRouter } from "next/navigation";
 
 const ExamResults = ({ title, query }: { title: string; query: string }) => {
-  if (title === null || query === null) {
-    // redirect("/notifications");
-  }
-  const router = useRouter();
   const [singleHtno, setSingleHtno] = useState("");
   const [multiHtno, setMultiHtno] = useState(["", ""]);
   const onSingleResultSubmit = async () => {
