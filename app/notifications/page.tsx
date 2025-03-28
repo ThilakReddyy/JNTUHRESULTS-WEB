@@ -18,10 +18,10 @@ const Notifications = () => {
   const [selectedRegulation, setSelectedRegulation] = useState("");
 
   interface Result {
-    Result_title: string;
-    Date: string;
-    Link: string;
-    formatted_date: string;
+    title: string;
+    date: string;
+    link: string;
+    releaseDate: string;
   }
 
   useEffect(() => {

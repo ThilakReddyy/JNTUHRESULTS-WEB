@@ -17,10 +17,10 @@ const NotificationPopUp = () => {
   const path = "/" + pathname.split("/")[1];
 
   interface Result {
-    Result_title: string;
-    Date: string;
-    Link: string;
-    formatted_date: string;
+    title: string;
+    date: string;
+    link: string;
+    releaseDate: string;
   }
 
   useEffect(() => {
@@ -31,25 +31,9 @@ const NotificationPopUp = () => {
         const today = new Date().toISOString().split("T")[0].toString();
 
         var tempres = (NotificationList as Result[]).filter((result) => {
-          return result.formatted_date === today;
+          return result.releaseDate === today;
         });
         setResults(tempres);
-        return;
-        // if (storageData !== null) {
-        //   const storagedata = JSON.parse(storageData);
-        //   var tempres = (storagedata as Result[]).filter((result) => {
-        //     return result.formatted_date === today;
-        //   });
-        //   setResults(tempres);
-        // }
-        const notifications = await fetchNotifications();
-        if (notifications !== null) {
-          localStorage.setItem("notifications", JSON.stringify(notifications));
-          var tempres = (notifications as Result[]).filter((result) => {
-            return result.formatted_date === today;
-          });
-          setResults(tempres);
-        }
       } catch (error) {
         console.error("Error fetching notifications:", error);
       }
