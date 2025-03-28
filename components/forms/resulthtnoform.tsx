@@ -1,4 +1,5 @@
 "use client";
+
 interface FormProps {
   title: string;
   hallticketno: string;
