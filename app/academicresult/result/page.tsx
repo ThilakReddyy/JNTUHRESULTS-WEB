@@ -1,8 +1,9 @@
 "use client";
+
+import { RefreshCcw } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import ResultDetails from "@/components/result/details";
-import QuickNavigation from "@/components/navbar/quicknavigation";
 import { getFromLocalStorage } from "@/components/customfunctions/localStorage";
 import AcademicResult from "@/components/result/academicresult";
 import TotalResult from "@/components/result/totalResult";
@@ -36,7 +37,14 @@ const AcademicResultResult = () => {
         <div className="text-center grid grid-cols-3 font-bold my-5 text-xs lg:text-2xl">
           <div></div>
           <div className="justify-center">ACADEMIC RESULTS</div>
-          <div className="justify-end flex "></div>
+          <div className="justify-end flex ">
+            <div
+              className="border border-white p-1 md:p-2 md:hidden rounded cursor-pointer justify-center items-center  hidden"
+              onClick={() => {}}
+            >
+              <RefreshCcw size={6} />
+            </div>
+          </div>
         </div>
         {academicResult ? (
           <>
