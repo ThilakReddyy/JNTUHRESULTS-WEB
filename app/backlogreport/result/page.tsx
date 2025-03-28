@@ -1,7 +1,6 @@
 "use client";
 import { useSearchParams, useRouter } from "next/navigation";
 import ResultDetails from "@/components/result/details";
-import QuickNavigation from "@/components/navbar/quicknavigation";
 import { getFromLocalStorage } from "@/components/customfunctions/localStorage";
 import AcademicResult from "@/components/result/academicresult";
 import Print from "@/components/download/print";

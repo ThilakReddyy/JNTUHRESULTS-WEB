@@ -2,11 +2,7 @@
 
 import { rcrvdetails } from "@/constants/rcrvdetails";
 import Link from "next/link";
-import {
-  ReadonlyURLSearchParams,
-  redirect,
-  useSearchParams,
-} from "next/navigation";
+import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import ExamResults from "../examresults/examresults";
 import { romanToNumeral } from "@/constants/romantoNumeral";
