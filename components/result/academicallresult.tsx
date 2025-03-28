@@ -37,7 +37,7 @@ const AcademicAllResult = ({
                         )}
                         <th className="bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954] dark:border-white">
                           <a
-                            href={`http://results.jntuh.ac.in/results/resultAction?degree=${htno?.[5] === "R" ? "bpharmacy" : "btech"}&examCode=${exam.examCode}&etype=r16&result=${exam.rcrv ? "gradercrv" : "null"}&grad=null&type=${exam.rcrv ? "rcrvintgrade" : "intgrade"}&htno=${htno}`}
+                            href={`http://results.jntuh.ac.in/results/resultAction?degree=${htno?.[5] === "R" ? "bpharmacy" : "btech"}&examCode=${exam.examCode.replace("[RCRV]", "")}&etype=r16&result=${exam.rcrv ? "gradercrv" : "null"}&grad=null&type=${exam.rcrv ? "rcrvintgrade" : "intgrade"}&htno=${htno}`}
                             target="_blank"
                             className="underline"
                           >

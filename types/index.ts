@@ -74,3 +74,29 @@ interface CreditContrastReport {
   studentProfiles: StudentProfile[];
   semesters: SemesterRecord[][];
 }
+interface Result {
+  title: string;
+  date: string;
+  link: string;
+  releaseDate: string;
+}
+
+interface NotificationFormProps {
+  handleSearch: (event: any) => void;
+  handleYearChange: (event: any) => void;
+  handleDegreeChange: (event: any) => void;
+  handleRegulationChange: (event: any) => void;
+}
+
+interface Params {
+  title: string;
+  year: string;
+  degree: string;
+  regulation: string;
+  page: number;
+}
+
+interface notificationResultsProps {
+  results: Result[];
+  incrementPage: () => void;
+}
