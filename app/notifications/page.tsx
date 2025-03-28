@@ -1,6 +1,5 @@
 "use client";
 
-import { fetchNotifications } from "@/components/api/fetchNotifications";
 import Loading from "@/components/loading/loading";
 import { useEffect, useState } from "react";
 
@@ -8,6 +7,7 @@ import NotificationForm from "@/components/notifications/notificationForm";
 import NotificationResults from "@/components/notifications/notificationResults";
 import { NotificationList } from "@/constants/notifications";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { fetchNotifications } from "@/components/api/fetchResults";
 
 const Notifications = () => {
   const [loading, setLoading] = useState(true);
@@ -29,14 +29,7 @@ const Notifications = () => {
       try {
         console.log("fetchData from local ");
         setLoading(false);
-        // const storageData = localStorage.getItem("notifications");
-        //
-        // if (storageData !== null) {
-        //   setResults(JSON.parse(storageData));
-        //   setLoading(false);
-        // }
-        //
-        // // return;
+
         const notifications = await fetchNotifications();
 
         if (notifications !== null) {
