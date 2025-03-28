@@ -1,6 +1,34 @@
 export const NotificationList = [
   {
     Result_title:
+      "B.Tech IV Year I Semester (R18) Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1858&etype=r17&type=intgrade",
+    Date: "27-MAR-2025",
+    formatted_date: "2025-03-27",
+  },
+  {
+    Result_title:
+      "B.Tech IV Year I Semester (R16) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1859&etype=r17&type=intgrade",
+    Date: "27-MAR-2025",
+    formatted_date: "2025-03-27",
+  },
+  {
+    Result_title:
+      "B.Tech IV Year I Semester (R15) Supplementary Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1860",
+    Date: "27-MAR-2025",
+    formatted_date: "2025-03-27",
+  },
+  {
+    Result_title:
+      "B.Tech IV Year I Semester (R18) Minor Degree Program Regular Examinations Results",
+    Link: "http://results.jntuh.ac.in/jsp/SearchResult.jsp?degree=btech&examCode=1861&etype=r17&type=intgrade",
+    Date: "27-MAR-2025",
+    formatted_date: "2025-03-27",
+  },
+  {
+    Result_title:
       "B.Pharmacy IV Year I Semester (R17) Regular Examinations Results",
     Link: "http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?degree=bpharmacy&examCode=987&etype=r17&type=intgrade",
     Date: "19-MAR-2025",
