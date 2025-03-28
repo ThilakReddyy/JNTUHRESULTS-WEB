@@ -159,14 +159,13 @@ export const fetchCreditContrastReport = async (
   }
 };
 
-export const fetchNotifications = async () => {
+export const fetchNotifications = async (params: Params) => {
   try {
     let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
-    url = `${url}api/notifications`;
+    url = `${url}api/notifications?page=${params.page}&degree=${params.degree}&regulation=${params.regulation}&title=${params.title}&year=${params.year}`;
     const response = await axios.get(url);
 
     if (response.status === 200) {
-      console.log(response.data);
       if (response.data.status === "success") {
         return null;
       }

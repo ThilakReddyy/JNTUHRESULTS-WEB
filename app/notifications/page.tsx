@@ -1,70 +1,65 @@
 "use client";
-
-import Loading from "@/components/loading/loading";
-import { useEffect, useState } from "react";
-
+import { fetchNotifications } from "@/components/api/fetchResults";
 import NotificationForm from "@/components/notifications/notificationForm";
 import NotificationResults from "@/components/notifications/notificationResults";
-import { NotificationList } from "@/constants/notifications";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { fetchNotifications } from "@/components/api/fetchResults";
+import React, { useEffect, useState, useCallback } from "react";
 
-const Notifications = () => {
-  const [loading, setLoading] = useState(true);
-  const [results, setResults] = useState<Result[]>(NotificationList);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedYear, setSelectedYear] = useState("");
-  const [selectedDegree, setSelectedDegree] = useState("");
-  const [selectedRegulation, setSelectedRegulation] = useState("");
+const Notification = () => {
+  const [results, setResults] = useState<Result[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [params, setParams] = useState<Params>({
+    title: "",
+    year: "",
+    degree: "",
+    regulation: "",
+    page: 1,
+  });
 
-  interface Result {
-    title: string;
-    date: string;
-    link: string;
-    releaseDate: string;
-  }
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    try {
+      const notifications: Result[] = await fetchNotifications(params);
+      if (params.page == 1) {
+        setResults(notifications);
+      } else {
+        setResults((prev) => [...prev, ...notifications]); // Prevents stale state issues
+      }
+    } catch (error) {
+      console.error("Error fetching notifications:", error);
+    }
+    setLoading(false);
+  }, [params]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        console.log("fetchData from local ");
-        setLoading(false);
-
-        const notifications = await fetchNotifications();
-
-        if (notifications !== null) {
-          setResults(notifications);
-          localStorage.setItem("notifications", JSON.stringify(notifications));
-        }
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching notifications:", error);
-        setLoading(false);
-      }
-    };
     fetchData();
-  }, []);
+  }, [fetchData]);
 
-  const handleSearch = (event: any) => {
-    setSearchQuery(event.target.value);
-  };
-
-  const handleYearChange = (event: any) => {
-    setSelectedYear(event.target.value);
-  };
-  const handleDegreeChange = (event: any) => {
-    setSelectedDegree(event.target.value);
-  };
-  const handleRegulationChange = (event: any) => {
-    setSelectedRegulation(event.target.value);
+  const incrementPage = () => {
+    if (!loading) {
+      setParams((prev) => ({
+        ...prev,
+        page: prev.page + 1,
+      }));
+    }
   };
 
-  return loading ? (
-    <Loading />
-  ) : (
+  const handleChangeParams = (
+    param: string,
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setParams((prev) => ({
+      ...prev,
+      [param]: event.target.value,
+      page: 1, // Reset page when filters change
+    }));
+    console.log(params);
+  };
+
+  return (
     <Tabs defaultValue="resultnotifications" className="m-2">
       <TabsList className="w-full">
-        <TabsTrigger value="resultnotifications" className="w-full my-5 ">
+        <TabsTrigger value="resultnotifications" className="w-full my-5">
           Result Updates
         </TabsTrigger>
         <TabsTrigger value="examnotifications" className="w-full">
@@ -72,19 +67,11 @@ const Notifications = () => {
         </TabsTrigger>
       </TabsList>
       <TabsContent value="resultnotifications">
-        <div className="m-2 text-[30%] sm:text-[45%]  md:text-[60%] lg:text-[100%]">
-          <NotificationForm
-            handleSearch={handleSearch}
-            handleYearChange={handleYearChange}
-            handleDegreeChange={handleDegreeChange}
-            handleRegulationChange={handleRegulationChange}
-          />
+        <div className="m-2 text-[30%] sm:text-[45%] md:text-[60%] lg:text-[100%]">
+          <NotificationForm handleChangeParams={handleChangeParams} />
           <NotificationResults
             results={results}
-            searchQuery={searchQuery}
-            selectedDegree={selectedDegree}
-            selectedRegulation={selectedRegulation}
-            selectedYear={selectedYear}
+            incrementPage={incrementPage}
           />
         </div>
       </TabsContent>
@@ -97,4 +84,4 @@ const Notifications = () => {
   );
 };
 
-export default Notifications;
+export default Notification;
