@@ -34,7 +34,6 @@ const ExcelResult = () => {
         },
         {},
       );
-      console.log(resultsDictionary);
       let sortedObj1: { [key: string]: number } = {};
       Object.keys(resultsDictionary)
         .sort()

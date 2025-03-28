@@ -58,15 +58,12 @@ const Notifications = () => {
 
   const handleYearChange = (event: any) => {
     setSelectedYear(event.target.value);
-    console.log(event.target.value);
   };
   const handleDegreeChange = (event: any) => {
     setSelectedDegree(event.target.value);
-    console.log(event.target.value);
   };
   const handleRegulationChange = (event: any) => {
     setSelectedRegulation(event.target.value);
-    console.log(event.target.value);
   };
 
   return loading ? (

@@ -52,7 +52,6 @@ const Syllabus = () => {
   const handleRegulationChange = (event: any) => {
     const value = event.target?.value;
 
-    console.log(value);
     setRegulation(value);
     setLink("");
     const selectedDegree =
@@ -72,7 +71,6 @@ const Syllabus = () => {
 
   const handleSemesterYearChange = (event: any) => {
     const value = event.target?.value;
-    console.log(value);
     setLink("");
     setSemesterYear(value);
     const selectedDegree =

@@ -28,7 +28,6 @@ function PerformanceAnalysis(htno: string | undefined) {
       ).length,
     0,
   );
-  console.log(backlogs);
   const { Results } = details.value;
   const CGPA = Results["Total"] || "-";
 

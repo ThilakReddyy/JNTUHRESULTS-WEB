@@ -107,7 +107,6 @@ const ClassResult = () => {
   };
 
   var currentHours = new Date().getHours();
-  console.log(currentHours);
   return loading ? (
     <Loading />
   ) : (

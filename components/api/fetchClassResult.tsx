@@ -53,8 +53,6 @@ export const updateLocalStoragedata = (key: string, value: string) => {
   try {
     const storageData = getLocalStoragedata(key);
     if (storageData !== null) {
-      console.log(typeof storageData);
-      console.log(value, storageData);
       const newone = storageData.concat(value);
       setLocalStoragedata(key, newone);
     } else {

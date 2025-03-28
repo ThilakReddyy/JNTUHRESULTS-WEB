@@ -224,7 +224,6 @@ export async function fetchAcademicallResult(htno: string) {
 
     return result;
   }
-  console.log("not in redis");
 
   const url =
     "https://jntuhresults.up.railway.app/api/academicallresult?htno=" + htno;
