@@ -24,6 +24,11 @@ const NotificationResults = ({
     };
   }, []);
 
+  const onLinkClick = (query: string) => {
+    const modifiedquery = "notifications/examcode?" + query;
+    window.open(modifiedquery, "_blank");
+  };
+
   return (
     <>
       <div className="hidden md:block">
@@ -43,7 +48,13 @@ const NotificationResults = ({
                 result.releaseDate;
 
               return (
-                <Link key={index} href={"notifications/examcode?" + query}>
+                <div
+                  key={index}
+                  onClick={() => {
+                    onLinkClick(query);
+                  }}
+                  className="cursor-pointer"
+                >
                   <div className="border border-gray-100 dark:border-slate-800 hover:drop-shadow-sm group text-black shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
                     <h3 className="group-hover:text-black text-lg sm:text-xl font-bold">
                       <div className="flex flex-row items-center justify-start dark:text-white">
@@ -55,7 +66,7 @@ const NotificationResults = ({
                       {result.date}
                     </p>
                   </div>
-                </Link>
+                </div>
               );
             })}
         </div>
@@ -79,11 +90,16 @@ const NotificationResults = ({
               className="bg-gray-200  dark:bg-gray-800 text-left p-[20px] mb-[3px] pb-[5px] md:hidden"
             >
               <h3 key={index} className="group-hover:text-black  font-bold ">
-                <Link href={"notifications/examcode?" + query}>
+                <div
+                  className="cursor-pointer"
+                  onClick={() => {
+                    onLinkClick(query);
+                  }}
+                >
                   <div className=" justify-start font-interer  text-base">
                     JNTUH {result.title}
                   </div>
-                </Link>
+                </div>
                 <div className="text-xs text-gray-700 dark:text-gray-200 font-semibold flex  py-2 font-interer">
                   <span>{result?.date} </span>
 

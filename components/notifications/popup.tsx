@@ -3,10 +3,9 @@
 import Link from "next/link";
 
 import React, { useEffect, useState } from "react";
-import { fetchNotifications } from "../api/fetchNotifications";
+import { fetchNotifications } from "../api/fetchResults";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
-import { NotificationList } from "@/constants/notifications";
 import { FaTelegram } from "react-icons/fa";
 import NoticePopup from "../homepage/notice";
 
@@ -26,11 +25,18 @@ const NotificationPopUp = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const storageData = localStorage.getItem("notifications");
+        //
+        const notifications: Result[] = await fetchNotifications({
+          title: "",
+          year: "",
+          degree: "",
+          regulation: "",
+          page: 1,
+        });
 
         const today = new Date().toISOString().split("T")[0].toString();
 
-        var tempres = (NotificationList as Result[]).filter((result) => {
+        var tempres = (notifications as Result[]).filter((result) => {
           return result.releaseDate === today;
         });
         setResults(tempres);
