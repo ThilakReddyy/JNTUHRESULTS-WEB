@@ -158,3 +158,27 @@ export const fetchCreditContrastReport = async (
     }
   }
 };
+
+export const fetchNotifications = async () => {
+  try {
+    let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
+    url = `${url}api/notifications`;
+    const response = await axios.get(url);
+
+    if (response.status === 200) {
+      console.log(response.data);
+      if (response.data.status === "success") {
+        return null;
+      }
+      return response.data;
+    } else {
+      console.error(
+        `Failed to fetch notifications. Status: ${response.status}`,
+      );
+      return null;
+    }
+  } catch (error) {
+    console.error("An error occurred while fetching notifications:", error);
+    return null;
+  }
+};
