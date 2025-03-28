@@ -103,7 +103,6 @@ function ResultContrastPage() {
             <th className=" dark:border-white w-1/3">Student 2</th>
           </tr>
           {results.semesters.map((semester, index: number) => {
-            console.log(semester);
             return (
               <AttributeRow
                 key={index}

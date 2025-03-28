@@ -75,7 +75,6 @@ const Jobs: React.FC<JobsProps> = ({
   }, []);
 
   const onScrollEnd = () => {
-    console.log("Reached the end of the scrollable element");
     incrementPage();
     // Add your logic here
   };
