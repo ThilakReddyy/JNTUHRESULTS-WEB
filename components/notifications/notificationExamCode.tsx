@@ -12,17 +12,21 @@ import ExamResults from "../examresults/examresults";
 import { romanToNumeral } from "@/constants/romantoNumeral";
 import Head from "next/head";
 
-const NotificationExamCode = ({ params }: { params: any }) => {
-  const searchParams: ReadonlyURLSearchParams = useSearchParams();
+const NotificationExamCode = ({
+  link,
+  title,
+  date,
+  formatted_date,
+}: {
+  link: string;
+  title: string;
+  date: string;
+  formatted_date: string;
+}) => {
   const [resultnew, setResultnew] = useState(false);
   const [rcrvdate, setRcrvdate] = useState<string | null>(null);
   const [documentTitle, setDocumentTitle] = useState("");
-  const title: string | null = searchParams.get("title");
-  const date = searchParams.get("date");
-  const formatteddate = searchParams.get("formatted_date");
-  var examcode = params["examcode"];
-  examcode = examcode.replaceAll("%3D", "=");
-  examcode = examcode.replaceAll("%26", "&");
+
   if (title === null) {
     redirect("/notifications");
   }
@@ -40,8 +44,8 @@ const NotificationExamCode = ({ params }: { params: any }) => {
 
     document.title = "JNTUH " + documentTitle;
 
-    if (formatteddate !== null) {
-      var rcrvdate = rcrvdetails[formatteddate as keyof typeof rcrvdetails];
+    if (formatted_date !== null) {
+      var rcrvdate = rcrvdetails[formatted_date as keyof typeof rcrvdetails];
       if (rcrvdate !== undefined) {
         setRcrvdate(rcrvdate);
         var parts = rcrvdate.split("-");
@@ -54,7 +58,7 @@ const NotificationExamCode = ({ params }: { params: any }) => {
         setResultnew(compareDate > today);
       }
     }
-  }, [formatteddate, resultnew, title, setDocumentTitle]);
+  }, [formatted_date, resultnew, title, setDocumentTitle]);
   return (
     <>
       <Head>
@@ -121,7 +125,7 @@ const NotificationExamCode = ({ params }: { params: any }) => {
                     <th className="dark:border-white">Result Link 1</th>
                     <th className="dark:border-white">
                       <Link
-                        href={`http://202.63.105.184/results/jsp/SearchResult.jsp?${examcode}`}
+                        href={`http://202.63.105.184/results/jsp/SearchResult.jsp?${link}`}
                         target="_blank"
                         className="text-blue-500 hover:underline cursor-pointer"
                       >
@@ -133,7 +137,7 @@ const NotificationExamCode = ({ params }: { params: any }) => {
                     <th className="dark:border-white">Result Link 2</th>
                     <th className="dark:border-white">
                       <Link
-                        href={`http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?${examcode}`}
+                        href={`http://results.jntuh.ac.in/jsp/SearchResult.jsp?${link}`}
                         target="_blank"
                         className="text-blue-500 hover:underline cursor-pointer"
                       >
@@ -144,7 +148,7 @@ const NotificationExamCode = ({ params }: { params: any }) => {
                 </tbody>
               </table>
               <div className="flex justify-center my-4 font-bold">OR</div>{" "}
-              <ExamResults title={title} query={examcode} />
+              <ExamResults title={title} query={link} />
               <p className="text-xs mt-8">Results Published on: {date}</p>
               {rcrvdate !== null && rcrvdate !== undefined && (
                 <span className="text-xs mt-2">
