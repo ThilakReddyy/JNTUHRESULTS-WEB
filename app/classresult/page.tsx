@@ -111,7 +111,14 @@ const ClassResult = () => {
     <Loading />
   ) : (
     <>
-      <div className="w-[75%]  mt-[6%]  mx-[12.5%]   ">
+      <div className="flex justify-center items-center h-[80vh]">
+        <div className="w-[75%] text-justify">
+          If you need the results for your entire class, kindly email me at
+          thilakreddypothuganti@gmail.com with your college name, graduation
+          year, branch, and an example roll number from that branch.{" "}
+        </div>
+      </div>
+      <div className="w-[75%]  mt-[6%]  mx-[12.5%]   hidden">
         <div className="rounded-md border-black dark:border-white border-2  shadow-2xl">
           <div className=" pt-[30px] pb-[50px]">
             <div className=" md:text-2xl  font-semibold  ">
@@ -253,7 +260,9 @@ const ClassResult = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <div className="hidden">
+        <Footer />
+      </div>
     </>
   );
 };
