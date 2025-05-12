@@ -36,9 +36,9 @@ export async function setupPush(rollNumber?: string) {
 
     console.log("Subscription success!", sub);
 
-    let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000";
+    let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
 
-    await fetch(`${url}/save-subscription`, {
+    await fetch(`${url}save-subscription`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
