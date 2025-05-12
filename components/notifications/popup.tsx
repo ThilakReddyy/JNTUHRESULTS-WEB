@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import { FaTelegram } from "react-icons/fa";
 import NoticePopup from "../homepage/notice";
+import { askNotificationPermission } from "../pushnotifications/notificationPermission";
 
 const NotificationPopUp = () => {
   const [results, setResults] = useState<Result[]>([]);
@@ -23,6 +24,7 @@ const NotificationPopUp = () => {
   }
 
   useEffect(() => {
+    askNotificationPermission();
     const fetchData = async () => {
       try {
         //
