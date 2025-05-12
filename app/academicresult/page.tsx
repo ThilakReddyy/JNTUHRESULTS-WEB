@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { fetchAcademicResult } from "@/components/api/fetchResults";
 import { sleep } from "@/components/customfunctions/timer";
+import { setupPush } from "@/customhooks/setupPush";
 
 const AcademicResult = () => {
   const [hallticketno, sethallticketno] = useState<string>("");
@@ -53,6 +54,7 @@ const AcademicResult = () => {
 
     setIsCooldown(true);
     try {
+      await setupPush(hallticketno);
       const result = await fetchAcademicResult(hallticketno);
       if (result) {
         router.push("/academicresult/result?htno=" + hallticketno);
