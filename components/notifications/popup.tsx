@@ -92,7 +92,11 @@ const NotificationPopUp = () => {
                               </th>
                               <th className="dark:border-white">
                                 <Link
-                                  href={`http://202.63.105.184/results/jsp/SearchResult.jsp?${result["Link"].split("?")[1] || ""}`}
+                                  href={`http://202.63.105.184/results/jsp/SearchResult.jsp${
+                                    result?.Link?.includes("?")
+                                      ? "?" + result.Link.split("?")[1]
+                                      : ""
+                                  }`}
                                   target="_blank"
                                   className="text-blue-500 hover:underline cursor-pointer"
                                 >
@@ -106,7 +110,11 @@ const NotificationPopUp = () => {
                               </th>
                               <th className="dark:border-white">
                                 <Link
-                                  href={`http://results.jntuh.ac.in/results/jsp/SearchResult.jsp?${result["Link"].split("?")[1] || ""}`}
+                                  href={`http://results.jntuh.ac.in/results/jsp/SearchResult.jsp${
+                                    result?.Link?.includes("?")
+                                      ? "?" + result.Link.split("?")[1]
+                                      : ""
+                                  }`}
                                   target="_blank"
                                   className="text-blue-500 hover:underline cursor-pointer"
                                 >
