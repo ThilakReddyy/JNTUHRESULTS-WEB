@@ -53,13 +53,13 @@ const NotificationPopUp = () => {
     <>
       {results.length !== 0 ? (
         <div
-          className={`lg:hidden bg-opacity-50 backdrop-filter  backdrop-blur-sm fixed h-full   my-5  w-full  justify-center ${path !== "/" || hidden || results.length === 0 ? "hidden" : ""}`}
+          className={`lg:hidden bg-opacity-50 backdrop-filter z-[999]   backdrop-blur-sm fixed h-full   my-5  w-full  justify-center ${path !== "/" || hidden || results.length === 0 ? "hidden" : ""}`}
         >
           <div className="flex justify-center items-center h-full">
             <div
               className={`md:w-[50%] font-bold text-center flex justify-center dark:bg-[#1B1C1E] w-full  items-center shadow-xl bg-white p-2 rounded-md border m-2 `}
             >
-              <div className="text-center">
+              <div className="text-center w-full">
                 <div className="py-2 flex justify-around ">
                   <div></div>
                   <div>Results have been Released!!!</div>
@@ -74,7 +74,7 @@ const NotificationPopUp = () => {
                     </Button>
                   </div>
                 </div>
-                <div className=" h-[390px] p-2 overflow-auto">
+                <div className=" h-[390px] p-2 overflow-auto ">
                   {results.map((result: any, index: number) => {
                     return (
                       <div
@@ -82,7 +82,7 @@ const NotificationPopUp = () => {
                         className={`border px-1 py-2 ${index === 0 ? "" : "border-t-0"}`}
                       >
                         <div className="font-sans text-sm ">
-                          {result["Result_title"]}
+                          {result["title"]}
                         </div>
                         <table className="dark:border-white">
                           <tbody className="text-xs md:text-lg">
@@ -93,8 +93,8 @@ const NotificationPopUp = () => {
                               <th className="dark:border-white">
                                 <Link
                                   href={`http://202.63.105.184/results/jsp/SearchResult.jsp${
-                                    result?.Link?.includes("?")
-                                      ? "?" + result.Link.split("?")[1]
+                                    result?.link?.includes("?")
+                                      ? "?" + result.link.split("?")[1]
                                       : ""
                                   }`}
                                   target="_blank"
@@ -111,8 +111,8 @@ const NotificationPopUp = () => {
                               <th className="dark:border-white">
                                 <Link
                                   href={`http://results.jntuh.ac.in/results/jsp/SearchResult.jsp${
-                                    result?.Link?.includes("?")
-                                      ? "?" + result.Link.split("?")[1]
+                                    result?.link?.includes("?")
+                                      ? "?" + result.link.split("?")[1]
                                       : ""
                                   }`}
                                   target="_blank"
