@@ -11,5 +11,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="animate-blur-fade">{children}</div>;
+  return <div className="animate-blur-fade ">{children}</div>;
 }
