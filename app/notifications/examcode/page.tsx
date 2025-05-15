@@ -25,7 +25,7 @@ const Examcode = () => {
   if (!validParams) return null; // Prevent rendering before validation
   return (
     <NotificationExamCode
-      link={link.split("?")[1]}
+      link={link.split("?")[1] || ""}
       date={date}
       formatted_date={formatted_date}
       title={title}
