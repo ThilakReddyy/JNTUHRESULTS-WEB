@@ -181,3 +181,41 @@ export const fetchNotifications = async (params: Params) => {
     return null;
   }
 };
+
+export const fetchClassResult = async (
+  htno: string,
+  type: string = "academicresult",
+) => {
+  try {
+    let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
+    url = `${url}api/getClassResults?rollNumber=${htno}`;
+
+    toast.loading("Result are been fetched");
+
+    const response = await axios.get(url, { timeout: 20 * 1000 });
+
+    console.log(response);
+    if (response.data && response.data.length > 0) {
+      saveToLocalStorage(
+        htno + "-ClassResult-" + type,
+        JSON.stringify(response.data),
+      );
+      toast.dismiss();
+      return true;
+    }
+
+    toast.dismiss();
+    if (response.data.status === "success") {
+      toast(response.data.message);
+    } else if (response.data.status === "failure") {
+      toast.error(response.data.message);
+    }
+
+    return false;
+  } catch {
+    toast.dismiss();
+
+    toast.error("SERVER ISSUE!!");
+    return false;
+  }
+};

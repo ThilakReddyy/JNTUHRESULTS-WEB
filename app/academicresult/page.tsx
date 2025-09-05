@@ -6,9 +6,7 @@ import Loading from "@/components/loading/loading";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { fetchAcademicResult } from "@/components/api/fetchResults";
-import { sleep } from "@/components/customfunctions/timer";
 import { setupPush } from "@/customhooks/setupPush";
 
 const AcademicResult = () => {
