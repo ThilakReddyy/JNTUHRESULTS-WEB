@@ -4,8 +4,6 @@ import { useCallback, useEffect, useState } from "react";
 import CareerFilters from "@/components/carrers/carrerfilters";
 import axios from "axios";
 import Jobs from "@/components/carrers/jobs";
-import { Button } from "@/components/ui/button";
-import { Building2Icon, MapPinIcon, Share2Icon } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 interface JobDetail {
   job_id: string;
