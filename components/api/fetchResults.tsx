@@ -204,10 +204,11 @@ export const fetchClassResult = async (
       return true;
     }
 
-    toast.dismiss();
     if (response.data.status === "success") {
+      toast.dismiss();
       toast(response.data.message);
     } else if (response.data.status === "failure") {
+      toast.dismiss();
       toast.error(response.data.message);
     }
 
@@ -217,5 +218,7 @@ export const fetchClassResult = async (
 
     toast.error("SERVER ISSUE!!");
     return false;
+  } finally {
+    toast.dismiss();
   }
 };

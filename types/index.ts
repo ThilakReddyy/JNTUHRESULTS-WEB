@@ -11,6 +11,7 @@ type Subject = {
 type Exam = {
   examCode: string;
   rcrv: boolean;
+  graceMarks: boolean;
   subjects: Subject[];
 };
 
