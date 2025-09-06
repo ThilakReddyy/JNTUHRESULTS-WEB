@@ -30,9 +30,9 @@ const AcademicAllResult = ({
                         <th className="bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954] dark:border-white">
                           Exam Code: {exam.examCode}
                         </th>
-                        {exam.rcrv && (
+                        {(exam.rcrv || exam.graceMarks) && (
                           <th className="bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954] dark:border-white">
-                            Result Type: RC/RV
+                            Result Type: {exam.rcrv ? "RC/RV" : "Grace Marks"}
                           </th>
                         )}
                         <th className="bg-gray-200 md:bg-gray-300 dark:bg-[#0b3954] dark:border-white">
