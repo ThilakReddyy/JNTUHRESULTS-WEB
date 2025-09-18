@@ -8,63 +8,177 @@ export const fetchAcademicResult = async (htno: string) => {
     let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
     url = `${url}api/getAcademicResult?rollNumber=${htno}`;
 
-    toast.loading("Result are been fetched");
+    toast.loading("Fetching result...");
 
-    const response = await axios.get(url, { timeout: 20 * 1000 });
+    const response = await axios.get(url, {
+      timeout: 20 * 1000,
+      validateStatus: () => true,
+    });
 
-    if ("details" in response.data) {
-      saveToLocalStorage(
-        htno + "-AcademicResult",
-        JSON.stringify(response.data),
-      );
-      toast.dismiss();
-      return true;
+    switch (response.status) {
+      case 200: {
+        if ("details" in response.data) {
+          saveToLocalStorage(
+            htno + "-AcademicResult",
+            JSON.stringify(response.data),
+          );
+          toast.dismiss();
+          toast.success("Result fetched successfully");
+          return true;
+        }
+        break;
+      }
+
+      case 202: {
+        toast.dismiss();
+        toast(
+          response.data.message ||
+            "Result is being prepared. Please check again shortly.",
+        );
+        return false;
+      }
+
+      case 409: {
+        toast.dismiss();
+        toast.error(
+          response.data.message || "This roll number is already in the queue.",
+        );
+        return false;
+      }
+
+      case 502: {
+        toast.dismiss();
+        toast.error("Upstream JNTUH servers are down. Try again later.");
+        return false;
+      }
+
+      case 503: {
+        toast.dismiss();
+        toast.error("Server overloaded. Please try again later.");
+        return false;
+      }
+
+      case 500: {
+        toast.dismiss();
+        toast.error("Unexpected server error occurred.");
+        return false;
+      }
+
+      default: {
+        toast.dismiss();
+        toast.error("Unhandled response from server.");
+        return false;
+      }
     }
 
     toast.dismiss();
-    if (response.data.status === "success") {
-      toast(response.data.message);
-    } else if (response.data.status === "failure") {
-      toast.error(response.data.message);
-    }
-
     return false;
-  } catch {
+  } catch (e: any) {
     toast.dismiss();
 
-    toast.error("SERVER ISSUE!!");
+    if (axios.isAxiosError(e)) {
+      if (e.code === "ECONNABORTED") {
+        toast.error("Request timed out. Try again later.");
+      } else if (e.response) {
+        toast.error(`Server error: ${e.response.status}`);
+      } else {
+        toast.error("Network issue. Please check your connection.");
+      }
+    } else {
+      toast.error("Unexpected error occurred.");
+    }
+
     return false;
   }
 };
-
 export const fetchAllResult = async (htno: string) => {
   try {
     let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
-
     url = `${url}api/getAllResult?rollNumber=${htno}`;
 
-    toast.loading("Results are being fetched");
+    toast.loading("Fetching result...");
 
-    const response = await axios.get(url, { timeout: 20 * 1000 });
-    if ("details" in response.data) {
-      saveToLocalStorage(htno + "-AllResult", JSON.stringify(response.data));
-      toast.dismiss();
-      return true;
+    const response = await axios.get(url, {
+      timeout: 20 * 1000,
+      validateStatus: () => true,
+    });
+
+    switch (response.status) {
+      case 200: {
+        if ("details" in response.data) {
+          saveToLocalStorage(
+            htno + "-AllResult",
+            JSON.stringify(response.data),
+          );
+          toast.dismiss();
+          toast.success("Result fetched successfully");
+          return true;
+        }
+        break;
+      }
+
+      case 202: {
+        toast.dismiss();
+        toast(
+          response.data.message ||
+            "Result is being prepared. Please check again shortly.",
+        );
+        return false;
+      }
+
+      case 409: {
+        toast.dismiss();
+        toast.error(
+          response.data.message || "This roll number is already in the queue.",
+        );
+        return false;
+      }
+
+      case 502: {
+        toast.dismiss();
+        toast.error("Upstream JNTUH servers are down. Try again later.");
+        return false;
+      }
+
+      case 503: {
+        toast.dismiss();
+        toast.error("Server overloaded. Please try again later.");
+        return false;
+      }
+
+      case 500: {
+        toast.dismiss();
+        toast.error("Unexpected server error occurred.");
+        return false;
+      }
+
+      default: {
+        toast.dismiss();
+        toast.error("Unhandled response from server.");
+        return false;
+      }
     }
-    if (response.data.status === "success") {
-      toast.dismiss();
-      toast(response.data.message);
-    } else if (response.data.status === "failure") {
-      toast.dismiss();
-      toast.error(response.data.message);
+
+    toast.dismiss();
+    return false;
+  } catch (e: any) {
+    toast.dismiss();
+
+    if (axios.isAxiosError(e)) {
+      if (e.code === "ECONNABORTED") {
+        toast.error("Request timed out. Try again later.");
+      } else if (e.response) {
+        toast.error(`Server error: ${e.response.status}`);
+      } else {
+        toast.error("Network issue. Please check your connection.");
+      }
+    } else {
+      toast.error("Unexpected error occurred.");
     }
 
     return false;
-  } catch {
-    toast.error("SERVER ISSUE!!");
   }
 };
-
 export const fetchBacklogReport = async (htno: string) => {
   try {
     let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
