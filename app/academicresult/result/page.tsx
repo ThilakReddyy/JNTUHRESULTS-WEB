@@ -4,12 +4,12 @@ import { RefreshCcw } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import ResultDetails from "@/components/result/details";
-import { getFromLocalStorage } from "@/components/customfunctions/localStorage";
 import AcademicResult from "@/components/result/academicresult";
 import TotalResult from "@/components/result/totalResult";
 import ResultDetailsSkeleton from "@/components/skeleton/ResultDetailsSkeleton";
 import AcademicResultSkeleton from "@/components/skeleton/AcademicResultsSkeleton";
 import Print from "@/components/download/print";
+import { fetchAcademicResult } from "@/components/api/fetchResults";
 
 const AcademicResultResult = () => {
   const router = useRouter();
@@ -18,14 +18,18 @@ const AcademicResultResult = () => {
     useState<AcademicResulProps | null>(null);
   const componentRef = useRef(null);
   useEffect(() => {
-    const academicResult = getFromLocalStorage(
-      String(htno) + "-AcademicResult",
-    );
-    setAcademicResult(academicResult);
+    const fetchResult = async () => {
+      const academicResult = await fetchAcademicResult(htno || "");
+      if (academicResult) {
+        setAcademicResult(academicResult);
+        return;
+      }
 
-    if (academicResult === null) {
-      router.push("/academicResult");
-    }
+      if (academicResult === null) {
+        router.push("/academicresult");
+      }
+    };
+    fetchResult();
   }, [htno, router]);
 
   return (
