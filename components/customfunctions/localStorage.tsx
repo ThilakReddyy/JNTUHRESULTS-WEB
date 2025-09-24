@@ -1,4 +1,5 @@
 export const saveToLocalStorage = async (key: string, value: string) => {
+  localStorage.clear();
   localStorage.setItem(key, value);
 };
 

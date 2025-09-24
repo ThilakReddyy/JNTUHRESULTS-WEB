@@ -3,7 +3,9 @@ import { saveToLocalStorage } from "../customfunctions/localStorage";
 
 import toast from "react-hot-toast";
 
-export const fetchAcademicResult = async (htno: string) => {
+export const fetchAcademicResult = async (
+  htno: string,
+): Promise<null | AcademicResulProps> => {
   try {
     let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
     url = `${url}api/getAcademicResult?rollNumber=${htno}`;
@@ -18,13 +20,9 @@ export const fetchAcademicResult = async (htno: string) => {
     switch (response.status) {
       case 200: {
         if ("details" in response.data) {
-          saveToLocalStorage(
-            htno + "-AcademicResult",
-            JSON.stringify(response.data),
-          );
           toast.dismiss();
           toast.success("Result fetched successfully");
-          return true;
+          return response.data;
         }
         break;
       }
@@ -35,7 +33,7 @@ export const fetchAcademicResult = async (htno: string) => {
           response.data.message ||
             "Result is being prepared. Please check again shortly.",
         );
-        return false;
+        return null;
       }
 
       case 409: {
@@ -43,36 +41,36 @@ export const fetchAcademicResult = async (htno: string) => {
         toast.error(
           response.data.message || "This roll number is already in the queue.",
         );
-        return false;
+        return null;
       }
 
       case 502: {
         toast.dismiss();
         toast.error("Upstream JNTUH servers are down. Try again later.");
-        return false;
+        return null;
       }
 
       case 503: {
         toast.dismiss();
         toast.error("Server overloaded. Please try again later.");
-        return false;
+        return null;
       }
 
       case 500: {
         toast.dismiss();
         toast.error("Unexpected server error occurred.");
-        return false;
+        return null;
       }
 
       default: {
         toast.dismiss();
         toast.error("Unhandled response from server.");
-        return false;
+        return null;
       }
     }
 
     toast.dismiss();
-    return false;
+    return null;
   } catch (e: any) {
     toast.dismiss();
 
@@ -88,7 +86,7 @@ export const fetchAcademicResult = async (htno: string) => {
       toast.error("Unexpected error occurred.");
     }
 
-    return false;
+    return null;
   }
 };
 export const fetchAllResult = async (htno: string) => {

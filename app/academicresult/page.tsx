@@ -53,10 +53,10 @@ const AcademicResult = () => {
     setIsCooldown(true);
     try {
       await setupPush(hallticketno);
-      const result = await fetchAcademicResult(hallticketno);
-      if (result) {
-        router.push("/academicresult/result?htno=" + hallticketno);
-      }
+      router.push("/academicresult/result?htno=" + hallticketno);
+      // const result = await fetchAcademicResult(hallticketno);
+      // if (result) {
+      // }
     } catch (error) {
       console.log("Error while fetching the academic result :", error);
     }
