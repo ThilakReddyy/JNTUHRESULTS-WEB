@@ -1,28 +1,57 @@
-"use client";
 import NotificationExamCode from "@/components/notifications/notificationExamCode";
-import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
-const Examcode = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: {
+    link?: string;
+    date?: string;
+    formatted_date?: string;
+    title?: string;
+  };
+}) {
+  const { title = "", formatted_date = "", date = "" } = searchParams;
 
-  const link = searchParams.get("link") ?? "";
-  const date = searchParams.get("date") ?? "";
-  const formatted_date = searchParams.get("formatted_date") ?? ""; // Fixed typo
-  const title = searchParams.get("title") ?? "";
+  return {
+    title: title ? `${title} | JNTUH RESULTS` : "JNTUH RESULTS | Notifications",
+    description: title
+      ? `Check ${title} released on ${formatted_date || date}.`
+      : "Check out JNTUH notifications in one place.",
+    openGraph: {
+      title: title || "JNTUH RESULTS",
+      description: `Exam Notification - ${title} (${formatted_date || date})`,
+      type: "website",
+      siteName: "JNTUH RESULTS",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title || "JNTUH RESULTS",
+      description: `Exam Notification - ${title} (${formatted_date || date})`,
+    },
+  };
+}
 
-  const [validParams, setValidParams] = useState(false);
+export default function ExamcodePage({
+  searchParams,
+}: {
+  searchParams: {
+    link?: string;
+    date?: string;
+    formatted_date?: string;
+    title?: string;
+  };
+}) {
+  const {
+    link = "",
+    date = "",
+    formatted_date = "",
+    title = "",
+  } = searchParams;
 
-  useEffect(() => {
-    if (!link || !date || !formatted_date || !title || link == "") {
-      router.push("/notifications");
-    } else {
-      setValidParams(true);
-    }
-  }, [link, date, formatted_date, title, router]);
+  if (!link || !date || !formatted_date || !title) {
+    return <p>Invalid notification link</p>;
+  }
 
-  if (!validParams) return null; // Prevent rendering before validation
   return (
     <NotificationExamCode
       link={link.split("?")[1] || ""}
@@ -31,6 +60,4 @@ const Examcode = () => {
       title={title}
     />
   );
-};
-
-export default Examcode;
+}
