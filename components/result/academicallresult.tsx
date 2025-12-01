@@ -47,7 +47,10 @@ const AcademicAllResult = ({
                       </tr>
                     </tbody>
                   </table>
-                  <Subjects semester={exam} />
+                  <Subjects
+                    semester={exam}
+                    lastIndex={semester.exams.length == index + 1}
+                  />
                 </div>
               );
             })}
