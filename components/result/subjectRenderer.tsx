@@ -1,8 +1,14 @@
 import React from "react";
 
-const Subjects = ({ semester }: { semester: Exam }) => {
+const Subjects = ({
+  semester,
+  lastIndex = true,
+}: {
+  semester: Exam;
+  lastIndex: Boolean;
+}) => {
   return (
-    <table className="dark:border-white">
+    <table className={`dark:border-white ${lastIndex ? "rounded-b" : ""}`}>
       <tbody>
         <tr className="w-max bg-gray-200 md:bg-gray-300 dark:border-white dark:bg-[#0b3954]">
           <th className="dark:border-white px-1">Subject Code</th>
