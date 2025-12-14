@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { FaTelegram } from "react-icons/fa";
+import { FaGooglePlay, FaTelegram } from "react-icons/fa";
 import { jobDetails } from "@/constants/jobsdetails";
 const NoticePopup = () => {
   const pathname = usePathname();
@@ -14,7 +14,7 @@ const NoticePopup = () => {
 
   return (
     <div
-      className={`hidden  bg-opacity-50 md:hidden backdrop-filter  backdrop-blur-sm fixed h-full w-full   my-5    justify-center ${path !== "/" || hidden ? "hidden" : ""}`}
+      className={` z-[8]  md:hidden backdrop-filter  backdrop-blur-sm fixed h-full w-full   my-5    justify-center ${path !== "/" || hidden ? "hidden" : ""}`}
     >
       <div className="flex justify-center items-start w-full md:mt-16 h-full">
         <div
@@ -39,48 +39,44 @@ const NoticePopup = () => {
               <div className="font-medium text-start text-sm p-2 ">
                 <p>Hello everyone,</p>
                 <br />
-                <p className="text-sm font-normal text-justify">
-                  Below are the internship opportunities at Microsoft that were
-                  posted on December 31, 2024. If you are interested, be sure to
-                  apply as soon as possible.
+
+                <p className="text-sm font-normal text-left">
+                  We are excited to announce the launch of{" "}
+                  <strong>JNTUHConnect App</strong>, a centralized platform
+                  built to help JNTUH students stay informed with timely and
+                  reliable academic updates.
                 </p>
 
-                <p className="mt-8 underline italic">OPPORTUNITIES</p>
-                <table className="mt-2">
-                  <tbody>
-                    <tr>
-                      <th>Title</th>
-                      <th>Company</th>
-                      <th>Link</th>
-                    </tr>
-                    {jobDetails.internships.map((internship) => (
-                      <tr key={internship.title}>
-                        <td>
-                          <p>{internship.title}</p>
-                        </td>
-                        <td className="px-2">
-                          <p>{internship.company}</p>
-                        </td>
-                        <td>
-                          <a
-                            className="text-blue-600 hover:underline px-2 cursor-pointer"
-                            href={internship.link}
-                            target="_blank"
-                          >
-                            Link
-                          </a>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-
-                {/*   <p className="text-sm font-normal text-justify"> */}
-                {/*     &nbsp;&nbsp;&nbsp;I&apos;m Thilak, the one behind the JNTUH */}
-                {/*     Results Vercel application. From a mere idea born out of */}
-                {/*     curiosity when preparing for my placement, it has now become */}
-                {/*     an indispensable tool for the entire JNTUH community. */}
-                {/*   </p> */}
+                <p className="mt-8 underline italic">Key Features</p>
+                <ul className="list-disc ml-5 mt-2 font-normal">
+                  <li>Instant access to examination results</li>
+                  <li>
+                    Official university notifications and circulars{" "}
+                    <em>(coming soon)</em>
+                  </li>
+                  <li>
+                    Exam schedules and academic calendar <em>(coming soon)</em>
+                  </li>
+                  <li>Clean, fast, and lightweight user experience</li>
+                </ul>
+                <div className="flex justify-center">
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.dhethi.jntuhconnect"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 inline-flex items-center gap-2 rounded-lg bg-green-600 px-5 py-2.5 
+             text-white text-sm font-medium hover:bg-green-700 transition"
+                  >
+                    <FaGooglePlay className="text-lg" />
+                    Download Now
+                  </a>
+                </div>
+                {/* <p className="text-sm font-normal text-justify"> */}
+                {/*   &nbsp;&nbsp;&nbsp;I&apos;m Thilak, the one behind the JNTUH */}
+                {/*   Results Vercel application. From a mere idea born out of */}
+                {/*   curiosity when preparing for my placement, it has now become */}
+                {/*   an indispensable tool for the entire JNTUH community. */}
+                {/* </p> */}
                 {/*   <br /> */}
                 {/*   <p className="text-sm font-normal text-justify"> */}
                 {/*     Our platform has beeen serviceable tool for students accessing */}
