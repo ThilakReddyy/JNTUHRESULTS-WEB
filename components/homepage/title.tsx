@@ -24,14 +24,11 @@ const Title = () => {
         }
       }
     };
-
-    typeWriter();
   }, []);
   const [titleIndex, setTitleIndex] = useState(0);
   return (
     <div className="flex">
       <h1>{title}</h1>
-      {/* <h1>{title.substring(0, titleIndex)}</h1> */}
       <span className={`font-extralight ${blind && "opacity-0"}`}>|</span>
     </div>
   );
