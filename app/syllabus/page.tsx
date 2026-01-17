@@ -86,9 +86,13 @@ const Syllabus = () => {
   };
   const handleSemesterPdfChange = (event: any) => {
     const value = event.target?.value;
-    const val = value.split("SYLLABUS");
-    const link = val[0] + "SYLLABUS" + encodeURI(val[1] || "");
-    setLink(link);
+    if (value.includes("SYLLABUS")) {
+      const val = value.split("SYLLABUS");
+      const link = val[0] + "SYLLABUS" + encodeURI(val[1] || "");
+      setLink(link);
+    } else {
+      setLink(value);
+    }
   };
   return (
     <>
