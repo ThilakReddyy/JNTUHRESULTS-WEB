@@ -1,0 +1,35 @@
+name: Next.js Static Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  static-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 25
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (fails if SSR exists)
+        run: npm run build
+
+      - name: Verify static output
+        run: |
+          if [ ! -d "out" ]; then
+            echo "❌ out/ folder not found. App is not static."
+            exit 1
+          fi
+          echo "✅ Static export confirmed"
+
