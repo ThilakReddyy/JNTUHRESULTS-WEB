@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import * as Sentry from '@sentry/nextjs';
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/themeprovider/theme-provider";
@@ -17,6 +19,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "JNTUH RESULTS - Check Your UG & PG Exam Results Online",
   description: "Access your overall results of Jntuh",
+  other: {
+    ...Sentry.getTraceData()
+  }
+
 };
 
 export default function RootLayout({
