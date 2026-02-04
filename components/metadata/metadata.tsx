@@ -38,10 +38,7 @@ const MetaData = () => {
       {/*   name="description" */}
       {/*   content="Easily access your JNTUH results for {relevant course and semester} - Find out your grades, CGPA, backlogs, Jobs, Internships and more in one place. Check now!" */}
       {/* /> */}
-      <meta
-        name="google-site-verification"
-        content="2arj9D99oUuGh03Qhewo_iEY45zbwhrJqLytiZSmoEg"
-      />
+      <meta name="google-site-verification" content="0STTwkOucWr-pQpKmDmE6lqQHDvHaNaR7GzFNLxkMTg" />
       <link
         rel="apple-touch-icon"
         sizes="180x180"
