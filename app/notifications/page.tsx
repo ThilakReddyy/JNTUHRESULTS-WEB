@@ -20,10 +20,12 @@ const Notification = () => {
     setLoading(true);
     try {
       const notifications: Result[] = await fetchNotifications(params);
-      if (params.page == 1) {
-        setResults(notifications);
-      } else {
-        setResults((prev) => [...prev, ...notifications]); // Prevents stale state issues
+      if (notifications) {
+        if (params.page == 1) {
+          setResults(notifications);
+        } else {
+          setResults((prev) => [...prev, ...notifications]); // Prevents stale state issues
+        }
       }
     } catch (error) {
       console.error("Error fetching notifications:", error);
