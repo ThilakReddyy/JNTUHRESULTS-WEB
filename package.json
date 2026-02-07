@@ -19,7 +19,6 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-toast": "^1.1.5",
-    "@sentry/nextjs": "^10.38.0",
     "@vercel/speed-insights": "^1.0.9",
     "axios": "^1.6.7",
     "cheerio": "^1.0.0-rc.12",
