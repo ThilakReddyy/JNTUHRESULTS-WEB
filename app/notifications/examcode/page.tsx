@@ -19,6 +19,7 @@ export default function ExamcodePage({
   } = searchParams;
 
   if (!link || !date || !formatted_date || !title) {
+    console.log(link, date, formatted_date, title);
     return <p>Invalid notification link</p>;
   }
 
