@@ -31,7 +31,7 @@ export const fetchAcademicResult = async (
         toast.dismiss();
         toast(
           response.data.message ||
-            "Result is being prepared. Please check again shortly.",
+          "Result is being prepared. Please check again shortly.",
         );
         return null;
       }
@@ -119,7 +119,7 @@ export const fetchAllResult = async (htno: string) => {
         toast.dismiss();
         toast(
           response.data.message ||
-            "Result is being prepared. Please check again shortly.",
+          "Result is being prepared. Please check again shortly.",
         );
         return false;
       }
