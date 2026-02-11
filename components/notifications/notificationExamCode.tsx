@@ -121,7 +121,7 @@ const NotificationExamCode = ({
                     <th className="dark:border-white">Result Link 1</th>
                     <th className="dark:border-white">
                       <Link
-                        href={`http://202.63.105.184/results/jsp/SearchResult.jsp?${link}`}
+                        href={`http://202.63.105.184/results/jsp/SearchResult.jsp?${link.split("?")[1]}`}
                         target="_blank"
                         className="text-blue-500 hover:underline cursor-pointer"
                       >
@@ -133,7 +133,7 @@ const NotificationExamCode = ({
                     <th className="dark:border-white">Result Link 2</th>
                     <th className="dark:border-white">
                       <Link
-                        href={`http://results.jntuh.ac.in/jsp/SearchResult.jsp?${link}`}
+                        href={link}
                         target="_blank"
                         className="text-blue-500 hover:underline cursor-pointer"
                       >
