@@ -12,7 +12,7 @@ const GoogleDocViewer: React.FC<GoogleDocViewerProps> = ({
   url,
   splNote,
   width = "100%",
-  height = "580px",
+  height = "87vh",
 }) => {
   const src = `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
   const [isLoading, setIsLoading] = useState(true);
@@ -25,15 +25,15 @@ const GoogleDocViewer: React.FC<GoogleDocViewerProps> = ({
     }
   }, []);
   return (
-    <>
+    <div>
       {isLoading && <Loading splNote={splNote} />}
       <iframe
         id="doc-iframe"
         src={src}
-        style={{ width, height }}
+        style={{ width, height, display: isLoading ? "none" : "block" }}
         frameBorder="0"
       ></iframe>
-    </>
+    </div>
   );
 };
 
