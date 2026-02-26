@@ -1,4 +1,13 @@
-export const syllabusDetails = {
+export interface PdfItem {
+  title: string;
+  link: string;
+}
+
+export type SyllabusNode =
+  | { [key: string]: SyllabusNode } // folder
+  | PdfItem[];
+
+export const syllabusDetails: SyllabusNode = {
   "B.Tech": {
     R25: {
       "B.Tech R25 Syllabus": [
