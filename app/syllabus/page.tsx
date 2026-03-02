@@ -38,7 +38,7 @@ export default function SyllabusPage() {
   return (
     <div
       className={`min-h-screen dark:bg-black bg-white dark:text-white text-black
-    ${selectedPdf ? "pt-2" : "px-6 py-8"}`}
+    ${selectedPdf ? "" : "px-6 py-8"}`}
     >
       {!selectedPdf ?
         <div className="max-w-2xl mx-auto">
@@ -105,7 +105,7 @@ export default function SyllabusPage() {
           }
         </div>
         : (
-          <div className="mt-4 relative">
+          <div className=" relative">
             <button
               onClick={() => setSelectedPdf(null)}
               className="absolute top-2 right-2 z-10
