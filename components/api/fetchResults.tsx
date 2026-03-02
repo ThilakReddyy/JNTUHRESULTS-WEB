@@ -43,6 +43,21 @@ export const fetchAcademicResult = async (
         );
         return null;
       }
+      case 423: {
+        toast.dismiss();
+        toast.error(
+          response.data.message || "Server is temporarily overloaded. Please try again later.",
+        );
+        return null;
+      }
+      case 424: {
+        toast.dismiss();
+        toast.error(
+          response.data.message || "Upstream JNTUH servers are down. Try again later.",
+        );
+        return null;
+
+      }
 
       case 502: {
         toast.dismiss();
