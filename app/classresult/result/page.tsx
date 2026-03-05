@@ -28,7 +28,7 @@ const ClassResultResult = () => {
   return (
     <>
       <div
-        className="mx-auto px-3 pb-6 text-[30%] sm:text-[45%] md:text-[60%] lg:text-[100%]"
+        className="mx-auto px-3 pb-6"
         ref={componentRef}
       >
         {/* Page header */}
