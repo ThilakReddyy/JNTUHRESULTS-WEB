@@ -1,6 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
-import { syllabusDetails } from "@/constants/syllabusdetails";
+import { useEffect, useState, useMemo } from "react";
 import {
   AcademicYearDetails,
   CalendarEntry,
@@ -8,181 +7,185 @@ import {
   academicCalendars,
 } from "@/constants/academiccalendars";
 import Link from "next/link";
-import toast from "react-hot-toast";
 import Footer from "@/components/footer/footer";
 import GoogleDocViewer from "@/components/googledocviewer/GoogleDocViewer";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { FaFilePdf } from "react-icons/fa";
+import { ChevronRight } from "lucide-react";
+
+// ── Types ──────────────────────────────────────────────────────────────────
+type Level = "academicYear" | "degree" | "year" | "calendar";
+
+interface BreadcrumbItem {
+  label: string;
+  levelIndex: number;
+}
+
+// ── Helpers ─────────────────────────────────────────────────────────────────
+const LEVEL_LABELS: Record<Level, string> = {
+  academicYear: "Academic Year",
+  degree: "Degree",
+  year: "Year",
+  calendar: "Calendar",
+};
 
 const Calendars = () => {
-  const [academicYears, setAcademicYears] = useState<string[]>([]);
-  const [degrees, setDegrees] = useState<DegreeDetails>({});
-  const [years, setYears] = useState<AcademicYearDetails>({});
-  const [calendars, setCalendars] = useState<CalendarEntry>({});
+  // path = array of selected keys at each level
+  const [path, setPath] = useState<string[]>([]);
+  const [selectedLink, setSelectedLink] = useState<string | null>(null);
 
-  const [academicYear, setAcademicYear] = useState<string>("");
-  const [degree, setDegree] = useState<string>("");
-  const [year, setYear] = useState<string>("");
-  const [calendar, setCalendar] = useState<string>("");
+  const LEVELS: Level[] = ["academicYear", "degree", "year", "calendar"];
 
-  const [link, setLink] = useState<string>("");
+  // Derive the current set of options from the path
+  const currentOptions = useMemo<string[]>(() => {
+    if (path.length === 0) return Object.keys(academicCalendars);
 
-  useEffect(() => {
-    setAcademicYears(Object.keys(academicCalendars));
-  }, []);
-
-  useEffect(() => {
-    if (academicYear) {
-      setDegrees(academicCalendars[academicYear]);
-      setDegree("");
-      setYears({});
-      setCalendars({});
-      setYear("");
-      setCalendar("");
-      setLink("");
+    let node: any = academicCalendars;
+    for (const key of path) {
+      node = node[key];
+      if (node == null) return [];
     }
-  }, [academicYear]);
+    if (typeof node === "string") return []; // leaf = PDF link
+    return Object.keys(node);
+  }, [path]);
 
-  useEffect(() => {
-    if (degree && degrees != null) {
-      setYears(degrees[degree]);
-      setCalendars({});
-      setYear("");
-      setCalendar("");
-      setLink("");
-    }
-  }, [degree, degrees]);
+  // Derive the current level label
+  const currentLevel: Level = LEVELS[Math.min(path.length, LEVELS.length - 1)];
 
-  useEffect(() => {
-    if (year) {
-      const academicYearDetails = years[year];
-      setCalendars(academicYearDetails);
-      setCalendar("");
-      setLink("");
+  // Derive the PDF link when all 4 levels are selected
+  const pdfLink = useMemo<string | null>(() => {
+    if (path.length < 4) return null;
+    let node: any = academicCalendars;
+    for (const key of path) {
+      node = node[key];
+      if (node == null) return null;
     }
-  }, [year, years]);
+    return typeof node === "string" ? node : null;
+  }, [path]);
 
-  useEffect(() => {
-    if (calendar) {
-      const link = calendars[calendar];
-      setLink(link);
-    }
-  }, [calendar, calendars]);
+  const handleSelect = (key: string) => {
+    const newPath = [...path, key];
+    setPath(newPath);
+    setSelectedLink(null);
+  };
+
+  const goToLevel = (levelIndex: number) => {
+    setPath(path.slice(0, levelIndex));
+    setSelectedLink(null);
+  };
+
+  // Breadcrumb items
+  const breadcrumbs: BreadcrumbItem[] = [
+    { label: "Home", levelIndex: 0 },
+    ...path.map((key, i) => ({ label: key, levelIndex: i + 1 })),
+  ];
 
   return (
     <>
-      <div className="w-[75%] mt-[6%] mx-[12.5%]">
-        <div className="min-h-[350px] rounded-md border-black dark:border-white border-2 shadow-2xl">
-          <div className="pt-[30px] pb-[50px]">
-            <div className="md:text-2xl font-semibold flex justify-center">
-              ACADEMIC CALENDARS
-            </div>
-            <br />
-            <div className="text-xs w-full px-[15%] md:px-[30%]">
-              <select
-                name="academicYear"
-                value={academicYear}
-                onChange={(e) => setAcademicYear(e.target.value)}
-                className="w-full text-[8px] md:text-xs font-light border border-black dark:border-white border-double mt-[5px] rounded-sm h-[35px] text-center"
-              >
-                <option value="" disabled>
-                  Select the Academic Year
-                </option>
-                {academicYears.map((year, index) => (
-                  <option value={year} key={index}>
-                    {year}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="text-xs w-full px-[15%] md:px-[30%]">
-              <select
-                name="degree"
-                value={degree}
-                onChange={(e) => setDegree(e.target.value)}
-                className="w-full text-[8px] md:text-xs font-light border border-black dark:border-white border-double mt-[5px] rounded-sm h-[35px] text-center"
-              >
-                <option value="" disabled>
-                  Select the Degree
-                </option>
-                {Object.keys(degrees).map((degree, index) => (
-                  <option value={degree} key={index}>
-                    {degree}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="text-xs w-full px-[15%] md:px-[30%]">
-              <select
-                name="year"
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
-                className="w-full text-[8px] md:text-xs font-light border border-black dark:border-white border-double mt-[5px] rounded-sm h-[35px] text-center"
-              >
-                <option value="" disabled>
-                  Select the Year
-                </option>
-                {Object.keys(years).map((year, index) => (
-                  <option value={year} key={index}>
-                    {year}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="text-xs w-full px-[15%] md:px-[30%]">
-              <select
-                name="calendar"
-                value={calendar}
-                onChange={(e) => setCalendar(e.target.value)}
-                className="w-full text-[8px] md:text-xs font-light border border-black dark:border-white border-double mt-[5px] rounded-sm h-[35px] text-center"
-              >
-                <option value="" disabled>
-                  Select the Calendar
-                </option>
-                {Object.keys(calendars).map((calendar, index) => (
-                  <option value={calendar} key={index}>
-                    {calendar}
-                  </option>
-                ))}
-              </select>
+      {!selectedLink ? (
+        <div className="min-h-screen dark:bg-black bg-white dark:text-white text-black px-6 py-8">
+          <div className="max-w-2xl mx-auto">
+            <h1 className="text-xl font-semibold tracking-widest mb-8 text-center uppercase">
+              Academic Calendars
+            </h1>
+
+            {/* Breadcrumb */}
+            <div className="flex flex-wrap items-center text-sm mb-6 gap-1">
+              {breadcrumbs.map((crumb, i) => (
+                <div key={i} className="flex items-center gap-1">
+                  {i > 0 && <ChevronRight size={12} className="opacity-40" />}
+                  <span
+                    onClick={() => goToLevel(crumb.levelIndex)}
+                    className={`cursor-pointer hover:underline ${i === breadcrumbs.length - 1
+                        ? "font-semibold"
+                        : "opacity-50"
+                      }`}
+                  >
+                    {crumb.label}
+                  </span>
+                </div>
+              ))}
             </div>
 
-            <div className="w-full flex justify-center mt-8">
-              <Dialog>
-                <DialogTrigger
-                  disabled={!link}
-                  className="block lg:hidden cursor-pointer text-sm md:text-lg px-3 py-1 rounded bg-black dark:bg-gray-300 dark:text-black text-white w-[80px] md:w-[130px]"
-                  onClick={() => {
-                    if (!link) {
-                      toast.error("Select all the required fields");
-                    }
-                  }}
+            {/* Level label */}
+            {path.length < 4 && (
+              <p className="text-xs uppercase tracking-widest opacity-40 mb-3">
+                Select {LEVEL_LABELS[currentLevel]}
+              </p>
+            )}
+
+            {/* Options list — folder items */}
+            {pdfLink === null &&
+              currentOptions.map((key) => (
+                <div
+                  key={key}
+                  onClick={() => handleSelect(key)}
+                  className="border border-black dark:border-white p-4 mb-3 cursor-pointer
+                             hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black
+                             transition flex items-center justify-between"
                 >
-                  Open
-                </DialogTrigger>
-                <DialogContent className="w-[95%] my-2 bg-transparent pt-8 pb-1 px-1">
-                  {link && <GoogleDocViewer url={link} splNote={"calendar"} />}
-                </DialogContent>
-              </Dialog>
-              <button
-                className="text-sm md:text-lg px-3 py-1 rounded bg-black dark:bg-gray-300 dark:text-black text-white w-[100px] md:w-[130px] cursor-pointer hidden lg:block"
-                onClick={() => {
-                  if (!link) {
-                    toast.error("Select all the required fields");
-                  }
-                }}
-              >
-                {link ? (
-                  <Link href={link} target="_blank">
-                    Download
+                  <span>{key}</span>
+                  <ChevronRight size={14} className="opacity-40" />
+                </div>
+              ))}
+
+            {/* PDF leaf — open / download */}
+            {pdfLink && (
+              <div className="mt-2 flex flex-col gap-3">
+                <div className="flex items-center gap-2 border border-black dark:border-white p-4">
+                  <FaFilePdf className="text-red-600 text-lg flex-shrink-0" />
+                  <span className="text-sm font-medium">{path[path.length - 1]}</span>
+                </div>
+
+                <div className="flex gap-3">
+                  {/* Mobile — open in dialog */}
+                  <Dialog>
+                    <DialogTrigger className="block lg:hidden flex-1 text-sm px-4 py-2 border border-black dark:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition text-center">
+                      Open
+                    </DialogTrigger>
+                    <DialogContent className="w-[95%] my-2 bg-transparent pt-8 pb-1 px-1">
+                      <GoogleDocViewer url={pdfLink} splNote="calendar" />
+                    </DialogContent>
+                  </Dialog>
+
+                  {/* Desktop — download link */}
+                  <Link
+                    href={pdfLink}
+                    target="_blank"
+                    className="hidden lg:block flex-1 text-sm px-4 py-2 border border-black dark:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition text-center"
+                  >
+                    Download PDF
                   </Link>
-                ) : (
-                  "Download"
-                )}
-              </button>
-            </div>
+
+                  {/* Mobile viewer */}
+                  <button
+                    onClick={() => setSelectedLink(pdfLink)}
+                    className="flex-1 text-sm px-4 py-2 bg-black dark:bg-white text-white dark:text-black hover:opacity-80 transition"
+                  >
+                    View
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
-      </div>
+      ) : (
+        /* Full-screen PDF viewer */
+        <div className="relative">
+          <button
+            onClick={() => setSelectedLink(null)}
+            className="absolute top-2 right-2 z-10
+                       bg-black dark:bg-white
+                       text-white dark:text-black
+                       w-8 h-8 rounded-full
+                       flex items-center justify-center
+                       hover:scale-110 transition"
+          >
+            ✕
+          </button>
+          <GoogleDocViewer url={selectedLink} splNote="calendar" />
+        </div>
+      )}
       <Footer />
     </>
   );

@@ -1,8 +1,7 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import ResultDetails from "@/components/result/details";
-import QuickNavigation from "@/components/navbar/quicknavigation";
 import { getFromLocalStorage } from "@/components/customfunctions/localStorage";
 import AcademicAllResult from "@/components/result/academicallresult";
 import Print from "@/components/download/print";
@@ -19,21 +18,23 @@ const AcademicAllResultResult = () => {
   }
 
   return allResult === null ? (
-    <>
-      <div className="m-2 text-[30%] sm:text-[45%] md:text-[60%] lg:text-[100%]">
-        Details not found
-      </div>
-    </>
+    <div className="mx-auto px-3 py-10 text-center text-gray-400 dark:text-gray-500 text-sm">
+      Details not found
+    </div>
   ) : (
     <>
       <div
-        className="m-2 text-[30%]  sm:text-[45%]  md:text-[60%] lg:text-[100%]"
+        className="mx-auto px-3 pb-6 text-[30%] sm:text-[45%] md:text-[60%] lg:text-[100%]"
         ref={componentRef}
       >
-        <div className="text-center grid grid-cols-3 font-bold my-5 text-xs lg:text-2xl">
-          <div></div>
-          <div className="justify-center">ACADEMIC All RESULTS</div>
-          <div className="justify-end flex "></div>
+        {/* Page header */}
+        <div className="text-center py-6">
+          <h1 className="font-extrabold text-lg lg:text-3xl tracking-tight text-[#0b3954] dark:text-sky-300 uppercase">
+            All Academic Results
+          </h1>
+          <p className="text-[9px] lg:text-xs text-gray-400 dark:text-gray-500 mt-1 tracking-widest uppercase">
+            Complete Exam-wise Performance Record
+          </p>
         </div>
 
         <ResultDetails details={allResult.details} />
@@ -42,7 +43,7 @@ const AcademicAllResultResult = () => {
           htno={allResult.details.rollNumber}
         />
 
-        <div className="flex justify-center text-[6px] text-black">
+        <div className="flex justify-center text-[6px] text-gray-400 mt-4">
           jntuhresults.vercel.app
         </div>
       </div>

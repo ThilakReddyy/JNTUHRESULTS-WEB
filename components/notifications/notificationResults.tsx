@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { useEffect } from "react";
-import { AiOutlineShareAlt } from "react-icons/ai";
 import { RiWhatsappLine } from "react-icons/ri";
+import { Share2, ExternalLink } from "lucide-react";
 
 const NotificationResults = ({
   results,
@@ -9,120 +9,93 @@ const NotificationResults = ({
 }: notificationResultsProps) => {
   useEffect(() => {
     const handleScroll = () => {
-      const { scrollHeight, scrollTop, clientHeight } =
-        document.documentElement;
-      const isScrolledToBottom = scrollTop + clientHeight + 300 >= scrollHeight;
-      if (isScrolledToBottom) {
+      const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
+      if (scrollTop + clientHeight + 300 >= scrollHeight) {
         incrementPage();
       }
     };
-
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const onLinkClick = (query: string) => {
-    const modifiedquery = "notifications/examcode?" + query;
-    window.open(modifiedquery, "_blank");
+  const buildQuery = (result: Result) =>
+    "link=" +
+    encodeURIComponent(result.link) +
+    "&title=" +
+    result.title +
+    "&date=" +
+    result.date +
+    "&formatted_date=" +
+    result.releaseDate;
+
+  const onOpen = (query: string) => {
+    window.open("notifications/examcode?" + query, "_blank");
   };
 
+  if (results.length === 0) {
+    return (
+      <p className="text-center text-sm text-gray-400 dark:text-gray-500 py-10">
+        No notifications for this search query
+      </p>
+    );
+  }
+
   return (
-    <>
-      <div className="hidden md:block">
-        <div className="home-links flex flex-wrap items-center max-w-4xl mt-6 sm:w-full text-center  justify-around mx-auto">
-          {results.length === 0 && "No Notifications for this search query"}
-          {results &&
-            results.map((result: Result, index: number) => {
-              const query =
-                "link=" +
-                encodeURIComponent(result.link) +
-                "&" +
-                "title=" +
-                result.title +
-                "&date=" +
-                result.date +
-                "&formatted_date=" +
-                result.releaseDate;
+    <div className="flex flex-col gap-3">
+      {results.map((result: Result, index: number) => {
+        const query = buildQuery(result);
+        return (
+          <div
+            key={index}
+            className="group rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5
+                       hover:border-[#0b3954] dark:hover:border-sky-500
+                       hover:shadow-md transition-all duration-200 cursor-pointer overflow-hidden"
+            onClick={() => onOpen(query)}
+          >
+            <div className="flex items-start gap-3 px-4 py-3">
+              {/* Dot indicator */}
+              <span className="mt-1.5 flex-shrink-0 w-2 h-2 rounded-full bg-sky-400" />
 
-              return (
-                <div
-                  key={index}
-                  onClick={() => {
-                    onLinkClick(query);
-                  }}
-                  className="cursor-pointer"
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 leading-snug line-clamp-2 group-hover:text-[#0b3954] dark:group-hover:text-sky-400 transition-colors">
+                  {result.title}
+                </p>
+                <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                  {result.date}
+                </p>
+              </div>
+
+              {/* Actions */}
+              <div
+                className="flex-shrink-0 flex items-center gap-2"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Link
+                  href={`https://api.whatsapp.com/send?text=*Check out the Results!* \n\n ${result.title} \n\n${result.link}\n`}
+                  target="_blank"
+                  className="p-1.5 rounded-lg text-gray-400 hover:text-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
+                  title="Share on WhatsApp"
                 >
-                  <div className="border border-gray-100 dark:border-slate-800 hover:drop-shadow-sm group text-black shadow-2xl max-w-xs p-6 mt-6 text-left md:w-96 rounded-xl hover:border-gray-500 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-blue-300 duration-300">
-                    <h3 className="group-hover:text-black text-lg sm:text-xl font-bold">
-                      <div className="flex flex-row items-center justify-start dark:text-white">
-                        <span className="p-1">{result.title}</span>
-                      </div>
-                    </h3>
-                    <p className="group-hover:text-black dark:text-slate-100 text-slate-500 mt-4 text-base sm:text-xl">
-                      {" "}
-                      {result.date}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-        </div>
-      </div>
-      <div className=" md:hidden pt-5">
-        {results.map((result: Result, index) => {
-          const query =
-            "link=" +
-            encodeURIComponent(result.link) +
-            "&" +
-            "title=" +
-            result.title +
-            "&date=" +
-            result.date +
-            "&formatted_date=" +
-            result.releaseDate;
-
-          return (
-            <div
-              key={index}
-              className="bg-gray-200  dark:bg-gray-800 text-left p-[20px] mb-[3px] pb-[5px] md:hidden"
-            >
-              <h3 key={index} className="group-hover:text-black  font-bold ">
-                <div
-                  className="cursor-pointer"
+                  <RiWhatsappLine size={16} />
+                </Link>
+                <button
                   onClick={() => {
-                    onLinkClick(query);
+                    if (navigator.share) {
+                      navigator.share({ title: result.title, url: result.link });
+                    }
                   }}
+                  className="p-1.5 rounded-lg text-gray-400 hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                  title="Share"
                 >
-                  <div className=" justify-start font-interer  text-base">
-                    JNTUH {result.title}
-                  </div>
-                </div>
-                <div className="text-xs text-gray-700 dark:text-gray-200 font-semibold flex  py-2 font-interer">
-                  <span>{result?.date} </span>
-
-                  <div className="ml-auto flex ">
-                    <Link
-                      className="px-[5px]"
-                      target="_blank"
-                      href={`https://api.whatsapp.com/send?text=*Check out the Results!* \n\n ${result.title} \n\n${result.link}\n`}
-                    >
-                      <RiWhatsappLine size={17} />
-                    </Link>
-
-                    <span className="px-5">
-                      <AiOutlineShareAlt size={18} />
-                    </span>
-                  </div>
-                </div>
-              </h3>
+                  <Share2 size={14} />
+                </button>
+                <ExternalLink size={14} className="text-gray-300 dark:text-gray-600" />
+              </div>
             </div>
-          );
-        })}
-      </div>
-    </>
+          </div>
+        );
+      })}
+    </div>
   );
 };
 
