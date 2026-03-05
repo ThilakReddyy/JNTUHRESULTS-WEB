@@ -26,7 +26,7 @@ const CreditCheckerResult = () => {
 
   return (
     <>
-      <div className="mx-auto px-3 pb-6 text-[30%] sm:text-[45%] md:text-[60%] lg:text-[100%]">
+      <div className="mx-auto px-3 pb-6">
         {/* Page header */}
         <div className="text-center py-6">
           <h1 className="font-extrabold text-lg lg:text-3xl tracking-tight text-[#0b3954] dark:text-sky-300 uppercase">
