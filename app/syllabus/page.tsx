@@ -3,8 +3,6 @@ import { SyllabusNode, PdfItem, syllabusDetails } from "@/constants/syllabusdeta
 import { FaFilePdf } from "react-icons/fa";
 import { ChevronRight } from "lucide-react";
 import { useMemo, useState } from "react";
-import GoogleDocViewer from "@/components/googledocviewer/GoogleDocViewer";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Link from "next/link";
 
 // Level labels matching the syllabus structure depth
@@ -43,7 +41,7 @@ export default function SyllabusPage() {
 
   return (
     <div
-      className={` dark:bg-black bg-white dark:text-white text-black
+      className={` dark:bg-black h-[93vh] bg-white dark:text-white text-black
       ${selectedPdf ? "" : "px-6 py-8"}`}
     >
       {!selectedPdf ? (
@@ -93,36 +91,26 @@ export default function SyllabusPage() {
           {/* PDF list */}
           {isPdfList(currentNode) &&
             currentNode.map((pdf, index) => (
-              <div key={index} className="mb-3">
+              <div key={index} className="mb-3 w-full flex gap-0 md:gap-4 flex-col md:flex-row">
                 {/* PDF title row */}
-                <div className="flex items-center gap-2 border border-black dark:border-white p-4 mb-2">
+                <div className="flex items-center gap-2 border border-black dark:border-white p-4 mb-2 flex-1">
                   <FaFilePdf className="text-red-600 text-lg flex-shrink-0" />
                   <span className="text-sm font-medium">{pdf.title}</span>
                 </div>
 
                 {/* Actions */}
-                <div className="flex gap-3">
 
-                  {/* Desktop — download */}
-                  <Link
-                    href={pdf.link}
-                    target="_blank"
-                    className="flex-1 text-sm px-4 py-2 border border-black dark:border-white
-                               hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black
+                {/* Desktop — download */}
+                <Link
+                  href={pdf.link}
+                  target="_blank"
+                  className="text-sm px-4 py-2 md:h-14 md:w-24 flex w-full items-center justify-center border border-black dark:border-white
+                               hover:bg-white dark:hover:bg-black hover:text-black dark:hover:text-white bg-white text-black
                                transition text-center"
-                  >
-                    Download PDF
-                  </Link>
+                >
+                  View
+                </Link>
 
-                  {/* View full-screen */}
-                  <button
-                    onClick={() => setSelectedPdf(pdf.link)}
-                    className="flex-1 text-sm px-4 py-2 bg-black dark:bg-white text-white dark:text-black
-                               hover:opacity-80 transition"
-                  >
-                    View
-                  </button>
-                </div>
               </div>
             ))}
         </div>
@@ -142,7 +130,6 @@ export default function SyllabusPage() {
           >
             ✕
           </button>
-          <GoogleDocViewer url={selectedPdf} splNote="syllabus" />
         </div>
       )}
     </div>

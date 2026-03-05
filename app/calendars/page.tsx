@@ -146,16 +146,9 @@ const Calendars = () => {
                     target="_blank"
                     className=" flex-1 text-sm px-4 py-2 border border-black dark:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition text-center"
                   >
-                    Download PDF
+                    View
                   </Link>
 
-                  {/* Mobile viewer */}
-                  <button
-                    onClick={() => setSelectedLink(pdfLink)}
-                    className="flex-1 text-sm px-4 py-2 bg-black dark:bg-white text-white dark:text-black hover:opacity-80 transition"
-                  >
-                    View
-                  </button>
                 </div>
               </div>
             )}
