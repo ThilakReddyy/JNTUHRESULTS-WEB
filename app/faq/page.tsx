@@ -1,164 +1,153 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { AiOutlineDownCircle, AiOutlineUpCircle } from "react-icons/ai";
 import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
+import { ChevronDown } from "lucide-react";
+
+const faqs = [
+  {
+    question: "How does this website work?",
+    answer:
+      "When a user enters their roll number, the website asynchronously sends requests to the JNTUH server, retrieving the results for all regular and supplementary exams across all semesters. Using BeautifulSoup, the backend parses the HTML content to extract result information. An algorithm then combines the results and calculates the CGPA. This entire process is optimised to complete in under 2 seconds.",
+  },
+  {
+    question: "Was the entire code written by you?",
+    answer:
+      "The entire backend logic has been developed by Thilak Reddy along with hemanth-kotagiri and syed ansar. You are welcome to use the code by following the GNU General Public License. Feel free to reach out if you have any questions.",
+  },
+  {
+    question: "How do I access my grades for all semesters?",
+    answer:
+      "Enter your roll number on the Academic Result page and click \"Results\". All your semester results will be displayed in one view.",
+  },
+  {
+    question: "What is the purpose of the backend?",
+    answer:
+      "The backend fetches and parses results for individual students and entire classes. It makes requests to the JNTUH website and uses BeautifulSoup to extract the required data and serve it to the frontend.",
+  },
+  {
+    question: "How does the backend fetch results from JNTUH?",
+    answer:
+      "Since JNTUH doesn't provide a public API, the backend sends requests to the JNTUH website and parses the HTML response using BeautifulSoup, a Python library for HTML parsing.",
+  },
+  {
+    question: "What technologies power this website?",
+    answer:
+      "The frontend is built with Next.js (React) and hosted on Vercel. The backend uses Python with BeautifulSoup for parsing and is served from the edge for fast response times.",
+  },
+  {
+    question: "How can I report a bug or get help?",
+    answer:
+      "Contact the developer at thilakreddypothuganti@gmail.com, fill in the Google Form linked in the Help Center, or open an issue on the GitHub repository. Pull requests with fixes are also welcome.",
+  },
+  {
+    question: "What API endpoints are available?",
+    answer:
+      "/api/academicresult?htno=Roll_no — fetches results for a single student.\n/api/classresult?htnos=comma_separated_htnos&semester=semester_code — fetches results for multiple students.",
+  },
+  {
+    question: "Can I suggest new features?",
+    answer:
+      "Yes! Message the developer with your ideas for tools or features you'd like to see on the platform.",
+  },
+  {
+    question: "How can I report backend issues?",
+    answer:
+      "Contact the developer via email for backend setup or deployment issues. You can also open a GitHub issue or submit a pull request to the dev branch.",
+  },
+];
+
+const socialLinks = [
+  { href: "https://github.com/thilakreddyy", Icon: FaGithub },
+  { href: "https://twitter.com/thilakreddyonly", Icon: FaTwitter },
+  { href: "https://www.instagram.com/__thilak_reddy__/", Icon: FaInstagram },
+];
 
 const Faq = () => {
-  const faqs = [
-    {
-      question: "How does this website work?",
-      answer:
-        "When a user enters their roll number, the website asynchronously sends requests to the JNTUH server, retrieving the results for all regular and supplementary exams across all semesters associated with the given roll number. Using BeautifulSoup, the backend parses the HTML content of the responses to extract the relevant result information. An algorithm then combines the results and calculates the Cumulative Grade Point Average (CGPA) for the student. This entire process is optimized to be completed in less than 2 seconds, allowing the JNTUHRESULTS-vercel website to swiftly provide comprehensive results to the user.",
-    },
-    {
-      question: "Was the entire code written by you?",
-      answer:
-        "The entire backend logic has been developed by me(Thilak Reddy) along with hemanth-kotagiri and syed ansar. You are welcome to use the code in any way you see fit by following the GNU GENERAL PUBLIC LICENSE, and if you have any questions or need assistance, please dont hesitate to reach out to us.",
-    },
-    {
-      question: "How do I access my grades for all semesters?",
-      answer:
-        'To access your grades for all semesters, enter your roll number in the provided inbox in the academic result page and click on the "Results" button. The results of all your semesters will be displayed.',
-    },
-    {
-      question: "What is the purpose of the backend in this project?",
-      answer:
-        "The backend serves as the backbone of the JNTUHRESULTS-vercel project. It is responsible for fetching and parsing the results of both individual students and multiple classmates. By making requests to the JNTUH website and utilizing BeautifulSoup, the backend extracts the required data and provides it to the frontend.",
-    },
-    {
-      question:
-        "How does the backend fetch the results from the JNTUH website?",
-      answer:
-        "Since the JNTUH website does not provide an API or authentication for result requests, the backend sends requests to the website and captures the responses. It then uses BeautifulSoup, a Python library for parsing HTML, to extract the relevant result information from the HTML response.",
-    },
-    {
-      question: "What technologies are used to develop the website?",
-      answer:
-        "The website is built using Next.js. Next.js enables the creation of React-based web applications with server-side rendering and the generation of static websites. The website is hosted on Vercel, which provides fast deployments served from the edge.",
-    },
-    {
-      question: "How can I report a bug or ask for help?",
-      answer:
-        "If you encounter any issues or have questions regarding the website, you can contact the developer via email thilakreddypothuganti@gmail.com or fill the issue in the Google Forms. Additionally, if you find a bug, you can submit an issue on the project's GitHub repository. You're also welcome to contribute by submitting pull requests with bug fixes or changes to the develop branch.",
-    },
-    {
-      question: "What are the available API endpoints for fetching results?",
-      answer:
-        "There are two API endpoints provided by the backend:\n\n/api/academicresult?htno=Roll_no: Fetches results for a single student using their roll number.\n\n/api/classresult?htnos=multiple_htnos_seperate_by_commas&semester=semester_code: Fetches results for multiple students within a given range of roll numbers and semester code.",
-    },
-    {
-      question: "Can I suggest ideas for new website tools or features?",
-      answer:
-        "Yes, you can message me with your ideas for small website tools that you can't find online or any other features you'd like to see.",
-    },
-    {
-      question:
-        "How can I report a bug or ask for help related to the backend?",
-      answer:
-        "If you encounter any issues or have questions regarding the backend setup, deployment, or any special feature implementation, you can contact the developer via email. In case you find a bug, you can submit an issue on the project's GitHub repository. Additionally, you are welcome to contribute by submitting pull requests with bug fixes or changes to the dev branch.",
-    },
-  ];
+  const [open, setOpen] = useState<number | null>(null);
 
-  const [answerVisibility, setAnswerVisibility] = useState(
-    Array(faqs.length).fill(false),
-  );
-  const clearLocalStorageAndReload = () => {
+  const toggle = (i: number) => setOpen(open === i ? null : i);
+
+  const clearCache = () => {
     localStorage.clear();
-    toast.success("Cache has been cleared!!");
+    toast.success("Cache cleared!");
   };
+
   return (
-    <>
-      <section className="pt-[75px] ">
-        <h3 className="text-center text-xl font-bold hidden md:block font-intercursive">
-          Frequently Asked Question&apos;s
-        </h3>
-        <h3 className="text-center text-xl font-bold block md:hidden font-intercursive">
-          FAQ&apos;s
-        </h3>
-        <center>
-          <div className="max-w-[1024px] font-interer px-[15px]">
-            <div className="max-w-[540px] w-[100%] ">
-              {faqs.map(
-                (
-                  value: { question: String; answer: String },
-                  index: number,
-                ) => {
-                  return (
-                    <section
-                      key={index}
-                      className={`my-[16px] rounded-[4px] border-[1px] border-solid  ${answerVisibility[index] && " border border-black dark:border-white"} `}
-                    >
-                      <div className="overflow-hidden flex grid-rows-2 p-[13px] bg-[#fff] dark:bg-black rounded-[4px]">
-                        <button
-                          className="text-[14px] text-black dark:text-white  w-full text-left "
-                          onClick={() => {
-                            const newVisibility = [...answerVisibility];
-                            newVisibility[index] = !newVisibility[index];
-                            setAnswerVisibility(newVisibility);
-                          }}
-                        >
-                          {value.question}
-                        </button>
-                        <AiOutlineDownCircle
-                          className={`text-2xl text-right ${
-                            answerVisibility[index] ? "hidden" : "block"
-                          }`}
-                        />
-                        <AiOutlineUpCircle
-                          className={`text-2xl text-right  ${
-                            answerVisibility[index] ? "block" : "hidden"
-                          }`}
-                        />
-                      </div>
-                      <div
-                        className={`text-justify px-[13px] dark:bg-[#181A20]  border-t border-black dark:border-white overflow-hidden transition-max-height duration-200 ease-out text-[14px] text-[#1a1a1a] dark:text-white py-[17px] ${
-                          answerVisibility[index] ? "" : "hidden"
-                        }`}
-                      >
-                        <p>{value.answer}</p>
-                      </div>
-                    </section>
-                  );
-                },
-              )}
-            </div>
-          </div>
-        </center>
-      </section>
-      <div className="text-center pb-4">
-        <Button onClick={clearLocalStorageAndReload}>Clear cache</Button>
+    <div className="mx-auto max-w-2xl px-4 py-10">
+      {/* Header */}
+      <div className="text-center mb-8">
+        <h1 className="font-extrabold text-2xl lg:text-3xl tracking-tight text-[#0b3954] dark:text-sky-300 uppercase">
+          FAQ
+        </h1>
+        <p className="text-xs text-gray-400 dark:text-gray-500 mt-2 tracking-widest uppercase">
+          Frequently Asked Questions
+        </p>
       </div>
-      <div className="bottom-0 md:hidden w-full font-interer pt-[10px]">
-        <hr />
-        <center>
-          <div className="flex justify-center mt-4 text-sm text-gray-600">
-            <a
-              href="https://github.com/thilakreddyy"
-              className="mx-2 hover:text-gray-900"
+
+      {/* Accordion */}
+      <div className="flex flex-col gap-2 mb-8">
+        {faqs.map((faq, i) => (
+          <div
+            key={i}
+            className={`rounded-2xl border overflow-hidden transition-all ${open === i
+                ? "border-[#0b3954] dark:border-sky-600"
+                : "border-gray-200 dark:border-white/10"
+              }`}
+          >
+            <button
+              onClick={() => toggle(i)}
+              className="w-full flex items-center justify-between gap-3 px-4 py-3.5 text-left bg-white dark:bg-white/5 hover:bg-gray-50 dark:hover:bg-white/[0.07] transition-colors"
             >
-              <FaGithub />
-            </a>
-            <a
-              href="https://twitter.com/thilakreddyonly"
-              className="mx-2 hover:text-gray-900"
-            >
-              <FaTwitter />
-            </a>
-            <a
-              href="https://www.instagram.com/__thilak_reddy__/"
-              className="mx-2 hover:text-gray-900"
-            >
-              <FaInstagram />
-            </a>
+              <span className="text-sm font-semibold text-gray-800 dark:text-gray-100 leading-snug">
+                {faq.question}
+              </span>
+              <ChevronDown
+                size={16}
+                className={`flex-shrink-0 text-gray-400 dark:text-gray-500 transition-transform duration-200 ${open === i ? "rotate-180" : ""
+                  }`}
+              />
+            </button>
+
+            {open === i && (
+              <div className="px-4 py-3 bg-gray-50 dark:bg-white/[0.03] border-t border-gray-100 dark:border-white/5">
+                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-line">
+                  {faq.answer}
+                </p>
+              </div>
+            )}
           </div>
-          <div className="flex justify-center m-2 text-xs	 text-gray-600">
-            <p>&copy; 2023 jntuhresults.vercel.app</p>
-          </div>
-        </center>
+        ))}
       </div>
-    </>
+
+      {/* Clear cache */}
+      <div className="flex justify-center mb-8">
+        <button
+          onClick={clearCache}
+          className="text-xs font-semibold px-4 py-2 rounded-xl border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:border-red-300 hover:text-red-500 dark:hover:border-red-800 dark:hover:text-red-400 transition-colors"
+        >
+          Clear Cache
+        </button>
+      </div>
+
+      {/* Social links */}
+      <div className="flex justify-center gap-5 text-gray-400 dark:text-gray-500">
+        {socialLinks.map(({ href, Icon }) => (
+          <a
+            key={href}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
+          >
+            <Icon size={18} />
+          </a>
+        ))}
+      </div>
+      <p className="text-center text-xs text-gray-400 dark:text-gray-600 mt-3">
+        © 2024 jntuhresults.vercel.app
+      </p>
+    </div>
   );
 };
 

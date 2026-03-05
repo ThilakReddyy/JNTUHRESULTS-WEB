@@ -1,6 +1,5 @@
 "use client";
 
-import { RefreshCcw } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import ResultDetails from "@/components/result/details";
@@ -17,6 +16,7 @@ const AcademicResultResult = () => {
   const [academicResult, setAcademicResult] =
     useState<AcademicResulProps | null>(null);
   const componentRef = useRef(null);
+
   useEffect(() => {
     const fetchResult = async () => {
       const academicResult = await fetchAcademicResult(htno || "");
@@ -24,7 +24,6 @@ const AcademicResultResult = () => {
         setAcademicResult(academicResult);
         return;
       }
-
       if (academicResult === null) {
         router.push("/academicresult");
       }
@@ -35,21 +34,19 @@ const AcademicResultResult = () => {
   return (
     <>
       <div
-        className="m-2 text-[30%]  sm:text-[45%]  md:text-[60%] lg:text-[100%]"
+        className="mx-auto  px-3 pb-6 text-[30%] sm:text-[45%] md:text-[60%] lg:text-[100%]"
         ref={componentRef}
       >
-        <div className="text-center grid grid-cols-3 font-bold my-5 text-xs lg:text-2xl">
-          <div></div>
-          <div className="justify-center">ACADEMIC RESULTS</div>
-          <div className="justify-end flex ">
-            <div
-              className="border border-white p-1 md:p-2 md:hidden rounded cursor-pointer justify-center items-center  hidden"
-              onClick={() => {}}
-            >
-              <RefreshCcw size={6} />
-            </div>
-          </div>
+        {/* Page header */}
+        <div className="text-center py-6">
+          <h1 className="font-extrabold text-lg lg:text-3xl tracking-tight text-[#0b3954] dark:text-sky-300 uppercase">
+            Academic Results
+          </h1>
+          <p className="text-[9px] lg:text-xs text-gray-400 dark:text-gray-500 mt-1 tracking-widest uppercase">
+            Semester-wise Performance Overview
+          </p>
         </div>
+
         {academicResult ? (
           <>
             <ResultDetails details={academicResult.details} />
@@ -66,10 +63,11 @@ const AcademicResultResult = () => {
           </>
         )}
       </div>
-      <div className="flex justify-center text-[6px] text-black">
+
+      <div className="flex justify-center text-[6px] text-gray-400 pb-2">
         jntuhresults.vercel.app
       </div>
-      {/* <QuickNavigation htno={htno} /> */}
+
       <Print componentRef={componentRef} />
     </>
   );

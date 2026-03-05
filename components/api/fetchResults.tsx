@@ -321,7 +321,6 @@ export const fetchClassResult = async (
 
     const response = await axios.get(url, { timeout: 20 * 1000 });
 
-    console.log(response);
     if (response.data && response.data.length > 0) {
       saveToLocalStorage(
         htno + "-ClassResult-" + type,
