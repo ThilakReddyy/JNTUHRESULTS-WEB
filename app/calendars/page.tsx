@@ -97,8 +97,8 @@ const Calendars = () => {
                   <span
                     onClick={() => goToLevel(crumb.levelIndex)}
                     className={`cursor-pointer hover:underline ${i === breadcrumbs.length - 1
-                        ? "font-semibold"
-                        : "opacity-50"
+                      ? "font-semibold"
+                      : "opacity-50"
                       }`}
                   >
                     {crumb.label}
@@ -138,21 +138,13 @@ const Calendars = () => {
                 </div>
 
                 <div className="flex gap-3">
-                  {/* Mobile — open in dialog */}
-                  <Dialog>
-                    <DialogTrigger className="block lg:hidden flex-1 text-sm px-4 py-2 border border-black dark:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition text-center">
-                      Open
-                    </DialogTrigger>
-                    <DialogContent className="w-[95%] my-2 bg-transparent pt-8 pb-1 px-1">
-                      <GoogleDocViewer url={pdfLink} splNote="calendar" />
-                    </DialogContent>
-                  </Dialog>
+
 
                   {/* Desktop — download link */}
                   <Link
                     href={pdfLink}
                     target="_blank"
-                    className="hidden lg:block flex-1 text-sm px-4 py-2 border border-black dark:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition text-center"
+                    className=" flex-1 text-sm px-4 py-2 border border-black dark:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition text-center"
                   >
                     Download PDF
                   </Link>
@@ -186,7 +178,6 @@ const Calendars = () => {
           <GoogleDocViewer url={selectedLink} splNote="calendar" />
         </div>
       )}
-      <Footer />
     </>
   );
 };
