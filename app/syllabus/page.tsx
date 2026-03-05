@@ -43,7 +43,7 @@ export default function SyllabusPage() {
 
   return (
     <div
-      className={`min-h-screen dark:bg-black bg-white dark:text-white text-black
+      className={` dark:bg-black bg-white dark:text-white text-black
       ${selectedPdf ? "" : "px-6 py-8"}`}
     >
       {!selectedPdf ? (
@@ -102,29 +102,12 @@ export default function SyllabusPage() {
 
                 {/* Actions */}
                 <div className="flex gap-3">
-                  {/* Mobile — open in dialog */}
-                  <Dialog>
-                    <DialogTrigger
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setSelectedPdf(pdf.link);
-                      }}
-                      className="block lg:hidden flex-1 text-sm px-4 py-2 border border-black dark:border-white
-                                 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black
-                                 transition text-center"
-                    >
-                      Open
-                    </DialogTrigger>
-                    <DialogContent className="w-[95%] my-2 bg-transparent pt-8 pb-1 px-1">
-                      <GoogleDocViewer url={pdf.link} splNote="syllabus" />
-                    </DialogContent>
-                  </Dialog>
 
                   {/* Desktop — download */}
                   <Link
                     href={pdf.link}
                     target="_blank"
-                    className="hidden lg:block flex-1 text-sm px-4 py-2 border border-black dark:border-white
+                    className="flex-1 text-sm px-4 py-2 border border-black dark:border-white
                                hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black
                                transition text-center"
                   >
@@ -145,7 +128,9 @@ export default function SyllabusPage() {
         </div>
       ) : (
         /* Full-screen PDF viewer */
-        <div className="relative">
+        <div
+
+          className="relative h-full">
           <button
             onClick={() => setSelectedPdf(null)}
             className="absolute top-2 right-2 z-10

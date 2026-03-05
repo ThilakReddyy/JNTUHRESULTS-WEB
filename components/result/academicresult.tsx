@@ -45,7 +45,7 @@ const AcademicResult = ({ result, academic = false }: AcademicResultProps) => {
                   <th className="px-2.5 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500" style={{ border: "none" }}>
                     Code
                   </th>
-                  <th className="px-2.5 py-3 hidden md:table-cell text-left text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500" style={{ border: "none" }}>
+                  <th className="px-2.5 py-3 min-w-[420px] 2xl:min-w-[975px] hidden md:table-cell text-left text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500" style={{ border: "none" }}>
                     Subject Name
                   </th>
                   <th className="px-2.5 py-3 text-center text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 whitespace-nowrap" style={{ border: "none" }}>
@@ -79,7 +79,7 @@ const AcademicResult = ({ result, academic = false }: AcademicResultProps) => {
                         <td className="px-2.5 py-2.5 text-xs font-mono font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap" style={{ border: "none" }}>
                           {subject.subjectCode}
                         </td>
-                        <td className="px-2.5 py-2.5 hidden md:table-cell text-sm text-gray-700 dark:text-gray-200 min-w-[180px]" style={{ border: "none" }}>
+                        <td className="px-2.5 py-2.5 min-w-[420px] hidden md:table-cell text-sm text-gray-700 dark:text-gray-200 min-w-[180px]" style={{ border: "none" }}>
                           {subject.subjectName}
                         </td>
                         <td className="px-2.5 py-2.5 text-sm text-center text-gray-600 dark:text-gray-300" style={{ border: "none" }}>
