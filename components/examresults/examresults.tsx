@@ -14,10 +14,7 @@ const ExamResults = ({ title, query }: { title: string; query: string }) => {
       return;
     }
     try {
-      const redirectUrl =
-        query +
-        "&result=null&grad=null&htno=" +
-        singleHtno;
+      const redirectUrl = query + "&result=null&grad=null&htno=" + singleHtno;
 
       window.open(redirectUrl, "_blank");
     } catch (e: any) {
@@ -93,7 +90,7 @@ const ExamResults = ({ title, query }: { title: string; query: string }) => {
                 <div className="flex justify-center font-semibold pb-12">
                   Multi Results
                 </div>
-                <div className="md:flex ml-6 md:ml-0 justify-center">
+                <div className="flex flex-col items-center ml-6 md:ml-0 justify-center">
                   <input
                     className="
           text-rounded text-center text-[60%] sm:text-[90%]

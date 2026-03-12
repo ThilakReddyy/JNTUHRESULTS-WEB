@@ -101,7 +101,10 @@ const NotificationExamCode = ({
           </div>
           <div className="divide-y divide-gray-100 dark:divide-white/5">
             {directLinks.map((l, i) => (
-              <div key={i} className="flex items-center justify-between px-4 py-3 bg-white dark:bg-white/5">
+              <div
+                key={i}
+                className="flex items-center justify-between px-4 py-3 bg-white dark:bg-white/5"
+              >
                 <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
                   {l.label}
                 </span>
@@ -120,7 +123,9 @@ const NotificationExamCode = ({
         {/* Divider */}
         <div className="flex items-center gap-3 my-4">
           <div className="flex-1 h-px bg-gray-200 dark:bg-white/10" />
-          <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">OR</span>
+          <span className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">
+            OR
+          </span>
           <div className="flex-1 h-px bg-gray-200 dark:bg-white/10" />
         </div>
 
@@ -141,12 +146,15 @@ const NotificationExamCode = ({
             </span>
           )}
           <p className="mt-2 text-justify leading-relaxed">
-            <span className="font-semibold text-gray-500 dark:text-gray-400">Note: </span>
-            As per prevailing practice since 2012, if difference of marks after revaluation
-            and first valuation is more than or equal to 15% of maximum external marks then
-            revaluation marks will be retained. If the change is less than 15% or marks
-            secured in revaluation is less than first valuation marks, the first valuation
-            marks shall be retained.
+            <span className="font-semibold text-gray-500 dark:text-gray-400">
+              Note:{" "}
+            </span>
+            As per prevailing practice since 2012, if difference of marks after
+            revaluation and first valuation is more than or equal to 15% of
+            maximum external marks then revaluation marks will be retained. If
+            the change is less than 15% or marks secured in revaluation is less
+            than first valuation marks, the first valuation marks shall be
+            retained.
           </p>
         </div>
       </div>
