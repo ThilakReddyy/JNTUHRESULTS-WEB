@@ -42,7 +42,10 @@ const Notification = () => {
     }
   };
 
-  const handleChangeParams = (param: string, event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeParams = (
+    param: string,
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setParams((prev) => ({ ...prev, [param]: event.target.value, page: 1 }));
   };
 
@@ -63,12 +66,18 @@ const Notification = () => {
       {loading && results.length === 0 ? (
         <div className="flex flex-col gap-3">
           {[...Array(5)].map((_, i) => (
-            <div key={i} className="rounded-2xl border border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-white/[0.03] h-16 animate-pulse" />
+            <div
+              key={i}
+              className="rounded-2xl border border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-white/[0.03] h-16 animate-pulse"
+            />
           ))}
         </div>
       ) : (
         <>
-          <NotificationResults results={results} incrementPage={incrementPage} />
+          <NotificationResults
+            results={results}
+            incrementPage={incrementPage}
+          />
           {loading && (
             <p className="text-center text-xs text-gray-400 dark:text-gray-500 py-4 animate-pulse">
               Loading more…

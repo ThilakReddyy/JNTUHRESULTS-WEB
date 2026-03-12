@@ -31,7 +31,7 @@ export const fetchAcademicResult = async (
         toast.dismiss();
         toast(
           response.data.message ||
-          "Result is being prepared. Please check again shortly.",
+            "Result is being prepared. Please check again shortly.",
         );
         return null;
       }
@@ -46,17 +46,18 @@ export const fetchAcademicResult = async (
       case 423: {
         toast.dismiss();
         toast.error(
-          response.data.message || "Server is temporarily overloaded. Please try again later.",
+          response.data.message ||
+            "Server is temporarily overloaded. Please try again later.",
         );
         return null;
       }
       case 424: {
         toast.dismiss();
         toast.error(
-          response.data.message || "Upstream JNTUH servers are down. Try again later.",
+          response.data.message ||
+            "Upstream JNTUH servers are down. Try again later.",
         );
         return null;
-
       }
 
       case 502: {
@@ -134,7 +135,7 @@ export const fetchAllResult = async (htno: string) => {
         toast.dismiss();
         toast(
           response.data.message ||
-          "Result is being prepared. Please check again shortly.",
+            "Result is being prepared. Please check again shortly.",
         );
         return false;
       }
