@@ -28,7 +28,7 @@ const Subjects = ({
             <th className="px-2.5 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500" style={{ border: "none" }}>
               Code
             </th>
-            <th className="px-2.5 py-3 hidden md:table-cell text-left text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500" style={{ border: "none" }}>
+            <th className="px-2.5 py-3 min-w-[420px] 2xl:min-w-[500px] hidden md:table-cell text-left text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500" style={{ border: "none" }}>
               Subject Name
             </th>
             <th className="px-2.5 py-3 text-center text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 whitespace-nowrap" style={{ border: "none" }}>
