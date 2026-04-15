@@ -16,7 +16,7 @@ const NoticePopup = () => {
   }, []);
 
   const path = "/" + pathname.split("/")[1];
-  const isVisible = path === "/" && !hidden && isAndroid;
+  const isVisible = path === "/" && !hidden && isAndroid && false;
 
   return (
     <AnimatePresence>
@@ -56,10 +56,14 @@ const NoticePopup = () => {
                     New Launch
                   </span>
                   <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-                    Get <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">JNTUHConnect</span>
+                    Get{" "}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                      JNTUHConnect
+                    </span>
                   </h2>
                   <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                    Stay ahead with instant results & official updates right on your phone.
+                    Stay ahead with instant results & official updates right on
+                    your phone.
                   </p>
                 </motion.div>
 
@@ -98,9 +102,7 @@ const NoticePopup = () => {
                     rel="noopener noreferrer"
                     className="relative group flex items-center justify-center gap-3 w-full py-4 px-6 bg-gray-900 dark:bg-white text-white dark:text-black rounded-2xl font-bold shadow-lg overflow-hidden transition-all"
                   >
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity"
-                    />
+                    <motion.div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                     <FaGooglePlay className="text-xl" />
                     <span>Download App Now</span>
 
