@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 const Title = () => {
-  const title = "JNTUH RESULTS!!";
+  const title = "JNTUH CONNECT!!";
   const sleep = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
   const [blind, setblind] = useState(false);
   useEffect(() => {
