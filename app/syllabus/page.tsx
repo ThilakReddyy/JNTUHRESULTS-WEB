@@ -1,5 +1,9 @@
 "use client";
-import { SyllabusNode, PdfItem, syllabusDetails } from "@/constants/syllabusdetails";
+import {
+  SyllabusNode,
+  PdfItem,
+  syllabusDetails,
+} from "@/constants/syllabusdetails";
 import { FaFilePdf } from "react-icons/fa";
 import { ChevronRight } from "lucide-react";
 import { useMemo, useState } from "react";
@@ -57,8 +61,11 @@ export default function SyllabusPage() {
                 {i > 0 && <ChevronRight size={12} className="opacity-40" />}
                 <span
                   onClick={() => goToLevel(crumb.levelIndex)}
-                  className={`cursor-pointer hover:underline ${i === breadcrumbs.length - 1 ? "font-semibold" : "opacity-50"
-                    }`}
+                  className={`cursor-pointer hover:underline ${
+                    i === breadcrumbs.length - 1
+                      ? "font-semibold"
+                      : "opacity-50"
+                  }`}
                 >
                   {crumb.label}
                 </span>
@@ -69,7 +76,8 @@ export default function SyllabusPage() {
           {/* Level label */}
           {!isPdfList(currentNode) && (
             <p className="text-xs uppercase tracking-widest opacity-40 mb-3">
-              Select {LEVEL_LABELS[Math.min(path.length, LEVEL_LABELS.length - 1)]}
+              Select{" "}
+              {LEVEL_LABELS[Math.min(path.length, LEVEL_LABELS.length - 1)]}
             </p>
           )}
 
@@ -91,7 +99,10 @@ export default function SyllabusPage() {
           {/* PDF list */}
           {isPdfList(currentNode) &&
             currentNode.map((pdf, index) => (
-              <div key={index} className="mb-3 w-full flex gap-0 md:gap-4 flex-col md:flex-row">
+              <div
+                key={index}
+                className="mb-3 w-full flex gap-0 md:gap-4 flex-col md:flex-row"
+              >
                 {/* PDF title row */}
                 <div className="flex items-center gap-2 border border-black dark:border-white p-4 mb-2 flex-1">
                   <FaFilePdf className="text-red-600 text-lg flex-shrink-0" />
@@ -110,15 +121,12 @@ export default function SyllabusPage() {
                 >
                   View
                 </Link>
-
               </div>
             ))}
         </div>
       ) : (
         /* Full-screen PDF viewer */
-        <div
-
-          className="relative h-full">
+        <div className="relative h-full">
           <button
             onClick={() => setSelectedPdf(null)}
             className="absolute top-2 right-2 z-10
