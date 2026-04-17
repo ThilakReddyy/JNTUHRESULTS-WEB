@@ -239,7 +239,7 @@ export default function Home() {
             </a>
           </div>
           <div className="flex justify-center m-2 text-xs	 text-gray-600">
-            <p>&copy; 2023 jntuhresults.vercel.app</p>
+            <p>&copy; 2026 jntuhconnect.dhethi.com</p>
           </div>
         </center>
       </div>

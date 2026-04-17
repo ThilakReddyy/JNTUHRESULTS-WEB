@@ -33,10 +33,7 @@ const AcademicResultResult = () => {
 
   return (
     <>
-      <div
-        className="mx-auto px-3 pb-6"
-        ref={componentRef}
-      >
+      <div className="mx-auto px-3 pb-6" ref={componentRef}>
         {/* Page header */}
         <div className="text-center py-6">
           <h1 className="font-extrabold text-lg lg:text-3xl tracking-tight text-[#0b3954] dark:text-sky-300 uppercase">
@@ -65,7 +62,7 @@ const AcademicResultResult = () => {
       </div>
 
       <div className="flex justify-center text-[6px] text-gray-400 pb-2">
-        jntuhresults.vercel.app
+        jntuhconnect.dhethi.com
       </div>
 
       <Print componentRef={componentRef} />

@@ -19,19 +19,30 @@ const gradeColor = (val: string | undefined) => {
 const SectionHeader = ({ title }: { title: string }) => (
   <div className="flex items-center gap-2 px-4 py-3 bg-[#0b3954]">
     <span className="w-2 h-2 rounded-full bg-sky-400 inline-block" />
-    <h3 className="text-sm font-bold text-white uppercase tracking-wide">{title}</h3>
+    <h3 className="text-sm font-bold text-white uppercase tracking-wide">
+      {title}
+    </h3>
   </div>
 );
 
 const ColHeader = ({ isresult = true }: { isresult?: boolean }) => (
   <tr className="bg-gray-50 dark:bg-white/5 border-b border-gray-200 dark:border-white/10">
-    <th className={`px-4 py-2.5 text-left text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 ${isresult ? "" : "hidden md:block"}`} style={{ border: "none" }}>
+    <th
+      className={`px-4 py-2.5 text-left text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 ${isresult ? "" : "hidden md:block"}`}
+      style={{ border: "none" }}
+    >
       Attribute
     </th>
-    <th className={`px-4 py-2.5 text-center text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 `} style={{ border: "none" }}>
+    <th
+      className={`px-4 py-2.5 text-center text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 `}
+      style={{ border: "none" }}
+    >
       Student 1
     </th>
-    <th className={`px-4 py-2.5 text-center text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 `} style={{ border: "none" }}>
+    <th
+      className={`px-4 py-2.5 text-center text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 `}
+      style={{ border: "none" }}
+    >
       Student 2
     </th>
   </tr>
@@ -45,17 +56,36 @@ interface RowProps {
   index: number;
   isresult?: boolean;
 }
-const Row: React.FC<RowProps> = ({ label, value1, value2, colored, index, isresult = true }) => {
-  const rowBg = index % 2 === 0 ? "bg-white dark:bg-transparent" : "bg-gray-50/80 dark:bg-white/[0.03]";
+const Row: React.FC<RowProps> = ({
+  label,
+  value1,
+  value2,
+  colored,
+  index,
+  isresult = true,
+}) => {
+  const rowBg =
+    index % 2 === 0
+      ? "bg-white dark:bg-transparent"
+      : "bg-gray-50/80 dark:bg-white/[0.03]";
   return (
     <tr className={`border-b border-gray-100 dark:border-white/5 ${rowBg}`}>
-      <td className={`px-4 py-2.5 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide ${isresult ? "" : "hidden md:block"}`} style={{ border: "none" }}>
+      <td
+        className={`px-4 py-2.5 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide ${isresult ? "" : "hidden md:block"}`}
+        style={{ border: "none" }}
+      >
         {label}
       </td>
-      <td className={`px-4 py-2.5 text-sm ${isresult ? "text-center" : "text-left md:text-center"}  ${colored ? gradeColor(value1) : "text-gray-700 dark:text-gray-200"}`} style={{ border: "none" }}>
+      <td
+        className={`px-4 py-2.5 text-sm ${isresult ? "text-center" : "text-left md:text-center"}  ${colored ? gradeColor(value1) : "text-gray-700 dark:text-gray-200"}`}
+        style={{ border: "none" }}
+      >
         {value1 || "—"}
       </td>
-      <td className={`px-4 py-2.5 text-sm ${isresult ? "text-center" : "text-left md:text-center"} ${colored ? gradeColor(value2) : "text-gray-700 dark:text-gray-200"}`} style={{ border: "none" }}>
+      <td
+        className={`px-4 py-2.5 text-sm ${isresult ? "text-center" : "text-left md:text-center"} ${colored ? gradeColor(value2) : "text-gray-700 dark:text-gray-200"}`}
+        style={{ border: "none" }}
+      >
         {value2 || "—"}
       </td>
     </tr>
@@ -101,13 +131,46 @@ function ResultContrastPage() {
         <div className="rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-sm">
           <SectionHeader title="Personal Details" />
           <div className="overflow-x-auto">
-            <table style={{ borderCollapse: "collapse", borderSpacing: 0, border: "none", width: "100%" }}>
-              <thead><ColHeader isresult={false} /></thead>
+            <table
+              style={{
+                borderCollapse: "collapse",
+                borderSpacing: 0,
+                border: "none",
+                width: "100%",
+              }}
+            >
+              <thead>
+                <ColHeader isresult={false} />
+              </thead>
               <tbody>
-                <Row index={0} label="Name" value1={results.studentProfiles[0]["name"]} value2={results.studentProfiles[1]["name"]} isresult={false} />
-                <Row index={1} label="Roll No" value1={results.studentProfiles[0]["rollNumber"]} value2={results.studentProfiles[1]["rollNumber"]} isresult={false} />
-                <Row index={2} label="College Code" value1={results.studentProfiles[0]["collegeCode"]} value2={results.studentProfiles[1]["collegeCode"]} isresult={false} />
-                <Row index={3} label="Father's Name" value1={results.studentProfiles[0]["fatherName"]} value2={results.studentProfiles[1]["fatherName"]} isresult={false} />
+                <Row
+                  index={0}
+                  label="Name"
+                  value1={results.studentProfiles[0]["name"]}
+                  value2={results.studentProfiles[1]["name"]}
+                  isresult={false}
+                />
+                <Row
+                  index={1}
+                  label="Roll No"
+                  value1={results.studentProfiles[0]["rollNumber"]}
+                  value2={results.studentProfiles[1]["rollNumber"]}
+                  isresult={false}
+                />
+                <Row
+                  index={2}
+                  label="College Code"
+                  value1={results.studentProfiles[0]["collegeCode"]}
+                  value2={results.studentProfiles[1]["collegeCode"]}
+                  isresult={false}
+                />
+                <Row
+                  index={3}
+                  label="Father's Name"
+                  value1={results.studentProfiles[0]["fatherName"]}
+                  value2={results.studentProfiles[1]["fatherName"]}
+                  isresult={false}
+                />
               </tbody>
             </table>
           </div>
@@ -117,8 +180,17 @@ function ResultContrastPage() {
         <div className="rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-sm">
           <SectionHeader title="Semester-wise SGPA" />
           <div className="overflow-x-auto">
-            <table style={{ borderCollapse: "collapse", borderSpacing: 0, border: "none", width: "100%" }}>
-              <thead><ColHeader /></thead>
+            <table
+              style={{
+                borderCollapse: "collapse",
+                borderSpacing: 0,
+                border: "none",
+                width: "100%",
+              }}
+            >
+              <thead>
+                <ColHeader />
+              </thead>
               <tbody>
                 {results.semesters.map((semester, index: number) => (
                   <Row
@@ -147,17 +219,39 @@ function ResultContrastPage() {
         <div className="rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-sm">
           <SectionHeader title="Performance Analysis" />
           <div className="overflow-x-auto">
-            <table style={{ borderCollapse: "collapse", borderSpacing: 0, border: "none", width: "100%" }}>
-              <thead><ColHeader /></thead>
+            <table
+              style={{
+                borderCollapse: "collapse",
+                borderSpacing: 0,
+                border: "none",
+                width: "100%",
+              }}
+            >
+              <thead>
+                <ColHeader />
+              </thead>
               <tbody>
                 <Row
                   index={0}
                   colored
                   label="Overall CGPA"
-                  value1={results.studentProfiles[0]["backlogs"] == "0" ? results.studentProfiles[0]["CGPA"] : "—"}
-                  value2={results.studentProfiles[1]["backlogs"] == "0" ? results.studentProfiles[1]["CGPA"] : "—"}
+                  value1={
+                    results.studentProfiles[0]["backlogs"] == "0"
+                      ? results.studentProfiles[0]["CGPA"]
+                      : "—"
+                  }
+                  value2={
+                    results.studentProfiles[1]["backlogs"] == "0"
+                      ? results.studentProfiles[1]["CGPA"]
+                      : "—"
+                  }
                 />
-                <Row index={1} label="Credits Obtained" value1={results.studentProfiles[0]["credits"]} value2={results.studentProfiles[1]["credits"]} />
+                <Row
+                  index={1}
+                  label="Credits Obtained"
+                  value1={results.studentProfiles[0]["credits"]}
+                  value2={results.studentProfiles[1]["credits"]}
+                />
                 <Row
                   index={2}
                   label="Backlogs"
@@ -172,7 +266,7 @@ function ResultContrastPage() {
       </div>
 
       <div className="flex justify-center text-[6px] text-gray-400 mt-6">
-        jntuhresults.vercel.app
+        jntuhconnect.dhethi.com
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ const faqs = [
   {
     question: "How do I access my grades for all semesters?",
     answer:
-      "Enter your roll number on the Academic Result page and click \"Results\". All your semester results will be displayed in one view.",
+      'Enter your roll number on the Academic Result page and click "Results". All your semester results will be displayed in one view.',
   },
   {
     question: "What is the purpose of the backend?",
@@ -33,7 +33,7 @@ const faqs = [
   {
     question: "What technologies power this website?",
     answer:
-      "The frontend is built with Next.js (React) and hosted on Vercel. The backend uses Python with BeautifulSoup for parsing and is served from the edge for fast response times.",
+      "The frontend is built with Next.js (React) and hosted on Cloudflare. The backend uses Python with BeautifulSoup for parsing and is served from the edge for fast response times.",
   },
   {
     question: "How can I report a bug or get help?",
@@ -90,10 +90,11 @@ const Faq = () => {
         {faqs.map((faq, i) => (
           <div
             key={i}
-            className={`rounded-2xl border overflow-hidden transition-all ${open === i
+            className={`rounded-2xl border overflow-hidden transition-all ${
+              open === i
                 ? "border-[#0b3954] dark:border-sky-600"
                 : "border-gray-200 dark:border-white/10"
-              }`}
+            }`}
           >
             <button
               onClick={() => toggle(i)}
@@ -104,8 +105,9 @@ const Faq = () => {
               </span>
               <ChevronDown
                 size={16}
-                className={`flex-shrink-0 text-gray-400 dark:text-gray-500 transition-transform duration-200 ${open === i ? "rotate-180" : ""
-                  }`}
+                className={`flex-shrink-0 text-gray-400 dark:text-gray-500 transition-transform duration-200 ${
+                  open === i ? "rotate-180" : ""
+                }`}
               />
             </button>
 
@@ -145,7 +147,7 @@ const Faq = () => {
         ))}
       </div>
       <p className="text-center text-xs text-gray-400 dark:text-gray-600 mt-3">
-        © 2024 jntuhresults.vercel.app
+        © 2026 jntuhconnect.dhethi.com
       </p>
     </div>
   );
