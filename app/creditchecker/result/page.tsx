@@ -45,7 +45,7 @@ const CreditCheckerResult = () => {
         />
 
         <div className="flex justify-center text-[6px] text-gray-400 mt-4">
-          jntuhresults.vercel.app
+          jntuhconnect.dhethi.com
         </div>
       </div>
 

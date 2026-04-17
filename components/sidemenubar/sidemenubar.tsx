@@ -16,14 +16,16 @@ const SideMenubar = () => {
   const getButtonClass = (href: string) => {
     const path = "/" + pathname.split("/")[1];
 
-    return `flex w-full  text-sm items-center gap-4 py-3.5 px-3 hover:bg-muted rounded-lg transition-background group ${href === path ? "text-primary bg-muted" : "text-muted-foreground"
-      } font-medium`;
+    return `flex w-full  text-sm items-center gap-4 py-3.5 px-3 hover:bg-muted rounded-lg transition-background group ${
+      href === path ? "text-primary bg-muted" : "text-muted-foreground"
+    } font-medium`;
   };
 
   return (
     <nav
-      className={` h-full flex flex-col w-full lg:w-64 fixed inset-y-0 bg-white dark:bg-[#09090B]  pt-16 transition-all duration-150 ease-in ${sidebar ? "left-0 " : "-left-full"
-        } lg:left-0 z-10`}
+      className={` h-full flex flex-col w-full lg:w-64 fixed inset-y-0 bg-white dark:bg-[#09090B]  pt-16 transition-all duration-150 ease-in ${
+        sidebar ? "left-0 " : "-left-full"
+      } lg:left-0 z-10`}
     >
       <div className="overflow-y-auto h-full flex flex-col z-[99]  lg:border-r">
         <div className="flex flex-col  lg:w-full  ">
@@ -165,7 +167,7 @@ const SideMenubar = () => {
             ))}
           </div>
           <div className="flex justify-center m-2 text-xs text-muted-foreground">
-            © 2023 jntuhresults.vercel.app
+            © 2023 jntuhconnect.dhethi.com
           </div>
         </div>
       </footer>

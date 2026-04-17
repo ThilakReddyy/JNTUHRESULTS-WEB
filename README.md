@@ -49,11 +49,11 @@ npm start
 For any questions, feedback, or inquiries, please contact:
 
 - Name: Thilak Reddy
-- Email: thilakreddypothuganti@gmail.com
+- Email: <thilakreddypothuganti@gmail.com>
 
 <p>Also feel free to message me if you have any ideas for small website tools that you can't yet find online. Thanks!</p>
 <h2>Thanks</h2>
 <ul>
-  <li><a href="https://vercel.com/">▲ Vercel</a> for fast deployments served from the edge, hosting our website, downloads, and updates.</li>
+  <li><a href="https://www.cloudflare.com/">▲ Cloudflare</a> for fast deployments served from the edge, hosting our website, downloads, and updates.</li>
   <li><a href="https://nextjs.org/">Next.js</a> for development framework created by Vercel enabling React-based web applications with server-side rendering and generating static websites</li>
 </ul>

@@ -83,7 +83,7 @@ const NotificationExamCode = ({
           {/* Meta row */}
           <div className="flex flex-wrap gap-4 text-xs text-gray-400 dark:text-gray-500">
             <span className="flex items-center gap-1">
-              <User size={12} /> JNTUH Vercel
+              <User size={12} /> JNTUH CONNECT
             </span>
             <span className="flex items-center gap-1">
               <Clock size={12} /> Last Updated: {date}
