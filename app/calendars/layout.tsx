@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "JNTUH RESULTS | CALENDARS",
+  title: "JNTUH CONNECT | CALENDARS",
   description: "All Academic Calendars for the current year.",
 };
 

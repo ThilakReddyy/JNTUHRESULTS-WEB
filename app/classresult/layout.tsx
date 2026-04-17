@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "JNTUH RESULTS | CLASS RESULT",
+  title: "JNTUH CONNECT | CLASS RESULT",
   description: "compare Academic Performance Across Semesters with Classmate.",
 };
 

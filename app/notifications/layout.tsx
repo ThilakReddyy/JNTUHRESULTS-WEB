@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "JNTUH RESULTS | NOTIFICATIONS",
+  title: "JNTUH CONNECT | NOTIFICATIONS",
   description: "Check out notifications with in a go.",
 };
 
