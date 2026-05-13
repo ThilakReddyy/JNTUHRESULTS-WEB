@@ -20,6 +20,23 @@ export interface AcademicCalendars {
 
 // Example usage with the provided data
 export const academicCalendars: AcademicCalendars = {
+  "2026-2027": {
+    "B.Tech": {
+      "2nd": {
+        "Academic Calender of B.Tech.II YEAR I & II SEMESTERS":
+          "https://jntuh.ac.in/uploads/calendars/ACADEMIC_CALENDAR_of_B.Tech_._II,_III_IV_Years_for_the_Academic_Year_2026-27_.pdf",
+      },
+      "3rd": {
+        "Academic Calender of B.Tech.III YEAR I & II SEMESTERS":
+          "https://jntuh.ac.in/uploads/calendars/ACADEMIC_CALENDAR_of_B.Tech_._II,_III_IV_Years_for_the_Academic_Year_2026-27_.pdf",
+      },
+      "4th": {
+        "Academic Calender of B.Tech.IV YEAR I & II SEMESTERS":
+          "https://jntuh.ac.in/uploads/calendars/ACADEMIC_CALENDAR_of_B.Tech_._II,_III_IV_Years_for_the_Academic_Year_2026-27_.pdf",
+      },
+    },
+  },
+
   "2025-2026": {
     "B.Tech": {
       "1st": {
