@@ -302,11 +302,14 @@ export const navitems = [
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          className="lucide lucide-ampersands-icon lucide-ampersands"
+          className="lucide lucide-user-round-key-icon lucide-user-round-key"
         >
-          <path d="M10 17c-5-3-7-7-7-9a2 2 0 0 1 4 0c0 2.5-5 2.5-5 6 0 1.7 1.3 3 3 3 2.8 0 5-2.2 5-5" />
-          <path d="M22 17c-5-3-7-7-7-9a2 2 0 0 1 4 0c0 2.5-5 2.5-5 6 0 1.7 1.3 3 3 3 2.8 0 5-2.2 5-5" />
-        </svg>
+          <path d="M19 11v6" />
+          <path d="M19 13h2" />
+          <path d="M2 21a8 8 0 0 1 12.868-6.349" />
+          <circle cx="10" cy="8" r="5" />
+          <circle cx="19" cy="19" r="2" />
+        </svg>{" "}
       </>
     ),
     title: "Imp Questions",
