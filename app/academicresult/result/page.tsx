@@ -9,6 +9,7 @@ import ResultDetailsSkeleton from "@/components/skeleton/ResultDetailsSkeleton";
 import AcademicResultSkeleton from "@/components/skeleton/AcademicResultsSkeleton";
 import Print from "@/components/download/print";
 import { fetchAcademicResult } from "@/components/api/fetchResults";
+import toast from "react-hot-toast";
 
 const AcademicResultResult = () => {
   const router = useRouter();
@@ -22,6 +23,9 @@ const AcademicResultResult = () => {
       const academicResult = await fetchAcademicResult(htno || "");
       if (academicResult) {
         setAcademicResult(academicResult);
+        if (academicResult.serverStatus === false) {
+          toast.error("JNTUH SERVER is down!!!")
+        }
         return;
       }
       if (academicResult === null) {
