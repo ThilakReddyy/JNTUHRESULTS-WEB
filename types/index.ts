@@ -50,6 +50,7 @@ interface AcademicResultProps {
 interface AcademicResulProps {
   details: Record<string, any>;
   results: Record<string, any>;
+  serverStatus?: boolean;
 }
 
 interface StudentProfile {
