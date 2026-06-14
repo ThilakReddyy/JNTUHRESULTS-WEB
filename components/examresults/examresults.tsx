@@ -14,10 +14,11 @@ const ExamResults = ({ title, query }: { title: string; query: string }) => {
       return;
     }
     try {
-      query.replace(
+      query = query.replace(
         "http://results.jntuh.ac.in/jsp/SearchResult.jsp",
         "http://results.jntuh.ac.in/results/resultAction",
       );
+      console.log(query);
       const redirectUrl = query + "&result=null&grad=null&htno=" + singleHtno;
 
       window.open(redirectUrl, "_blank");
