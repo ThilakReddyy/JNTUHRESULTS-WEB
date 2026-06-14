@@ -16,7 +16,7 @@ const MetaData = () => {
       />
       <meta
         property="og:image"
-        content="https://raw.githubusercontent.com/ThilakReddyy/JNTUHRESULTS-WEB/main/public/FrontPage.png"
+        content="https://raw.githubusercontent.com/ThilakReddyy/JNTUHRESULTS-WEB/main/public/FrontPage.jpg"
       />
       <meta
         property="keywords"
