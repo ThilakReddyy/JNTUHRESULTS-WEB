@@ -12,7 +12,7 @@ const telegramChannels = [
 ];
 
 const whatsappChannel = {
-  href: "https://whatsapp.com/channel/placeholder",
+  href: "https://chat.whatsapp.com/EBIhYt8Jt9rJFNrgUsbmiR",
   name: "JNTUH Connect",
   description:
     "Join the WhatsApp channel for quick result alerts and important university updates.",
