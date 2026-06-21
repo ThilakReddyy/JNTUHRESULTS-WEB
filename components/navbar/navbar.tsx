@@ -20,8 +20,9 @@ const Navbar = () => {
   const { navbar } = useNavBarContext();
   return (
     <nav
-      className={`fixed inset-y-0 h-16 w-full z-50 p-4 px-4 lg:px-8  dark:bg-[#09090B] bg-white grid grid-cols-3 lg:grid-cols-2 border-b ${navbar ? "block" : "hidden"
-        }`}
+      className={`fixed inset-y-0 h-16 w-full z-50 p-4 px-4 lg:px-8  dark:bg-[#09090B] bg-white grid grid-cols-3 lg:grid-cols-2 border-b ${
+        navbar ? "block" : "hidden"
+      }`}
     >
       <div className="justify-start flex items-center lg:hidden cursor-pointer">
         <button
