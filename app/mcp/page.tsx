@@ -500,7 +500,7 @@ const McpPage = () => {
         : "Copy";
 
   return (
-    <div className="mcp-page">
+    <div className="mcp-page dark:invert">
       <style dangerouslySetInnerHTML={{ __html: MCP_STYLES }} />
 
       <div className="page-wrap">
