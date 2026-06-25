@@ -286,6 +286,193 @@ export const fetchCreditContrastReport = async (
   }
 };
 
+export type GraceMarksEligibility =
+  | {
+      kind: "eligible";
+      totalBacklogs: number;
+      semesters: any[];
+      raw: Record<string, any>;
+    }
+  | { kind: "not_eligible"; message: string }
+  | { kind: "rate_limited"; retryAfter: number; message: string }
+  | { kind: "error"; message: string };
+
+const parseRetryAfter = (value: string | null | undefined): number => {
+  if (!value) return 0;
+  const n = Number(value);
+  if (Number.isFinite(n) && n > 0) return Math.ceil(n);
+  return 0;
+};
+
+export const fetchGraceMarksEligibility = async (
+  htno: string,
+): Promise<GraceMarksEligibility> => {
+  try {
+    let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
+    url = `${url}api/grace-marks/eligibility?rollNumber=${htno}`;
+
+    const response = await axios.get(url, {
+      timeout: 20 * 1000,
+      validateStatus: () => true,
+    });
+
+    const body = response.data ?? {};
+
+    if (response.status === 200) {
+      if (typeof body.totalBacklogs === "number") {
+        return {
+          kind: "eligible",
+          totalBacklogs: body.totalBacklogs,
+          semesters: Array.isArray(body.semesters) ? body.semesters : [],
+          raw: body,
+        };
+      }
+      return {
+        kind: "not_eligible",
+        message: body.message || "You are not eligible for grace marks.",
+      };
+    }
+
+    if (response.status === 404 || response.status === 406) {
+      return {
+        kind: "not_eligible",
+        message: body.message || "You are not eligible for grace marks.",
+      };
+    }
+
+    if (response.status === 429) {
+      const retryAfter = parseRetryAfter(response.headers?.["retry-after"]);
+      return {
+        kind: "rate_limited",
+        retryAfter,
+        message:
+          body?.message ||
+          "Too many requests, please wait" +
+            (retryAfter ? ` ${retryAfter} seconds.` : "."),
+      };
+    }
+
+    return {
+      kind: "error",
+      message: body?.message || "Unable to check eligibility right now.",
+    };
+  } catch (e: any) {
+    if (axios.isAxiosError(e)) {
+      if (e.code === "ECONNABORTED") {
+        return { kind: "error", message: "Request timed out. Try again later." };
+      }
+      if (e.response) {
+        return {
+          kind: "error",
+          message: `Server error: ${e.response.status}`,
+        };
+      }
+      return { kind: "error", message: "Network issue. Please check your connection." };
+    }
+    return { kind: "error", message: "Unexpected error occurred." };
+  }
+};
+
+export type GraceMarksUploadResult =
+  | {
+      kind: "success";
+      rollNumber: string;
+      downloadUrl: string;
+      uploadedAt: string;
+    }
+  | { kind: "failure"; message: string; retriable: boolean }
+  | { kind: "rate_limited"; retryAfter: number; message: string };
+
+export const ACCEPTED_PROOF_MIME = [
+  "application/pdf",
+  "image/png",
+  "image/jpeg",
+  "image/jpg",
+];
+export const MAX_PROOF_SIZE_BYTES = 5 * 1024 * 1024;
+
+export const validateProofFile = (file: File | null | undefined): string | null => {
+  if (!file) return "Please choose a file to upload.";
+  if (file.size === 0) return "Uploaded file is empty.";
+  if (file.size > MAX_PROOF_SIZE_BYTES)
+    return "File exceeds the 5MB upload limit.";
+  if (!ACCEPTED_PROOF_MIME.includes(file.type))
+    return "Only PDF or image (PNG/JPEG) uploads are accepted.";
+  return null;
+};
+
+export const uploadGraceMarksProof = async (
+  htno: string,
+  file: File,
+): Promise<GraceMarksUploadResult> => {
+  try {
+    let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
+    url = `${url}api/grace-marks/proof?rollNumber=${htno}`;
+
+    const form = new FormData();
+    form.append("file", file);
+
+    const response = await axios.post(url, form, {
+      timeout: 60 * 1000,
+      validateStatus: () => true,
+    });
+
+    const body = response.data ?? {};
+
+    if (response.status === 200 && body?.status === "success") {
+      return {
+        kind: "success",
+        rollNumber: body.rollNumber,
+        downloadUrl: body.downloadUrl,
+        uploadedAt: body.uploadedAt,
+      };
+    }
+
+    if (response.status === 429) {
+      const retryAfter = parseRetryAfter(response.headers?.["retry-after"]);
+      return {
+        kind: "rate_limited",
+        retryAfter,
+        message:
+          body?.message ||
+          "Too many uploads, please wait a minute" +
+            (retryAfter ? ` (${retryAfter}s).` : "."),
+      };
+    }
+
+    const retriable =
+      response.status === 502 ||
+      response.status === 500 ||
+      response.status === 503;
+
+    return {
+      kind: "failure",
+      message: body?.message || "Upload failed. Please try again.",
+      retriable,
+    };
+  } catch (e: any) {
+    if (axios.isAxiosError(e)) {
+      if (e.code === "ECONNABORTED") {
+        return {
+          kind: "failure",
+          message: "Upload timed out. Please try again.",
+          retriable: true,
+        };
+      }
+      return {
+        kind: "failure",
+        message: "Network issue. Please check your connection.",
+        retriable: true,
+      };
+    }
+    return {
+      kind: "failure",
+      message: "Unexpected error occurred.",
+      retriable: true,
+    };
+  }
+};
+
 export const fetchNotifications = async (params: Params) => {
   try {
     let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
