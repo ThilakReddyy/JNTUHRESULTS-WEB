@@ -39,5 +39,5 @@ export const homeLinks = [
     description:
       "View the results of your classmates and compare your performance with theirs",
     link: "classresult",
-  },
+  }
 ];
