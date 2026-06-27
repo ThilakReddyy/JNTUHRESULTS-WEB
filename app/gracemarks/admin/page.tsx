@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 
 import Footer from "@/components/footer/footer";
@@ -8,8 +8,12 @@ import ResultDetails from "@/components/result/details";
 import {
   fetchPendingProofs,
   fetchProofDetail,
+  submitGraceMarks,
+  updateProofStatus,
+  type GraceMarkRowInput,
   type GraceMarksPendingProof,
   type GraceMarksProofDetailResult,
+  type GraceMarksProofStatus,
 } from "@/components/api/fetchResults";
 
 const formatTimestamp = (iso: string) => {
@@ -83,14 +87,12 @@ const GraceMarksAdminPage = () => {
     setLoadingList(false);
   };
 
-  const onSelect = async (proofId: string) => {
-    if (loadingDetail) return;
-    const key = adminKey.trim();
+  const loadDetail = async (proofId: string, keyOverride?: string) => {
+    const key = (keyOverride ?? adminKey).trim();
     if (!key) {
       toast.error("Enter the admin key first.");
       return;
     }
-    setSelectedId(proofId);
     setLoadingDetail(true);
     setDetail(null);
 
@@ -106,6 +108,53 @@ const GraceMarksAdminPage = () => {
     }
     setDetail(result);
     setLoadingDetail(false);
+  };
+
+  const onSelect = async (proofId: string) => {
+    if (loadingDetail) return;
+    setSelectedId(proofId);
+    await loadDetail(proofId);
+  };
+
+  const onRefreshDetail = async () => {
+    if (!selectedId) return;
+    await loadDetail(selectedId);
+  };
+
+  const onStatusChange = async (proofId: string, status: GraceMarksProofStatus) => {
+    const key = adminKey.trim();
+    if (!key) {
+      toast.error("Enter the admin key first.");
+      return;
+    }
+    toast.loading(status === "approved" ? "Approving..." : "Rejecting...");
+    const result = await updateProofStatus(proofId, status, key);
+    toast.dismiss();
+
+    if (result.kind === "ok") {
+      toast.success(`Proof ${result.newStatus}.`);
+      setProofs((prev) => prev.filter((p) => p.id !== proofId));
+      setListCount((prev) => (prev != null ? Math.max(0, prev - 1) : prev));
+      if (selectedId === proofId) {
+        setSelectedId(null);
+        setDetail(null);
+      }
+      return;
+    }
+    if (result.kind === "unauthorized") {
+      clearKey("Invalid admin key.");
+      return;
+    }
+    if (result.kind === "not_found") {
+      toast.error(result.message);
+      setProofs((prev) => prev.filter((p) => p.id !== proofId));
+      if (selectedId === proofId) {
+        setSelectedId(null);
+        setDetail(null);
+      }
+      return;
+    }
+    toast.error(result.message);
   };
 
   return (
@@ -208,6 +257,10 @@ const GraceMarksAdminPage = () => {
           <ProofDetailPanel
             loading={loadingDetail}
             result={detail}
+            adminKey={adminKey}
+            onUnauthorized={() => clearKey("Invalid admin key.")}
+            onRefresh={onRefreshDetail}
+            onStatusChange={onStatusChange}
             onClose={() => {
               setSelectedId(null);
               setDetail(null);
@@ -223,10 +276,22 @@ const GraceMarksAdminPage = () => {
 interface ProofDetailPanelProps {
   loading: boolean;
   result: GraceMarksProofDetailResult | null;
+  adminKey: string;
   onClose: () => void;
+  onUnauthorized: () => void;
+  onRefresh: () => Promise<void>;
+  onStatusChange: (proofId: string, status: GraceMarksProofStatus) => Promise<void>;
 }
 
-const ProofDetailPanel = ({ loading, result, onClose }: ProofDetailPanelProps) => {
+const ProofDetailPanel = ({
+  loading,
+  result,
+  adminKey,
+  onClose,
+  onUnauthorized,
+  onRefresh,
+  onStatusChange,
+}: ProofDetailPanelProps) => {
   return (
     <div className="mt-6 rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 shadow-sm overflow-hidden">
       <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 dark:border-white/10">
@@ -267,7 +332,14 @@ const ProofDetailPanel = ({ loading, result, onClose }: ProofDetailPanelProps) =
       )}
 
       {!loading && result && result.kind === "ok" && (
-        <ProofDetailBody proof={result.proof} backlogs={result.backlogs} />
+        <ProofDetailBody
+          proof={result.proof}
+          backlogs={result.backlogs}
+          adminKey={adminKey}
+          onUnauthorized={onUnauthorized}
+          onRefresh={onRefresh}
+          onStatusChange={onStatusChange}
+        />
       )}
     </div>
   );
@@ -276,9 +348,20 @@ const ProofDetailPanel = ({ loading, result, onClose }: ProofDetailPanelProps) =
 interface ProofDetailBodyProps {
   proof: import("@/components/api/fetchResults").GraceMarksPendingProof;
   backlogs: Record<string, any>;
+  adminKey: string;
+  onUnauthorized: () => void;
+  onRefresh: () => Promise<void>;
+  onStatusChange: (proofId: string, status: GraceMarksProofStatus) => Promise<void>;
 }
 
-const ProofDetailBody = ({ proof, backlogs }: ProofDetailBodyProps) => {
+const ProofDetailBody = ({
+  proof,
+  backlogs,
+  adminKey,
+  onUnauthorized,
+  onRefresh,
+  onStatusChange,
+}: ProofDetailBodyProps) => {
   const studentDetails =
     backlogs && typeof backlogs.details === "object" ? backlogs.details : null;
   const results =
@@ -292,6 +375,110 @@ const ProofDetailBody = ({ proof, backlogs }: ProofDetailBodyProps) => {
     !results && (backlogs?.message || backlogs?.status)
       ? backlogs?.message || `Backlogs queued (status: ${backlogs?.status}).`
       : null;
+
+  const initialEdits = useMemo<Record<string, EditableRow>>(() => {
+    if (!hasSemesters) return {};
+    const map: Record<string, EditableRow> = {};
+    for (const sem of results.semesters) {
+      if (!Array.isArray(sem?.subjects)) continue;
+      for (const s of sem.subjects) {
+        if (!s?.subjectCode) continue;
+        map[s.subjectCode] = initRowFromSubject(s, sem.semester ?? "");
+      }
+    }
+    return map;
+  }, [hasSemesters, results]);
+
+  const [edits, setEdits] = useState<Record<string, EditableRow>>(initialEdits);
+  const [submitting, setSubmitting] = useState(false);
+  const [deciding, setDeciding] = useState<GraceMarksProofStatus | null>(null);
+
+  const onDecision = async (status: GraceMarksProofStatus) => {
+    if (deciding) return;
+    const confirmMsg =
+      status === "approved"
+        ? "Approve this proof?"
+        : "Reject this proof? The student will not receive grace marks.";
+    if (typeof window !== "undefined" && !window.confirm(confirmMsg)) return;
+    setDeciding(status);
+    await onStatusChange(proof.id, status);
+    setDeciding(null);
+  };
+
+  useEffect(() => {
+    setEdits(initialEdits);
+  }, [initialEdits]);
+
+  const updateRow = (subjectCode: string, patch: Partial<EditableRow>) => {
+    setEdits((prev) => ({
+      ...prev,
+      [subjectCode]: { ...prev[subjectCode], ...patch },
+    }));
+  };
+
+  const selectedRows = Object.entries(edits).filter(([, r]) => r?.selected);
+  const selectedCount = selectedRows.length;
+
+  const onApply = async () => {
+    if (submitting) return;
+    if (!adminKey.trim()) {
+      toast.error("Enter the admin key first.");
+      return;
+    }
+    if (selectedCount === 0) {
+      toast.error("Select at least one subject to grace.");
+      return;
+    }
+
+    const payload: GraceMarkRowInput[] = [];
+    for (const [subjectCode, row] of selectedRows) {
+      const intM = Number(row.internalMarks);
+      const extM = Number(row.externalMarks);
+      const totM = Number(row.totalMarks);
+      const cred = Number(row.credits);
+      const grade = row.grades.trim().toUpperCase();
+      if (
+        !Number.isFinite(intM) ||
+        !Number.isFinite(extM) ||
+        !Number.isFinite(totM) ||
+        !Number.isFinite(cred) ||
+        !grade
+      ) {
+        toast.error(`Fill all fields for ${subjectCode}.`);
+        return;
+      }
+      payload.push({
+        subjectCode,
+        semesterCode: row.semesterCode,
+        internalMarks: intM,
+        externalMarks: extM,
+        totalMarks: totM,
+        grades: grade,
+        credits: cred,
+      });
+    }
+
+    setSubmitting(true);
+    toast.loading("Applying grace marks...");
+    const result = await submitGraceMarks(
+      proof.rollNumber,
+      payload,
+      adminKey.trim(),
+    );
+    toast.dismiss();
+    setSubmitting(false);
+
+    if (result.kind === "ok") {
+      toast.success(`Inserted ${result.inserted} grace row(s).`);
+      await onRefresh();
+      return;
+    }
+    if (result.kind === "unauthorized") {
+      onUnauthorized();
+      return;
+    }
+    toast.error(result.message);
+  };
 
   return (
     <div className="p-5 space-y-5">
@@ -328,6 +515,48 @@ const ProofDetailBody = ({ proof, backlogs }: ProofDetailBodyProps) => {
 
       {studentDetails && <ResultDetails details={studentDetails} />}
 
+      {(() => {
+        const canApprove = totalBacklogs === 0;
+        return (
+          <div className="rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50/60 dark:bg-white/[0.03] px-4 py-3">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="text-xs text-gray-600 dark:text-gray-300">
+                {canApprove
+                  ? "Backlogs cleared. Safe to approve."
+                  : totalBacklogs == null
+                  ? "Backlogs not loaded yet."
+                  : `Approve disabled: ${totalBacklogs} backlog${
+                      totalBacklogs === 1 ? "" : "s"
+                    } still open. Apply grace marks first.`}
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => onDecision("rejected")}
+                  disabled={deciding !== null}
+                  className="text-sm md:text-base px-4 py-1.5 rounded bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-400 text-white disabled:opacity-50"
+                >
+                  {deciding === "rejected" ? "Rejecting..." : "Reject"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onDecision("approved")}
+                  disabled={deciding !== null || !canApprove}
+                  title={
+                    !canApprove
+                      ? "Approve is only allowed when current backlogs is 0."
+                      : undefined
+                  }
+                  className="text-sm md:text-base px-4 py-1.5 rounded bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-400 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {deciding === "approved" ? "Approving..." : "Approve"}
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
       <div>
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
@@ -347,11 +576,36 @@ const ProofDetailBody = ({ proof, backlogs }: ProofDetailBodyProps) => {
         )}
 
         {hasSemesters && results.semesters.length > 0 && (
-          <div className="flex flex-col gap-6">
-            {results.semesters.map((sem: Record<string, any>, i: number) => (
-              <SemesterMarks key={`${sem.semester}-${i}`} semester={sem} />
-            ))}
-          </div>
+          <>
+            <div className="flex flex-col gap-6">
+              {results.semesters.map((sem: Record<string, any>, i: number) => (
+                <EditableSemesterMarks
+                  key={`${sem.semester}-${i}`}
+                  semester={sem}
+                  edits={edits}
+                  onChange={updateRow}
+                />
+              ))}
+            </div>
+
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50/60 dark:bg-white/[0.03] px-4 py-3">
+              <div className="text-xs text-gray-600 dark:text-gray-300">
+                {selectedCount === 0
+                  ? "Select subjects to grace by checking the box on each row."
+                  : `${selectedCount} subject${
+                      selectedCount === 1 ? "" : "s"
+                    } selected. Review the marks, grade and credits before applying.`}
+              </div>
+              <button
+                type="button"
+                onClick={onApply}
+                disabled={submitting || selectedCount === 0}
+                className="text-sm md:text-base px-4 py-1.5 rounded bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-400 text-white disabled:opacity-50"
+              >
+                {submitting ? "Applying..." : "Apply Grace Marks"}
+              </button>
+            </div>
+          </>
         )}
 
         {hasSemesters && results.semesters.length === 0 && (
@@ -385,10 +639,49 @@ const gradeBadge = (grade: string) => {
   return "bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300";
 };
 
-const renderMark = (value: unknown) =>
-  typeof value === "number" ? value : value == null ? "—" : String(value);
+interface EditableRow {
+  semesterCode: string;
+  internalMarks: string;
+  externalMarks: string;
+  totalMarks: string;
+  grades: string;
+  credits: string;
+  selected: boolean;
+}
 
-const SemesterMarks = ({ semester }: { semester: Record<string, any> }) => {
+const initRowFromSubject = (
+  subject: Record<string, any>,
+  semesterCode: string,
+): EditableRow => {
+  const num = (v: unknown) =>
+    typeof v === "number" && Number.isFinite(v) ? String(v) : "";
+  return {
+    semesterCode,
+    internalMarks: num(subject.internalMarks),
+    externalMarks: num(subject.externalMarks),
+    totalMarks: num(subject.totalMarks),
+    grades: typeof subject.grades === "string" ? subject.grades : "",
+    credits: num(subject.credits),
+    selected: false,
+  };
+};
+
+interface EditableSemesterMarksProps {
+  semester: Record<string, any>;
+  edits: Record<string, EditableRow>;
+  onChange: (subjectCode: string, patch: Partial<EditableRow>) => void;
+}
+
+const numInputClass =
+  "w-16 px-1.5 py-1 text-center text-sm rounded border border-gray-200 dark:border-white/10 bg-white dark:bg-black/30 text-gray-800 dark:text-gray-100 tabular-nums focus:outline-none focus:ring-2 focus:ring-sky-400";
+const gradeInputClass =
+  "w-14 px-1.5 py-1 text-center text-sm rounded border border-gray-200 dark:border-white/10 bg-white dark:bg-black/30 text-gray-800 dark:text-gray-100 uppercase font-bold focus:outline-none focus:ring-2 focus:ring-sky-400";
+
+const EditableSemesterMarks = ({
+  semester,
+  edits,
+  onChange,
+}: EditableSemesterMarksProps) => {
   const subjects: Record<string, any>[] = Array.isArray(semester.subjects)
     ? semester.subjects
     : [];
@@ -419,6 +712,9 @@ const SemesterMarks = ({ semester }: { semester: Record<string, any> }) => {
         <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
           <thead>
             <tr className="bg-gray-50 dark:bg-white/5 border-b border-gray-200 dark:border-white/10">
+              <th className="px-2 py-2.5 text-center text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 w-8">
+                ✓
+              </th>
               <th className="px-2.5 py-2.5 text-left text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
                 Code
               </th>
@@ -443,44 +739,105 @@ const SemesterMarks = ({ semester }: { semester: Record<string, any> }) => {
             </tr>
           </thead>
           <tbody>
-            {subjects.map((s, idx) => (
-              <tr
-                key={s.subjectCode || idx}
-                className={
-                  idx % 2 === 0
-                    ? "bg-white dark:bg-transparent"
-                    : "bg-gray-50/80 dark:bg-white/[0.03]"
-                }
-              >
-                <td className="px-2.5 py-2.5 text-xs font-mono font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                  {s.subjectCode}
-                </td>
-                <td className="px-2.5 py-2.5 text-gray-700 dark:text-gray-200">
-                  {s.subjectName}
-                </td>
-                <td className="px-2.5 py-2.5 text-center text-gray-700 dark:text-gray-200 tabular-nums">
-                  {renderMark(s.internalMarks)}
-                </td>
-                <td className="px-2.5 py-2.5 text-center text-gray-700 dark:text-gray-200 tabular-nums">
-                  {renderMark(s.externalMarks)}
-                </td>
-                <td className="px-2.5 py-2.5 text-center font-semibold text-gray-800 dark:text-gray-100 tabular-nums">
-                  {renderMark(s.totalMarks)}
-                </td>
-                <td className="px-2.5 py-2.5 text-center">
-                  <span
-                    className={`inline-flex items-center justify-center min-w-[36px] px-2 py-0.5 rounded-md text-xs font-bold ${gradeBadge(
-                      s.grades,
-                    )}`}
-                  >
-                    {s.grades || "—"}
-                  </span>
-                </td>
-                <td className="px-2.5 py-2.5 text-center text-gray-700 dark:text-gray-200 tabular-nums">
-                  {renderMark(s.credits)}
-                </td>
-              </tr>
-            ))}
+            {subjects.map((s, idx) => {
+              const code: string = s.subjectCode;
+              const row = edits[code];
+              if (!row) return null;
+              const rowBg =
+                idx % 2 === 0
+                  ? "bg-white dark:bg-transparent"
+                  : "bg-gray-50/80 dark:bg-white/[0.03]";
+              const dim = row.selected
+                ? ""
+                : "opacity-70";
+              return (
+                <tr key={code || idx} className={`${rowBg} ${dim}`}>
+                  <td className="px-2 py-2 text-center">
+                    <input
+                      type="checkbox"
+                      checked={row.selected}
+                      onChange={(e) =>
+                        onChange(code, { selected: e.target.checked })
+                      }
+                      className="h-4 w-4 cursor-pointer accent-emerald-600"
+                    />
+                  </td>
+                  <td className="px-2.5 py-2 text-xs font-mono font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                    {code}
+                  </td>
+                  <td className="px-2.5 py-2 text-gray-700 dark:text-gray-200">
+                    {s.subjectName}
+                    <div className="text-[10px] text-gray-400 dark:text-gray-500 mt-0.5">
+                      Original grade:{" "}
+                      <span
+                        className={`inline-flex items-center justify-center min-w-[24px] px-1.5 py-0.5 rounded text-[10px] font-bold ${gradeBadge(
+                          s.grades,
+                        )}`}
+                      >
+                        {s.grades || "—"}
+                      </span>
+                    </div>
+                  </td>
+                  <td className="px-2.5 py-2 text-center">
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      value={row.internalMarks}
+                      onChange={(e) =>
+                        onChange(code, { internalMarks: e.target.value })
+                      }
+                      className={numInputClass}
+                    />
+                  </td>
+                  <td className="px-2.5 py-2 text-center">
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      value={row.externalMarks}
+                      onChange={(e) =>
+                        onChange(code, { externalMarks: e.target.value })
+                      }
+                      className={numInputClass}
+                    />
+                  </td>
+                  <td className="px-2.5 py-2 text-center">
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      value={row.totalMarks}
+                      onChange={(e) =>
+                        onChange(code, { totalMarks: e.target.value })
+                      }
+                      className={numInputClass}
+                    />
+                  </td>
+                  <td className="px-2.5 py-2 text-center">
+                    <input
+                      type="text"
+                      maxLength={2}
+                      value={row.grades}
+                      onChange={(e) =>
+                        onChange(code, { grades: e.target.value })
+                      }
+                      placeholder="—"
+                      className={gradeInputClass}
+                    />
+                  </td>
+                  <td className="px-2.5 py-2 text-center">
+                    <input
+                      type="number"
+                      inputMode="decimal"
+                      step="0.5"
+                      value={row.credits}
+                      onChange={(e) =>
+                        onChange(code, { credits: e.target.value })
+                      }
+                      className={numInputClass}
+                    />
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

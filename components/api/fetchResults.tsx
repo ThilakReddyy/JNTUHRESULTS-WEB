@@ -617,6 +617,213 @@ export const fetchProofDetail = async (
   }
 };
 
+export interface GraceMarkRowInput {
+  subjectCode: string;
+  semesterCode: string;
+  internalMarks: number;
+  externalMarks: number;
+  totalMarks: number;
+  grades: string;
+  credits: number;
+}
+
+export type GraceMarksInsertResult =
+  | { kind: "ok"; rollNumber: string; inserted: number }
+  | { kind: "bad_request"; message: string }
+  | { kind: "unauthorized"; message: string }
+  | { kind: "not_found"; message: string }
+  | { kind: "rate_limited"; retryAfter: number; message: string }
+  | { kind: "server_error"; message: string }
+  | { kind: "error"; message: string };
+
+export const submitGraceMarks = async (
+  rollNumber: string,
+  marks: GraceMarkRowInput[],
+  adminKey: string,
+): Promise<GraceMarksInsertResult> => {
+  try {
+    let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
+    url = `${url}api/grace-marks/marks`;
+
+    const response = await axios.post(
+      url,
+      { rollNumber, marks },
+      {
+        timeout: 30 * 1000,
+        validateStatus: () => true,
+        headers: {
+          "x-api-key": adminKey,
+          "content-type": "application/json",
+        },
+      },
+    );
+
+    const body = response.data ?? {};
+
+    if (response.status === 200 && body?.status === "success") {
+      return {
+        kind: "ok",
+        rollNumber: body.rollNumber,
+        inserted: typeof body.inserted === "number" ? body.inserted : 0,
+      };
+    }
+    if (response.status === 400) {
+      return {
+        kind: "bad_request",
+        message: body?.message || "Invalid request.",
+      };
+    }
+    if (response.status === 401) {
+      const message =
+        body?.detail?.message || body?.message || "Invalid admin key.";
+      return { kind: "unauthorized", message };
+    }
+    if (response.status === 404) {
+      return {
+        kind: "not_found",
+        message: body?.message || "Not found.",
+      };
+    }
+    if (response.status === 429) {
+      const retryAfter = parseRetryAfter(response.headers?.["retry-after"]);
+      return {
+        kind: "rate_limited",
+        retryAfter,
+        message:
+          body?.message ||
+          "Too many requests, please wait" +
+            (retryAfter ? ` ${retryAfter} seconds.` : "."),
+      };
+    }
+    if (response.status === 500) {
+      return {
+        kind: "server_error",
+        message:
+          body?.message || "Failed to record grace marks. Please try again.",
+      };
+    }
+    return {
+      kind: "error",
+      message: body?.message || `Server error: ${response.status}`,
+    };
+  } catch (e: any) {
+    if (axios.isAxiosError(e)) {
+      if (e.code === "ECONNABORTED") {
+        return { kind: "error", message: "Request timed out. Try again later." };
+      }
+      return {
+        kind: "error",
+        message: "Network issue. Please check your connection.",
+      };
+    }
+    return { kind: "error", message: "Unexpected error occurred." };
+  }
+};
+
+export type GraceMarksProofStatus = "approved" | "rejected";
+
+export type GraceMarksStatusUpdateResult =
+  | {
+      kind: "ok";
+      id: string;
+      rollNumber: string;
+      newStatus: GraceMarksProofStatus;
+      updatedAt: string;
+    }
+  | { kind: "unauthorized"; message: string }
+  | { kind: "not_found"; message: string }
+  | { kind: "invalid_status"; message: string }
+  | { kind: "rate_limited"; retryAfter: number; message: string }
+  | { kind: "server_error"; message: string }
+  | { kind: "error"; message: string };
+
+export const updateProofStatus = async (
+  proofId: string,
+  status: GraceMarksProofStatus,
+  adminKey: string,
+): Promise<GraceMarksStatusUpdateResult> => {
+  try {
+    let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
+    url = `${url}api/grace-marks/proofs/${encodeURIComponent(proofId)}/status`;
+
+    const response = await axios.patch(
+      url,
+      { status },
+      {
+        timeout: 20 * 1000,
+        validateStatus: () => true,
+        headers: {
+          "x-api-key": adminKey,
+          "content-type": "application/json",
+        },
+      },
+    );
+
+    const body = response.data ?? {};
+
+    if (response.status === 200 && body?.status === "success") {
+      return {
+        kind: "ok",
+        id: body.id,
+        rollNumber: body.rollNumber,
+        newStatus: body.newStatus,
+        updatedAt: body.updatedAt,
+      };
+    }
+    if (response.status === 401) {
+      const message =
+        body?.detail?.message || body?.message || "Invalid admin key.";
+      return { kind: "unauthorized", message };
+    }
+    if (response.status === 404) {
+      return {
+        kind: "not_found",
+        message: body?.message || "Grace-marks proof not found.",
+      };
+    }
+    if (response.status === 422) {
+      const first = Array.isArray(body?.detail) ? body.detail[0] : null;
+      return {
+        kind: "invalid_status",
+        message: first?.msg || "Invalid status value.",
+      };
+    }
+    if (response.status === 429) {
+      const retryAfter = parseRetryAfter(response.headers?.["retry-after"]);
+      return {
+        kind: "rate_limited",
+        retryAfter,
+        message:
+          body?.message ||
+          "Too many requests, please wait" +
+            (retryAfter ? ` ${retryAfter} seconds.` : "."),
+      };
+    }
+    if (response.status === 500) {
+      return {
+        kind: "server_error",
+        message:
+          body?.message || "Failed to update status. Please try again.",
+      };
+    }
+    return {
+      kind: "error",
+      message: body?.message || `Server error: ${response.status}`,
+    };
+  } catch (e: any) {
+    if (axios.isAxiosError(e)) {
+      if (e.code === "ECONNABORTED") {
+        return { kind: "error", message: "Request timed out. Try again later." };
+      }
+      return {
+        kind: "error",
+        message: "Network issue. Please check your connection.",
+      };
+    }
+    return { kind: "error", message: "Unexpected error occurred." };
+  }
+};
+
 export const fetchNotifications = async (params: Params) => {
   try {
     let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
