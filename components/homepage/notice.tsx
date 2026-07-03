@@ -16,7 +16,7 @@ const NoticePopup = () => {
   }, []);
 
   const path = "/" + pathname.split("/")[1];
-  const isVisible = path === "/" && !hidden && isAndroid && false;
+  const isVisible = path === "/" && !hidden && isAndroid;
 
   return (
     <AnimatePresence>
