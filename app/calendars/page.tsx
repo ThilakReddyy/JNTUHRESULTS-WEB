@@ -1,15 +1,12 @@
 "use client";
 import { useEffect, useState, useMemo } from "react";
+import axios from "axios";
 import {
-  AcademicYearDetails,
-  CalendarEntry,
-  DegreeDetails,
-  academicCalendars,
+  AcademicCalendars,
+  academicCalendars as fallbackCalendars,
 } from "@/constants/academiccalendars";
 import Link from "next/link";
-import Footer from "@/components/footer/footer";
 import GoogleDocViewer from "@/components/googledocviewer/GoogleDocViewer";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { FaFilePdf } from "react-icons/fa";
 import { ChevronRight } from "lucide-react";
 
@@ -29,25 +26,56 @@ const LEVEL_LABELS: Record<Level, string> = {
   calendar: "Calendar",
 };
 
+const CALENDARS_API =
+  (process.env.NEXT_PUBLIC_URL || "http://localhost:8000/") + "api/calendars";
+
 const Calendars = () => {
+  // Academic-calendar tree, loaded from the backend (falls back to the bundled
+  // static data if the request fails).
+  const [calendars, setCalendars] = useState<AcademicCalendars>({});
+  const [loading, setLoading] = useState(true);
+
   // path = array of selected keys at each level
   const [path, setPath] = useState<string[]>([]);
   const [selectedLink, setSelectedLink] = useState<string | null>(null);
 
   const LEVELS: Level[] = ["academicYear", "degree", "year", "calendar"];
 
+  useEffect(() => {
+    let active = true;
+    axios
+      .get(CALENDARS_API, { timeout: 15000 })
+      .then((res) => {
+        if (!active) return;
+        const data =
+          res.data && typeof res.data === "object" && Object.keys(res.data).length
+            ? res.data
+            : fallbackCalendars;
+        setCalendars(data);
+      })
+      .catch(() => {
+        if (active) setCalendars(fallbackCalendars);
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
   // Derive the current set of options from the path
   const currentOptions = useMemo<string[]>(() => {
-    if (path.length === 0) return Object.keys(academicCalendars);
+    if (path.length === 0) return Object.keys(calendars);
 
-    let node: any = academicCalendars;
+    let node: any = calendars;
     for (const key of path) {
       node = node[key];
       if (node == null) return [];
     }
     if (typeof node === "string") return []; // leaf = PDF link
     return Object.keys(node);
-  }, [path]);
+  }, [path, calendars]);
 
   // Derive the current level label
   const currentLevel: Level = LEVELS[Math.min(path.length, LEVELS.length - 1)];
@@ -55,13 +83,13 @@ const Calendars = () => {
   // Derive the PDF link when all 4 levels are selected
   const pdfLink = useMemo<string | null>(() => {
     if (path.length < 4) return null;
-    let node: any = academicCalendars;
+    let node: any = calendars;
     for (const key of path) {
       node = node[key];
       if (node == null) return null;
     }
     return typeof node === "string" ? node : null;
-  }, [path]);
+  }, [path, calendars]);
 
   const handleSelect = (key: string) => {
     const newPath = [...path, key];
@@ -107,8 +135,15 @@ const Calendars = () => {
               ))}
             </div>
 
+            {/* Loading */}
+            {loading && (
+              <p className="text-xs uppercase tracking-widest opacity-40 mb-3">
+                Loading…
+              </p>
+            )}
+
             {/* Level label */}
-            {path.length < 4 && (
+            {!loading && path.length < 4 && (
               <p className="text-xs uppercase tracking-widest opacity-40 mb-3">
                 Select {LEVEL_LABELS[currentLevel]}
               </p>
@@ -138,8 +173,6 @@ const Calendars = () => {
                 </div>
 
                 <div className="flex gap-3">
-
-
                   {/* Desktop — download link */}
                   <Link
                     href={pdfLink}
@@ -148,7 +181,6 @@ const Calendars = () => {
                   >
                     View
                   </Link>
-
                 </div>
               </div>
             )}

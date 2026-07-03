@@ -2,32 +2,63 @@
 import {
   SyllabusNode,
   PdfItem,
-  syllabusDetails,
+  syllabusDetails as fallbackSyllabus,
 } from "@/constants/syllabusdetails";
+import axios from "axios";
 import { FaFilePdf } from "react-icons/fa";
 import { ChevronRight } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 
 // Level labels matching the syllabus structure depth
 const LEVEL_LABELS = ["Degree", "Regulation", "Year", "Syllabus", "Branch"];
 
+const SYLLABUS_API =
+  (process.env.NEXT_PUBLIC_URL || "http://localhost:8000/") + "api/syllabus";
+
 export default function SyllabusPage() {
+  // Syllabus tree, loaded from the backend (falls back to bundled static data).
+  const [syllabus, setSyllabus] = useState<SyllabusNode>({});
+  const [loading, setLoading] = useState(true);
+
   const [path, setPath] = useState<string[]>([]);
   const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    axios
+      .get(SYLLABUS_API, { timeout: 15000 })
+      .then((res) => {
+        if (!active) return;
+        const data =
+          res.data && typeof res.data === "object" && Object.keys(res.data).length
+            ? res.data
+            : fallbackSyllabus;
+        setSyllabus(data);
+      })
+      .catch(() => {
+        if (active) setSyllabus(fallbackSyllabus);
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const isPdfList = (node: SyllabusNode): node is PdfItem[] =>
     Array.isArray(node);
 
   const currentNode = useMemo(() => {
-    let node: SyllabusNode = syllabusDetails;
+    let node: SyllabusNode = syllabus;
     for (const key of path) {
       if (!Array.isArray(node)) {
         node = node[key];
       }
     }
     return node;
-  }, [path]);
+  }, [path, syllabus]);
 
   const handleClick = (key: string) => {
     setPath((prev) => [...prev, key]);
@@ -73,8 +104,15 @@ export default function SyllabusPage() {
             ))}
           </div>
 
+          {/* Loading */}
+          {loading && (
+            <p className="text-xs uppercase tracking-widest opacity-40 mb-3">
+              Loading…
+            </p>
+          )}
+
           {/* Level label */}
-          {!isPdfList(currentNode) && (
+          {!loading && !isPdfList(currentNode) && (
             <p className="text-xs uppercase tracking-widest opacity-40 mb-3">
               Select{" "}
               {LEVEL_LABELS[Math.min(path.length, LEVEL_LABELS.length - 1)]}
