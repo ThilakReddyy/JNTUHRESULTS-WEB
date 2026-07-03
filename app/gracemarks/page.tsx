@@ -2,7 +2,18 @@
 
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { AlertTriangle } from "lucide-react";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import Form from "@/components/forms/resulthtnoform";
 import Footer from "@/components/footer/footer";
 import AcademicResult from "@/components/result/academicresult";
@@ -279,6 +290,8 @@ const ProofUploader = ({
   onUpload,
   onChangeRoll,
 }: ProofUploaderProps) => {
+  const [showWarning, setShowWarning] = useState(false);
+
   const failure =
     uploadResult && uploadResult.kind === "failure" ? uploadResult : null;
   const rateLimited =
@@ -351,13 +364,36 @@ const ProofUploader = ({
         </button>
         <button
           type="button"
-          onClick={onUpload}
+          onClick={() => setShowWarning(true)}
           disabled={!canSubmit}
           className="text-sm md:text-base px-4 py-1.5 rounded bg-black dark:bg-gray-300 dark:text-black text-white disabled:opacity-50"
         >
           {uploading ? "Uploading..." : "Upload Marksheet"}
         </button>
       </div>
+
+      <AlertDialog open={showWarning} onOpenChange={setShowWarning}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="flex items-center justify-center sm:justify-start gap-2 text-amber-600 dark:text-amber-400">
+              <AlertTriangle className="h-5 w-5 shrink-0" />
+              This is not an official JNTUH site
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-left leading-relaxed">
+              If you are applying for grace marks, please contact your college
+              — grace marks cannot be applied for or awarded here. This upload
+              is only for updating grace marks that have already been awarded
+              by the official JNTUH but are not yet reflected on this site.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={onUpload}>
+              I understand, upload
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
