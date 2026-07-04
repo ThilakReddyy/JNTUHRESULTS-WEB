@@ -26,16 +26,20 @@ import {
   type GraceMarksUploadResult,
 } from "@/components/api/fetchResults";
 
-type Phase = "form" | "eligible" | "blocked" | "success";
+type Phase = "form" | "eligible" | "blocked" | "success" | "paused";
 
-// Temporarily disabled: many students mistake this as a way to *apply for* grace
-// marks. It is only for reflecting grace marks already awarded on the official
-// college consolidated marksheet (CMM). Set to true to re-enable the upload flow.
-const GRACE_MARKS_UPLOAD_ENABLED = false;
+// Grace marks upload is paused for batches 22 and above because students mistake
+// this as a way to *apply for* grace marks. It is only for reflecting grace marks
+// already awarded on the official college consolidated marksheet (CMM).
+const isBatchPaused = (roll: string) => {
+  const batch = parseInt(roll.substring(0, 2), 10);
+  return !isNaN(batch) && batch >= 22;
+};
 
 const GraceMarksPage = () => {
   const [hallticketno, sethallticketno] = useState("");
   const [activeRoll, setActiveRoll] = useState("");
+  const [isPaused, setIsPaused] = useState(false);
 
   const [phase, setPhase] = useState<Phase>("form");
   const [checking, setChecking] = useState(false);
@@ -55,6 +59,7 @@ const GraceMarksPage = () => {
     setFile(null);
     setFileError(null);
     setUploadResult(null);
+    setIsPaused(false);
   };
 
   const onCheckEligibility = async () => {
@@ -65,6 +70,13 @@ const GraceMarksPage = () => {
       return;
     }
 
+    if (isBatchPaused(roll)) {
+      setIsPaused(true);
+      setPhase("paused");
+      return;
+    }
+
+    setIsPaused(false);
     setChecking(true);
     setUploadResult(null);
     setEligibility(null);
@@ -123,7 +135,7 @@ const GraceMarksPage = () => {
     setUploading(false);
   };
 
-  if (!GRACE_MARKS_UPLOAD_ENABLED) {
+  if (phase === "paused" && isPaused) {
     return (
       <>
         <div className="mx-auto max-w-2xl px-4 py-12">
@@ -131,13 +143,14 @@ const GraceMarksPage = () => {
             <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400">
               <AlertTriangle className="h-5 w-5 shrink-0" />
               <h2 className="text-lg lg:text-xl font-bold">
-                Grace marks upload is paused
+                Grace marks upload is paused for your batch
               </h2>
             </div>
 
             <p className="mt-4 text-sm lg:text-base text-gray-700 dark:text-gray-200 leading-relaxed">
-              We&apos;ve temporarily disabled grace marks uploads because most
-              students are mistaking this as a way to <em>get</em> or{" "}
+              Grace marks uploads are temporarily disabled for batch{" "}
+              {hallticketno.substring(0, 2)} and above because many students are
+              mistaking this as a way to <em>get</em> or{" "}
               <em>apply for</em> grace marks — it is not.
             </p>
             <p className="mt-3 text-sm lg:text-base text-gray-700 dark:text-gray-200 leading-relaxed">
@@ -148,11 +161,16 @@ const GraceMarksPage = () => {
               eligible for them.
             </p>
             <p className="mt-3 text-sm lg:text-base text-gray-700 dark:text-gray-200 leading-relaxed">
-              Because so many students were getting confused about this,
-              we&apos;ve disabled it for now. If you are applying for grace
-              marks, please contact your college — grace marks cannot be applied
-              for or awarded here.
+              If you are applying for grace marks, please contact your college —
+              grace marks cannot be applied for or awarded here.
             </p>
+            <button
+              type="button"
+              onClick={resetToForm}
+              className="mt-6 text-sm md:text-base px-4 py-1.5 rounded bg-black dark:bg-gray-300 dark:text-black text-white"
+            >
+              Try another roll number
+            </button>
           </div>
         </div>
         <Footer />
