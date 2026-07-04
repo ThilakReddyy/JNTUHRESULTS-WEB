@@ -28,6 +28,11 @@ import {
 
 type Phase = "form" | "eligible" | "blocked" | "success";
 
+// Temporarily disabled: many students mistake this as a way to *apply for* grace
+// marks. It is only for reflecting grace marks already awarded on the official
+// college consolidated marksheet (CMM). Set to true to re-enable the upload flow.
+const GRACE_MARKS_UPLOAD_ENABLED = false;
+
 const GraceMarksPage = () => {
   const [hallticketno, sethallticketno] = useState("");
   const [activeRoll, setActiveRoll] = useState("");
@@ -117,6 +122,43 @@ const GraceMarksPage = () => {
     }
     setUploading(false);
   };
+
+  if (!GRACE_MARKS_UPLOAD_ENABLED) {
+    return (
+      <>
+        <div className="mx-auto max-w-2xl px-4 py-12">
+          <div className="rounded-2xl border border-amber-200 dark:border-amber-900/40 bg-white dark:bg-white/5 shadow-sm p-6">
+            <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400">
+              <AlertTriangle className="h-5 w-5 shrink-0" />
+              <h2 className="text-lg lg:text-xl font-bold">
+                Grace marks upload is paused
+              </h2>
+            </div>
+
+            <p className="mt-4 text-sm lg:text-base text-gray-700 dark:text-gray-200 leading-relaxed">
+              We&apos;ve temporarily disabled grace marks uploads because most
+              students are mistaking this as a way to <em>get</em> or{" "}
+              <em>apply for</em> grace marks — it is not.
+            </p>
+            <p className="mt-3 text-sm lg:text-base text-gray-700 dark:text-gray-200 leading-relaxed">
+              This feature is only meant for cases where your grace marks were{" "}
+              <span className="font-semibold">already awarded and updated</span>{" "}
+              in your official college consolidated marksheet (CMM), but are not
+              yet reflected here. It cannot award grace marks or make you
+              eligible for them.
+            </p>
+            <p className="mt-3 text-sm lg:text-base text-gray-700 dark:text-gray-200 leading-relaxed">
+              Because so many students were getting confused about this,
+              we&apos;ve disabled it for now. If you are applying for grace
+              marks, please contact your college — grace marks cannot be applied
+              for or awarded here.
+            </p>
+          </div>
+        </div>
+        <Footer />
+      </>
+    );
+  }
 
   if (phase === "form") {
     return (
