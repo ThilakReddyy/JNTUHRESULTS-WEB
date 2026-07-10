@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import axios from "axios";
+import "@/lib/apiClient"; // attaches X-Api-Key to backend requests
 import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import { computeWrappedStats, type WrappedStats } from "@/components/wrapped/stats";

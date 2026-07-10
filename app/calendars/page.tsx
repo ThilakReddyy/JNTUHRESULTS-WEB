@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState, useMemo } from "react";
 import axios from "axios";
+import "@/lib/apiClient"; // attaches X-Api-Key to backend requests
 import {
   AcademicCalendars,
   academicCalendars as fallbackCalendars,

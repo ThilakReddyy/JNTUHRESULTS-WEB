@@ -5,6 +5,7 @@ import {
   syllabusDetails as fallbackSyllabus,
 } from "@/constants/syllabusdetails";
 import axios from "axios";
+import "@/lib/apiClient"; // attaches X-Api-Key to backend requests
 import { FaFilePdf } from "react-icons/fa";
 import { ChevronRight } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";

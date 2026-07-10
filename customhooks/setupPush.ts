@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
+import { API_KEY, API_KEY_HEADER } from "@/lib/apiClient";
 
 function urlBase64ToUint8Array(base64String: string): Uint8Array {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
@@ -40,7 +41,7 @@ export async function setupPush(rollNumber?: string) {
 
     await fetch(`${url}save-subscription`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", [API_KEY_HEADER]: API_KEY },
       body: JSON.stringify({
         anon_id: anonId,
         roll_number: rollNumber || null,

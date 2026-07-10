@@ -1,4 +1,5 @@
 import axios from "axios";
+import "@/lib/apiClient"; // attaches X-Api-Key to backend requests
 import { saveToLocalStorage } from "../customfunctions/localStorage";
 
 import toast from "react-hot-toast";

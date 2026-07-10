@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import axios from "axios";
+import "@/lib/apiClient"; // attaches X-Api-Key to backend requests
 import toast from "react-hot-toast";
 import HeroSection from "@/components/journey/HeroSection";
 import SGPAChart from "@/components/journey/SGPAChart";
