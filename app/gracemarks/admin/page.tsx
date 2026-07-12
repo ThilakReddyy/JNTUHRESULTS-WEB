@@ -187,9 +187,8 @@ const GraceMarksAdminPage = () => {
             />
           </label>
           <p className="mt-2 text-[11px] text-gray-400 dark:text-gray-500">
-            Stored in memory only. Same key is sent under{" "}
-            <code className="font-mono">X-Admin-Key</code> for the list and{" "}
-            <code className="font-mono">x-api-key</code> for each detail fetch.
+            Stored in memory only. The key is sent under{" "}
+            <code className="font-mono">x-admin-key</code> for admin requests.
           </p>
 
           <div className="flex items-center justify-end mt-4">

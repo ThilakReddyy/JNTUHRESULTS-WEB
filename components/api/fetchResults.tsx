@@ -502,7 +502,7 @@ export const fetchPendingProofs = async (
     const response = await axios.get(url, {
       timeout: 20 * 1000,
       validateStatus: () => true,
-      headers: { "X-Admin-Key": adminKey },
+      headers: { "x-admin-key": adminKey },
     });
 
     const body = response.data ?? {};
@@ -568,7 +568,7 @@ export const fetchProofDetail = async (
     const response = await axios.get(url, {
       timeout: 20 * 1000,
       validateStatus: () => true,
-      headers: { "x-api-key": adminKey },
+      headers: { "x-admin-key": adminKey },
     });
 
     const body = response.data ?? {};
@@ -653,7 +653,7 @@ export const submitGraceMarks = async (
         timeout: 30 * 1000,
         validateStatus: () => true,
         headers: {
-          "x-api-key": adminKey,
+          "x-admin-key": adminKey,
           "content-type": "application/json",
         },
       },
@@ -754,7 +754,7 @@ export const updateProofStatus = async (
         timeout: 20 * 1000,
         validateStatus: () => true,
         headers: {
-          "x-api-key": adminKey,
+          "x-admin-key": adminKey,
           "content-type": "application/json",
         },
       },
