@@ -6,12 +6,18 @@ import { navitems } from "@/constants/navitems";
 import { socialMediaItems } from "@/constants/socialmediaitems";
 import { ModeToggleMobile } from "../ui/toggle";
 import { useState } from "react";
-import { FaGooglePlay } from "react-icons/fa";
+import { FaApple, FaGooglePlay } from "react-icons/fa";
+import {
+  PLAY_STORE_URL,
+  TESTFLIGHT_URL,
+  useMobilePlatform,
+} from "@/customhooks/appdownloadhook";
 
 const SideMenubar = () => {
   const { sidebar, toggleSidebar } = useSidebarContext();
   const pathname = usePathname();
   const [toggleResult, setToggleResult] = useState(false);
+  const isIOS = useMobilePlatform() === "ios";
 
   const getButtonClass = (href: string) => {
     const path = "/" + pathname.split("/")[1];
@@ -130,21 +136,39 @@ const SideMenubar = () => {
       </div>
       <div className="px-3 pb-3 md:hidden">
         <Link
-          href="https://play.google.com/store/apps/details?id=com.dhethi.jntuhconnect"
+          href={isIOS ? TESTFLIGHT_URL : PLAY_STORE_URL}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Download JNTUH Connect on Google Play"
-          className="flex items-center gap-3 w-full rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 transition-all hover:bg-green-500/20 active:scale-[0.98]"
+          aria-label={
+            isIOS
+              ? "Join the JNTUH Connect iOS beta on TestFlight"
+              : "Download JNTUH Connect on Google Play"
+          }
+          className={`flex items-center gap-3 w-full rounded-xl border px-4 py-3 transition-all active:scale-[0.98] ${
+            isIOS
+              ? "border-gray-500/30 bg-gray-500/10 hover:bg-gray-500/20"
+              : "border-green-500/30 bg-green-500/10 hover:bg-green-500/20"
+          }`}
         >
           <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-black">
-            <FaGooglePlay className="text-white" size={16} />
+            {isIOS ? (
+              <FaApple className="text-white" size={18} />
+            ) : (
+              <FaGooglePlay className="text-white" size={16} />
+            )}
           </div>
           <div className="min-w-0">
             <p className="text-xs font-semibold text-gray-900 dark:text-gray-100 leading-tight">
               JNTUH Connect
             </p>
-            <p className="text-[10px] text-green-600 dark:text-green-400 leading-tight">
-              Get it on Google Play
+            <p
+              className={`text-[10px] leading-tight ${
+                isIOS
+                  ? "text-gray-600 dark:text-gray-400"
+                  : "text-green-600 dark:text-green-400"
+              }`}
+            >
+              {isIOS ? "Join on TestFlight" : "Get it on Google Play"}
             </p>
           </div>
         </Link>

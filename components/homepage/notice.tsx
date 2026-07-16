@@ -1,22 +1,23 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { FaGooglePlay, FaTimes } from "react-icons/fa";
+import { FaApple, FaGooglePlay, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  PLAY_STORE_URL,
+  TESTFLIGHT_URL,
+  useMobilePlatform,
+} from "@/customhooks/appdownloadhook";
 
 const NoticePopup = () => {
   const pathname = usePathname();
   const [hidden, setHidden] = useState(false);
-  const [isAndroid, setIsAndroid] = useState(false);
-
-  React.useEffect(() => {
-    const ua = navigator.userAgent.toLowerCase();
-    setIsAndroid(/android/.test(ua));
-  }, []);
+  const platform = useMobilePlatform();
+  const isIOS = platform === "ios";
 
   const path = "/" + pathname.split("/")[1];
-  const isVisible = path === "/" && !hidden && isAndroid;
+  const isVisible = path === "/" && !hidden && platform !== null;
 
   return (
     <AnimatePresence>
@@ -97,14 +98,23 @@ const NoticePopup = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <a
-                    href="https://play.google.com/store/apps/details?id=com.dhethi.jntuhconnect"
+                    href={isIOS ? TESTFLIGHT_URL : PLAY_STORE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={
+                      isIOS
+                        ? "Join the JNTUH Connect iOS beta on TestFlight"
+                        : "Download JNTUH Connect on Google Play"
+                    }
                     className="relative group flex items-center justify-center gap-3 w-full py-4 px-6 bg-gray-900 dark:bg-white text-white dark:text-black rounded-2xl font-bold shadow-lg overflow-hidden transition-all"
                   >
                     <motion.div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <FaGooglePlay className="text-xl" />
-                    <span>Download App Now</span>
+                    {isIOS ? (
+                      <FaApple className="text-xl" />
+                    ) : (
+                      <FaGooglePlay className="text-xl" />
+                    )}
+                    <span>{isIOS ? "Join on TestFlight" : "Download App Now"}</span>
 
                     <motion.div
                       className="absolute right-4"
