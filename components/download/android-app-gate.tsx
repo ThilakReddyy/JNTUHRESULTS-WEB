@@ -19,7 +19,6 @@ export default function AndroidAppGate({ children }: { children: ReactNode }) {
     }
 
     setDeviceStatus("android");
-    window.location.replace(PLAY_STORE_URL);
   }, []);
 
   if (deviceStatus === "other") return children;
@@ -39,10 +38,12 @@ export default function AndroidAppGate({ children }: { children: ReactNode }) {
         <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-green-500/15 text-green-400">
           <FaGooglePlay size={38} aria-hidden="true" />
         </div>
-        <h1 className="mt-6 text-2xl font-bold">Continue in JNTUH Connect</h1>
+        <h1 className="mt-6 text-2xl font-bold">
+          JNTUH Connect is now on Android
+        </h1>
         <p className="mt-3 text-sm leading-6 text-zinc-400">
-          JNTUH Connect is available for Android in the Google Play Store.
-          Install the app to continue.
+          JNTUH Connect is currently available only through our Android app.
+          Download it from Google Play to continue.
         </p>
         <a
           href={PLAY_STORE_URL}
