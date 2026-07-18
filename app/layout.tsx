@@ -11,7 +11,6 @@ import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import MetaData from "@/components/metadata/metadata";
 import { NavBarProvider } from "@/customhooks/navbarhook";
 import NotificationPopUp from "@/components/notifications/popup";
-import AndroidAppGate from "@/components/download/android-app-gate";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,31 +31,29 @@ export default function RootLayout({
       </head>
       <GoogleAnalytics />
       <body className={inter.className}>
-        <AndroidAppGate>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <SidebarProvider>
-              <NavBarProvider>
-                <Navbar />
-                <main className="pt-16">
-                  <SideMenubar />
-                  <div className="lg:ml-64">
-                    <NotificationPopUp />
-                    {/* <Pwa /> */}
-                    {children}
-                  </div>
-                  <div className=" md:block">
-                    <Toaster position="bottom-right" reverseOrder={false} />
-                  </div>
-                </main>
-              </NavBarProvider>
-            </SidebarProvider>
-          </ThemeProvider>
-        </AndroidAppGate>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SidebarProvider>
+            <NavBarProvider>
+              <Navbar />
+              <main className="pt-16">
+                <SideMenubar />
+                <div className="lg:ml-64">
+                  <NotificationPopUp />
+                  {/* <Pwa /> */}
+                  {children}
+                </div>
+                <div className=" md:block">
+                  <Toaster position="bottom-right" reverseOrder={false} />
+                </div>
+              </main>
+            </NavBarProvider>
+          </SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
