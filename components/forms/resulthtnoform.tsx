@@ -10,6 +10,45 @@ interface FormProps {
   isDisabled: boolean;
 }
 
+const toolDetails: Record<string, { name: string; description: string }> = {
+  "Academic Result": {
+    name: "view_academic_result",
+    description: "View the semester-by-semester academic result for a JNTUH hall ticket number.",
+  },
+  "Academic All Results": {
+    name: "view_all_academic_results",
+    description: "View all available JNTUH academic results for a hall ticket number.",
+  },
+  "Backlog Report": {
+    name: "view_backlog_report",
+    description: "View the current backlog report for a JNTUH hall ticket number.",
+  },
+  "Class Result": {
+    name: "view_class_result",
+    description: "View the class result associated with a JNTUH hall ticket number.",
+  },
+  "Credits Checker": {
+    name: "check_academic_credits",
+    description: "Check earned academic credits for a JNTUH hall ticket number.",
+  },
+  "Grace Marks Update": {
+    name: "check_grace_marks_eligibility",
+    description: "Check whether a JNTUH hall ticket number is eligible to submit an existing grace-marks update.",
+  },
+  "JNTUH Wrapped": {
+    name: "view_jntuh_wrapped",
+    description: "View the academic year-in-review summary for a JNTUH hall ticket number.",
+  },
+  "Result Contrast": {
+    name: "compare_academic_results",
+    description: "Compare the academic results of two JNTUH hall ticket numbers.",
+  },
+  "Your Academic Journey": {
+    name: "view_academic_journey",
+    description: "View the complete academic journey for a JNTUH hall ticket number.",
+  },
+};
+
 const Form = ({
   title,
   hallticketno,
@@ -19,8 +58,22 @@ const Form = ({
   onSubmit,
   isDisabled,
 }: FormProps) => {
+  const tool = toolDetails[title] ?? {
+    name: "view_jntuh_result",
+    description: "View a JNTUH result using a hall ticket number.",
+  };
+
   return (
-    <div className="flex justify-center  mt-[6%]  mx-[16%] px-10 rounded-md border-black dark:border-white border-2  shadow-2xl   ">
+    <form
+      className="flex justify-center mt-[6%] mx-[16%] px-10 rounded-md border-black dark:border-white border-2 shadow-2xl"
+      toolname={tool.name}
+      tooldescription={tool.description}
+      toolautosubmit=""
+      onSubmit={(event) => {
+        event.preventDefault();
+        onSubmit();
+      }}
+    >
       <div className="pt-[30px] pb-[50px]">
         <h2 className="mb-12 md:text-2xl font-semibold text-center">{title}</h2>
         <div className="flex  justify-center flex-col md:flex-row">
@@ -34,12 +87,18 @@ const Form = ({
           "
             name="htno1"
             type="text"
+            required
             value={hallticketno}
             onChange={(event) => {
               event.target.value = event.target.value.toUpperCase();
               sethallticketno(event.target.value);
             }}
+            minLength={10}
             maxLength={10}
+            pattern="[A-Za-z0-9]{10}"
+            autoComplete="off"
+            aria-label={hallticketno2 !== undefined ? "First hall ticket number" : "Hall ticket number"}
+            toolparamdescription="A 10-character JNTUH student hall ticket number."
             placeholder={
               hallticketno2 !== undefined
                 ? "Enter first hallticket no"
@@ -57,13 +116,18 @@ const Form = ({
           "
               name="htno2"
               type="text"
+              required
               value={hallticketno2 ?? ""}
               onChange={(event) => {
-                console.log(event);
                 event.target.value = event.target.value.toUpperCase();
                 sethallticketno2?.(event.target.value);
               }}
+              minLength={10}
               maxLength={10}
+              pattern="[A-Za-z0-9]{10}"
+              autoComplete="off"
+              aria-label="Second hall ticket number"
+              toolparamdescription="The second 10-character JNTUH student hall ticket number to compare."
               placeholder="Enter second hall ticket no"
             />
           )}
@@ -81,13 +145,12 @@ const Form = ({
             w-[100px]
             "
             disabled={isDisabled}
-            onClick={onSubmit}
           >
             Result
           </button>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 

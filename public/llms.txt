@@ -1,0 +1,29 @@
+# JNTUH Connect
+
+> JNTUH Connect is an independent student utility for finding Jawaharlal Nehru Technological University Hyderabad (JNTUH) exam notifications, viewing academic results, and generating student-focused result summaries.
+
+JNTUH Connect is not an official JNTUH website. Results and notifications should be verified against official university or college records when making academic decisions. Hall ticket numbers are 10-character student identifiers. Do not submit passwords, payment information, or unrelated personal data.
+
+The site exposes supported result lookup forms as browser WebMCP tools. These tools retrieve or display information; they do not alter official university records or apply for grace marks.
+
+## Main features
+
+- [Home](https://jntuhconnect.dhethi.com/): Entry point for result and student utilities.
+- [Academic results](https://jntuhconnect.dhethi.com/academicresult): View semester-by-semester results for one hall ticket number.
+- [All academic results](https://jntuhconnect.dhethi.com/academicallresult): View all available results for one hall ticket number.
+- [Backlog report](https://jntuhconnect.dhethi.com/backlogreport): Review current backlogs.
+- [Credits checker](https://jntuhconnect.dhethi.com/creditchecker): Review earned academic credits.
+- [Result comparison](https://jntuhconnect.dhethi.com/resultcontrast): Compare results for two hall ticket numbers.
+- [Academic journey](https://jntuhconnect.dhethi.com/journey): Generate an academic progress summary.
+- [Exam notifications](https://jntuhconnect.dhethi.com/notifications): Browse published JNTUH result notifications.
+
+## Reference
+
+- [Frequently asked questions](https://jntuhconnect.dhethi.com/faq): Common questions and site guidance.
+- [Privacy](https://jntuhconnect.dhethi.com/privacy): Privacy information for the service.
+- [Help center](https://jntuhconnect.dhethi.com/helpcenter): Support and issue reporting.
+
+## Optional
+
+- [Academic calendars](https://jntuhconnect.dhethi.com/calendars): Browse university academic calendars.
+- [Syllabus](https://jntuhconnect.dhethi.com/syllabus): Browse available syllabus documents.

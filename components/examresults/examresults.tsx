@@ -56,7 +56,16 @@ const ExamResults = ({ title, query }: { title: string; query: string }) => {
               </TabsTrigger>
             </TabsList>
             <TabsContent value="single">
-              <div className="border border-gray-300 p-8 rounded-md">
+              <form
+                className="border border-gray-300 p-8 rounded-md"
+                toolname="view_published_exam_result"
+                tooldescription="Open a published JNTUH examination result for a hall ticket number."
+                toolautosubmit=""
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  onSingleResultSubmit();
+                }}
+              >
                 <div className="flex justify-center font-semibold pb-12">
                   Single Result
                 </div>
@@ -72,22 +81,28 @@ const ExamResults = ({ title, query }: { title: string; query: string }) => {
                     name="htno1"
                     placeholder="Enter your Hall ticket No."
                     type="text"
+                    required
                     value={singleHtno}
                     onChange={(event) => {
                       setSingleHtno(event.target.value.toUpperCase());
                     }}
+                    minLength={10}
                     maxLength={10}
+                    pattern="[A-Za-z0-9]{10}"
+                    autoComplete="off"
+                    aria-label="Hall ticket number"
+                    toolparamdescription="A 10-character JNTUH student hall ticket number."
                   />
                 </div>
                 <div className="flex mt-8 justify-center w-full">
                   <Button
+                    type="submit"
                     className="w-24 h-8 text-[80%] md:w-32"
-                    onClick={onSingleResultSubmit}
                   >
                     Submit
                   </Button>
                 </div>
-              </div>
+              </form>
             </TabsContent>
             <TabsContent value="multi">
               <div className="border border-gray-300 p-8 rounded-md">
