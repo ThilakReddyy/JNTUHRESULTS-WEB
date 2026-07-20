@@ -21,7 +21,7 @@ export default function AndroidAppGate({ children }: { children: ReactNode }) {
     setDeviceStatus("android");
   }, []);
 
-  if (deviceStatus === "other") return children;
+  if (deviceStatus === "other" || deviceStatus === "android") return children;
 
   if (deviceStatus === "checking") {
     return (
