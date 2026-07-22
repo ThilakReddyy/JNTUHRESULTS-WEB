@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { FaApple, FaGooglePlay } from "react-icons/fa";
 import {
+    APP_STORE_URL,
     PLAY_STORE_URL,
-    TESTFLIGHT_URL,
     useMobilePlatform,
 } from "@/customhooks/appdownloadhook";
 
@@ -17,12 +17,12 @@ export const GooglePlayBadge = ({ className = "" }: { className?: string }) => {
 
     return (
         <Link
-            href={isIOS ? TESTFLIGHT_URL : PLAY_STORE_URL}
+            href={isIOS ? APP_STORE_URL : PLAY_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={
                 isIOS
-                    ? "Join the JNTUH Connect iOS beta on TestFlight"
+                    ? "Download JNTUH Connect on the App Store"
                     : "Download JNTUH Connect on Google Play"
             }
             className={`inline-flex items-center gap-1.5 rounded-full border border-green-500 bg-green-500/10 px-3 py-1 text-[11px] font-semibold text-green-400 transition-all hover:bg-green-500/20 hover:text-green-300 active:scale-95 ${className}`}
@@ -32,7 +32,7 @@ export const GooglePlayBadge = ({ className = "" }: { className?: string }) => {
             ) : (
                 <FaGooglePlay className="shrink-0" size={11} />
             )}
-            {isIOS ? "TestFlight" : "Get the App"}
+            {isIOS ? "App Store" : "Get the App"}
         </Link>
     );
 };
@@ -61,12 +61,12 @@ export const GooglePlayBanner = () => {
             </div>
 
             <Link
-                href={isIOS ? TESTFLIGHT_URL : PLAY_STORE_URL}
+                href={isIOS ? APP_STORE_URL : PLAY_STORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={
                     isIOS
-                        ? "Join the JNTUH Connect iOS beta on TestFlight"
+                        ? "Download JNTUH Connect on the App Store"
                         : "Download JNTUH Connect on Google Play"
                 }
             >
@@ -78,10 +78,10 @@ export const GooglePlayBanner = () => {
                     )}
                     <div className="text-left leading-tight">
                         <span className="block text-[9px] uppercase tracking-widest text-gray-400">
-                            {isIOS ? "Join the beta on" : "Get it on"}
+                            {isIOS ? "Download on the" : "Get it on"}
                         </span>
                         <span className="block text-base font-semibold text-white">
-                            {isIOS ? "TestFlight" : "Google Play"}
+                            {isIOS ? "App Store" : "Google Play"}
                         </span>
                     </div>
                 </div>

@@ -8,8 +8,8 @@ import { ModeToggleMobile } from "../ui/toggle";
 import { useState } from "react";
 import { FaApple, FaGooglePlay } from "react-icons/fa";
 import {
+  APP_STORE_URL,
   PLAY_STORE_URL,
-  TESTFLIGHT_URL,
   useMobilePlatform,
 } from "@/customhooks/appdownloadhook";
 
@@ -136,12 +136,12 @@ const SideMenubar = () => {
       </div>
       <div className="px-3 pb-3 md:hidden">
         <Link
-          href={isIOS ? TESTFLIGHT_URL : PLAY_STORE_URL}
+          href={isIOS ? APP_STORE_URL : PLAY_STORE_URL}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={
             isIOS
-              ? "Join the JNTUH Connect iOS beta on TestFlight"
+              ? "Download JNTUH Connect on the App Store"
               : "Download JNTUH Connect on Google Play"
           }
           className={`flex items-center gap-3 w-full rounded-xl border px-4 py-3 transition-all active:scale-[0.98] ${
@@ -168,7 +168,7 @@ const SideMenubar = () => {
                   : "text-green-600 dark:text-green-400"
               }`}
             >
-              {isIOS ? "Join on TestFlight" : "Get it on Google Play"}
+              {isIOS ? "Download on the App Store" : "Get it on Google Play"}
             </p>
           </div>
         </Link>

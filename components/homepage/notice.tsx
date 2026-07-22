@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 import { FaApple, FaGooglePlay, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import {
+  APP_STORE_URL,
   PLAY_STORE_URL,
-  TESTFLIGHT_URL,
   useMobilePlatform,
 } from "@/customhooks/appdownloadhook";
 
@@ -98,12 +98,12 @@ const NoticePopup = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <a
-                    href={isIOS ? TESTFLIGHT_URL : PLAY_STORE_URL}
+                    href={isIOS ? APP_STORE_URL : PLAY_STORE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={
                       isIOS
-                        ? "Join the JNTUH Connect iOS beta on TestFlight"
+                        ? "Download JNTUH Connect on the App Store"
                         : "Download JNTUH Connect on Google Play"
                     }
                     className="relative group flex items-center justify-center gap-3 w-full py-4 px-6 bg-gray-900 dark:bg-white text-white dark:text-black rounded-2xl font-bold shadow-lg overflow-hidden transition-all"
@@ -114,7 +114,7 @@ const NoticePopup = () => {
                     ) : (
                       <FaGooglePlay className="text-xl" />
                     )}
-                    <span>{isIOS ? "Join on TestFlight" : "Download App Now"}</span>
+                    <span>{isIOS ? "Download on the App Store" : "Download App Now"}</span>
 
                     <motion.div
                       className="absolute right-4"
