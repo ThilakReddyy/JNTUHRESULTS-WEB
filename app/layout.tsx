@@ -11,7 +11,7 @@ import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import MetaData from "@/components/metadata/metadata";
 import { NavBarProvider } from "@/customhooks/navbarhook";
 import NotificationPopUp from "@/components/notifications/popup";
-import AndroidAppGate from "@/components/download/android-app-gate";
+import MobileAppGate from "@/components/download/mobile-app-gate";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,7 +32,7 @@ export default function RootLayout({
       </head>
       <GoogleAnalytics />
       <body className={inter.className}>
-        <AndroidAppGate>
+        <MobileAppGate>
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
@@ -56,7 +56,7 @@ export default function RootLayout({
               </NavBarProvider>
             </SidebarProvider>
           </ThemeProvider>
-        </AndroidAppGate>
+        </MobileAppGate>
       </body>
     </html>
   );

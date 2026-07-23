@@ -9,7 +9,7 @@ export const PLAY_STORE_URL =
 export const APP_STORE_URL =
   "https://apps.apple.com/in/app/jntuh-connect/id6790828236";
 
-const getMobilePlatform = (): MobilePlatform | null => {
+export const getMobilePlatform = (): MobilePlatform | null => {
   const userAgent = navigator.userAgent.toLowerCase();
 
   if (userAgent.includes("android")) return "android";
