@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import { FaGooglePlay } from "react-icons/fa";
 
 import { PLAY_STORE_URL } from "@/customhooks/appdownloadhook";
@@ -8,9 +9,13 @@ import { PLAY_STORE_URL } from "@/customhooks/appdownloadhook";
 type DeviceStatus = "checking" | "android" | "other";
 
 const isAndroidDevice = () => /android/i.test(window.navigator.userAgent);
+const isGraceMarksRoute = (pathname: string) =>
+  pathname === "/gracemarks" || pathname.startsWith("/gracemarks/");
 
 export default function AndroidAppGate({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
   const [deviceStatus, setDeviceStatus] = useState<DeviceStatus>("checking");
+  const bypassAndroidGate = isGraceMarksRoute(pathname);
 
   useEffect(() => {
     if (!isAndroidDevice()) {
@@ -21,7 +26,7 @@ export default function AndroidAppGate({ children }: { children: ReactNode }) {
     setDeviceStatus("android");
   }, []);
 
-  if (deviceStatus === "other") return children;
+  if (bypassAndroidGate || deviceStatus === "other") return children;
 
   if (deviceStatus === "checking") {
     return (
