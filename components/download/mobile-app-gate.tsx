@@ -12,6 +12,16 @@ import {
 
 type DeviceStatus = "checking" | "mobile" | "other";
 
+const MOBILE_APP_GATE_SKIP_KEY = "mobile-app-gate-skipped";
+
+const hasSkippedMobileAppGate = () => {
+  try {
+    return sessionStorage.getItem(MOBILE_APP_GATE_SKIP_KEY) === "true";
+  } catch {
+    return false;
+  }
+};
+
 const isGraceMarksRoute = (pathname: string) =>
   pathname === "/gracemarks" || pathname.startsWith("/gracemarks/");
 
@@ -21,8 +31,22 @@ export default function MobileAppGate({ children }: { children: ReactNode }) {
   const bypassAppGate = isGraceMarksRoute(pathname);
 
   useEffect(() => {
+    if (hasSkippedMobileAppGate()) {
+      setDeviceStatus("other");
+      return;
+    }
+
     setDeviceStatus(getMobilePlatform() ? "mobile" : "other");
   }, []);
+
+  const skipForSession = () => {
+    try {
+      sessionStorage.setItem(MOBILE_APP_GATE_SKIP_KEY, "true");
+    } catch {
+      // Still dismiss the gate when browser storage is unavailable.
+    }
+    setDeviceStatus("other");
+  };
 
   if (bypassAppGate || deviceStatus === "other") return children;
 
@@ -37,6 +61,13 @@ export default function MobileAppGate({ children }: { children: ReactNode }) {
 
   return (
     <div className="fixed inset-0 z-[9999] flex min-h-dvh items-center justify-center bg-zinc-950 px-6 text-white">
+      <button
+        type="button"
+        onClick={skipForSession}
+        className="absolute right-4 top-[calc(env(safe-area-inset-top)+1rem)] rounded-lg px-3 py-2 text-xs font-medium text-zinc-400 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+      >
+        Skip for this session
+      </button>
       <div className="w-full max-w-sm text-center">
         <div className="mx-auto flex h-20 w-28 items-center justify-center gap-4 rounded-3xl bg-white/10">
           <FaGooglePlay
