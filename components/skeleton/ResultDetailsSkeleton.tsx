@@ -1,33 +1,42 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-const ResultDetailsSkeleton = () => {
-  return (
-    <div className="rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-sm mb-4">
-      {/* Primary info row */}
-      <div className="grid grid-cols-2 md:grid-cols-4 bg-white dark:bg-white/5 divide-x divide-y md:divide-y-0 divide-gray-100 dark:divide-white/10">
-        {["Student Name", "Roll Number", "College Code", "Father's Name"].map((label) => (
-          <div key={label} className="flex flex-col gap-2 px-4 py-3">
-            <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-gray-400 dark:text-gray-500">
-              {label}
-            </p>
-            <Skeleton className="h-4 w-3/4 rounded-md" />
-          </div>
-        ))}
-      </div>
+const DetailCell = ({
+  label,
+  hiddenOnMobile = false,
+}: {
+  label: string;
+  hiddenOnMobile?: boolean;
+}) => (
+  <div
+    className={`min-h-16 bg-[#edf3e7] px-4 py-3 text-[#17211e] dark:bg-[#111827] dark:text-gray-100 ${
+      hiddenOnMobile ? "hidden md:block" : ""
+    }`}
+  >
+    <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#53605a] dark:text-gray-400">
+      {label}
+    </p>
+    <Skeleton className="mt-2 h-4 w-3/4" />
+  </div>
+);
 
-      {/* Secondary info row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 bg-gray-50 dark:bg-[#0b3954]/40 border-t border-gray-100 dark:border-white/10 divide-x divide-gray-100 dark:divide-white/10">
-        {["College Name", "Branch"].map((label) => (
-          <div key={label} className="flex flex-col gap-2 px-4 py-3">
-            <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-gray-400 dark:text-gray-500">
-              {label}
-            </p>
-            <Skeleton className="h-4 w-2/3 rounded-md" />
-          </div>
-        ))}
+const ResultDetailsSkeleton = () => (
+  <section className="mb-4 border border-[#2a342f] bg-[#2a342f] shadow-sm dark:border-white/[0.15] dark:bg-white/[0.15]">
+    <div className="bg-[#dce5d8] px-4 py-2 text-center text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#17211e] dark:bg-[#172033] dark:text-gray-100">
+      Student Details
+    </div>
+    <div className="grid grid-cols-1 gap-px border-t border-[#2a342f] bg-[#2a342f] dark:border-white/[0.15] dark:bg-white/[0.15] md:grid-cols-2 lg:grid-cols-4">
+      <DetailCell label="Student Name" />
+      <DetailCell label="Hall Ticket No." />
+      <DetailCell label="College Code" hiddenOnMobile />
+      <DetailCell label="Father's Name" hiddenOnMobile />
+      <div className="lg:col-span-2">
+        <DetailCell label="College Name" />
+      </div>
+      <div className="lg:col-span-2">
+        <DetailCell label="Branch" />
       </div>
     </div>
-  );
-};
+  </section>
+);
 
 export default ResultDetailsSkeleton;
