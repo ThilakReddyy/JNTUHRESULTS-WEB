@@ -1,5 +1,14 @@
 import React from "react";
 
+const gradeColor = (value: unknown) => {
+  const grade = String(value || "")
+    .trim()
+    .toUpperCase();
+  if (grade === "F") return "text-[#ff0000] dark:text-[#ff0000]";
+  if (grade === "O") return "text-[#008000] dark:text-[#22c55e]";
+  return "";
+};
+
 const Subjects = ({ semester }: { semester: Exam }) => (
   <div className="overflow-x-auto bg-[#edf3e7] dark:bg-[#111827]">
     <table className="w-full table-fixed border-collapse border-0 text-[#17211e] dark:text-gray-100 sm:min-w-[760px]">
@@ -63,7 +72,9 @@ const Subjects = ({ semester }: { semester: Exam }) => (
             <td className="px-0.5 text-center font-semibold tabular-nums sm:px-2">
               {subject.totalMarks || "—"}
             </td>
-            <td className="px-0.5 text-center font-bold uppercase sm:px-2">
+            <td
+              className={`px-0.5 text-center font-bold uppercase sm:px-2 ${gradeColor(subject.grades)}`}
+            >
               {subject.grades || "—"}
             </td>
             <td className="border-r-0 px-0.5 text-center tabular-nums sm:px-2">

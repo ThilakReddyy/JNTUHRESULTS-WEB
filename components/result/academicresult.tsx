@@ -74,7 +74,9 @@ const CmmSemesterTable = ({
             const subject = semester.subjects[subjectIndex] as
               | Record<string, any>
               | undefined;
-            const grade = String(subject?.grades || "-").toUpperCase();
+            const grade = String(subject?.grades || "-")
+              .trim()
+              .toUpperCase();
             return (
               <tr
                 key={subject?.subjectCode || `empty-${subjectIndex}`}
@@ -106,7 +108,15 @@ const CmmSemesterTable = ({
                 <td className="border-r px-1 text-center font-semibold tabular-nums">
                   {subject ? (subject.totalMarks ?? "—") : ""}
                 </td>
-                <td className="border-r px-1 text-center font-bold">
+                <td
+                  className={`border-r px-1 text-center font-bold ${
+                    grade === "F"
+                      ? "text-[#ff0000] dark:text-[#ff0000]"
+                      : grade === "O"
+                        ? "text-[#008000] dark:text-[#22c55e]"
+                        : ""
+                  }`}
+                >
                   {subject ? grade : ""}
                 </td>
                 <td className="px-1 text-center tabular-nums">
@@ -191,8 +201,8 @@ const gradeConfig = (grade: string) => {
   const g = grade.toUpperCase();
   if (g === "O")
     return {
-      bg: "bg-emerald-100 dark:bg-emerald-900/40",
-      text: "text-emerald-700 dark:text-emerald-400",
+      bg: "bg-transparent",
+      text: "text-[#008000] dark:text-[#22c55e]",
     };
   if (g === "A+")
     return {
@@ -221,8 +231,8 @@ const gradeConfig = (grade: string) => {
     };
   if (g === "F")
     return {
-      bg: "bg-red-100 dark:bg-red-900/40",
-      text: "text-red-700 dark:text-red-400",
+      bg: "bg-transparent",
+      text: "text-[#ff0000] dark:text-[#ff0000]",
     };
   return {
     bg: "bg-gray-100 dark:bg-white/10",
