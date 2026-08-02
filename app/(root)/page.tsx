@@ -28,7 +28,7 @@ export default function Home() {
         </Link>
       </div>
       <div className="flex justify-center">
-        <div className="m-4 w-full border border-border bg-secondary py-3 text-center text-sm font-bold uppercase tracking-[0.12em] text-secondary-foreground shadow-[3px_3px_0_hsl(var(--border)/0.16)] transition-colors lg:max-w-[60%] lg:py-2 lg:text-base 2xl:max-w-[40%]">
+        <div className="m-4 w-full border border-border bg-secondary py-3 text-center text-sm font-bold uppercase tracking-[0.12em] text-secondary-foreground shadow-[3px_3px_0_hsl(var(--border)/0.16)] transition-colors lg:w-fit lg:whitespace-nowrap lg:px-8 lg:py-2 lg:text-base">
           Jawaharlal Nehru Technological University, Hyderabad
         </div>
       </div>

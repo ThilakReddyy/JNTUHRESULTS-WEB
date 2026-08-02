@@ -78,7 +78,9 @@ const CmmSemesterTable = ({
             return (
               <tr
                 key={subject?.subjectCode || `empty-${subjectIndex}`}
-                className="h-12 text-[11px] [&>td]:border-b [&>td]:border-[#7b867f] dark:[&>td]:border-white/10 last:[&>td]:border-b-0"
+                className={`h-12 text-[11px] [&>td]:border-b [&>td]:border-[#7b867f] dark:[&>td]:border-white/10 last:[&>td]:border-b-0 ${
+                  subject ? "" : "hidden lg:table-row"
+                }`}
               >
                 <td className="border-r px-2 text-center tabular-nums">
                   <span className="text-sm font-semibold sm:text-[11px]">
