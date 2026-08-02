@@ -81,9 +81,9 @@ const Form = ({
         <div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
           <input
             className="
-          h-11 w-full min-w-0 text-center text-xs uppercase tracking-[0.08em]
+          h-11 w-full min-w-0 text-center text-base uppercase tracking-[0.08em]
           border border-input bg-background px-3 placeholder:normal-case placeholder:tracking-normal
-          sm:w-72 sm:text-sm lg:w-80
+          sm:w-72 lg:w-80 lg:text-sm
           shadow-sm outline-none focus:border-foreground focus:ring-1 focus:ring-ring
           "
             name="htno1"
@@ -109,9 +109,9 @@ const Form = ({
           {hallticketno2 !== undefined && (
             <input
               className="
-          h-11 w-full min-w-0 text-center text-xs uppercase tracking-[0.08em]
+          h-11 w-full min-w-0 text-center text-base uppercase tracking-[0.08em]
           border border-input bg-background px-3 placeholder:normal-case placeholder:tracking-normal
-          sm:w-72 sm:text-sm lg:w-80
+          sm:w-72 lg:w-80 lg:text-sm
           shadow-sm outline-none focus:border-foreground focus:ring-1 focus:ring-ring
           "
               name="htno2"
