@@ -260,7 +260,7 @@ const GraceMarksPage = () => {
           </div>
 
           {eligibility.semesters.length > 0 && (
-            <AcademicResult result={backlogList} academic={false} />
+            <AcademicResult result={backlogList} academic={false} cmm />
           )}
 
           <ProofUploader

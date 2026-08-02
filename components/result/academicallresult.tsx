@@ -9,34 +9,36 @@ const AcademicAllResult = ({
   htno: string;
 }) => {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       {results.map((semester: Semester, index: number) => (
         <div
           key={index}
-          className="rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-sm"
+          className="overflow-hidden border border-[#2a342f] bg-[#edf3e7] shadow-sm dark:border-white/[0.15] dark:bg-[#111827]"
         >
           {/* ── Semester header ── */}
-          <div className="flex items-center px-4 py-3 bg-[#0b3954]">
-            <span className="w-2 h-2 rounded-full bg-sky-400 inline-block mr-2" />
-            <h3 className="text-sm font-bold text-white uppercase tracking-wide">
+          <div className="border-b border-[#2a342f] bg-[#dce5d8] px-4 py-2 text-center dark:border-white/[0.15] dark:bg-[#172033]">
+            <h3 className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#17211e] dark:text-gray-100">
               {semester.semester}
             </h3>
           </div>
 
           {/* ── Exams within the semester ── */}
           {semester.exams.map((exam: Exam, examIndex: number) => (
-            <div key={examIndex}>
+            <div
+              key={examIndex}
+              className="m-1 border border-[#2a342f] dark:border-white/[0.15]"
+            >
               {/* Exam sub-header */}
-              <div className="flex flex-wrap items-center gap-3 px-4 py-2 bg-gray-50 dark:bg-white/5 border-t border-gray-100 dark:border-white/10">
-                <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">
+              <div className="flex flex-wrap items-center gap-3 border-b border-[#2a342f] bg-[#e7ebe2] px-4 py-2 dark:border-white/[0.15] dark:bg-white/[0.04]">
+                <span className="text-xs font-semibold text-[#53605a] dark:text-gray-400">
                   Exam Code:{" "}
-                  <span className="font-bold text-gray-700 dark:text-gray-200">
+                  <span className="font-bold text-[#17211e] dark:text-gray-100">
                     {exam.examCode}
                   </span>
                 </span>
 
                 {(exam.rcrv || exam.graceMarks) && (
-                  <span className="text-[10px] font-semibold bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 px-2 py-0.5 rounded-full">
+                  <span className="border border-amber-600/40 bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-700 dark:text-amber-400">
                     {exam.rcrv ? "RC / RV" : "Grace Marks"}
                   </span>
                 )}
@@ -48,17 +50,14 @@ const AcademicAllResult = ({
                     }&htno=${htno}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="ml-auto text-[10px] font-semibold text-sky-600 dark:text-sky-400 underline underline-offset-2 hover:text-sky-800 dark:hover:text-sky-200 transition-colors"
+                  className="ml-auto text-[10px] font-semibold text-primary underline underline-offset-2 transition-colors hover:opacity-70"
                 >
                   JNTUH Direct Link ↗
                 </a>
               </div>
 
               {/* Subject table */}
-              <Subjects
-                semester={exam}
-                lastIndex={semester.exams.length === examIndex + 1}
-              />
+              <Subjects semester={exam} />
             </div>
           ))}
         </div>

@@ -32,19 +32,19 @@ export default function RootLayout({
       </head>
       <GoogleAnalytics />
       <body className={inter.className}>
-        <MobileAppGate>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <MobileAppGate>
             <SidebarProvider>
               <NavBarProvider>
                 <Navbar />
-                <main className="pt-16">
+                <main className="min-h-screen pt-16">
                   <SideMenubar />
-                  <div className="lg:ml-64">
+                  <div className="min-h-[calc(100vh-4rem)] lg:ml-64">
                     <NotificationPopUp />
                     {/* <Pwa /> */}
                     {children}
@@ -55,8 +55,8 @@ export default function RootLayout({
                 </main>
               </NavBarProvider>
             </SidebarProvider>
-          </ThemeProvider>
-        </MobileAppGate>
+          </MobileAppGate>
+        </ThemeProvider>
       </body>
     </html>
   );

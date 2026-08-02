@@ -65,7 +65,7 @@ const Form = ({
 
   return (
     <form
-      className="flex justify-center mt-[6%] mx-[16%] px-10 rounded-md border-black dark:border-white border-2 shadow-2xl"
+      className="mx-auto mt-[6%] flex w-[calc(100%_-_1.5rem)] max-w-3xl justify-center border border-border bg-card px-4 shadow-[4px_4px_0_hsl(var(--border)/0.2)] sm:px-10"
       toolname={tool.name}
       tooldescription={tool.description}
       toolautosubmit=""
@@ -74,16 +74,17 @@ const Form = ({
         onSubmit();
       }}
     >
-      <div className="pt-[30px] pb-[50px]">
-        <h2 className="mb-12 md:text-2xl font-semibold text-center">{title}</h2>
-        <div className="flex  justify-center flex-col md:flex-row">
+      <div className="w-full pb-10 pt-7">
+        <h2 className="mb-10 border-b border-border bg-secondary px-4 py-3 text-center text-sm font-extrabold uppercase tracking-[0.16em] md:text-base">
+          {title}
+        </h2>
+        <div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
           <input
             className="
-          text-rounded text-center text-[60%] sm:text-[90%]
-          w-[150px] h-[30px] sm:w-[200px] sm:h-[35px]
-          m-[4px]
-          border-[1px] border-double border-black dark:border-white rounded placeholder:pl-2
-          shadow-xl
+          h-11 w-full min-w-0 text-center text-xs uppercase tracking-[0.08em]
+          border border-input bg-background px-3 placeholder:normal-case placeholder:tracking-normal
+          sm:w-72 sm:text-sm lg:w-80
+          shadow-sm outline-none focus:border-foreground focus:ring-1 focus:ring-ring
           "
             name="htno1"
             type="text"
@@ -108,11 +109,10 @@ const Form = ({
           {hallticketno2 !== undefined && (
             <input
               className="
-          text-rounded text-center text-[60%] sm:text-[90%]
-          w-[150px] h-[30px] sm:w-[200px] sm:h-[35px]
-          m-[4px]
-          border-[1px] border-double border-black dark:border-white rounded 
-          shadow-xl
+          h-11 w-full min-w-0 text-center text-xs uppercase tracking-[0.08em]
+          border border-input bg-background px-3 placeholder:normal-case placeholder:tracking-normal
+          sm:w-72 sm:text-sm lg:w-80
+          shadow-sm outline-none focus:border-foreground focus:ring-1 focus:ring-ring
           "
               name="htno2"
               type="text"
@@ -133,16 +133,14 @@ const Form = ({
           )}
         </div>
 
-        <div className="flex justify-center mt-[80px]">
+        <div className="mt-12 flex justify-center">
           <button
             type="submit"
             className="
             text-sm md:text-lg
-            px-3 py-1
-            rounded
-            bg-black dark:bg-gray-300
-            dark:text-black text-white
-            w-[100px]
+            min-w-[120px] border border-primary bg-primary px-5 py-2
+            font-bold uppercase tracking-[0.14em] text-primary-foreground
+            transition-colors hover:bg-transparent hover:text-primary
             "
             disabled={isDisabled}
           >

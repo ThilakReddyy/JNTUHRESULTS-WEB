@@ -13,7 +13,7 @@ export default function Home() {
         </div>
         <Link
           href="/"
-          className="text-blue-500 hover:text-blue-600 flex justify-center lg:justify-start hover:underline"
+          className="flex justify-center text-primary underline-offset-4 hover:underline lg:justify-start"
         >
           <Title />
         </Link>
@@ -22,13 +22,13 @@ export default function Home() {
         Welcome to&nbsp;
         <Link
           href="/"
-          className="text-blue-500 hover:text-blue-600  hover:underline"
+          className="text-primary underline-offset-4 hover:underline"
         >
           <Title />
         </Link>
       </div>
       <div className="flex justify-center">
-        <div className="transition-all duration-500 ease-in-out w-[100%] lg:max-w-[60%] 2xl:max-w-[40%] text-sm lg:text-lg text-center bg-black text-white py-3 lg:py-2 m-4 rounded dark:text-black dark:bg-gray-200">
+        <div className="m-4 w-full border border-border bg-secondary py-3 text-center text-sm font-bold uppercase tracking-[0.12em] text-secondary-foreground shadow-[3px_3px_0_hsl(var(--border)/0.16)] transition-colors lg:max-w-[60%] lg:py-2 lg:text-base 2xl:max-w-[40%]">
           Jawaharlal Nehru Technological University, Hyderabad
         </div>
       </div>

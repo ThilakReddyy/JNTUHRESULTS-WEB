@@ -112,7 +112,7 @@ const Calendars = () => {
   return (
     <>
       {!selectedLink ? (
-        <div className="min-h-screen dark:bg-black bg-white dark:text-white text-black px-6 py-8">
+        <div className="min-h-screen bg-background px-6 py-8 text-foreground">
           <div className="max-w-2xl mx-auto">
             <h1 className="text-xl font-semibold tracking-widest mb-8 text-center uppercase">
               Academic Calendars
@@ -156,8 +156,8 @@ const Calendars = () => {
                 <div
                   key={key}
                   onClick={() => handleSelect(key)}
-                  className="border border-black dark:border-white p-4 mb-3 cursor-pointer
-                             hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black
+                  className="mb-3 cursor-pointer border border-border bg-card p-4
+                             hover:bg-secondary hover:text-secondary-foreground
                              transition flex items-center justify-between"
                 >
                   <span>{key}</span>
@@ -168,7 +168,7 @@ const Calendars = () => {
             {/* PDF leaf — open / download */}
             {pdfLink && (
               <div className="mt-2 flex flex-col gap-3">
-                <div className="flex items-center gap-2 border border-black dark:border-white p-4">
+                <div className="flex items-center gap-2 border border-border bg-card p-4">
                   <FaFilePdf className="text-red-600 text-lg flex-shrink-0" />
                   <span className="text-sm font-medium">{path[path.length - 1]}</span>
                 </div>
@@ -178,7 +178,7 @@ const Calendars = () => {
                   <Link
                     href={pdfLink}
                     target="_blank"
-                    className=" flex-1 text-sm px-4 py-2 border border-black dark:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition text-center"
+                    className="flex-1 border border-border px-4 py-2 text-center text-sm transition-colors hover:bg-primary hover:text-primary-foreground"
                   >
                     View
                   </Link>

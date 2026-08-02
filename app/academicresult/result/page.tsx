@@ -53,11 +53,12 @@ const AcademicResultResult = () => {
 
         {academicResult ? (
           <>
-            <ResultDetails details={academicResult.details} />
+            <ResultDetails details={academicResult.details} cmm />
             <AcademicResult result={academicResult.results} academic={true} />
             <TotalResult
               CGPA={academicResult.results.CGPA}
               backlogs={academicResult.results.backlogs}
+              cmm
             />
           </>
         ) : (

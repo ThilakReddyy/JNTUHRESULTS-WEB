@@ -37,7 +37,7 @@ const CreditCheckerResult = () => {
           </p>
         </div>
 
-        <ResultDetails details={creditsCheckerReport.details} />
+        <ResultDetails details={creditsCheckerReport.details} cmm />
 
         <CreditsCheckerResult
           results={creditsCheckerReport.results}

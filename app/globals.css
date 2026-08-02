@@ -4,67 +4,65 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 100 25% 93%;
+    --foreground: 160 18% 11%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 90 27% 96%;
+    --card-foreground: 160 18% 11%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 90 27% 96%;
+    --popover-foreground: 160 18% 11%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 160 18% 11%;
+    --primary-foreground: 100 25% 93%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 103 18% 87%;
+    --secondary-foreground: 160 18% 11%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 100 15% 89%;
+    --muted-foreground: 150 8% 36%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 103 18% 84%;
+    --accent-foreground: 160 18% 11%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 150 11% 31%;
+    --input: 150 11% 31%;
+    --ring: 40 68% 46%;
 
-    --radius: 0.5rem;
+    --radius: 0rem;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
+    --background: 222 29% 7%;
+    --foreground: 210 20% 94%;
 
-    /* --background: 228 10% 11%; */
-    --foreground: 210 40% 98%;
+    --card: 221 27% 11%;
+    --card-foreground: 210 20% 94%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --popover: 221 27% 11%;
+    --popover-foreground: 210 20% 94%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --primary: 210 20% 94%;
+    --primary-foreground: 222 29% 7%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 220 22% 17%;
+    --secondary-foreground: 210 20% 94%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --muted: 220 18% 16%;
+    --muted-foreground: 215 14% 68%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 218 20% 21%;
+    --accent-foreground: 210 20% 94%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 215 15% 38%;
+    --input: 215 15% 38%;
+    --ring: 40 68% 55%;
   }
 }
 
@@ -74,6 +72,43 @@
   }
   body {
     @apply bg-background text-foreground;
+    min-height: 100vh;
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.025) 1px, transparent 1px);
+    background-size: 28px 28px;
+    background-attachment: fixed;
+  }
+
+  .dark body {
+    background-image:
+      linear-gradient(hsl(var(--foreground) / 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--foreground) / 0.018) 1px, transparent 1px);
+  }
+
+  ::selection {
+    color: hsl(var(--primary-foreground));
+    background: hsl(var(--primary));
+  }
+
+  input,
+  select,
+  textarea {
+    @apply border-input bg-card text-foreground placeholder:text-muted-foreground;
+  }
+
+  hr {
+    @apply border-border;
+  }
+}
+
+@layer components {
+  .document-panel {
+    @apply border border-border bg-card text-card-foreground shadow-sm;
+  }
+
+  .document-band {
+    @apply border-b border-border bg-secondary px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em];
   }
 }
 
@@ -82,18 +117,16 @@
 }
 
 table {
-  border: 1px solid black;
-  border-collapse: separate;
-  border-spacing: 2px;
+  border: 1px solid hsl(var(--border));
+  border-collapse: collapse;
+  border-spacing: 0;
   width: 100%;
   border-bottom-width: 1px;
 }
 
 th,
 td {
-  border: 1px solid black;
-  border-collapse: separate;
-  border-spacing: 2px;
+  border: 1px solid hsl(var(--border));
   height: 20px;
 }
 
@@ -128,4 +161,50 @@ td {
 .animate-blur-fade {
   @apply transition-all;
   animation: blurFadeOut 0.5s ease-out forwards;
+}
+
+/* Keep legacy pages aligned with the document system without changing behavior. */
+.rounded,
+.rounded-sm,
+.rounded-md,
+.rounded-lg,
+.rounded-xl,
+.rounded-2xl,
+.rounded-3xl {
+  border-radius: 0 !important;
+}
+
+.home-links > a > div {
+  color: hsl(var(--card-foreground)) !important;
+  background: hsl(var(--card)) !important;
+  border-color: hsl(var(--border)) !important;
+  box-shadow: 3px 3px 0 hsl(var(--border) / 0.18) !important;
+}
+
+.home-links > a > div:hover {
+  color: hsl(var(--foreground)) !important;
+  background: hsl(var(--secondary)) !important;
+  border-color: hsl(var(--foreground)) !important;
+  box-shadow: 5px 5px 0 hsl(var(--border) / 0.24) !important;
+  transform: translate(-2px, -2px) !important;
+}
+
+.home-links > a > div:hover h3,
+.home-links > a > div:hover p {
+  color: hsl(var(--foreground)) !important;
+}
+
+main h1 {
+  color: hsl(var(--foreground)) !important;
+  letter-spacing: 0.08em;
+}
+
+main :is(.shadow-sm, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl) {
+  box-shadow: 3px 3px 0 hsl(var(--border) / 0.14) !important;
+}
+
+main :is(.rounded-lg, .rounded-xl, .rounded-2xl).bg-white {
+  color: hsl(var(--card-foreground)) !important;
+  background-color: hsl(var(--card)) !important;
+  border-color: hsl(var(--border)) !important;
 }

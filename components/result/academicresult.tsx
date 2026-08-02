@@ -1,5 +1,176 @@
 import { Fragment } from "react";
 
+const GRADE_POINTS: Record<string, number | string> = {
+  O: 10,
+  "A+": 9,
+  A: 8,
+  "B+": 7,
+  B: 6,
+  C: 5,
+  D: 5,
+  F: 0,
+  AB: 0,
+  "-": "-",
+};
+
+const ACADEMIC_YEARS = [
+  { label: "I YEAR", semesters: ["1-1", "1-2"] },
+  { label: "II YEAR", semesters: ["2-1", "2-2"] },
+  { label: "III YEAR", semesters: ["3-1", "3-2"] },
+  { label: "IV YEAR", semesters: ["4-1", "4-2"] },
+];
+
+const CmmSemesterTable = ({
+  semester,
+  position,
+  rowCount,
+}: {
+  semester: Record<string, any>;
+  position: number;
+  rowCount: number;
+}) => (
+  <section className="h-full min-w-0 bg-[#edf3e7] text-[#17211e] dark:bg-[#111827] dark:text-gray-100">
+    <div className="flex min-h-9 items-center justify-between border-b border-[#2a342f] bg-[#e7ebe2] px-3 py-2 dark:border-white/[0.15] dark:bg-[#172033]">
+      <span className="text-[11px] font-bold uppercase tracking-[0.14em]">
+        {position === 0 ? "I Semester" : "II Semester"}
+        <span className="ml-2 text-[9px] font-semibold tracking-normal text-[#53605a] dark:text-gray-400">
+          ({semester.semester})
+        </span>
+      </span>
+      <span className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[#53605a] dark:text-gray-400">
+        SGPA
+        <strong className="ml-1.5 text-[11px] text-[#17211e] dark:text-gray-100">
+          {semester.semesterSGPA ?? "—"}
+        </strong>
+      </span>
+    </div>
+
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[430px] table-fixed border-collapse text-[#17211e] dark:text-gray-100">
+        <colgroup>
+          <col className="w-10" />
+          <col />
+          <col className="w-14" />
+          <col className="w-14" />
+          <col className="w-16" />
+        </colgroup>
+        <thead>
+          <tr className="h-12 bg-[#e3e8de] text-[9px] font-bold uppercase tracking-wide dark:bg-white/[0.04]">
+            <th className="border-b border-r border-[#2a342f] px-1 text-center dark:border-white/[0.15]">
+              S.No.
+            </th>
+            <th className="border-b border-r border-[#2a342f] px-3 text-left dark:border-white/[0.15]">
+              Subject Title
+            </th>
+            <th className="border-b border-r border-[#2a342f] px-1 text-center leading-tight dark:border-white/[0.15]">
+              Grade Point
+            </th>
+            <th className="border-b border-r border-[#2a342f] px-1 text-center dark:border-white/[0.15]">
+              Grade
+            </th>
+            <th className="border-b border-[#2a342f] px-1 text-center dark:border-white/[0.15]">
+              Credits
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {Array.from({ length: rowCount }, (_, subjectIndex) => {
+            const subject = semester.subjects[subjectIndex] as
+              | Record<string, any>
+              | undefined;
+            const grade = String(subject?.grades || "-").toUpperCase();
+            return (
+              <tr
+                key={subject?.subjectCode || `empty-${subjectIndex}`}
+                className="h-12 text-[11px] [&>td]:border-b [&>td]:border-[#7b867f] dark:[&>td]:border-white/10 last:[&>td]:border-b-0"
+              >
+                <td className="border-r px-1 text-center tabular-nums">
+                  {subject ? subjectIndex + 1 : ""}
+                </td>
+                <td className="border-r px-3 py-2 font-medium uppercase leading-snug">
+                  <span className="line-clamp-2">
+                    {subject?.subjectName || ""}
+                  </span>
+                </td>
+                <td className="border-r px-1 text-center font-semibold tabular-nums">
+                  {subject ? (GRADE_POINTS[grade] ?? "-") : ""}
+                </td>
+                <td className="border-r px-1 text-center font-bold">
+                  {subject ? grade : ""}
+                </td>
+                <td className="px-1 text-center tabular-nums">
+                  {subject ? Number(subject.credits || 0).toFixed(1) : ""}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </section>
+);
+
+const CmmAcademicResult = ({ result }: { result: Record<string, any> }) => {
+  const semesters = new Map<string, Record<string, any>>(
+    result.semesters.map((semester: Record<string, any>) => [
+      semester.semester,
+      semester,
+    ]),
+  );
+
+  return (
+    <div className="overflow-hidden border border-[#2a342f] bg-[#edf3e7] shadow-sm dark:border-white/[0.15] dark:bg-[#111827]">
+      {ACADEMIC_YEARS.map((year) => {
+        const availableSemesters = year.semesters
+          .map((code, position) => ({
+            semester: semesters.get(code),
+            position,
+          }))
+          .filter(
+            (
+              item,
+            ): item is { semester: Record<string, any>; position: number } =>
+              Boolean(item.semester),
+          );
+
+        if (availableSemesters.length === 0) return null;
+        const rowCount = Math.max(
+          ...availableSemesters.map(({ semester }) => semester.subjects.length),
+        );
+
+        return (
+          <div
+            key={year.label}
+            className="border-b border-[#2a342f] last:border-b-0 dark:border-white/[0.15]"
+          >
+            <div className="border-b border-[#2a342f] bg-[#dce5d8] px-4 py-2 text-center text-[11px] font-extrabold tracking-[0.2em] text-[#17211e] dark:border-white/[0.15] dark:bg-[#172033] dark:text-gray-100">
+              {year.label}
+            </div>
+            <div
+              className={`grid grid-cols-1 gap-1 bg-[#edf3e7] p-1 dark:bg-[#111827] ${
+                availableSemesters.length === 2 ? "lg:grid-cols-2" : ""
+              }`}
+            >
+              {availableSemesters.map(({ semester, position }) => (
+                <div
+                  key={semester.semester}
+                  className="border border-[#2a342f] dark:border-white/[0.15]"
+                >
+                  <CmmSemesterTable
+                    semester={semester}
+                    position={position}
+                    rowCount={rowCount}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 const gradeConfig = (grade: string) => {
   if (!grade)
     return {
@@ -48,7 +219,13 @@ const gradeConfig = (grade: string) => {
   };
 };
 
-const AcademicResult = ({ result, academic = false }: AcademicResultProps) => {
+const AcademicResult = ({
+  result,
+  academic = false,
+  cmm = false,
+}: AcademicResultProps) => {
+  if (academic || cmm) return <CmmAcademicResult result={result} />;
+
   return (
     <div className="flex flex-col gap-6">
       {result.semesters.map((semester: Record<string, any>, index: number) => (

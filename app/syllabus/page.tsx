@@ -77,7 +77,7 @@ export default function SyllabusPage() {
 
   return (
     <div
-      className={` dark:bg-black h-[93vh] bg-white dark:text-white text-black
+      className={` h-[93vh] bg-background text-foreground
       ${selectedPdf ? "" : "px-6 py-8"}`}
     >
       {!selectedPdf ? (
@@ -126,8 +126,8 @@ export default function SyllabusPage() {
               <div
                 key={key}
                 onClick={() => handleClick(key)}
-                className="border border-black dark:border-white p-4 mb-3 cursor-pointer
-                           hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black
+                className="mb-3 cursor-pointer border border-border bg-card p-4
+                           hover:bg-secondary hover:text-secondary-foreground
                            transition flex items-center justify-between"
               >
                 <span>{key}</span>
@@ -143,7 +143,7 @@ export default function SyllabusPage() {
                 className="mb-3 w-full flex gap-0 md:gap-4 flex-col md:flex-row"
               >
                 {/* PDF title row */}
-                <div className="flex items-center gap-2 border border-black dark:border-white p-4 mb-2 flex-1">
+                <div className="mb-2 flex flex-1 items-center gap-2 border border-border bg-card p-4">
                   <FaFilePdf className="text-red-600 text-lg flex-shrink-0" />
                   <span className="text-sm font-medium">{pdf.title}</span>
                 </div>
@@ -154,8 +154,8 @@ export default function SyllabusPage() {
                 <Link
                   href={pdf.link}
                   target="_blank"
-                  className="text-sm px-4 py-2 md:h-14 md:w-24 flex w-full items-center justify-center border border-black dark:border-white
-                               hover:bg-white dark:hover:bg-black hover:text-black dark:hover:text-white bg-white text-black
+                  className="flex w-full items-center justify-center border border-border bg-card px-4 py-2 text-sm text-card-foreground
+                               hover:bg-secondary hover:text-secondary-foreground md:h-14 md:w-24
                                transition text-center"
                 >
                   View

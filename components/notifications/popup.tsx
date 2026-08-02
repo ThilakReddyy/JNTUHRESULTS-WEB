@@ -57,7 +57,7 @@ const NotificationPopUp = () => {
         >
           <div className="flex justify-center items-center h-full">
             <div
-              className={`md:w-[50%] font-bold text-center flex justify-center dark:bg-[#1B1C1E] w-full  items-center shadow-xl bg-white p-2 rounded-md border m-2 `}
+              className="m-2 flex w-full items-center justify-center border border-border bg-card p-2 text-center font-bold text-card-foreground shadow-[4px_4px_0_hsl(var(--border)/0.2)] md:w-[50%]"
             >
               <div className="text-center w-full">
                 <div className="py-2 flex justify-around ">
@@ -84,13 +84,13 @@ const NotificationPopUp = () => {
                         <div className="font-sans text-sm ">
                           {result["title"]}
                         </div>
-                        <table className="dark:border-white">
+                        <table>
                           <tbody className="text-xs md:text-lg">
                             <tr>
-                              <th className="dark:border-white">
+                              <th>
                                 Result Link 1
                               </th>
-                              <th className="dark:border-white">
+                              <th>
                                 <Link
                                   href={`http://202.63.105.184/results/jsp/SearchResult.jsp${
                                     result?.link?.includes("?")
@@ -105,10 +105,10 @@ const NotificationPopUp = () => {
                               </th>
                             </tr>
                             <tr>
-                              <th className="dark:border-white">
+                              <th>
                                 Result Link 2
                               </th>
-                              <th className="dark:border-white">
+                              <th>
                                 <Link
                                   href={`http://results.jntuh.ac.in/results/jsp/SearchResult.jsp${
                                     result?.link?.includes("?")
@@ -132,7 +132,7 @@ const NotificationPopUp = () => {
                   <Link
                     href="https://t.me/jntuhvercel"
                     target="_blank"
-                    className="flex dark:bg-white p-2 bg-black text-white dark:text-black justify-center items-center mt-4"
+                    className="mt-4 flex items-center justify-center border border-primary bg-primary p-2 text-primary-foreground transition-colors hover:bg-transparent hover:text-primary"
                   >
                     Join us on Telegram{"  "}
                     <FaTelegram size={18} className="ml-1" />

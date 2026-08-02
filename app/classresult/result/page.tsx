@@ -46,19 +46,19 @@ const ClassResultResult = () => {
               (classresult: AcademicResulProps, index: number) => (
                 <div key={index} className="relative">
                   {/* Student number badge */}
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="flex-shrink-0 w-7 h-7 rounded-full bg-[#0b3954] text-white text-xs font-bold flex items-center justify-center">
+                  <div className="mb-3 flex items-center gap-3 border border-border bg-secondary px-3 py-2">
+                    <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center border border-border bg-primary text-xs font-bold text-primary-foreground">
                       {index + 1}
                     </span>
-                    <div className="flex-1 h-px bg-gray-200 dark:bg-white/10" />
-                    <span className="text-xs font-semibold text-gray-400 dark:text-gray-500 tracking-wider uppercase whitespace-nowrap">
+                    <div className="h-px flex-1 bg-border" />
+                    <span className="whitespace-nowrap text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                       {classresult.details?.rollNumber}
                     </span>
-                    <div className="flex-1 h-px bg-gray-200 dark:bg-white/10" />
+                    <div className="h-px flex-1 bg-border" />
                   </div>
 
                   {/* Per-student result block */}
-                  <ResultDetails details={classresult.details} />
+                  <ResultDetails details={classresult.details} cmm />
                   <AcademicResult
                     result={classresult.results}
                     academic={true}
@@ -66,6 +66,7 @@ const ClassResultResult = () => {
                   <TotalResult
                     CGPA={classresult.results.CGPA}
                     backlogs={classresult.results.backlogs}
+                    cmm
                   />
                 </div>
               ),

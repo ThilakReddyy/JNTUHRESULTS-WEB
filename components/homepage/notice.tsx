@@ -26,43 +26,39 @@ const NoticePopup = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-md md:hidden"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/55 p-4 backdrop-blur-sm md:hidden"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-sm overflow-hidden bg-white/90 dark:bg-[#1B1C1E]/90 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-2xl rounded-3xl"
+            className="relative w-full max-w-sm border border-border bg-card text-card-foreground shadow-[5px_5px_0_hsl(var(--border)/0.25)]"
           >
-            {/* Decorative background elements */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600" />
-
-            <div className="p-6 pt-8">
+            <div className="flex items-center justify-between border-b border-border bg-secondary px-4 py-3 text-secondary-foreground">
+              <span className="text-[10px] font-extrabold uppercase tracking-[0.2em]">
+                New Launch
+              </span>
               <button
                 onClick={() => setHidden(true)}
-                className="absolute top-4 right-4 p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+                className="border border-border bg-card p-1.5 text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                 aria-label="Close"
               >
-                <FaTimes size={18} />
+                <FaTimes size={14} />
               </button>
+            </div>
 
+            <div className="p-6">
               <div className="text-center">
                 <motion.div
                   initial={{ y: -10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.1 }}
                 >
-                  <span className="inline-block px-3 py-1 mb-4 text-[10px] font-bold tracking-wider text-white uppercase bg-blue-600 rounded-full">
-                    New Launch
-                  </span>
-                  <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-                    Get{" "}
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                      JNTUHConnect
-                    </span>
+                  <h2 className="text-2xl font-extrabold uppercase tracking-[0.06em] text-foreground">
+                    Get JNTUH Connect
                   </h2>
-                  <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                  <p className="mt-2 text-sm text-muted-foreground">
                     Stay ahead with instant results & official updates right on
                     your phone.
                   </p>
@@ -74,19 +70,19 @@ const NoticePopup = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <div className="flex items-center gap-3 p-3 bg-blue-50/50 dark:bg-blue-900/20 rounded-2xl border border-blue-100/50 dark:border-blue-800/30">
-                    <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-600 rounded-lg text-white font-bold text-xs">
+                  <div className="flex items-center gap-3 border border-border bg-background p-3">
+                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center border border-border bg-primary text-xs font-bold text-primary-foreground">
                       01
                     </div>
-                    <p className="text-xs font-medium text-left text-gray-700 dark:text-gray-300">
+                    <p className="text-left text-xs font-medium text-foreground">
                       Instant Notifications for Results
                     </p>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-purple-50/50 dark:bg-purple-900/20 rounded-2xl border border-purple-100/50 dark:border-purple-800/30">
-                    <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-purple-600 rounded-lg text-white font-bold text-xs">
+                  <div className="flex items-center gap-3 border border-border bg-background p-3">
+                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center border border-border bg-primary text-xs font-bold text-primary-foreground">
                       02
                     </div>
-                    <p className="text-xs font-medium text-left text-gray-700 dark:text-gray-300">
+                    <p className="text-left text-xs font-medium text-foreground">
                       Access All Your Results in One Place
                     </p>
                   </div>
@@ -106,9 +102,8 @@ const NoticePopup = () => {
                         ? "Download JNTUH Connect on the App Store"
                         : "Download JNTUH Connect on Google Play"
                     }
-                    className="relative group flex items-center justify-center gap-3 w-full py-4 px-6 bg-gray-900 dark:bg-white text-white dark:text-black rounded-2xl font-bold shadow-lg overflow-hidden transition-all"
+                    className="group relative flex w-full items-center justify-center gap-3 overflow-hidden border border-primary bg-primary px-6 py-4 font-bold uppercase tracking-[0.06em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary"
                   >
-                    <motion.div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {isIOS ? (
                       <FaApple className="text-xl" />
                     ) : (
@@ -128,7 +123,7 @@ const NoticePopup = () => {
 
                 <button
                   onClick={() => setHidden(true)}
-                  className="mt-4 text-xs font-medium text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 underline underline-offset-4 transition-colors"
+                  className="mt-4 text-xs font-medium text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground"
                 >
                   Maybe later
                 </button>

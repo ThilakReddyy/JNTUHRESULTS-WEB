@@ -20,7 +20,7 @@ const Navbar = () => {
   const { navbar } = useNavBarContext();
   return (
     <nav
-      className={`fixed inset-y-0 h-16 w-full z-50 p-4 px-4 lg:px-8  dark:bg-[#09090B] bg-white grid grid-cols-3 lg:grid-cols-2 border-b ${
+      className={`fixed inset-y-0 z-50 grid h-16 w-full grid-cols-3 border-b border-border bg-background/95 p-4 px-4 backdrop-blur-sm lg:grid-cols-2 lg:px-8 ${
         navbar ? "block" : "hidden"
       }`}
     >

@@ -34,7 +34,7 @@ const AcademicAllResultResult = () => {
           </p>
         </div>
 
-        <ResultDetails details={allResult.details} />
+        <ResultDetails details={allResult.details} cmm />
         <AcademicAllResult
           results={allResult.results}
           htno={allResult.details.rollNumber}

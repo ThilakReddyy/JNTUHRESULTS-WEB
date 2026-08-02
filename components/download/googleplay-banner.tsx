@@ -25,7 +25,7 @@ export const GooglePlayBadge = ({ className = "" }: { className?: string }) => {
                     ? "Download JNTUH Connect on the App Store"
                     : "Download JNTUH Connect on Google Play"
             }
-            className={`inline-flex items-center gap-1.5 rounded-full border border-green-500 bg-green-500/10 px-3 py-1 text-[11px] font-semibold text-green-400 transition-all hover:bg-green-500/20 hover:text-green-300 active:scale-95 ${className}`}
+            className={`inline-flex items-center gap-1.5 border border-green-600/60 bg-green-500/10 px-3 py-1 text-[11px] font-semibold text-green-700 transition-colors hover:bg-green-500/20 dark:text-green-400 ${className}`}
         >
             {isIOS ? (
                 <FaApple className="shrink-0" size={12} />
@@ -45,9 +45,9 @@ export const GooglePlayBanner = () => {
     const isIOS = useMobilePlatform() === "ios";
 
     return (
-        <div className="mx-4 my-8 flex flex-col items-center gap-4 rounded-2xl border border-green-500/20 bg-gradient-to-br from-green-950/30 to-emerald-900/10 px-6 py-8 text-center dark:border-green-500/30 dark:from-green-950/50 dark:to-emerald-950/30 lg:mx-auto lg:max-w-2xl">
+        <div className="mx-4 my-8 flex flex-col items-center gap-4 border border-border bg-card px-6 py-8 text-center shadow-[3px_3px_0_hsl(var(--border)/0.16)] lg:mx-auto lg:max-w-2xl">
             {/* Icon row */}
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-green-500/20 text-green-400">
+            <div className="flex h-14 w-14 items-center justify-center border border-green-600/40 bg-green-500/10 text-green-600 dark:text-green-400">
                 {isIOS ? <FaApple size={30} /> : <FaGooglePlay size={28} />}
             </div>
 
@@ -70,7 +70,7 @@ export const GooglePlayBanner = () => {
                         : "Download JNTUH Connect on Google Play"
                 }
             >
-                <div className="inline-flex items-center gap-3 rounded-xl bg-black px-5 py-3 transition-transform hover:scale-105 active:scale-95">
+                <div className="inline-flex items-center gap-3 border border-border bg-black px-5 py-3 transition-transform hover:scale-105 active:scale-95">
                     {isIOS ? (
                         <FaApple className="text-white" size={24} />
                     ) : (

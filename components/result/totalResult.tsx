@@ -1,7 +1,43 @@
 import React from "react";
 
-const TotalResult = ({ CGPA, backlogs }: { CGPA: any; backlogs: any }) => {
+const TotalResult = ({
+  CGPA,
+  backlogs,
+  cmm = false,
+}: {
+  CGPA: any;
+  backlogs: any;
+  cmm?: boolean;
+}) => {
   const hasBacklogs = backlogs > 0;
+
+  if (cmm) {
+    return (
+      <section className="mt-4 border border-[#2a342f] bg-[#2a342f] shadow-sm dark:border-white/[0.15] dark:bg-white/[0.15]">
+        <div className="bg-[#dce5d8] px-4 py-2 text-center text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#17211e] dark:bg-[#172033] dark:text-gray-100">
+          Academic Summary
+        </div>
+        <div className="grid grid-cols-2 gap-px border-t border-[#2a342f] bg-[#2a342f] text-[#17211e] dark:border-white/[0.15] dark:bg-white/[0.15] dark:text-gray-100">
+          <div className="flex min-h-20 flex-col items-center justify-center bg-[#edf3e7] px-4 py-3 dark:bg-[#111827]">
+            <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#53605a] dark:text-gray-400">
+              Total Backlogs
+            </p>
+            <p className="mt-1 text-2xl font-extrabold tabular-nums">
+              {backlogs}
+            </p>
+          </div>
+          <div className="flex min-h-20 flex-col items-center justify-center bg-[#edf3e7] px-4 py-3 dark:bg-[#111827]">
+            <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#53605a] dark:text-gray-400">
+              Aggregate CGPA
+            </p>
+            <p className="mt-1 text-2xl font-extrabold tabular-nums">
+              {hasBacklogs ? "—" : CGPA}
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <div className="mt-6 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-sm">

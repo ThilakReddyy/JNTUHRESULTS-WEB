@@ -22,14 +22,14 @@ const SideMenubar = () => {
   const getButtonClass = (href: string) => {
     const path = "/" + pathname.split("/")[1];
 
-    return `flex w-full  text-sm items-center gap-4 py-3.5 px-3 hover:bg-muted rounded-lg transition-background group ${
-      href === path ? "text-primary bg-muted" : "text-muted-foreground"
+    return `flex w-full border border-transparent text-sm items-center gap-4 py-3.5 px-3 hover:border-border hover:bg-muted transition-colors group ${
+      href === path ? "border-border text-primary bg-muted" : "text-muted-foreground"
     } font-medium`;
   };
 
   return (
     <nav
-      className={` h-full flex flex-col w-full lg:w-64 fixed inset-y-0 bg-white dark:bg-[#09090B]  pt-16 transition-all duration-150 ease-in ${
+      className={`fixed inset-y-0 flex h-full w-full flex-col bg-background pt-16 transition-all duration-150 ease-in lg:w-64 ${
         sidebar ? "left-0 " : "-left-full"
       } lg:left-0 z-10`}
     >
@@ -43,8 +43,7 @@ const SideMenubar = () => {
                 return (
                   <div className="" key={index}>
                     <div
-                      className="flex flex-1 w-full text-sm items-center gap-4  hover:bg-muted rounded-lg transition-background
-                      group text-muted-foreground font-medium py-4 px-3 mb-1 cursor-pointer"
+                      className="mb-1 flex w-full flex-1 cursor-pointer items-center gap-4 border border-transparent px-3 py-4 text-sm font-medium text-muted-foreground transition-colors hover:border-border hover:bg-muted"
                       onClick={() => {
                         setToggleResult(!toggleResult);
                       }}
@@ -103,7 +102,7 @@ const SideMenubar = () => {
                                 toggleSidebar();
                               }
                             }}
-                            className={` pl-4 my-1 flex w-full text-sm items-center gap-4 px-2 py-3 hover:bg-muted rounded-lg transition-background group text-muted-foreground text-medium
+                            className={` my-1 flex w-full items-center gap-4 border border-transparent px-2 py-3 pl-4 text-sm text-muted-foreground transition-colors hover:border-border hover:bg-muted group text-medium
                                  ${item.href === path ? "text-primary bg-muted" : "text-muted-foreground"}`}
                           >
                             {item.title}
@@ -144,13 +143,13 @@ const SideMenubar = () => {
               ? "Download JNTUH Connect on the App Store"
               : "Download JNTUH Connect on Google Play"
           }
-          className={`flex items-center gap-3 w-full rounded-xl border px-4 py-3 transition-all active:scale-[0.98] ${
+          className={`flex w-full items-center gap-3 border px-4 py-3 transition-colors active:scale-[0.98] ${
             isIOS
               ? "border-gray-500/30 bg-gray-500/10 hover:bg-gray-500/20"
               : "border-green-500/30 bg-green-500/10 hover:bg-green-500/20"
           }`}
         >
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-black">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-border bg-black">
             {isIOS ? (
               <FaApple className="text-white" size={18} />
             ) : (

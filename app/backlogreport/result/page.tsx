@@ -35,32 +35,36 @@ const BacklogReportResult = () => {
         </div>
 
         {/* Student details */}
-        <ResultDetails details={backlogreport.details} />
+        <ResultDetails details={backlogreport.details} cmm />
 
         {backlogreport.results.totalBacklogs != 0 ? (
           <>
             {/* Total backlogs banner */}
-            <div className="rounded-2xl overflow-hidden border border-red-200 dark:border-red-900/40 shadow-sm my-4">
-              <div className="flex items-center justify-between px-5 py-4 bg-white dark:bg-white/5">
-                <span className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+            <div className="my-4 border border-border bg-card shadow-sm">
+              <div className="flex items-center justify-between bg-secondary px-5 py-3 text-secondary-foreground">
+                <span className="text-xs font-bold uppercase tracking-widest">
                   Total Backlogs
                 </span>
-                <span className="text-2xl font-extrabold text-red-500 dark:text-red-400">
+                <span className="text-xl font-extrabold text-red-600 dark:text-red-400">
                   {backlogreport.results.totalBacklogs}
                 </span>
               </div>
             </div>
 
-            <AcademicResult result={backlogreport.results} academic={false} />
+            <AcademicResult
+              result={backlogreport.results}
+              academic={false}
+              cmm
+            />
           </>
         ) : (
           /* No backlogs banner */
-          <div className="rounded-2xl overflow-hidden border border-emerald-200 dark:border-emerald-900/40 shadow-sm my-4">
-            <div className="flex items-center justify-between px-5 py-4 bg-white dark:bg-white/5">
-              <span className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+          <div className="my-4 border border-border bg-card shadow-sm">
+            <div className="flex items-center justify-between bg-secondary px-5 py-3 text-secondary-foreground">
+              <span className="text-xs font-bold uppercase tracking-widest">
                 Status
               </span>
-              <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 px-3 py-1 rounded-full">
+              <span className="border border-emerald-600/40 bg-emerald-500/10 px-3 py-1 text-sm font-bold text-emerald-700 dark:text-emerald-400">
                 ✓ No Backlogs
               </span>
             </div>

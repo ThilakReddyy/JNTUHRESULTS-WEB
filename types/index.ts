@@ -45,6 +45,7 @@ interface ResultDetailsProps {
 interface AcademicResultProps {
   result: Record<string, any>;
   academic: boolean;
+  cmm?: boolean;
 }
 
 interface AcademicResulProps {

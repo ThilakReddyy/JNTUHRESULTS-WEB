@@ -1,26 +1,15 @@
 "use client";
 import React from "react";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import AdComponent from "../ads/adcomponent";
 const Footer = () => {
-  const path = usePathname();
-
   return (
     <>
-      <div className="mt-2">
-        <div className="font-serif mt-1 block text-left text-[#808080] ml-[17%] text-[55%] md:text-[80%]">
-          It does consider the RCRV Results
+      <div className="mx-auto mt-8 max-w-4xl border-t border-border px-4 py-5 text-muted-foreground">
+        <div className="grid gap-px border border-border bg-border text-[10px] uppercase tracking-[0.08em] md:grid-cols-2 md:text-xs">
+          <div className="bg-card px-4 py-2">Includes RCRV results</div>
+          <div className="bg-card px-4 py-2">Available for R18 and newer regulations</div>
         </div>
-        <div className="font-serif mt-1 block text-left text-[#808080] ml-[17%] mb-4 text-[55%] md:text-[80%]">
-          It only works above R18 Regulation
-        </div>
-        <center>
-          <hr className="w-[64%] mt-4 mb-1 " />
-        </center>
-        <center>
-          <hr className="w-[64%]  text-[#808080]" />
-        </center>
 
         <span className="mt-4  text-center mx-[18%] mb-4 text-[75%] sm:text-[100%] hidden">
           Made with ❤ by &nbsp;
@@ -56,7 +45,7 @@ const Footer = () => {
             </a>
           </p>
         </span>
-        <span className="mt-4 block text-center mx-[18%] mb-4 text-[75%] sm:text-[100%]">
+        <span className="mt-4 block text-center text-xs sm:text-sm">
           Join us on{" "}
           <Link
             href="https://t.me/s/jntuhvercel"
