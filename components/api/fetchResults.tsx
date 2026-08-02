@@ -393,12 +393,13 @@ export const ACCEPTED_PROOF_MIME = [
   "image/jpg",
 ];
 export const MAX_PROOF_SIZE_BYTES = 5 * 1024 * 1024;
+const PROOF_TOO_LARGE_MESSAGE =
+  "File content uploaded is too large. Please keep it under 5 MB.";
 
 export const validateProofFile = (file: File | null | undefined): string | null => {
   if (!file) return "Please choose a file to upload.";
   if (file.size === 0) return "Uploaded file is empty.";
-  if (file.size > MAX_PROOF_SIZE_BYTES)
-    return "File exceeds the 5MB upload limit.";
+  if (file.size > MAX_PROOF_SIZE_BYTES) return PROOF_TOO_LARGE_MESSAGE;
   if (!ACCEPTED_PROOF_MIME.includes(file.type))
     return "Only PDF or image (PNG/JPEG) uploads are accepted.";
   return null;
@@ -428,6 +429,14 @@ export const uploadGraceMarksProof = async (
         rollNumber: body.rollNumber,
         downloadUrl: body.downloadUrl,
         uploadedAt: body.uploadedAt,
+      };
+    }
+
+    if (response.status === 413) {
+      return {
+        kind: "failure",
+        message: PROOF_TOO_LARGE_MESSAGE,
+        retriable: false,
       };
     }
 
@@ -470,6 +479,13 @@ export const uploadGraceMarksProof = async (
     };
   } catch (e: any) {
     if (axios.isAxiosError(e)) {
+      if (e.response?.status === 413) {
+        return {
+          kind: "failure",
+          message: PROOF_TOO_LARGE_MESSAGE,
+          retriable: false,
+        };
+      }
       if (e.code === "ECONNABORTED") {
         return {
           kind: "failure",
