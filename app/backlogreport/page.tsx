@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 
 import { useRouter } from "next/navigation";
 import Footer from "@/components/footer/footer";
-import { sleep } from "@/components/customfunctions/timer";
 import {
   fetchAcademicResult,
   fetchBacklogReport,
@@ -29,7 +28,6 @@ const BacklogReport = () => {
 
     setIsCooldown(true);
     toast.loading("Result are been fetched");
-    await sleep(1.5);
     try {
       const result = await fetchBacklogReport(hallticketno);
       toast.dismiss();
