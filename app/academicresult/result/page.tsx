@@ -8,7 +8,10 @@ import TotalResult from "@/components/result/totalResult";
 import ResultDetailsSkeleton from "@/components/skeleton/ResultDetailsSkeleton";
 import AcademicResultSkeleton from "@/components/skeleton/AcademicResultsSkeleton";
 import Print from "@/components/download/print";
-import { fetchAcademicResult } from "@/components/api/fetchResults";
+import {
+  downloadCMM,
+  fetchAcademicResult,
+} from "@/components/api/fetchResults";
 import toast from "react-hot-toast";
 
 const AcademicResultResult = () => {
@@ -69,7 +72,10 @@ const AcademicResultResult = () => {
         jntuhconnect.dhethi.com
       </div>
 
-      <Print componentRef={componentRef} />
+      <Print
+        componentRef={componentRef}
+        onDownload={() => downloadCMM(htno || "")}
+      />
     </>
   );
 };
