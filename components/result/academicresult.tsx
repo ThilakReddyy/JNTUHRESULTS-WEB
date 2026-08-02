@@ -1,18 +1,5 @@
 import { Fragment } from "react";
 
-const GRADE_POINTS: Record<string, number | string> = {
-  O: 10,
-  "A+": 9,
-  A: 8,
-  "B+": 7,
-  B: 6,
-  C: 5,
-  D: 5,
-  F: 0,
-  AB: 0,
-  "-": "-",
-};
-
 const ACADEMIC_YEARS = [
   { label: "I YEAR", semesters: ["1-1", "1-2"] },
   { label: "II YEAR", semesters: ["2-1", "2-2"] },
@@ -46,30 +33,39 @@ const CmmSemesterTable = ({
     </div>
 
     <div className="overflow-x-auto">
-      <table className="w-full min-w-[430px] table-fixed border-collapse text-[#17211e] dark:text-gray-100">
+      <table className="w-full table-fixed border-collapse text-[#17211e] dark:text-gray-100 sm:min-w-[560px]">
         <colgroup>
-          <col className="w-10" />
-          <col />
-          <col className="w-14" />
-          <col className="w-14" />
-          <col className="w-16" />
+          <col className="w-[36%] sm:w-24" />
+          <col className="hidden sm:table-column" />
+          <col className="w-[12%] sm:w-12" />
+          <col className="w-[12%] sm:w-12" />
+          <col className="w-[12%] sm:w-12" />
+          <col className="w-[12%] sm:w-12" />
+          <col className="w-[16%] sm:w-14" />
         </colgroup>
         <thead>
           <tr className="h-12 bg-[#e3e8de] text-[9px] font-bold uppercase tracking-wide dark:bg-white/[0.04]">
             <th className="border-b border-r border-[#2a342f] px-1 text-center dark:border-white/[0.15]">
-              S.No.
+              <span className="sm:hidden">Subject</span>
+              <span className="hidden sm:inline">Subject Code</span>
             </th>
-            <th className="border-b border-r border-[#2a342f] px-3 text-left dark:border-white/[0.15]">
+            <th className="hidden border-b border-r border-[#2a342f] px-3 text-left dark:border-white/[0.15] sm:table-cell">
               Subject Title
             </th>
             <th className="border-b border-r border-[#2a342f] px-1 text-center leading-tight dark:border-white/[0.15]">
-              Grade Point
+              Int.
+            </th>
+            <th className="border-b border-r border-[#2a342f] px-1 text-center leading-tight dark:border-white/[0.15]">
+              Ext.
+            </th>
+            <th className="border-b border-r border-[#2a342f] px-1 text-center leading-tight dark:border-white/[0.15]">
+              Total
             </th>
             <th className="border-b border-r border-[#2a342f] px-1 text-center dark:border-white/[0.15]">
               Grade
             </th>
             <th className="border-b border-[#2a342f] px-1 text-center dark:border-white/[0.15]">
-              Credits
+              Cr.
             </th>
           </tr>
         </thead>
@@ -84,16 +80,29 @@ const CmmSemesterTable = ({
                 key={subject?.subjectCode || `empty-${subjectIndex}`}
                 className="h-12 text-[11px] [&>td]:border-b [&>td]:border-[#7b867f] dark:[&>td]:border-white/10 last:[&>td]:border-b-0"
               >
-                <td className="border-r px-1 text-center tabular-nums">
-                  {subject ? subjectIndex + 1 : ""}
+                <td className="border-r px-2 text-center tabular-nums">
+                  <span className="text-sm font-semibold sm:text-[11px]">
+                    {subject?.subjectCode || ""}
+                  </span>
+                  {subject && (
+                    <span className="mt-0.5 block text-[8px] font-medium uppercase leading-tight text-[#53605a] dark:text-gray-400 sm:hidden">
+                      {subject.subjectName}
+                    </span>
+                  )}
                 </td>
-                <td className="border-r px-3 py-2 font-medium uppercase leading-snug">
+                <td className="hidden border-r px-3 py-2 font-medium uppercase leading-snug sm:table-cell">
                   <span className="line-clamp-2">
                     {subject?.subjectName || ""}
                   </span>
                 </td>
+                <td className="border-r px-1 text-center tabular-nums">
+                  {subject ? (subject.internalMarks ?? "—") : ""}
+                </td>
+                <td className="border-r px-1 text-center tabular-nums">
+                  {subject ? (subject.externalMarks ?? "—") : ""}
+                </td>
                 <td className="border-r px-1 text-center font-semibold tabular-nums">
-                  {subject ? (GRADE_POINTS[grade] ?? "-") : ""}
+                  {subject ? (subject.totalMarks ?? "—") : ""}
                 </td>
                 <td className="border-r px-1 text-center font-bold">
                   {subject ? grade : ""}
