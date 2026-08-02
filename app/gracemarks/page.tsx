@@ -119,7 +119,7 @@ const GraceMarksPage = () => {
     }
     setFileError(null);
     setUploading(true);
-    toast.loading("Uploading proof...");
+    toast.loading("Verifying your CMM...");
 
     const result = await uploadGraceMarksProof(activeRoll, file as File);
     toast.dismiss();
@@ -129,6 +129,10 @@ const GraceMarksPage = () => {
       setPhase("success");
     } else if (result.kind === "rate_limited") {
       toast.error(result.message);
+    } else if (result.kind === "not_cmm") {
+      toast.error("Please choose your official CMM file.");
+    } else if (result.kind === "uncertain") {
+      toast.error("Please choose a clearer CMM image or PDF.");
     } else {
       toast.error(result.message);
     }
@@ -354,9 +358,14 @@ const ProofUploader = ({
 
   const failure =
     uploadResult && uploadResult.kind === "failure" ? uploadResult : null;
+  const notCmm =
+    uploadResult && uploadResult.kind === "not_cmm" ? uploadResult : null;
+  const uncertain =
+    uploadResult && uploadResult.kind === "uncertain" ? uploadResult : null;
   const rateLimited =
     uploadResult && uploadResult.kind === "rate_limited" ? uploadResult : null;
-  const canSubmit = !!file && !fileError && !uploading;
+  const needsReplacement = !!notCmm || !!uncertain;
+  const canSubmit = !!file && !fileError && !uploading && !needsReplacement;
 
   return (
     <div className="rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 shadow-sm p-5 mt-6">
@@ -367,6 +376,10 @@ const ProofUploader = ({
         Upload the official consolidated marksheet issued by the university (the
         one that lists all your semesters and grace marks). PDF, PNG or JPEG, up
         to 5&nbsp;MB. One file per submission.
+      </p>
+      <p className="mt-2 text-[11px] text-gray-400 dark:text-gray-500 leading-relaxed">
+        The document is verified as a CMM before it is stored or submitted for
+        review.
       </p>
 
       <label className="mt-4 block">
@@ -393,6 +406,24 @@ const ProofUploader = ({
       {fileError && (
         <div className="mt-2 text-xs font-medium text-red-600 dark:text-red-400">
           {fileError}
+        </div>
+      )}
+
+      {notCmm && (
+        <div className="mt-3 rounded border border-red-200 dark:border-red-900/40 bg-red-50/60 dark:bg-red-900/20 px-3 py-2 text-xs text-red-700 dark:text-red-300">
+          <p className="font-semibold">This file is not a confirmed CMM.</p>
+          <p className="mt-1">{notCmm.message}</p>
+          <p className="mt-1 font-medium">Choose another file to continue.</p>
+        </div>
+      )}
+
+      {uncertain && (
+        <div className="mt-3 rounded border border-amber-200 dark:border-amber-900/40 bg-amber-50/60 dark:bg-amber-900/20 px-3 py-2 text-xs text-amber-700 dark:text-amber-300">
+          <p className="font-semibold">We couldn&apos;t clearly verify this CMM.</p>
+          <p className="mt-1">{uncertain.message}</p>
+          <p className="mt-1 font-medium">
+            Choose a clearer, complete image or PDF to continue.
+          </p>
         </div>
       )}
 
@@ -428,7 +459,7 @@ const ProofUploader = ({
           disabled={!canSubmit}
           className="text-sm md:text-base px-4 py-1.5 rounded bg-black dark:bg-gray-300 dark:text-black text-white disabled:opacity-50"
         >
-          {uploading ? "Uploading..." : "Upload Marksheet"}
+          {uploading ? "Verifying CMM..." : "Upload Marksheet"}
         </button>
       </div>
 
@@ -449,7 +480,7 @@ const ProofUploader = ({
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction onClick={onUpload}>
-              I understand, upload
+              I understand, verify and upload
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

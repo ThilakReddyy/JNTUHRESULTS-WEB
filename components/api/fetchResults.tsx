@@ -381,6 +381,8 @@ export type GraceMarksUploadResult =
       downloadUrl: string;
       uploadedAt: string;
     }
+  | { kind: "not_cmm"; message: string }
+  | { kind: "uncertain"; message: string }
   | { kind: "failure"; message: string; retriable: boolean }
   | { kind: "rate_limited"; retryAfter: number; message: string };
 
@@ -426,6 +428,21 @@ export const uploadGraceMarksProof = async (
         rollNumber: body.rollNumber,
         downloadUrl: body.downloadUrl,
         uploadedAt: body.uploadedAt,
+      };
+    }
+
+    if (
+      response.status === 422 &&
+      (body?.classification === "not_cmm" ||
+        body?.classification === "uncertain")
+    ) {
+      return {
+        kind: body.classification,
+        message:
+          body?.message ||
+          (body.classification === "not_cmm"
+            ? "This does not appear to be a CMM. Please upload your official CMM file."
+            : "Please upload a clear, complete image or PDF of your CMM."),
       };
     }
 

@@ -19,13 +19,14 @@ const isGraceMarksRoute = (pathname: string) =>
 export default function MobileAppGate({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [deviceStatus, setDeviceStatus] = useState<DeviceStatus>("checking");
+  const [isSkipped, setIsSkipped] = useState(false);
   const bypassAppGate = isGraceMarksRoute(pathname);
 
   useEffect(() => {
     setDeviceStatus(getMobilePlatform() ?? "other");
   }, []);
 
-  if (bypassAppGate || deviceStatus === "other") return children;
+  if (bypassAppGate || deviceStatus === "other" || isSkipped) return children;
 
   if (deviceStatus === "checking") {
     return (
@@ -40,6 +41,13 @@ export default function MobileAppGate({ children }: { children: ReactNode }) {
 
   return (
     <div className="fixed inset-0 z-[9999] flex min-h-dvh items-center justify-center bg-zinc-950 px-6 text-white">
+      <button
+        type="button"
+        onClick={() => setIsSkipped(true)}
+        className="absolute right-4 top-4 rounded-lg px-3 py-2 text-sm text-zinc-400 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 active:text-zinc-200"
+      >
+        Skip
+      </button>
       <div className="w-full max-w-sm text-center">
         <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-white/10">
           {isAndroid ? (
