@@ -5,6 +5,7 @@ import React from "react";
 interface ResultDetailsProps {
   details: Record<string, any>;
   cmm?: boolean;
+  showInstitution?: boolean;
 }
 
 interface InfoCellProps {
@@ -38,7 +39,11 @@ const CmmInfoCell = ({ label, value, show = true }: InfoCellProps) => (
   </div>
 );
 
-const ResultDetails = ({ details, cmm = false }: ResultDetailsProps) => {
+const ResultDetails = ({
+  details,
+  cmm = false,
+  showInstitution = true,
+}: ResultDetailsProps) => {
   const collegeName = collegedata[details["collegeCode"]] ?? "—";
   const branch = branchDetails[details["rollNumber"]?.substring(6, 8)] ?? "—";
 
@@ -48,25 +53,37 @@ const ResultDetails = ({ details, cmm = false }: ResultDetailsProps) => {
         <div className="bg-[#dce5d8] px-4 py-2 text-center text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#17211e] dark:bg-[#172033] dark:text-gray-100">
           Student Details
         </div>
-        <div className="grid grid-cols-1 gap-px border-t border-[#2a342f] bg-[#2a342f] dark:border-white/[0.15] dark:bg-white/[0.15] md:grid-cols-2 lg:grid-cols-4">
+        <div
+          className={`grid grid-cols-1 gap-px border-t border-[#2a342f] bg-[#2a342f] dark:border-white/[0.15] dark:bg-white/[0.15] ${
+            showInstitution
+              ? "md:grid-cols-2 lg:grid-cols-4"
+              : "md:grid-cols-3"
+          }`}
+        >
           <CmmInfoCell label="Student Name" value={details.name} />
           <CmmInfoCell label="Hall Ticket No." value={details.rollNumber} />
-          <CmmInfoCell
-            label="College Code"
-            value={details.collegeCode}
-            show={false}
-          />
+          {showInstitution && (
+            <CmmInfoCell
+              label="College Code"
+              value={details.collegeCode}
+              show={false}
+            />
+          )}
           <CmmInfoCell
             label="Father's Name"
             value={details.fatherName}
             show={false}
           />
-          <div className="lg:col-span-2">
-            <CmmInfoCell label="College Name" value={collegeName} />
-          </div>
-          <div className="lg:col-span-2">
-            <CmmInfoCell label="Branch" value={branch} />
-          </div>
+          {showInstitution && (
+            <>
+              <div className="lg:col-span-2">
+                <CmmInfoCell label="College Name" value={collegeName} />
+              </div>
+              <div className="lg:col-span-2">
+                <CmmInfoCell label="Branch" value={branch} />
+              </div>
+            </>
+          )}
         </div>
       </section>
     );
@@ -75,14 +92,20 @@ const ResultDetails = ({ details, cmm = false }: ResultDetailsProps) => {
   return (
     <div className="rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-sm mb-4">
       {/* Primary info row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-white dark:bg-white/5 divide-x divide-y md:divide-y-0 divide-gray-100 dark:divide-white/10">
+      <div
+        className={`grid grid-cols-1 bg-white dark:bg-white/5 divide-x divide-y md:divide-y-0 divide-gray-100 dark:divide-white/10 ${
+          showInstitution ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3"
+        }`}
+      >
         <InfoCell label="Student Name" value={details.name} />
         <InfoCell label="Roll Number" value={details.rollNumber} />
-        <InfoCell
-          label="College Code"
-          value={details.collegeCode}
-          show={false}
-        />
+        {showInstitution && (
+          <InfoCell
+            label="College Code"
+            value={details.collegeCode}
+            show={false}
+          />
+        )}
         <InfoCell
           label="Father's Name"
           value={details.fatherName}
@@ -91,10 +114,12 @@ const ResultDetails = ({ details, cmm = false }: ResultDetailsProps) => {
       </div>
 
       {/* Secondary info row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 bg-gray-50 dark:bg-[#0b3954]/40 border-t border-gray-100 dark:border-white/10 divide-x divide-gray-100 dark:divide-white/10">
-        <InfoCell label="College Name" value={collegeName} />
-        <InfoCell label="Branch" value={branch} />
-      </div>
+      {showInstitution && (
+        <div className="grid grid-cols-1 md:grid-cols-2 bg-gray-50 dark:bg-[#0b3954]/40 border-t border-gray-100 dark:border-white/10 divide-x divide-gray-100 dark:divide-white/10">
+          <InfoCell label="College Name" value={collegeName} />
+          <InfoCell label="Branch" value={branch} />
+        </div>
+      )}
     </div>
   );
 };

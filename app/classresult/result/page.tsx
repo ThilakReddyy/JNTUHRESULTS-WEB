@@ -9,6 +9,8 @@ import TotalResult from "@/components/result/totalResult";
 import ResultDetailsSkeleton from "@/components/skeleton/ResultDetailsSkeleton";
 import AcademicResultSkeleton from "@/components/skeleton/AcademicResultsSkeleton";
 import Print from "@/components/download/print";
+import { collegedata } from "@/constants/colleges";
+import { branchDetails } from "@/constants/branchdetails";
 
 const ClassResultResult = () => {
   const router = useRouter();
@@ -16,6 +18,13 @@ const ClassResultResult = () => {
   const type = useSearchParams().get("type");
   const [classResults, setClassResults] = useState<AcademicResulProps[]>([]);
   const componentRef = useRef(null);
+  const sharedDetails = classResults[0]?.details;
+  const collegeName = sharedDetails
+    ? collegedata[sharedDetails.collegeCode] ?? "—"
+    : "—";
+  const branch = sharedDetails
+    ? branchDetails[sharedDetails.rollNumber?.substring(6, 8)] ?? "—"
+    : "—";
 
   useEffect(() => {
     const academicResult = getFromLocalStorage(htno + "-ClassResult-" + type);
@@ -41,10 +50,35 @@ const ClassResultResult = () => {
         </div>
 
         {classResults.length !== 0 ? (
-          <div className="flex flex-col gap-10">
-            {classResults.map(
-              (classresult: AcademicResulProps, index: number) => (
-                <div key={index} className="relative">
+          <div>
+            <section className="mb-6 border border-[#2a342f] bg-[#2a342f] shadow-sm dark:border-white/[0.15] dark:bg-white/[0.15]">
+              <div className="bg-[#dce5d8] px-4 py-2 text-center text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#17211e] dark:bg-[#172033] dark:text-gray-100">
+                College &amp; Branch
+              </div>
+              <div className="grid grid-cols-1 gap-px border-t border-[#2a342f] bg-[#2a342f] text-[#17211e] dark:border-white/[0.15] dark:bg-white/[0.15] dark:text-gray-100 md:grid-cols-2">
+                <div className="min-h-16 bg-[#edf3e7] px-4 py-3 dark:bg-[#111827]">
+                  <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#53605a] dark:text-gray-400">
+                    College Name
+                  </p>
+                  <p className="mt-1 text-sm font-bold leading-snug">
+                    {collegeName}
+                  </p>
+                </div>
+                <div className="min-h-16 bg-[#edf3e7] px-4 py-3 dark:bg-[#111827]">
+                  <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-[#53605a] dark:text-gray-400">
+                    Branch
+                  </p>
+                  <p className="mt-1 text-sm font-bold leading-snug">
+                    {branch}
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <div className="flex flex-col gap-10">
+              {classResults.map(
+                (classresult: AcademicResulProps, index: number) => (
+                  <div key={index} className="relative">
                   {/* Student number badge */}
                   <div className="mb-3 flex items-center gap-3 border border-border bg-secondary px-3 py-2">
                     <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center border border-border bg-primary text-xs font-bold text-primary-foreground">
@@ -58,7 +92,11 @@ const ClassResultResult = () => {
                   </div>
 
                   {/* Per-student result block */}
-                  <ResultDetails details={classresult.details} cmm />
+                  <ResultDetails
+                    details={classresult.details}
+                    cmm
+                    showInstitution={false}
+                  />
                   <AcademicResult
                     result={classresult.results}
                     academic={true}
@@ -68,9 +106,10 @@ const ClassResultResult = () => {
                     backlogs={classresult.results.backlogs}
                     cmm
                   />
-                </div>
-              ),
-            )}
+                  </div>
+                ),
+              )}
+            </div>
           </div>
         ) : (
           <>
