@@ -42,7 +42,8 @@ const Subjects = ({ semester }: { semester: Exam }) => (
               key={label}
               className="border-b border-r border-[#2a342f] px-0.5 text-center last:border-r-0 dark:border-white/[0.15] sm:px-2"
             >
-              {mobileLabel}
+              <span className="sm:hidden">{mobileLabel}</span>
+              <span className="hidden sm:inline">{label}</span>
             </th>
           ))}
         </tr>
