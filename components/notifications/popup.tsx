@@ -28,7 +28,7 @@ const NotificationPopUp = () => {
     const fetchData = async () => {
       try {
         //
-        const notifications: Result[] = await fetchNotifications({
+        const notifications = await fetchNotifications({
           title: "",
           year: "",
           degree: "",
@@ -36,11 +36,14 @@ const NotificationPopUp = () => {
           page: 1,
         });
 
-        const today = new Date().toISOString().split("T")[0].toString();
+        const today = new Date().toISOString().split("T")[0];
 
-        var tempres = (notifications as Result[]).filter((result) => {
-          return result.releaseDate === today;
-        });
+        const validNotifications: Result[] = Array.isArray(notifications)
+          ? notifications
+          : [];
+        const tempres = validNotifications.filter(
+          (result) => result.releaseDate === today,
+        );
         setResults(tempres);
       } catch (error) {
         console.error("Error fetching notifications:", error);
