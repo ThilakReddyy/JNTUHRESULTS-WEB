@@ -1,27 +1,41 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import ResultDetails from "@/components/result/details";
-import { getFromLocalStorage } from "@/components/customfunctions/localStorage";
 import AcademicAllResult from "@/components/result/academicallresult";
 import Print from "@/components/download/print";
+import { fetchAllResult } from "@/components/api/fetchResults";
+import ResultDetailsSkeleton from "@/components/skeleton/ResultDetailsSkeleton";
+import AcademicResultSkeleton from "@/components/skeleton/AcademicResultsSkeleton";
 
 const AcademicAllResultResult = () => {
   const router = useRouter();
   const htno = useSearchParams().get("htno");
 
   const componentRef = useRef(null);
-  const allResult = getFromLocalStorage(String(htno) + "-AllResult");
+  const [allResult, setAllResult] = useState<AcademicAllResultResponse | null>(
+    null,
+  );
 
-  if (allResult === null) {
-    router.push("/academicallresult");
-  }
+  useEffect(() => {
+    const loadResult = async () => {
+      if (!htno) {
+        router.push("/academicallresult");
+        return;
+      }
 
-  return allResult === null ? (
-    <div className="mx-auto px-3 py-10 text-center text-gray-400 dark:text-gray-500 text-sm">
-      Details not found
-    </div>
-  ) : (
+      const result = await fetchAllResult(htno);
+      if (result) {
+        setAllResult(result);
+      } else {
+        router.push("/academicallresult");
+      }
+    };
+
+    loadResult();
+  }, [htno, router]);
+
+  return (
     <>
       <div className="mx-auto px-3 pb-6" ref={componentRef}>
         {/* Page header */}
@@ -34,11 +48,20 @@ const AcademicAllResultResult = () => {
           </p>
         </div>
 
-        <ResultDetails details={allResult.details} cmm />
-        <AcademicAllResult
-          results={allResult.results}
-          htno={allResult.details.rollNumber}
-        />
+        {allResult ? (
+          <>
+            <ResultDetails details={allResult.details} cmm />
+            <AcademicAllResult
+              results={allResult.results}
+              htno={allResult.details.rollNumber}
+            />
+          </>
+        ) : (
+          <>
+            <ResultDetailsSkeleton />
+            <AcademicResultSkeleton />
+          </>
+        )}
 
         <div className="flex justify-center text-[6px] text-gray-400 mt-4">
           jntuhconnect.dhethi.com

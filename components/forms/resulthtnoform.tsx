@@ -97,7 +97,7 @@ const Form = ({
             minLength={10}
             maxLength={10}
             pattern="[A-Za-z0-9]{10}"
-            autoComplete="off"
+            autoComplete="on"
             aria-label={hallticketno2 !== undefined ? "First hall ticket number" : "Hall ticket number"}
             toolparamdescription="A 10-character JNTUH student hall ticket number."
             placeholder={
@@ -125,7 +125,7 @@ const Form = ({
               minLength={10}
               maxLength={10}
               pattern="[A-Za-z0-9]{10}"
-              autoComplete="off"
+              autoComplete="on"
               aria-label="Second hall ticket number"
               toolparamdescription="The second 10-character JNTUH student hall ticket number to compare."
               placeholder="Enter second hall ticket no"

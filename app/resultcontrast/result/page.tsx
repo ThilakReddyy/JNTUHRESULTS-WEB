@@ -1,9 +1,9 @@
 "use client";
-import { getFromLocalStorage } from "@/components/customfunctions/localStorage";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { fetchCreditContrastReport } from "@/components/api/fetchResults";
 
 /* ── helpers ── */
 const gradeColor = (val: string | undefined) => {
@@ -17,32 +17,24 @@ const gradeColor = (val: string | undefined) => {
 };
 
 const SectionHeader = ({ title }: { title: string }) => (
-  <div className="flex items-center gap-2 px-4 py-3 bg-[#0b3954]">
-    <span className="w-2 h-2 rounded-full bg-sky-400 inline-block" />
-    <h3 className="text-sm font-bold text-white uppercase tracking-wide">
+  <div className="border-b border-[#2a342f] bg-[#dce5d8] px-4 py-2 text-center dark:border-white/[0.15] dark:bg-[#172033]">
+    <h3 className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#17211e] dark:text-gray-100">
       {title}
     </h3>
   </div>
 );
 
 const ColHeader = ({ isresult = true }: { isresult?: boolean }) => (
-  <tr className="bg-gray-50 dark:bg-white/5 border-b border-gray-200 dark:border-white/10">
+  <tr className="h-11 bg-[#e3e8de] text-[9px] font-bold uppercase tracking-wide dark:bg-white/[0.04]">
     <th
-      className={`px-4 py-2.5 text-left text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 ${isresult ? "" : "hidden md:block"}`}
-      style={{ border: "none" }}
+      className={`border-b border-r border-[#2a342f] px-4 text-left dark:border-white/[0.15] ${isresult ? "" : "hidden md:table-cell"}`}
     >
       Attribute
     </th>
-    <th
-      className={`px-4 py-2.5 text-center text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 `}
-      style={{ border: "none" }}
-    >
+    <th className="border-b border-r border-[#2a342f] px-4 text-center dark:border-white/[0.15]">
       Student 1
     </th>
-    <th
-      className={`px-4 py-2.5 text-center text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 `}
-      style={{ border: "none" }}
-    >
+    <th className="border-b border-[#2a342f] px-4 text-center dark:border-white/[0.15]">
       Student 2
     </th>
   </tr>
@@ -61,30 +53,22 @@ const Row: React.FC<RowProps> = ({
   value1,
   value2,
   colored,
-  index,
   isresult = true,
 }) => {
-  const rowBg =
-    index % 2 === 0
-      ? "bg-white dark:bg-transparent"
-      : "bg-gray-50/80 dark:bg-white/[0.03]";
   return (
-    <tr className={`border-b border-gray-100 dark:border-white/5 ${rowBg}`}>
+    <tr className="h-11 bg-[#edf3e7] text-[11px] text-[#17211e] last:[&>td]:border-b-0 dark:bg-[#111827] dark:text-gray-100">
       <td
-        className={`px-4 py-2.5 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide ${isresult ? "" : "hidden md:block"}`}
-        style={{ border: "none" }}
+        className={`border-b border-r border-[#7b867f] px-4 text-xs font-semibold uppercase tracking-wide text-[#53605a] dark:border-white/10 dark:text-gray-400 ${isresult ? "" : "hidden md:table-cell"}`}
       >
         {label}
       </td>
       <td
-        className={`px-4 py-2.5 text-sm ${isresult ? "text-center" : "text-left md:text-center"}  ${colored ? gradeColor(value1) : "text-gray-700 dark:text-gray-200"}`}
-        style={{ border: "none" }}
+        className={`border-b border-r border-[#7b867f] px-4 text-sm dark:border-white/10 ${isresult ? "text-center" : "text-left md:text-center"} ${colored ? gradeColor(value1) : ""}`}
       >
         {value1 || "—"}
       </td>
       <td
-        className={`px-4 py-2.5 text-sm ${isresult ? "text-center" : "text-left md:text-center"} ${colored ? gradeColor(value2) : "text-gray-700 dark:text-gray-200"}`}
-        style={{ border: "none" }}
+        className={`border-b border-[#7b867f] px-4 text-sm dark:border-white/10 ${isresult ? "text-center" : "text-left md:text-center"} ${colored ? gradeColor(value2) : ""}`}
       >
         {value2 || "—"}
       </td>
@@ -98,16 +82,25 @@ function ResultContrastPage() {
   const [results, setResults] = useState<CreditContrastReport | null>(null);
 
   useEffect(() => {
-    toast.dismiss();
-    const htno = searchParams.get("htno")?.toUpperCase();
-    const htno2 = searchParams.get("htno2")?.toUpperCase();
-    const localkey = htno + "-" + htno2 + "-CreditContrastreport";
-    const results = getFromLocalStorage(localkey);
-    setResults(results);
-    if (results == null) {
-      router.push("/resultcontrast");
-      return;
-    }
+    const loadResult = async () => {
+      toast.dismiss();
+      const htno = searchParams.get("htno")?.toUpperCase();
+      const htno2 = searchParams.get("htno2")?.toUpperCase();
+
+      if (!htno || !htno2) {
+        router.push("/resultcontrast");
+        return;
+      }
+
+      const result = await fetchCreditContrastReport(htno, htno2);
+      if (result) {
+        setResults(result);
+      } else {
+        router.push("/resultcontrast");
+      }
+    };
+
+    loadResult();
   }, [searchParams, router]);
 
   return results == null ? (
@@ -128,7 +121,7 @@ function ResultContrastPage() {
 
       <div className="flex flex-col gap-5">
         {/* ── Personal Details ── */}
-        <div className="rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-sm">
+        <div className="overflow-hidden border border-[#2a342f] bg-[#edf3e7] shadow-sm dark:border-white/[0.15] dark:bg-[#111827]">
           <SectionHeader title="Personal Details" />
           <div className="overflow-x-auto">
             <table
@@ -177,7 +170,7 @@ function ResultContrastPage() {
         </div>
 
         {/* ── Academic Results (semester-wise) ── */}
-        <div className="rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-sm">
+        <div className="overflow-hidden border border-[#2a342f] bg-[#edf3e7] shadow-sm dark:border-white/[0.15] dark:bg-[#111827]">
           <SectionHeader title="Semester-wise SGPA" />
           <div className="overflow-x-auto">
             <table
@@ -205,7 +198,7 @@ function ResultContrastPage() {
                     }
                     value2={
                       semester[1].semesterCredits !== "-"
-                        ? `${semester[1].semesterSGPA} | ${semester[0].semesterCredits}`
+                        ? `${semester[1].semesterSGPA} | ${semester[1].semesterCredits}`
                         : "—"
                     }
                   />
@@ -216,7 +209,7 @@ function ResultContrastPage() {
         </div>
 
         {/* ── Performance Analysis ── */}
-        <div className="rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-sm">
+        <div className="overflow-hidden border border-[#2a342f] bg-[#edf3e7] shadow-sm dark:border-white/[0.15] dark:bg-[#111827]">
           <SectionHeader title="Performance Analysis" />
           <div className="overflow-x-auto">
             <table

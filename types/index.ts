@@ -54,6 +54,16 @@ interface AcademicResulProps {
   serverStatus?: boolean;
 }
 
+interface AcademicAllResultResponse {
+  details: Record<string, any>;
+  results: StudentResults;
+}
+
+interface CreditsCheckerReport {
+  details: Record<string, any>;
+  results: StudentCredits;
+}
+
 interface StudentProfile {
   name: string;
   rollNumber: string;

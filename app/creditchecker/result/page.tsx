@@ -1,28 +1,35 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import ResultDetails from "@/components/result/details";
 import QuickNavigation from "@/components/navbar/quicknavigation";
-import { getFromLocalStorage } from "@/components/customfunctions/localStorage";
 import CreditsCheckerResult from "@/components/result/creditscheckerresult";
+import { fetchCreditsCheckerReport } from "@/components/api/fetchResults";
+import ResultDetailsSkeleton from "@/components/skeleton/ResultDetailsSkeleton";
 
 const CreditCheckerResult = () => {
   const router = useRouter();
   const htno = useSearchParams().get("htno");
+  const [creditsCheckerReport, setCreditsCheckerReport] =
+    useState<CreditsCheckerReport | null>(null);
 
-  if (htno == null) {
-    router.push("/creditchecker");
-    return;
-  }
+  useEffect(() => {
+    const loadResult = async () => {
+      if (!htno) {
+        router.push("/creditchecker");
+        return;
+      }
 
-  const creditsCheckerReport = getFromLocalStorage(
-    String(htno) + "-CreditsCheckerreport",
-  );
+      const result = await fetchCreditsCheckerReport(htno);
+      if (result) {
+        setCreditsCheckerReport(result);
+      } else {
+        router.push("/creditchecker");
+      }
+    };
 
-  if (creditsCheckerReport === null) {
-    router.push("/creditchecker");
-    return;
-  }
+    loadResult();
+  }, [htno, router]);
 
   return (
     <>
@@ -37,19 +44,24 @@ const CreditCheckerResult = () => {
           </p>
         </div>
 
-        <ResultDetails details={creditsCheckerReport.details} cmm />
-
-        <CreditsCheckerResult
-          results={creditsCheckerReport.results}
-          htno={htno}
-        />
+        {creditsCheckerReport ? (
+          <>
+            <ResultDetails details={creditsCheckerReport.details} cmm />
+            <CreditsCheckerResult
+              results={creditsCheckerReport.results}
+              htno={htno || ""}
+            />
+          </>
+        ) : (
+          <ResultDetailsSkeleton />
+        )}
 
         <div className="flex justify-center text-[6px] text-gray-400 mt-4">
           jntuhconnect.dhethi.com
         </div>
       </div>
 
-      <QuickNavigation htno={htno} />
+      <QuickNavigation htno={htno || ""} />
     </>
   );
 };

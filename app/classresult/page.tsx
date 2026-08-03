@@ -6,15 +6,12 @@ import Loading from "@/components/loading/loading";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { fetchClassResult } from "@/components/api/fetchResults";
 import { setupPush } from "@/customhooks/setupPush";
 
 const AcademicResult = () => {
   const [hallticketno, sethallticketno] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [isCooldown, setIsCooldown] = useState<boolean>(false);
-  const [type, setType] = useState<string>("academicresult");
-
   const router = useRouter();
   useEffect(() => {
     // This function reads text from the clipboard
@@ -54,12 +51,7 @@ const AcademicResult = () => {
     setIsCooldown(true);
     try {
       await setupPush(hallticketno);
-      const result = await fetchClassResult(hallticketno);
-      if (result) {
-        router.push(
-          "/classresult/result?htno=" + hallticketno + "&type=" + type,
-        );
-      }
+      router.push("/classresult/result?htno=" + hallticketno);
     } catch (error) {
       console.log("Error while fetching the academic result :", error);
     }

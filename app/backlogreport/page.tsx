@@ -7,10 +7,6 @@ import toast from "react-hot-toast";
 
 import { useRouter } from "next/navigation";
 import Footer from "@/components/footer/footer";
-import {
-  fetchAcademicResult,
-  fetchBacklogReport,
-} from "@/components/api/fetchResults";
 
 const BacklogReport = () => {
   const [hallticketno, sethallticketno] = useState("");
@@ -27,13 +23,8 @@ const BacklogReport = () => {
     }
 
     setIsCooldown(true);
-    toast.loading("Result are been fetched");
     try {
-      const result = await fetchBacklogReport(hallticketno);
-      toast.dismiss();
-      if (result) {
-        router.push("/backlogreport/result?htno=" + hallticketno);
-      }
+      router.push("/backlogreport/result?htno=" + hallticketno);
     } catch (error) {
       console.log("Error while fetching the academic result :", error);
     }

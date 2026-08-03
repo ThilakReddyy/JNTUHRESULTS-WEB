@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import ResultDetails from "@/components/result/details";
-import { getFromLocalStorage } from "@/components/customfunctions/localStorage";
 import AcademicResult from "@/components/result/academicresult";
 import TotalResult from "@/components/result/totalResult";
 import ResultDetailsSkeleton from "@/components/skeleton/ResultDetailsSkeleton";
@@ -11,28 +10,38 @@ import AcademicResultSkeleton from "@/components/skeleton/AcademicResultsSkeleto
 import Print from "@/components/download/print";
 import { collegedata } from "@/constants/colleges";
 import { branchDetails } from "@/constants/branchdetails";
+import { fetchClassResult } from "@/components/api/fetchResults";
 
 const ClassResultResult = () => {
   const router = useRouter();
   const htno = useSearchParams().get("htno");
-  const type = useSearchParams().get("type");
   const [classResults, setClassResults] = useState<AcademicResulProps[]>([]);
   const componentRef = useRef(null);
   const sharedDetails = classResults[0]?.details;
   const collegeName = sharedDetails
-    ? collegedata[sharedDetails.collegeCode] ?? "—"
+    ? (collegedata[sharedDetails.collegeCode] ?? "—")
     : "—";
   const branch = sharedDetails
-    ? branchDetails[sharedDetails.rollNumber?.substring(6, 8)] ?? "—"
+    ? (branchDetails[sharedDetails.rollNumber?.substring(6, 8)] ?? "—")
     : "—";
 
   useEffect(() => {
-    const academicResult = getFromLocalStorage(htno + "-ClassResult-" + type);
-    setClassResults(academicResult);
-    if (academicResult === null) {
-      router.push("/classresult");
-    }
-  }, [htno, type, router]);
+    const loadResult = async () => {
+      if (!htno) {
+        router.push("/classresult");
+        return;
+      }
+
+      const result = await fetchClassResult(htno);
+      if (result) {
+        setClassResults(result);
+      } else {
+        router.push("/classresult");
+      }
+    };
+
+    loadResult();
+  }, [htno, router]);
 
   return (
     <>
@@ -79,33 +88,33 @@ const ClassResultResult = () => {
               {classResults.map(
                 (classresult: AcademicResulProps, index: number) => (
                   <div key={index} className="relative">
-                  {/* Student number badge */}
-                  <div className="mb-3 flex items-center gap-3 border border-border bg-secondary px-3 py-2">
-                    <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center border border-border bg-primary text-xs font-bold text-primary-foreground">
-                      {index + 1}
-                    </span>
-                    <div className="h-px flex-1 bg-border" />
-                    <span className="whitespace-nowrap text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      {classresult.details?.rollNumber}
-                    </span>
-                    <div className="h-px flex-1 bg-border" />
-                  </div>
+                    {/* Student number badge */}
+                    <div className="mb-3 flex items-center gap-3 border border-border bg-secondary px-3 py-2">
+                      <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center border border-border bg-primary text-xs font-bold text-primary-foreground">
+                        {index + 1}
+                      </span>
+                      <div className="h-px flex-1 bg-border" />
+                      <span className="whitespace-nowrap text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        {classresult.details?.rollNumber}
+                      </span>
+                      <div className="h-px flex-1 bg-border" />
+                    </div>
 
-                  {/* Per-student result block */}
-                  <ResultDetails
-                    details={classresult.details}
-                    cmm
-                    showInstitution={false}
-                  />
-                  <AcademicResult
-                    result={classresult.results}
-                    academic={true}
-                  />
-                  <TotalResult
-                    CGPA={classresult.results.CGPA}
-                    backlogs={classresult.results.backlogs}
-                    cmm
-                  />
+                    {/* Per-student result block */}
+                    <ResultDetails
+                      details={classresult.details}
+                      cmm
+                      showInstitution={false}
+                    />
+                    <AcademicResult
+                      result={classresult.results}
+                      academic={true}
+                    />
+                    <TotalResult
+                      CGPA={classresult.results.CGPA}
+                      backlogs={classresult.results.backlogs}
+                      cmm
+                    />
                   </div>
                 ),
               )}

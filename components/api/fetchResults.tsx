@@ -1,7 +1,5 @@
 import axios from "axios";
 import "@/lib/apiClient"; // attaches X-Api-Key to backend requests
-import { saveToLocalStorage } from "../customfunctions/localStorage";
-
 import toast from "react-hot-toast";
 
 export const fetchAcademicResult = async (
@@ -31,7 +29,7 @@ export const fetchAcademicResult = async (
         toast.dismiss();
         toast(
           response.data.message ||
-          "Result is being prepared. Please check again shortly.",
+            "Result is being prepared. Please check again shortly.",
         );
         return null;
       }
@@ -47,7 +45,7 @@ export const fetchAcademicResult = async (
         toast.dismiss();
         toast.error(
           response.data.message ||
-          "Server is temporarily overloaded. Please try again later.",
+            "Server is temporarily overloaded. Please try again later.",
         );
         return null;
       }
@@ -55,7 +53,7 @@ export const fetchAcademicResult = async (
         toast.dismiss();
         toast.error(
           response.data.message ||
-          "Upstream JNTUH servers are down. Try again later.",
+            "Upstream JNTUH servers are down. Try again later.",
         );
         return null;
       }
@@ -153,7 +151,9 @@ export const downloadCMM = async (htno: string): Promise<void> => {
     toast.error(message, { id: toastId });
   }
 };
-export const fetchAllResult = async (htno: string) => {
+export const fetchAllResult = async (
+  htno: string,
+): Promise<AcademicAllResultResponse | null> => {
   try {
     let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
     url = `${url}api/getAllResult?rollNumber=${htno}`;
@@ -168,13 +168,9 @@ export const fetchAllResult = async (htno: string) => {
     switch (response.status) {
       case 200: {
         if ("details" in response.data) {
-          saveToLocalStorage(
-            htno + "-AllResult",
-            JSON.stringify(response.data),
-          );
           toast.dismiss();
           toast.success("Result fetched successfully");
-          return true;
+          return response.data;
         }
         break;
       }
@@ -183,9 +179,9 @@ export const fetchAllResult = async (htno: string) => {
         toast.dismiss();
         toast(
           response.data.message ||
-          "Result is being prepared. Please check again shortly.",
+            "Result is being prepared. Please check again shortly.",
         );
-        return false;
+        return null;
       }
 
       case 409: {
@@ -193,36 +189,36 @@ export const fetchAllResult = async (htno: string) => {
         toast.error(
           response.data.message || "This roll number is already in the queue.",
         );
-        return false;
+        return null;
       }
 
       case 502: {
         toast.dismiss();
         toast.error("Upstream JNTUH servers are down. Try again later.");
-        return false;
+        return null;
       }
 
       case 503: {
         toast.dismiss();
         toast.error("Server overloaded. Please try again later.");
-        return false;
+        return null;
       }
 
       case 500: {
         toast.dismiss();
         toast.error("Unexpected server error occurred.");
-        return false;
+        return null;
       }
 
       default: {
         toast.dismiss();
         toast.error("Unhandled response from server.");
-        return false;
+        return null;
       }
     }
 
     toast.dismiss();
-    return false;
+    return null;
   } catch (e: any) {
     toast.dismiss();
 
@@ -238,21 +234,19 @@ export const fetchAllResult = async (htno: string) => {
       toast.error("Unexpected error occurred.");
     }
 
-    return false;
+    return null;
   }
 };
-export const fetchBacklogReport = async (htno: string) => {
+export const fetchBacklogReport = async (
+  htno: string,
+): Promise<AcademicResulProps | null> => {
   try {
     let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
     url = `${url}api/getBacklogs?rollNumber=${htno}`;
 
     const response = await axios.get(url, { timeout: 20 * 1000 });
     if ("details" in response.data) {
-      saveToLocalStorage(
-        htno + "-Backlogreport",
-        JSON.stringify(response.data),
-      );
-      return true;
+      return response.data;
     }
     if (response.data.status === "success") {
       toast(response.data.message);
@@ -260,15 +254,17 @@ export const fetchBacklogReport = async (htno: string) => {
       toast.error(response.data.message);
     }
 
-    return false;
+    return null;
   } catch {
     toast.dismiss();
     toast.error("SERVER ISSUE!!");
-    return false;
+    return null;
   }
 };
 
-export const fetchCreditsCheckerReport = async (htno: string) => {
+export const fetchCreditsCheckerReport = async (
+  htno: string,
+): Promise<CreditsCheckerReport | null> => {
   try {
     let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
     url = `${url}api/getCreditsChecker?rollNumber=${htno}`;
@@ -276,12 +272,8 @@ export const fetchCreditsCheckerReport = async (htno: string) => {
     toast.loading("Result are been fetched");
     const response = await axios.get(url, { timeout: 20 * 1000 });
     if ("details" in response.data) {
-      saveToLocalStorage(
-        htno + "-CreditsCheckerreport",
-        JSON.stringify(response.data),
-      );
       toast.dismiss();
-      return true;
+      return response.data;
     }
     if (response.data.status === "success") {
       toast.dismiss();
@@ -291,17 +283,18 @@ export const fetchCreditsCheckerReport = async (htno: string) => {
       toast.error(response.data.message);
     }
 
-    return false;
+    return null;
   } catch {
     toast.dismiss();
     toast.error("SERVER ISSUE!!");
+    return null;
   }
 };
 
 export const fetchCreditContrastReport = async (
   htno1: string,
   htno2: string,
-) => {
+): Promise<CreditContrastReport | null> => {
   let response;
   try {
     let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
@@ -310,11 +303,8 @@ export const fetchCreditContrastReport = async (
     toast.loading("Result are been fetched");
     response = await axios.get(url, { timeout: 20 * 1000 });
     if ("studentProfiles" in response.data) {
-      saveToLocalStorage(
-        htno1 + "-" + htno2 + "-CreditContrastreport",
-        JSON.stringify(response.data),
-      );
-      return true;
+      toast.dismiss();
+      return response.data;
     }
     if (response.data.status === "success") {
       toast.dismiss();
@@ -324,14 +314,15 @@ export const fetchCreditContrastReport = async (
       toast.error(response.data.message);
     }
 
-    return false;
+    return null;
   } catch (error: any) {
     toast.dismiss();
-    if (error.response.status == 400) {
+    if (error.response?.status == 400) {
       toast.error(error.response.data.detail);
     } else {
       toast.error("SERVER ISSUE!!");
     }
+    return null;
   }
 };
 
@@ -408,7 +399,10 @@ export const fetchGraceMarksEligibility = async (
   } catch (e: any) {
     if (axios.isAxiosError(e)) {
       if (e.code === "ECONNABORTED") {
-        return { kind: "error", message: "Request timed out. Try again later." };
+        return {
+          kind: "error",
+          message: "Request timed out. Try again later.",
+        };
       }
       if (e.response) {
         return {
@@ -416,7 +410,10 @@ export const fetchGraceMarksEligibility = async (
           message: `Server error: ${e.response.status}`,
         };
       }
-      return { kind: "error", message: "Network issue. Please check your connection." };
+      return {
+        kind: "error",
+        message: "Network issue. Please check your connection.",
+      };
     }
     return { kind: "error", message: "Unexpected error occurred." };
   }
@@ -444,7 +441,9 @@ export const MAX_PROOF_SIZE_BYTES = 5 * 1024 * 1024;
 const PROOF_TOO_LARGE_MESSAGE =
   "File content uploaded is too large. Please keep it under 5 MB.";
 
-export const validateProofFile = (file: File | null | undefined): string | null => {
+export const validateProofFile = (
+  file: File | null | undefined,
+): string | null => {
   if (!file) return "Please choose a file to upload.";
   if (file.size === 0) return "Uploaded file is empty.";
   if (file.size > MAX_PROOF_SIZE_BYTES) return PROOF_TOO_LARGE_MESSAGE;
@@ -619,9 +618,15 @@ export const fetchPendingProofs = async (
   } catch (e: any) {
     if (axios.isAxiosError(e)) {
       if (e.code === "ECONNABORTED") {
-        return { kind: "error", message: "Request timed out. Try again later." };
+        return {
+          kind: "error",
+          message: "Request timed out. Try again later.",
+        };
       }
-      return { kind: "error", message: "Network issue. Please check your connection." };
+      return {
+        kind: "error",
+        message: "Network issue. Please check your connection.",
+      };
     }
     return { kind: "error", message: "Unexpected error occurred." };
   }
@@ -691,9 +696,15 @@ export const fetchProofDetail = async (
   } catch (e: any) {
     if (axios.isAxiosError(e)) {
       if (e.code === "ECONNABORTED") {
-        return { kind: "error", message: "Request timed out. Try again later." };
+        return {
+          kind: "error",
+          message: "Request timed out. Try again later.",
+        };
       }
-      return { kind: "error", message: "Network issue. Please check your connection." };
+      return {
+        kind: "error",
+        message: "Network issue. Please check your connection.",
+      };
     }
     return { kind: "error", message: "Unexpected error occurred." };
   }
@@ -791,7 +802,10 @@ export const submitGraceMarks = async (
   } catch (e: any) {
     if (axios.isAxiosError(e)) {
       if (e.code === "ECONNABORTED") {
-        return { kind: "error", message: "Request timed out. Try again later." };
+        return {
+          kind: "error",
+          message: "Request timed out. Try again later.",
+        };
       }
       return {
         kind: "error",
@@ -884,8 +898,7 @@ export const updateProofStatus = async (
     if (response.status === 500) {
       return {
         kind: "server_error",
-        message:
-          body?.message || "Failed to update status. Please try again.",
+        message: body?.message || "Failed to update status. Please try again.",
       };
     }
     return {
@@ -895,7 +908,10 @@ export const updateProofStatus = async (
   } catch (e: any) {
     if (axios.isAxiosError(e)) {
       if (e.code === "ECONNABORTED") {
-        return { kind: "error", message: "Request timed out. Try again later." };
+        return {
+          kind: "error",
+          message: "Request timed out. Try again later.",
+        };
       }
       return {
         kind: "error",
@@ -931,8 +947,7 @@ export const fetchNotifications = async (params: Params) => {
 
 export const fetchClassResult = async (
   htno: string,
-  type: string = "academicresult",
-) => {
+): Promise<AcademicResulProps[] | null> => {
   try {
     let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
     url = `${url}api/getClassResults?rollNumber=${htno}`;
@@ -942,12 +957,8 @@ export const fetchClassResult = async (
     const response = await axios.get(url, { timeout: 20 * 1000 });
 
     if (response.data && response.data.length > 0) {
-      saveToLocalStorage(
-        htno + "-ClassResult-" + type,
-        JSON.stringify(response.data),
-      );
       toast.dismiss();
-      return true;
+      return response.data;
     }
 
     if (response.data.status === "success") {
@@ -958,12 +969,12 @@ export const fetchClassResult = async (
       toast.error(response.data.message);
     }
 
-    return false;
+    return null;
   } catch {
     toast.dismiss();
 
     toast.error("SERVER ISSUE!!");
-    return false;
+    return null;
   } finally {
     toast.dismiss();
   }

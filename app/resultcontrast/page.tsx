@@ -3,14 +3,9 @@
 import Form from "@/components/forms/resulthtnoform";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import {
-  fetchAcademicResult,
-  getLocalStoragedata,
-} from "@/components/api/fetchAcademicResult";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/loading/loading";
 import Footer from "@/components/footer/footer";
-import { fetchCreditContrastReport } from "@/components/api/fetchResults";
 
 const ResultContrast = () => {
   const router = useRouter();
@@ -24,18 +19,12 @@ const ResultContrast = () => {
     }
 
     try {
-      const result = await fetchCreditContrastReport(
-        hallticketno,
-        hallticketno2,
+      router.push(
+        "/resultcontrast/result?htno=" +
+          hallticketno +
+          "&htno2=" +
+          hallticketno2,
       );
-      if (result) {
-        router.push(
-          "/resultcontrast/result?htno=" +
-            hallticketno +
-            "&htno2=" +
-            hallticketno2,
-        );
-      }
       setTimeout(() => {
         toast.dismiss();
       }, 2000);
