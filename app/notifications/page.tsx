@@ -6,7 +6,7 @@ import React, { useEffect, useState, useCallback } from "react";
 
 const Notification = () => {
   const [results, setResults] = useState<Result[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [params, setParams] = useState<Params>({
     title: "",
     year: "",
