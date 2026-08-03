@@ -159,8 +159,13 @@ td {
 }
 
 .animate-blur-fade {
-  @apply transition-all;
-  animation: blurFadeOut 0.5s ease-out forwards;
+  filter: none;
+}
+
+@media (min-width: 1024px) {
+  .animate-blur-fade {
+    animation: blurFadeOut 0.5s ease-out forwards;
+  }
 }
 
 /* Keep legacy pages aligned with the document system without changing behavior. */
