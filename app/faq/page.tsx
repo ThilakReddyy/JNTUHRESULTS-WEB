@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { ChevronDown } from "lucide-react";
 
 const faqs = [
@@ -59,7 +60,7 @@ const faqs = [
 
 const socialLinks = [
   { href: "https://github.com/thilakreddyy", Icon: FaGithub },
-  { href: "https://twitter.com/thilakreddyonly", Icon: FaTwitter },
+  { href: "https://x.com/thilakreddyonly", Icon: FaXTwitter },
   { href: "https://www.instagram.com/__thilak_reddy__/", Icon: FaInstagram },
 ];
 

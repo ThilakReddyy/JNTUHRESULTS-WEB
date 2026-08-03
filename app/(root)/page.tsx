@@ -2,7 +2,8 @@ import AdComponent from "@/components/ads/adcomponent";
 import Title from "@/components/homepage/title";
 import { homeLinks } from "@/constants/homeLinks";
 import Link from "next/link";
-import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Home() {
   return (
@@ -215,11 +216,11 @@ export default function Home() {
               <FaGithub />
             </a>
             <a
-              href="https://twitter.com/thilakreddyonly"
+              href="https://x.com/thilakreddyonly"
               className="mx-2 hover:text-gray-900"
-              aria-label="twitter link"
+              aria-label="X profile"
             >
-              <FaTwitter />
+              <FaXTwitter />
             </a>
             <a
               href="https://www.instagram.com/__thilak_reddy__/"
