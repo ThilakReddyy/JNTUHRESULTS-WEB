@@ -7,7 +7,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 export default function Home() {
   return (
-    <>
+    <div className="flex min-h-[calc(100dvh-4rem)] flex-col">
       <h1 className="z-[20] grid grid-row-2 items-center pt-10 font-normal text-2xl lg:flex lg:justify-center lg:text-xl xl:text-4xl 2xl:text-6xl mb-5">
         <span className="flex justify-center lg:justify-end">
           Welcome to&nbsp;
@@ -204,7 +204,7 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div className="bottom-0  w-full lg:w-[calc(100vw-16rem)]   font-interer pt-[20px]">
+      <footer className="mt-auto w-full pt-5 font-interer lg:w-[calc(100vw-16rem)]">
         <hr />
         <center>
           <div className="flex justify-center mt-4 text-sm text-gray-600">
@@ -234,7 +234,7 @@ export default function Home() {
             <p>&copy; 2026 jntuhconnect.dhethi.com</p>
           </div>
         </center>
-      </div>
-    </>
+      </footer>
+    </div>
   );
 }
