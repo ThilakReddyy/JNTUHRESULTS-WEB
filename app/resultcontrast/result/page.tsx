@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { fetchCreditContrastReport } from "@/components/api/fetchResults";
+import ResultDetailsSkeleton from "@/components/skeleton/ResultDetailsSkeleton";
+import AcademicResultSkeleton from "@/components/skeleton/AcademicResultsSkeleton";
 
 /* ── helpers ── */
 const gradeColor = (val: string | undefined) => {
@@ -104,8 +106,17 @@ function ResultContrastPage() {
   }, [searchParams, router]);
 
   return results == null ? (
-    <div className="mx-auto px-3 py-10 text-center text-gray-400 dark:text-gray-500 text-sm">
-      Details not found
+    <div className="mx-auto px-3 pb-6">
+      <div className="py-6 text-center">
+        <h1 className="text-lg font-extrabold uppercase tracking-tight text-[#0b3954] dark:text-sky-300 lg:text-3xl">
+          Result Contrast
+        </h1>
+        <p className="mt-1 text-[9px] uppercase tracking-widest text-gray-400 dark:text-gray-500 lg:text-xs">
+          Loading student comparison…
+        </p>
+      </div>
+      <ResultDetailsSkeleton />
+      <AcademicResultSkeleton />
     </div>
   ) : (
     <div className="mx-auto px-3 pb-6">
