@@ -26,66 +26,67 @@ export default function MobileAppGate({ children }: { children: ReactNode }) {
     setDeviceStatus(getMobilePlatform() ?? "other");
   }, []);
 
-  if (bypassAppGate || deviceStatus === "other" || isSkipped) return children;
-
-  if (deviceStatus === "checking") {
-    return (
-      <div
-        className="fixed inset-0 z-[9999] bg-background"
-        aria-label="Checking device compatibility"
-      />
-    );
-  }
-
+  const showAppBanner =
+    !bypassAppGate &&
+    !isSkipped &&
+    (deviceStatus === "android" || deviceStatus === "ios");
   const isAndroid = deviceStatus === "android";
 
   return (
-    <div className="fixed inset-0 z-[9999] flex min-h-dvh items-center justify-center bg-background px-4 text-foreground sm:px-6">
-      <button
-        type="button"
-        onClick={() => setIsSkipped(true)}
-        className="absolute right-4 top-4 border border-border bg-card px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-      >
-        Skip
-      </button>
-      <section className="w-full max-w-md border border-border bg-card text-center shadow-[5px_5px_0_hsl(var(--border)/0.2)]">
-        <div className="border-b border-border bg-secondary px-4 py-3 text-[11px] font-extrabold uppercase tracking-[0.2em] text-secondary-foreground">
-          Mobile Access
-        </div>
-        <div className="p-6 sm:p-8">
-          <div className="mx-auto flex h-20 w-20 items-center justify-center border border-border bg-background">
-            {isAndroid ? (
-              <FaGooglePlay
-                className="text-green-600 dark:text-green-400"
-                size={34}
-                aria-hidden="true"
-              />
-            ) : (
-              <FaApple size={38} aria-hidden="true" />
-            )}
+    <>
+      {children}
+      {showAppBanner && (
+        <aside
+          aria-label="Download the JNTUH Connect mobile app"
+          className="fixed inset-x-3 bottom-3 z-[9999] border border-border bg-card p-3 text-foreground shadow-[4px_4px_0_hsl(var(--border)/0.2)] sm:left-auto sm:right-4 sm:w-[26rem]"
+        >
+          <div className="flex items-center gap-3">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-border bg-background">
+              {isAndroid ? (
+                <FaGooglePlay
+                  className="text-green-600 dark:text-green-400"
+                  size={22}
+                  aria-hidden="true"
+                />
+              ) : (
+                <FaApple size={24} aria-hidden="true" />
+              )}
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-extrabold uppercase tracking-[0.06em]">
+                JNTUH Connect mobile app
+              </p>
+              <p className="mt-0.5 text-xs text-muted-foreground">
+                Get it from {isAndroid ? "Google Play" : "the App Store"}.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsSkipped(true)}
+              className="px-2 py-1 text-lg text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+              aria-label="Dismiss app download banner"
+            >
+              ×
+            </button>
           </div>
-          <h1 className="mt-6 text-xl font-extrabold uppercase tracking-[0.08em] sm:text-2xl">
-            JNTUH Connect is on mobile
-          </h1>
-          <p className="mx-auto mt-3 max-w-xs text-sm leading-6 text-muted-foreground">
-            Download JNTUH Connect from{" "}
-            {isAndroid ? "Google Play" : "the App Store"} to continue.
-          </p>
-          <div className="mt-7 border-t border-border pt-5">
+          <div className="mt-3 flex gap-2 border-t border-border pt-3">
             <a
               href={isAndroid ? PLAY_STORE_URL : APP_STORE_URL}
-              className="inline-flex w-full items-center justify-center gap-3 border border-primary bg-primary px-5 py-3.5 font-bold uppercase tracking-[0.08em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary"
+              className="inline-flex flex-1 items-center justify-center gap-2 border border-primary bg-primary px-3 py-2 text-xs font-bold uppercase tracking-[0.06em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary"
             >
-              {isAndroid ? (
-                <FaGooglePlay size={20} aria-hidden="true" />
-              ) : (
-                <FaApple size={22} aria-hidden="true" />
-              )}
-              Download from {isAndroid ? "Google Play" : "the App Store"}
+              {isAndroid ? <FaGooglePlay aria-hidden="true" /> : <FaApple aria-hidden="true" />}
+              Download app
             </a>
+            <button
+              type="button"
+              onClick={() => setIsSkipped(true)}
+              className="border border-border px-3 py-2 text-xs font-bold uppercase tracking-[0.06em] hover:bg-secondary"
+            >
+              Continue on web
+            </button>
           </div>
-        </div>
-      </section>
-    </div>
+        </aside>
+      )}
+    </>
   );
 }

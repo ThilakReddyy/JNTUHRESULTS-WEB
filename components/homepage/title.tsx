@@ -28,7 +28,7 @@ const Title = () => {
   const [titleIndex, setTitleIndex] = useState(0);
   return (
     <div className="flex">
-      <h1>{title}</h1>
+      <span>{title}</span>
       <span className={`font-extralight ${blind && "opacity-0"}`}>|</span>
     </div>
   );

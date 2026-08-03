@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "JNTUH CONNECT | JOBS & CARRERS",
+  title: "Jobs and Careers",
   description:
-    "Discover career opportunities!! Find internships, jobs and kick start your journey!!!",
+    "Discover internships, jobs, and career opportunities for students and graduates.",
+  alternates: { canonical: "/carrers" },
 };
 
 export default function RootLayout({

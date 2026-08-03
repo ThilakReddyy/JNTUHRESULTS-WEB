@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "JNTUH CONNECT | CLASS RESULT",
-  description: "compare Academic Performance Across Semesters with Classmate.",
+  title: "Class Results",
+  description:
+    "Compare JNTUH academic performance and subject results across students in a class.",
+  alternates: { canonical: "/classresult" },
 };
 
 export default function RootLayout({

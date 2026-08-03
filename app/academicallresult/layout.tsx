@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "JNTUH CONNECT | ACADEMIC ALL RESULT",
+  title: "All Academic Results",
   description:
-    "Find your JNTUH all your academic results quickly and effortlessly. Easy access, comprehensive information, all in one place",
+    "View all available JNTUH academic results across semesters using your hall ticket number.",
+  alternates: { canonical: "/academicallresult" },
 };
 
 export default function RootLayout({

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { grades, credits } from "@/constants/resultconstants";
+import { formatResultMark } from "./formatResultMark";
 
 interface ResultResultsProps {
   Results: Record<string, any>;
@@ -46,13 +47,13 @@ const ResultResults = ({ Results }: ResultResultsProps) => {
                                 {subjectvalue["subject_name"]}
                               </th>
                               <th className="dark:border-white">
-                                {subjectvalue["subject_internal"]}
+                                {formatResultMark(subjectvalue["subject_internal"])}
                               </th>
                               <th className="dark:border-white">
-                                {subjectvalue["subject_external"]}
+                                {formatResultMark(subjectvalue["subject_external"])}
                               </th>
                               <th className="dark:border-white">
-                                {subjectvalue["subject_total"]}
+                                {formatResultMark(subjectvalue["subject_total"])}
                               </th>
 
                               <th className="dark:border-white">

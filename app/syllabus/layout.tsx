@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "JNTUH CONNECT | SYLLABUS",
-  description: "Get Syllabus with in a go.",
+  title: "JNTUH Syllabus",
+  description: "Find JNTUH course syllabi organized by program, regulation, and academic year.",
+  alternates: { canonical: "/syllabus" },
 };
 
 export default function RootLayout({

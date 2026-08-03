@@ -19,7 +19,7 @@ export const HomeContent = [
   },
   {
     title: "Backlog Report",
-    Description: "Access your overall backlogs report with an hallticket",
+    Description: "Access your complete backlog report with a hall ticket number.",
     link: "/backlogreport",
   },
 

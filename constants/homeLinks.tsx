@@ -2,7 +2,7 @@ export const homeLinks = [
   {
     title: "Academic Result",
     description:
-      " Access your overall academic performance with just an hallticket.",
+      "Access your overall academic performance with just a hall ticket number.",
     link: "/academicresult",
   },
   {
@@ -14,7 +14,7 @@ export const homeLinks = [
   {
     title: "Jobs and Careers",
     description:
-      "Explore carrer paths!!!...    Find internships, jobs and kickstart your professional journey",
+      "Explore career paths, internships, and jobs to kick-start your professional journey.",
     link: "/carrers",
   },
   {
@@ -25,7 +25,7 @@ export const homeLinks = [
   },
   {
     title: "Backlog Report",
-    description: "Access your overall backlogs report with an hallticket",
+    description: "Access your complete backlog report with a hall ticket number.",
     link: "/backlogreport",
   },
   // {

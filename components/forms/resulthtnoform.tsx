@@ -75,9 +75,9 @@ const Form = ({
       }}
     >
       <div className="w-full pb-10 pt-7">
-        <h2 className="mb-10 border-b border-border bg-secondary px-4 py-3 text-center text-sm font-extrabold uppercase tracking-[0.16em] md:text-base">
+        <h1 className="mb-10 border-b border-border bg-secondary px-4 py-3 text-center text-sm font-extrabold uppercase tracking-[0.16em] md:text-base">
           {title}
-        </h2>
+        </h1>
         <div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
           <input
             className="

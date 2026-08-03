@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "JNTUH CONNECT | CREDIT CHECKER",
+  title: "Credit Checker",
   description:
-    "check your credits and find the credits required to promote to next year.",
+    "Check secured JNTUH credits and estimate the credits required for promotion to the next academic year.",
+  alternates: { canonical: "/creditchecker" },
 };
 
 export default function RootLayout({

@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { formatResultMark } from "./formatResultMark";
 
 const ACADEMIC_YEARS = [
   { label: "I YEAR", semesters: ["1-1", "1-2"] },
@@ -100,13 +101,13 @@ const CmmSemesterTable = ({
                   </span>
                 </td>
                 <td className="border-r px-1 text-center tabular-nums">
-                  {subject ? (subject.internalMarks ?? "—") : ""}
+                  {subject ? formatResultMark(subject.internalMarks) : ""}
                 </td>
                 <td className="border-r px-1 text-center tabular-nums">
-                  {subject ? (subject.externalMarks ?? "—") : ""}
+                  {subject ? formatResultMark(subject.externalMarks) : ""}
                 </td>
                 <td className="border-r px-1 text-center font-semibold tabular-nums">
-                  {subject ? (subject.totalMarks ?? "—") : ""}
+                  {subject ? formatResultMark(subject.totalMarks) : ""}
                 </td>
                 <td
                   className={`border-r px-1 text-center font-bold ${
@@ -359,19 +360,19 @@ const AcademicResult = ({
                             className="px-2.5 py-2.5 text-sm text-center text-gray-600 dark:text-gray-300"
                             style={{ border: "none" }}
                           >
-                            {subject.internalMarks || "—"}
+                            {formatResultMark(subject.internalMarks)}
                           </td>
                           <td
                             className="px-2.5 py-2.5 text-sm text-center text-gray-600 dark:text-gray-300"
                             style={{ border: "none" }}
                           >
-                            {subject.externalMarks || "—"}
+                            {formatResultMark(subject.externalMarks)}
                           </td>
                           <td
                             className="px-2.5 py-2.5 text-sm text-center font-semibold text-gray-800 dark:text-gray-100"
                             style={{ border: "none" }}
                           >
-                            {subject.totalMarks || "—"}
+                            {formatResultMark(subject.totalMarks)}
                           </td>
                           <td
                             className="px-2.5 py-2.5 text-center"

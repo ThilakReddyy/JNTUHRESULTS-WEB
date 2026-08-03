@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "JNTUH CONNECT | NOTIFICATIONS",
-  description: "Check out notifications with in a go.",
+  title: "JNTUH Notifications",
+  description: "Browse the latest JNTUH examination, academic, and university notifications.",
+  alternates: { canonical: "/notifications" },
 };
 
 export default function RootLayout({

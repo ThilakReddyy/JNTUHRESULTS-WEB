@@ -1,6 +1,7 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import React from "react";
+import { formatResultMark } from "@/components/result/formatResultMark";
 
 const gradeConfig = (grade: string) => {
   if (!grade)
@@ -138,19 +139,19 @@ const NotificationExamResults = () => {
                         className="px-2.5 py-2.5 text-sm text-center text-gray-600 dark:text-gray-300"
                         style={{ border: "none" }}
                       >
-                        {result["subject_internal"] || "—"}
+                        {formatResultMark(result["subject_internal"])}
                       </td>
                       <td
                         className="px-2.5 py-2.5 text-sm text-center text-gray-600 dark:text-gray-300"
                         style={{ border: "none" }}
                       >
-                        {result["subject_external"] || "—"}
+                        {formatResultMark(result["subject_external"])}
                       </td>
                       <td
                         className="px-2.5 py-2.5 text-sm text-center font-semibold text-gray-800 dark:text-gray-100"
                         style={{ border: "none" }}
                       >
-                        {result["subject_total"] || "—"}
+                        {formatResultMark(result["subject_total"])}
                       </td>
                       <td
                         className="px-2.5 py-2.5 text-center"

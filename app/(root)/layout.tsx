@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "JNTUH CONNECT",
+  title: "JNTUH Results and Academic Tools",
   description:
-    "Get your JNTUH exam results (UG & PG) online easily! Get your grades, CGPA, and check for backlogs on the official JNTUH CONNECT portal. Find jobs & internships too! Start now!",
+    "Check JNTUH UG and PG exam results, grades, CGPA, backlogs, credits, notifications, syllabi, and academic calendars in one place.",
+  alternates: { canonical: "/" },
 };
 
 export default function RootLayout({

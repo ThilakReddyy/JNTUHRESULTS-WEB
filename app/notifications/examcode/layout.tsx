@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import ResultPageLayout from "@/components/results/result-page-layout";
 
 export const metadata: Metadata = {
-  description: "JNTUH B.Tech, B.Pharamacy,M.Tech,B.Tech,M.B.A Results",
-  keywords:
-    "jntuh 1-1 results, jntuh 1-2 results, jntuh 2-1 results, jntuh 2-2 results, jntuh 3-1 results, jntuh 4-1 results, jntuh 4-2 results",
+  title: "Exam Notification Details",
+  description:
+    "View JNTUH B.Tech, B.Pharmacy, M.Tech, M.Pharmacy, MBA, and MCA examination notification details.",
+  alternates: { canonical: "/notifications/examcode" },
 };
 
 export default function RootLayout({
@@ -11,5 +13,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <ResultPageLayout>{children}</ResultPageLayout>;
 }

@@ -7,26 +7,17 @@ import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
 export default function Home() {
   return (
     <>
-      <div className="z-[20] grid grid-row-2 lg:grid-cols-2 lg:hidden  items-center pt-10 font-normal text-2xl lg:text-6xl mb-5">
-        <div className="flex justify-center lg:justify-end">
+      <h1 className="z-[20] grid grid-row-2 items-center pt-10 font-normal text-2xl lg:flex lg:justify-center lg:text-xl xl:text-4xl 2xl:text-6xl mb-5">
+        <span className="flex justify-center lg:justify-end">
           Welcome to&nbsp;
-        </div>
+        </span>
         <Link
           href="/"
           className="flex justify-center text-primary underline-offset-4 hover:underline lg:justify-start"
         >
           <Title />
         </Link>
-      </div>
-      <div className="z-[20] hidden lg:flex justify-center items-center pt-10 font-normal text-xl xl:text-4xl 2xl:text-6xl  mb-5">
-        Welcome to&nbsp;
-        <Link
-          href="/"
-          className="text-primary underline-offset-4 hover:underline"
-        >
-          <Title />
-        </Link>
-      </div>
+      </h1>
       <div className="flex justify-center">
         <div className="m-4 w-full border border-border bg-secondary py-3 text-center text-sm font-bold uppercase tracking-[0.12em] text-secondary-foreground shadow-[3px_3px_0_hsl(var(--border)/0.16)] transition-colors lg:w-fit lg:whitespace-nowrap lg:px-8 lg:py-2 lg:text-base">
           Jawaharlal Nehru Technological University, Hyderabad

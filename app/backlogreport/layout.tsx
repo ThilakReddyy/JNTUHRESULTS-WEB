@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "JNTUH CONNECT | BACKLOG ASSESMENT",
+  title: "Backlog Assessment",
   description:
     "Get a clear picture of your JNTUH academic standing with our easy-to-use backlog assessment tool. See your current backlog status and plan your next steps efficiently.",
+  alternates: { canonical: "/backlogreport" },
 };
 
 export default function RootLayout({

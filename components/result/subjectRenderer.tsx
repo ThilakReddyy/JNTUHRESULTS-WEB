@@ -1,4 +1,5 @@
 import React from "react";
+import { formatResultMark } from "./formatResultMark";
 
 const gradeColor = (value: unknown) => {
   const grade = String(value || "")
@@ -64,13 +65,13 @@ const Subjects = ({ semester }: { semester: Exam }) => (
               {subject.subjectName}
             </td>
             <td className="px-0.5 text-center tabular-nums sm:px-2">
-              {subject.internalMarks || "—"}
+              {formatResultMark(subject.internalMarks)}
             </td>
             <td className="px-0.5 text-center tabular-nums sm:px-2">
-              {subject.externalMarks || "—"}
+              {formatResultMark(subject.externalMarks)}
             </td>
             <td className="px-0.5 text-center font-semibold tabular-nums sm:px-2">
-              {subject.totalMarks || "—"}
+              {formatResultMark(subject.totalMarks)}
             </td>
             <td
               className={`px-0.5 text-center font-bold uppercase sm:px-2 ${gradeColor(subject.grades)}`}
