@@ -8,6 +8,16 @@ const ACADEMIC_YEARS = [
   { label: "IV YEAR", semesters: ["4-1", "4-2"] },
 ];
 
+const hasFailedSubject = (semester: Record<string, any>) =>
+  semester.failed === true ||
+  semester.subjects?.some((subject: Record<string, any>) =>
+    ["F", "AB", "ABS"].includes(
+      String(subject.grades || "")
+        .trim()
+        .toUpperCase(),
+    ),
+  );
+
 const CmmSemesterTable = ({
   semester,
   position,
@@ -28,7 +38,7 @@ const CmmSemesterTable = ({
       <span className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[#53605a] dark:text-gray-400">
         SGPA
         <strong className="ml-1.5 text-[11px] text-[#17211e] dark:text-gray-100">
-          {semester.semesterSGPA ?? "—"}
+          {hasFailedSubject(semester) ? "-" : (semester.semesterSGPA ?? "—")}
         </strong>
       </span>
     </div>
