@@ -204,7 +204,7 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <footer className="mt-auto w-full pt-5 font-interer lg:w-[calc(100vw-16rem)]">
+      <footer className="mt-auto w-full pb-4 pt-5 font-interer lg:w-[calc(100vw-16rem)]">
         <hr />
         <center>
           <div className="flex justify-center mt-4 text-sm text-gray-600">
