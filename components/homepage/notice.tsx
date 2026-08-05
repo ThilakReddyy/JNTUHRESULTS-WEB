@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { FaApple, FaGooglePlay, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,15 +10,70 @@ import {
   useMobilePlatform,
 } from "@/customhooks/appdownloadhook";
 
+const NOTICE_HIDDEN_UNTIL_KEY = "noticePopupHiddenUntil";
+const NOTICE_DISMISS_DURATION_MS = 24 * 60 * 60 * 1000;
+
 const NoticePopup = () => {
   const pathname = usePathname();
   const [hidden, setHidden] = useState(false);
+  const [hiddenUntil, setHiddenUntil] = useState<number | null>(null);
+  const [hasCheckedDismissal, setHasCheckedDismissal] = useState(false);
   const platform = useMobilePlatform();
   const isIOS = platform === "ios";
 
   const path = "/" + pathname.split("/")[1];
-  const isVisible = path === "/" && !hidden && platform !== null;
-  const closehide = true;
+  const isVisible =
+    path === "/" && !hidden && hasCheckedDismissal && platform !== null;
+
+  useEffect(() => {
+    try {
+      const hiddenUntil = Number(localStorage.getItem(NOTICE_HIDDEN_UNTIL_KEY));
+
+      if (Number.isFinite(hiddenUntil) && Date.now() < hiddenUntil) {
+        setHidden(true);
+        setHiddenUntil(hiddenUntil);
+      } else {
+        localStorage.removeItem(NOTICE_HIDDEN_UNTIL_KEY);
+      }
+    } catch {
+      // Continue showing the notice when local storage is unavailable.
+    } finally {
+      setHasCheckedDismissal(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (hiddenUntil === null) return;
+
+    const timeout = window.setTimeout(
+      () => {
+        try {
+          localStorage.removeItem(NOTICE_HIDDEN_UNTIL_KEY);
+        } catch {
+          // The expired value will be removed on the next available storage read.
+        }
+
+        setHiddenUntil(null);
+        setHidden(false);
+      },
+      Math.max(0, hiddenUntil - Date.now()),
+    );
+
+    return () => window.clearTimeout(timeout);
+  }, [hiddenUntil]);
+
+  const closehide = () => {
+    const hiddenUntil = Date.now() + NOTICE_DISMISS_DURATION_MS;
+
+    try {
+      localStorage.setItem(NOTICE_HIDDEN_UNTIL_KEY, String(hiddenUntil));
+    } catch {
+      // The notice can still be hidden for the current page session.
+    } finally {
+      setHiddenUntil(hiddenUntil);
+      setHidden(true);
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -41,8 +96,7 @@ const NoticePopup = () => {
                 New Launch
               </span>
               <button
-                onClick={() => setHidden(true)}
-                hidden={closehide}
+                onClick={closehide}
                 className="border border-border bg-card p-1.5 text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                 aria-label="Close"
               >
@@ -118,8 +172,8 @@ const NoticePopup = () => {
                 </motion.div>
 
                 <button
-                  onClick={() => setHidden(true)}
-                  hidden={closehide}
+                  onClick={closehide}
+                  hidden
                   className="mt-4 text-xs font-medium text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground"
                 >
                   Maybe later
