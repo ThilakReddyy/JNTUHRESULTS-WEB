@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useEffect, useState, type ReactNode } from "react";
 import { FaApple, FaGooglePlay } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
 
 import {
   APP_STORE_URL,
@@ -11,145 +13,111 @@ import {
   type MobilePlatform,
 } from "@/customhooks/appdownloadhook";
 
-const APP_PROMPT_DISMISSED_KEY = "jntuh-app-prompt-dismissed";
-const APP_PROMPT_INTERACTIONS = ["pointerdown", "keydown"] as const;
+const APP_BANNER_DISMISSED_KEY = "jntuh-app-banner-dismissed";
 
 const isGraceMarksRoute = (pathname: string) =>
   pathname === "/gracemarks" || pathname.startsWith("/gracemarks/");
 
 export default function MobileAppGate({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const [deviceStatus, setDeviceStatus] = useState<MobilePlatform | null>(null);
-  const [isSkipped, setIsSkipped] = useState(false);
-  const [isPromptReady, setIsPromptReady] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const bypassAppGate = isGraceMarksRoute(pathname);
+  const [platform, setPlatform] = useState<MobilePlatform | null>(null);
+  const [isDismissed, setIsDismissed] = useState(true);
+  const bypassAppBanner = isGraceMarksRoute(pathname);
 
   useEffect(() => {
-    if (bypassAppGate) return;
+    if (bypassAppBanner) return;
 
-    const removeInteractionListeners = () => {
-      APP_PROMPT_INTERACTIONS.forEach((eventName) => {
-        window.removeEventListener(eventName, revealPrompt);
-      });
-    };
+    const mobilePlatform = getMobilePlatform();
+    if (!mobilePlatform) return;
 
-    const revealPrompt = () => {
-      removeInteractionListeners();
+    setPlatform(mobilePlatform);
 
-      try {
-        if (sessionStorage.getItem(APP_PROMPT_DISMISSED_KEY) === "true") {
-          return;
-        }
-      } catch {
-        // Continue without persistence when session storage is unavailable.
-      }
-
-      const platform = getMobilePlatform();
-      if (!platform) return;
-
-      setDeviceStatus(platform);
-      setIsPromptReady(true);
-    };
-
-    APP_PROMPT_INTERACTIONS.forEach((eventName) => {
-      window.addEventListener(eventName, revealPrompt, {
-        once: true,
-        passive: true,
-      });
-    });
-
-    return removeInteractionListeners;
-  }, [bypassAppGate]);
-
-  const dismissPrompt = () => {
-    setIsSkipped(true);
-    setIsExpanded(false);
     try {
-      sessionStorage.setItem(APP_PROMPT_DISMISSED_KEY, "true");
+      setIsDismissed(
+        sessionStorage.getItem(APP_BANNER_DISMISSED_KEY) === "true",
+      );
     } catch {
-      // Dismiss for the current render when session storage is unavailable.
+      setIsDismissed(false);
+    }
+  }, [bypassAppBanner]);
+
+  const dismissBanner = () => {
+    setIsDismissed(true);
+
+    try {
+      sessionStorage.setItem(APP_BANNER_DISMISSED_KEY, "true");
+    } catch {
+      // The banner still stays dismissed for the current render.
     }
   };
 
-  const showAppPrompt =
-    !bypassAppGate &&
-    !isSkipped &&
-    isPromptReady &&
-    deviceStatus !== null;
-  const isAndroid = deviceStatus === "android";
+  const showAppBanner =
+    false && !bypassAppBanner && !isDismissed && platform !== null;
+  const isAndroid = platform === "android";
 
   return (
     <>
       {children}
-      {showAppPrompt && !isExpanded && (
-        <button
-          type="button"
-          onClick={() => setIsExpanded(true)}
-          className="fixed bottom-3 right-3 z-[9999] inline-flex items-center gap-2 border border-primary bg-primary px-3 py-2 text-xs font-bold uppercase tracking-[0.06em] text-primary-foreground shadow-[3px_3px_0_hsl(var(--border)/0.2)] transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          aria-label="Open the JNTUH Connect app download options"
-        >
-          {isAndroid ? (
-            <FaGooglePlay size={16} aria-hidden="true" />
-          ) : (
-            <FaApple size={17} aria-hidden="true" />
-          )}
-          Get the app
-        </button>
-      )}
-      {showAppPrompt && isExpanded && (
+      {showAppBanner && (
         <aside
           aria-label="Download the JNTUH Connect mobile app"
-          className="fixed inset-x-3 bottom-3 z-[9999] border border-border bg-card p-3 text-foreground shadow-[4px_4px_0_hsl(var(--border)/0.2)] sm:left-auto sm:right-4 sm:w-[26rem]"
+          className="fixed inset-x-0 bottom-0 z-[9999] border-t border-border bg-card/95 px-4 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-4 text-card-foreground shadow-[0_-10px_30px_hsl(var(--foreground)/0.12)] backdrop-blur-md md:hidden"
         >
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-border bg-background">
-              {isAndroid ? (
-                <FaGooglePlay
-                  className="text-green-600 dark:text-green-400"
-                  size={22}
-                  aria-hidden="true"
-                />
-              ) : (
-                <FaApple size={24} aria-hidden="true" />
-              )}
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-sm font-extrabold uppercase tracking-[0.06em]">
-                JNTUH Connect mobile app
-              </p>
-              <p className="mt-0.5 text-xs text-muted-foreground">
-                Get it from {isAndroid ? "Google Play" : "the App Store"}.
-              </p>
-            </div>
+          <div className="mx-auto max-w-md">
             <button
               type="button"
-              onClick={dismissPrompt}
-              className="px-2 py-1 text-lg text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+              onClick={dismissBanner}
+              className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               aria-label="Dismiss app download banner"
             >
-              ×
+              <IoClose size={22} aria-hidden="true" />
             </button>
-          </div>
-          <div className="mt-3 flex gap-2 border-t border-border pt-3">
-            <a
-              href={isAndroid ? PLAY_STORE_URL : APP_STORE_URL}
-              className="inline-flex flex-1 items-center justify-center gap-2 border border-primary bg-primary px-3 py-2 text-xs font-bold uppercase tracking-[0.06em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary"
-            >
-              {isAndroid ? (
-                <FaGooglePlay aria-hidden="true" />
-              ) : (
-                <FaApple aria-hidden="true" />
-              )}
-              Download app
-            </a>
-            <button
-              type="button"
-              onClick={dismissPrompt}
-              className="border border-border px-3 py-2 text-xs font-bold uppercase tracking-[0.06em] hover:bg-secondary"
-            >
-              Continue on web
-            </button>
+
+            <div className="flex items-center gap-3 pr-9">
+              <Image
+                src="/icon-192x192.png"
+                alt=""
+                width={52}
+                height={52}
+                className="h-[52px] w-[52px] shrink-0 border border-border bg-background"
+              />
+              <div className="min-w-0">
+                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
+                  Better on mobile
+                </p>
+                <p className="mt-0.5 text-base font-extrabold leading-tight">
+                  Get the JNTUH Connect app
+                </p>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                  Faster results, instant alerts and easy access on the go.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-4 grid grid-cols-[1fr_auto] gap-2">
+              <a
+                href={isAndroid ? PLAY_STORE_URL : APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center justify-center gap-2 border border-primary bg-primary px-4 py-2 text-sm font-extrabold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                {isAndroid ? (
+                  <FaGooglePlay aria-hidden="true" />
+                ) : (
+                  <FaApple size={18} aria-hidden="true" />
+                )}
+                {isAndroid
+                  ? "Get it on Google Play"
+                  : "Download on the App Store"}
+              </a>
+              <button
+                type="button"
+                onClick={dismissBanner}
+                className="min-h-11 border border-border px-4 py-2 text-sm font-bold transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                Not now
+              </button>
+            </div>
           </div>
         </aside>
       )}

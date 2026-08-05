@@ -18,6 +18,7 @@ const NoticePopup = () => {
 
   const path = "/" + pathname.split("/")[1];
   const isVisible = path === "/" && !hidden && platform !== null;
+  const closehide = true;
 
   return (
     <AnimatePresence>
@@ -41,6 +42,7 @@ const NoticePopup = () => {
               </span>
               <button
                 onClick={() => setHidden(true)}
+                hidden={closehide}
                 className="border border-border bg-card p-1.5 text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                 aria-label="Close"
               >
@@ -109,20 +111,15 @@ const NoticePopup = () => {
                     ) : (
                       <FaGooglePlay className="text-xl" />
                     )}
-                    <span>{isIOS ? "Download on the App Store" : "Download App Now"}</span>
-
-                    <motion.div
-                      className="absolute right-4"
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ repeat: Infinity, duration: 1.5 }}
-                    >
-                      →
-                    </motion.div>
+                    <span>
+                      {isIOS ? "Download on the App Store" : "Download App Now"}
+                    </span>
                   </a>
                 </motion.div>
 
                 <button
                   onClick={() => setHidden(true)}
+                  hidden={closehide}
                   className="mt-4 text-xs font-medium text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground"
                 >
                   Maybe later
