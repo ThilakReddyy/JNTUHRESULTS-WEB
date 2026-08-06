@@ -14,7 +14,7 @@ import {
   Share2,
   Sparkles,
 } from "lucide-react";
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
 import { Button } from "@/components/ui/button";
@@ -334,6 +334,8 @@ export default function JobBoard() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const [refreshNonce, setRefreshNonce] = useState(0);
+  const jobsListRef = useRef<HTMLDivElement>(null);
+  const loadMoreRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -376,6 +378,27 @@ export default function JobBoard() {
 
     return () => controller.abort();
   }, [page, keyword, type, companyType, remote, refreshNonce]);
+
+  useEffect(() => {
+    const sentinel = loadMoreRef.current;
+    if (!sentinel || !hasMore || isLoading || error) return;
+
+    const desktopLayout = window.matchMedia("(min-width: 1280px)").matches;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        setPage((current) => current + 1);
+      },
+      {
+        root: desktopLayout ? jobsListRef.current : null,
+        rootMargin: "0px 0px 320px 0px",
+      },
+    );
+
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [error, hasMore, isLoading, jobs.length]);
 
   const selectedJob = useMemo(
     () => jobs.find((job) => job.id === selectedId) || jobs[0] || null,
@@ -595,7 +618,10 @@ export default function JobBoard() {
             </div>
           ) : (
             <div className="mt-6 grid gap-4 xl:mt-4 xl:min-h-0 xl:flex-1 xl:grid-cols-[minmax(0,0.88fr)_minmax(420px,1.12fr)] xl:grid-rows-[minmax(0,1fr)] xl:items-stretch">
-              <div className="space-y-4 xl:min-h-0 xl:overflow-y-auto xl:overscroll-contain xl:pb-6 xl:pr-2">
+              <div
+                ref={jobsListRef}
+                className="space-y-4 xl:min-h-0 xl:overflow-y-auto xl:overscroll-contain xl:pb-6 xl:pr-2"
+              >
                 {jobs.map((job) => (
                   <JobCard
                     key={job.id}
@@ -605,15 +631,23 @@ export default function JobBoard() {
                   />
                 ))}
                 {hasMore && (
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="h-12 w-full"
-                    onClick={() => setPage((current) => current + 1)}
-                    disabled={isLoading}
+                  <div
+                    ref={loadMoreRef}
+                    className="flex h-12 items-center justify-center gap-2 text-sm font-bold text-muted-foreground"
+                    role="status"
+                    aria-live="polite"
                   >
-                    {isLoading ? "Loading more…" : "Load more opportunities"}
-                  </Button>
+                    {isLoading && (
+                      <RefreshCcw
+                        className="animate-spin"
+                        size={15}
+                        aria-hidden="true"
+                      />
+                    )}
+                    {isLoading
+                      ? "Loading more opportunities…"
+                      : "Scroll for more opportunities"}
+                  </div>
                 )}
               </div>
               {selectedJob && (
