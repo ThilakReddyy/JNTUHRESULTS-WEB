@@ -1,10 +1,64 @@
-import { execFileSync } from "node:child_process";
-import { mkdirSync, rmSync, writeFileSync } from "node:fs";
-import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { mkdirSync, readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import sharp from "sharp";
+import {
+  Archive,
+  ArrowRight,
+  BadgeCheck,
+  BarChart3,
+  BellRing,
+  BookMarked,
+  BookOpenText,
+  Bot,
+  BrainCircuit,
+  CalendarCheck,
+  CalendarClock,
+  CalendarDays,
+  CheckCircle2,
+  ClipboardList,
+  Database,
+  Download,
+  FileCheck2,
+  FileSpreadsheet,
+  FileText,
+  FileWarning,
+  GitCompare,
+  GraduationCap,
+  HelpCircle,
+  Home,
+  Layers3,
+  LifeBuoy,
+  LineChart,
+  ListChecks,
+  LockKeyhole,
+  Medal,
+  Megaphone,
+  MessagesSquare,
+  Network,
+  PanelTop,
+  RadioTower,
+  Route,
+  Search,
+  Share2,
+  ShieldCheck,
+  Sparkles,
+  Table2,
+  Target,
+  TrendingUp,
+  Trophy,
+  UserCheck,
+  Users,
+  Wand2,
+} from "lucide-react";
 
 const outputDirectory = new URL("../public/social/", import.meta.url);
 mkdirSync(outputDirectory, { recursive: true });
+
+const paperTexture = `data:image/jpeg;base64,${readFileSync(
+  new URL("../public/social-paper-texture.jpg", import.meta.url),
+).toString("base64")}`;
 
 const cards = [
   {
@@ -175,110 +229,183 @@ const escapeXml = (value) =>
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;");
 
+const ink = "#10201d";
+
+const pageIconByFile = {
+  home: Home,
+  "academic-result": GraduationCap,
+  "all-results": Layers3,
+  "backlog-report": ListChecks,
+  calendars: CalendarDays,
+  channels: MessagesSquare,
+  "class-result": BarChart3,
+  "credit-checker": BadgeCheck,
+  "excel-results": FileSpreadsheet,
+  faq: HelpCircle,
+  "grace-marks": Sparkles,
+  "help-center": LifeBuoy,
+  "academic-journey": Route,
+  mcp: Bot,
+  notifications: BellRing,
+  "exam-notifications": ClipboardList,
+  privacy: ShieldCheck,
+  "result-contrast": GitCompare,
+  syllabus: BookOpenText,
+  wrapped: Trophy,
+};
+
+const moduleIconByName = {
+  RESULTS: FileCheck2,
+  ACADEMICS: GraduationCap,
+  OPPORTUNITIES: Trophy,
+  SUBJECTS: BookOpenText,
+  CREDITS: BadgeCheck,
+  CGPA: TrendingUp,
+  SEMESTERS: Layers3,
+  OVERVIEW: PanelTop,
+  PENDING: FileWarning,
+  CLEARED: CheckCircle2,
+  SUMMARY: ClipboardList,
+  SEMESTER: CalendarClock,
+  EXAMS: CalendarCheck,
+  HOLIDAYS: CalendarDays,
+  NOTICES: Megaphone,
+  ALERTS: BellRing,
+  STUDENTS: Users,
+  RANKS: Medal,
+  EARNED: BadgeCheck,
+  NEEDED: Target,
+  STATUS: UserCheck,
+  COLUMNS: Table2,
+  DOWNLOAD: Download,
+  SEARCH: Search,
+  ANSWERS: HelpCircle,
+  GUIDANCE: Route,
+  DETAILS: FileText,
+  ELIGIBILITY: UserCheck,
+  PROOF: FileCheck2,
+  "HOW-TO": BookMarked,
+  SUPPORT: LifeBuoy,
+  RESOLVE: Wand2,
+  MILESTONES: Trophy,
+  "DREAM CGPA": Target,
+  TOOLS: BrainCircuit,
+  CONTEXT: Network,
+  NEW: Sparkles,
+  IMPORTANT: BellRing,
+  ARCHIVE: Archive,
+  COLLECT: Database,
+  PROTECT: LockKeyhole,
+  CONTROL: ShieldCheck,
+  "STUDENT A": UserCheck,
+  "STUDENT B": UserCheck,
+  INSIGHTS: LineChart,
+  COURSES: GraduationCap,
+  DOWNLOADS: Download,
+  MOMENTS: Sparkles,
+  PROGRESS: TrendingUp,
+  STORY: Share2,
+  COURSE: GraduationCap,
+  DEADLINE: CalendarClock,
+};
+
+function renderIcon(Icon, x, y, size, color = ink, strokeWidth = 2.25) {
+  const svg = renderToStaticMarkup(
+    createElement(Icon, {
+      "aria-hidden": true,
+    }),
+  );
+  const contents = svg.slice(svg.indexOf(">") + 1, svg.lastIndexOf("</svg>"));
+  return `<g transform="translate(${x} ${y}) scale(${size / 24})" fill="none" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round">${contents}</g>`;
+}
+
 function socialCardSvg(card) {
-  const titleFontSize = card.title.length === 3 ? 76 : 88;
-  const titleStart = card.title.length === 3 ? 220 : 255;
+  const longestLine = Math.max(...card.title.map((line) => line.length));
+  const titleFontSize =
+    longestLine >= 14 ? 68 : longestLine >= 11 ? 74 : 82;
+  const titleStart = card.title.length === 3 ? 238 : 272;
   const titleLines = card.title
     .map(
       (line, index) =>
-        `<text x="48" y="${titleStart + index * (titleFontSize + 2)}" class="headline" font-size="${titleFontSize}">${escapeXml(line)}</text>`,
+        `<text x="44" y="${titleStart + index * (titleFontSize - 2)}" class="headline" font-size="${titleFontSize}">${escapeXml(line)}</text>`,
     )
     .join("");
   const chips = card.chips
     .map((chip, index) => {
-      const x = 48 + index * 150;
-      return `<circle cx="${x}" cy="558" r="5" fill="${card.accent}"/><text x="${x + 14}" y="566" class="chip">${escapeXml(chip)}</text>`;
+      const x = 46 + index * 152;
+      return `<circle cx="${x}" cy="535" r="5" fill="${card.accent}"/><text x="${x + 14}" y="542" class="chip">${escapeXml(chip)}</text>`;
     })
     .join("");
   const modules = card.modules
     .map((module, index) => {
-      const y = 126 + index * 151;
-      const number = String(index + 1).padStart(2, "0");
+      const y = 92 + index * 146;
+      const Icon = moduleIconByName[module] ?? pageIconByFile[card.file];
       return `<g>
-        <rect x="695" y="${y}" width="445" height="125" fill="#f8f5e8" stroke="#10201d" stroke-width="3"/>
-        <rect x="695" y="${y}" width="96" height="125" fill="${card.accent}" fill-opacity="0.2"/>
-        <text x="725" y="${y + 76}" class="number">${number}</text>
-        <text x="824" y="${y + 48}" class="module">${escapeXml(module)}</text>
-        <rect x="824" y="${y + 66}" width="240" height="9" fill="#10201d"/>
-        <rect x="824" y="${y + 87}" width="175" height="8" fill="${card.accent}" fill-opacity="0.7"/>
-        <circle cx="1098" cy="${y + 78}" r="18" fill="none" stroke="#10201d" stroke-width="3"/>
-        <path d="M1089 ${y + 78}l7 7 13-16" fill="none" stroke="${card.accent}" stroke-width="5"/>
+        <rect x="681" y="${y}" width="463" height="132" fill="#f8f5e8" fill-opacity="0.86" stroke="${ink}" stroke-width="3"/>
+        <rect x="681" y="${y}" width="126" height="132" fill="${card.accent}" fill-opacity="0.12" stroke="${ink}" stroke-width="3"/>
+        ${renderIcon(Icon, 716, y + 34, 62)}
+        <path d="M827 ${y}v31h20l-10-8-10 8z" fill="${card.accent}"/>
+        <text x="861" y="${y + 42}" class="module">${escapeXml(module)}</text>
+        <rect x="849" y="${y + 56}" width="172" height="13" fill="${ink}"/>
+        <rect x="849" y="${y + 82}" width="132" height="9" fill="#98a16c"/>
+        <rect x="849" y="${y + 103}" width="14" height="8" fill="${card.accent}"/>
+        <rect x="870" y="${y + 103}" width="14" height="8" fill="${card.accent}"/>
+        <rect x="891" y="${y + 103}" width="14" height="8" fill="${card.accent}"/>
+        <line x1="1046" y1="${y + 1}" x2="1046" y2="${y + 131}" stroke="${ink}" stroke-width="2" stroke-dasharray="4 4"/>
+        <circle cx="1095" cy="${y + 66}" r="25" fill="none" stroke="${ink}" stroke-width="3"/>
+        ${renderIcon(ArrowRight, 1078, y + 49, 34, ink, 2.6)}
       </g>`;
     })
     .join("");
-  const gridLines = [
-    ...Array.from(
-      { length: 42 },
-      (_, index) =>
-        `<line x1="${index * 28}" y1="0" x2="${index * 28}" y2="630"/>`,
-    ),
-    ...Array.from(
-      { length: 24 },
-      (_, index) =>
-        `<line x1="0" y1="${index * 28}" x2="1200" y2="${index * 28}"/>`,
-    ),
-  ].join("");
+  const pageIcon = pageIconByFile[card.file];
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
     <defs>
       <style>
-        .brand,.headline,.kicker,.module,.number,.chip{font-family:'DejaVu Sans',Arial,sans-serif;fill:#10201d}
-        .brand{font-weight:800;font-size:42px;letter-spacing:1px}.headline{font-weight:900;letter-spacing:-3px}
-        .kicker{font-weight:800;font-size:19px;letter-spacing:3px}.module{font-weight:800;font-size:20px;letter-spacing:1px}
-        .number{font-weight:900;font-size:27px}.chip{font-weight:700;font-size:18px}
+        .brand,.kicker,.module,.chip{font-family:'DejaVu Sans',Arial,sans-serif;fill:${ink}}
+        .headline{font-family:'DejaVu Sans Condensed','Arial Narrow',sans-serif;fill:${ink};font-weight:900;letter-spacing:-2px}
+        .brand{font-weight:900;font-size:41px;letter-spacing:-1px}.kicker{font-weight:800;font-size:17px;letter-spacing:3px}
+        .module{font-weight:900;font-size:18px;letter-spacing:1px}.chip{font-weight:700;font-size:17px}
       </style>
     </defs>
-    <rect width="1200" height="630" fill="#f1f1db"/>
-    <g stroke="#10201d" stroke-opacity="0.055" stroke-width="1">${gridLines}</g>
-    <rect x="12" y="12" width="1176" height="606" fill="none" stroke="#10201d" stroke-width="9"/>
-    <rect x="42" y="47" width="76" height="76" fill="#10201d"/>
-    <text x="80" y="102" text-anchor="middle" font-family="'DejaVu Sans',Arial,sans-serif" font-size="42" font-weight="900" fill="#f1f1db">J</text>
-    <text x="137" y="101" class="brand">JNTUH CONNECT</text>
-    <line x1="42" y1="137" x2="620" y2="137" stroke="#10201d" stroke-width="2"/>
-    <text x="48" y="178" class="kicker">${escapeXml(card.kicker)}</text>
+    <rect width="1200" height="630" fill="#f1f0d7"/>
+    <image href="${paperTexture}" width="1200" height="630" preserveAspectRatio="xMidYMid slice" opacity="0.72"/>
+    <rect x="11" y="11" width="1178" height="608" fill="none" stroke="${ink}" stroke-width="9"/>
+    <rect x="41" y="42" width="505" height="82" fill="#f8f5e8" fill-opacity="0.55" stroke="${ink}" stroke-width="3"/>
+    <rect x="41" y="42" width="84" height="82" fill="${ink}"/>
+    ${renderIcon(GraduationCap, 56, 58, 54, "#f1f0d7", 2.15)}
+    <text x="145" y="98" class="brand">JNTUH CONNECT</text>
+    <line x1="41" y1="138" x2="546" y2="138" stroke="${ink}" stroke-width="2"/>
+    <text x="44" y="174" class="kicker">${escapeXml(card.kicker)}</text>
     ${titleLines}
-    <line x1="48" y1="526" x2="604" y2="526" stroke="#10201d" stroke-width="2"/>
+    <line x1="44" y1="503" x2="500" y2="503" stroke="${ink}" stroke-width="2"/>
     ${chips}
-    <rect x="670" y="94" width="495" height="486" fill="#e8e8ce" fill-opacity="0.62" stroke="#10201d" stroke-width="3"/>
+    <path d="M649 157h31M649 303h31M649 449h31" stroke="${ink}" stroke-width="2" stroke-dasharray="4 5"/>
+    <path d="M649 157v292" stroke="${ink}" stroke-width="2" stroke-dasharray="4 5"/>
     ${modules}
-    <path d="M640 156h30M640 277h30M640 428h30" stroke="#10201d" stroke-width="3" stroke-dasharray="4 5"/>
-    <text x="1004" y="604" class="kicker" font-size="12">JNTUHCONNECT.DHETHI.COM</text>
+    <g transform="translate(603 486)">
+      <circle cx="0" cy="0" r="54" fill="#f1f0d7" stroke="${ink}" stroke-width="4"/>
+      <circle cx="0" cy="0" r="43" fill="none" stroke="${ink}" stroke-width="2" stroke-dasharray="3 4"/>
+      ${renderIcon(pageIcon, -27, -27, 54, card.accent, 2.5)}
+    </g>
+    <g fill="${ink}" opacity="0.9">
+      ${Array.from({ length: 9 }, (_, index) => `<circle cx="${47 + index * 13}" cy="582" r="2"/>`).join("")}
+      ${Array.from({ length: 9 }, (_, index) => `<circle cx="${47 + index * 13}" cy="594" r="2"/>`).join("")}
+    </g>
+    <path d="M790 575h120m14 0h220M790 586h125m10 0h219M790 597h120m15 0h219" stroke="${ink}" stroke-width="1.5" stroke-dasharray="2 4" opacity="0.75"/>
+    <text x="1140" y="604" text-anchor="end" class="kicker" font-size="11">JNTUHCONNECT.DHETHI.COM</text>
   </svg>`;
 }
 
-const workDirectory = join(tmpdir(), "jntuh-social-images");
-mkdirSync(workDirectory, { recursive: true });
-
 for (const card of cards) {
-  const svgPath = join(workDirectory, `${card.file}.svg`);
   const jpgPath = new URL(`${card.file}.jpg`, outputDirectory);
-  writeFileSync(svgPath, socialCardSvg(card));
-  execFileSync("magick", [
-    "-background",
-    "#f1f1db",
-    svgPath,
-    "-strip",
-    "-interlace",
-    "Plane",
-    "-sampling-factor",
-    "4:2:0",
-    "-quality",
-    "86",
-    jpgPath.pathname,
-  ]);
+  await sharp(Buffer.from(socialCardSvg(card)))
+    .jpeg({ quality: 86, progressive: true, chromaSubsampling: "4:2:0" })
+    .toFile(fileURLToPath(jpgPath));
 }
 
-execFileSync("magick", [
-  new URL("../public/careers-og.png", import.meta.url).pathname,
-  "-strip",
-  "-interlace",
-  "Plane",
-  "-sampling-factor",
-  "4:2:0",
-  "-quality",
-  "88",
-  new URL("careers.jpg", outputDirectory).pathname,
-]);
+await sharp(fileURLToPath(new URL("../public/careers-og.png", import.meta.url)))
+  .jpeg({ quality: 88, progressive: true, chromaSubsampling: "4:2:0" })
+  .toFile(fileURLToPath(new URL("careers.jpg", outputDirectory)));
 
-rmSync(workDirectory, { recursive: true, force: true });
 console.log(`Generated ${cards.length + 1} optimized social images.`);

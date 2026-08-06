@@ -10,7 +10,7 @@ const routes = [
   "/academicallresult",
   "/backlogreport",
   "/calendars",
-  "/carrers",
+  "/careers",
   "/channels",
   "/classresult",
   "/creditchecker",
