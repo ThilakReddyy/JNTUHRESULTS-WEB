@@ -266,7 +266,7 @@ export const navitems = [
     title: "Syllabus",
   },
   {
-    href: "/carrers",
+    href: "/careers",
     image: (
       <>
         <svg
@@ -286,7 +286,7 @@ export const navitems = [
         </svg>
       </>
     ),
-    title: "Jobs & carrers",
+    title: "Jobs & Careers",
   },
   {
     href: "/notifications",

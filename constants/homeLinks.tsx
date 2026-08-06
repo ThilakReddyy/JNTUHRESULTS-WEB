@@ -15,7 +15,7 @@ export const homeLinks = [
     title: "Jobs and Careers",
     description:
       "Explore career paths, internships, and jobs to kick-start your professional journey.",
-    link: "/carrers",
+    link: "/careers",
   },
   {
     title: "Syllabus",
