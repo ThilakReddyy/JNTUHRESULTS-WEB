@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Grace Marks Eligibility",
-  description:
-    "Check your grace marks eligibility for JNTUH B.Tech and B.Pharm exams and upload your supporting proof in a single, guided flow.",
-  alternates: { canonical: "/gracemarks" },
-};
+export const metadata: Metadata = createPageMetadata("graceMarks");
 
 export default function RootLayout({
   children,

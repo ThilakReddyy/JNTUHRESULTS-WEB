@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Help Center",
-  description: "Get help using JNTUH Connect, report a problem, or find guidance for academic result tools.",
-  alternates: { canonical: "/helpcenter" },
-};
+export const metadata: Metadata = createPageMetadata("helpCenter");
 
 export default function RootLayout({
   children,

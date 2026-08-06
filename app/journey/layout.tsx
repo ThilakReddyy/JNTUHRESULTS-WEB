@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Your Academic Journey",
-  description:
-    "Discover your 4-year JNTUH academic story — SGPA arc, achievement badges, semester narratives, and an interactive CGPA dream simulator.",
-  alternates: { canonical: "/journey" },
-};
+export const metadata: Metadata = createPageMetadata("journey");
 
 export default function JourneyLayout({
   children,

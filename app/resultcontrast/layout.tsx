@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Academic Result Comparison",
-  description:
-    "Effortlessly track your academic progress at JNTUH by comparing your performance across semesters and against classmates. Gain valuable insights to improve your learning strategies.",
-  alternates: { canonical: "/resultcontrast" },
-};
+export const metadata: Metadata = createPageMetadata("resultContrast");
 
 export default function RootLayout({
   children,

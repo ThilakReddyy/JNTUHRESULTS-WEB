@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Credit Checker",
-  description:
-    "Check secured JNTUH credits and estimate the credits required for promotion to the next academic year.",
-  alternates: { canonical: "/creditchecker" },
-};
+export const metadata: Metadata = createPageMetadata("creditChecker");
 
 export default function RootLayout({
   children,

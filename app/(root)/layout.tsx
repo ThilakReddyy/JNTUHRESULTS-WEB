@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "JNTUH Results and Academic Tools",
-  description:
-    "Check JNTUH UG and PG exam results, grades, CGPA, backlogs, credits, notifications, syllabi, and academic calendars in one place.",
-  alternates: { canonical: "/" },
-};
+export const metadata: Metadata = createPageMetadata("home");
 
 export default function RootLayout({
   children,

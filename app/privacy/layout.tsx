@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: "Read how JNTUH Connect handles information and protects user privacy.",
-  alternates: { canonical: "/privacy" },
-};
+export const metadata: Metadata = createPageMetadata("privacy");
 
-export default function PrivacyLayout({ children }: { children: React.ReactNode }) {
+export default function PrivacyLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return children;
 }

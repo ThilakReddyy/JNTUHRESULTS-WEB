@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Frequently Asked Questions",
-  description: "Find answers to frequently asked questions about JNTUH Connect and its academic result tools.",
-  alternates: { canonical: "/faq" },
-};
+export const metadata: Metadata = createPageMetadata("faq");
 
 export default function RootLayout({
   children,

@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
 import ResultPageLayout from "@/components/results/result-page-layout";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Exam Notification Details",
-  description:
-    "View JNTUH B.Tech, B.Pharmacy, M.Tech, M.Pharmacy, MBA, and MCA examination notification details.",
-  alternates: { canonical: "/notifications/examcode" },
-};
+export const metadata: Metadata = createPageMetadata("examNotification");
 
 export default function RootLayout({
   children,

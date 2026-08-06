@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Academic Result",
-  description:
-    "Check semester-wise JNTUH academic results, subject marks, grades, credits, SGPA, and CGPA using your hall ticket number.",
-  alternates: { canonical: "/academicresult" },
-};
+export const metadata: Metadata = createPageMetadata("academicResult");
 
 export default function RootLayout({
   children,

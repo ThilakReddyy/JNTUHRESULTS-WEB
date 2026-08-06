@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "MCP Integration",
-  description: "Learn how to connect supported AI tools with JNTUH Connect through MCP.",
-  alternates: { canonical: "/mcp" },
-};
+export const metadata: Metadata = createPageMetadata("mcp");
 
 export default function McpLayout({ children }: { children: React.ReactNode }) {
   return children;

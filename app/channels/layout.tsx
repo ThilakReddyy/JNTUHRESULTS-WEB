@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "JNTUH Update Channels",
-  description: "Join our Telegram and WhatsApp channels to stay updated with the latest JNTUH results and notifications.",
-  alternates: { canonical: "/channels" },
-};
+export const metadata: Metadata = createPageMetadata("channels");
 
 export default function ChannelsLayout({
   children,

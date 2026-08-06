@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "JNTUH Notifications",
-  description: "Browse the latest JNTUH examination, academic, and university notifications.",
-  alternates: { canonical: "/notifications" },
-};
+export const metadata: Metadata = createPageMetadata("notifications");
 
 export default function RootLayout({
   children,

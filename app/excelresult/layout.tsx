@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Export Results to Excel",
-  description: "Export supported JNTUH academic result data to an Excel spreadsheet.",
-  alternates: { canonical: "/excelresult" },
-};
+export const metadata: Metadata = createPageMetadata("excelResult");
 
-export default function ExcelResultLayout({ children }: { children: React.ReactNode }) {
+export default function ExcelResultLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return children;
 }

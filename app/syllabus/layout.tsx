@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "JNTUH Syllabus",
-  description: "Find JNTUH course syllabi organized by program, regulation, and academic year.",
-  alternates: { canonical: "/syllabus" },
-};
+export const metadata: Metadata = createPageMetadata("syllabus");
 
 export default function RootLayout({
   children,

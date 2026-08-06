@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Backlog Assessment",
-  description:
-    "Get a clear picture of your JNTUH academic standing with our easy-to-use backlog assessment tool. See your current backlog status and plan your next steps efficiently.",
-  alternates: { canonical: "/backlogreport" },
-};
+export const metadata: Metadata = createPageMetadata("backlogReport");
 
 export default function RootLayout({
   children,
