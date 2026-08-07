@@ -11,7 +11,6 @@ import { ModeToggle } from "../ui/toggle";
 import { useSidebarContext } from "@/customhooks/sidebarhook";
 import { useNavBarContext } from "@/customhooks/navbarhook";
 import { usePathname } from "next/navigation";
-import { GooglePlayBadge } from "@/components/download/googleplay-banner";
 
 const Navbar = () => {
   const path = usePathname();
@@ -81,7 +80,6 @@ const Navbar = () => {
       </Link>
       <div className="flex justify-end items-center">
         <span className="flex gap-3 items-center">
-          <GooglePlayBadge className="hidden sm:inline-flex" />
           <span className="hidden items-center md:block">
             <ModeToggle />
           </span>

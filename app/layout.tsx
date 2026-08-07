@@ -9,7 +9,6 @@ import { SidebarProvider } from "@/customhooks/sidebarhook";
 import { Toaster } from "react-hot-toast";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import { NavBarProvider } from "@/customhooks/navbarhook";
-import NotificationPopUp from "@/components/notifications/popup";
 import MobileAppGate from "@/components/download/mobile-app-gate";
 import {
   createPageMetadata,
@@ -46,6 +45,30 @@ const websiteJsonLd = {
   description: siteDescription,
 };
 
+const mobileGateBootstrapScript = `
+  (() => {
+    const exemptRoutes = ["/gracemarks", "/helpcenter", "/faq"];
+    const path = window.location.pathname;
+    const isExempt = exemptRoutes.some(
+      (route) => path === route || path.startsWith(route + "/")
+    );
+
+    if (isExempt) return;
+
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isAndroid = userAgent.includes("android");
+    const isIOS = /iphone|ipad|ipod/.test(userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+    if (isAndroid || isIOS) {
+      document.documentElement.classList.add(
+        "mobile-app-gated",
+        isAndroid ? "mobile-platform-android" : "mobile-platform-ios"
+      );
+    }
+  })();
+`;
+
 export default function RootLayout({
   children,
 }: {
@@ -53,6 +76,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: mobileGateBootstrapScript }} />
+      </head>
       <body className={inter.className}>
         <GoogleAnalytics />
         <script
@@ -72,7 +98,6 @@ export default function RootLayout({
                 <main className="min-h-screen pt-16">
                   <SideMenubar />
                   <div className="min-h-[calc(100vh-4rem)] lg:ml-64">
-                    <NotificationPopUp />
                     {/* <Pwa /> */}
                     {children}
                   </div>

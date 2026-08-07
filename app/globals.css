@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+.mobile-app-gate,
+.mobile-app-store-android,
+.mobile-app-store-ios {
+  display: none;
+}
+
+html.mobile-app-gated,
+html.mobile-app-gated body {
+  overflow: hidden;
+}
+
+html.mobile-app-gated .mobile-app-gate,
+html.mobile-platform-android .mobile-app-store-android,
+html.mobile-platform-ios .mobile-app-store-ios {
+  display: flex;
+}
+
 @layer base {
   :root {
     --background: 100 25% 93%;
