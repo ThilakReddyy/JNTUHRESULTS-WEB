@@ -1,4 +1,5 @@
 import AdComponent from "@/components/ads/adcomponent";
+import DesktopAppDownload from "@/components/download/desktop-app-download";
 import Title from "@/components/homepage/title";
 import { homeLinks } from "@/constants/homeLinks";
 import Link from "next/link";
@@ -24,6 +25,7 @@ export default function Home() {
           Jawaharlal Nehru Technological University, Hyderabad
         </div>
       </div>
+      <DesktopAppDownload />
       <div className="flex justify-center lg:hidden">
         {/* <AdComponent /> */}
       </div>
