@@ -31,7 +31,7 @@ const SideMenubar = () => {
     <nav
       className={`fixed inset-y-0 flex h-full w-full flex-col bg-background pt-16 transition-all duration-150 ease-in lg:w-64 ${
         sidebar ? "left-0 " : "-left-full"
-      } lg:left-0 z-10`}
+      } lg:left-0 z-40`}
     >
       <div className="overflow-y-auto h-full flex flex-col z-[99]  lg:border-r">
         <div className="flex flex-col  lg:w-full  ">
