@@ -1,59 +1,98 @@
-# [JNTUH CONNECT](https://jntuhconnect.dhethi.com) - WEB </h1>
+# JNTUH Connect Web
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/fd2876a01109454886ce0c49811c3450)](https://app.codacy.com/gh/ThilakReddyy/JNTUHRESULTS-WEB/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
-[![License](https://img.shields.io/github/license/ThilakReddyy/jntuhresults-web)](https://github.com/ThilakReddyy/jntuhresults-web/blob/main/LICENSE)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/thilakreddyy/jntuhresults-web.svg)
-[![Website](https://img.shields.io/website?url=http%3A%2F%2Fjntuhresults.vercel.app&Website-Jntuh%20Results-blue?style=flat&logo=world&logoColor=white)](http://jntuhresults.vercel.app/)
+<p align="center">
+  <a href="https://github.com/ThilakReddyy/JNTUHRESULTS-WEB/actions/workflows/github-static-check.yml"><img src="https://github.com/ThilakReddyy/JNTUHRESULTS-WEB/actions/workflows/github-static-check.yml/badge.svg" alt="Static build status"/></a>
+  <a href="https://app.codacy.com/gh/ThilakReddyy/JNTUHRESULTS-WEB/dashboard"><img src="https://app.codacy.com/project/badge/Grade/fd2876a01109454886ce0c49811c3450" alt="Codacy code quality"/></a>
+  <a href="https://jntuhconnect.dhethi.com"><img src="https://img.shields.io/website?url=https%3A%2F%2Fjntuhconnect.dhethi.com&style=flat-square&label=production" alt="Production website status"/></a>
+  <a href="https://github.com/ThilakReddyy/JNTUHRESULTS-WEB"><img src="https://img.shields.io/github/languages/code-size/ThilakReddyy/JNTUHRESULTS-WEB?style=flat-square" alt="Code size"/></a>
+  <a href="https://github.com/ThilakReddyy/JNTUHRESULTS-WEB/commits/main"><img src="https://img.shields.io/github/last-commit/ThilakReddyy/JNTUHRESULTS-WEB?style=flat-square" alt="Last commit"/></a>
+  <a href="https://github.com/ThilakReddyy/JNTUHRESULTS-WEB/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ThilakReddyy/JNTUHRESULTS-WEB?style=flat-square" alt="License"/></a>
+</p>
 
-<p>This is a <a href="https://nextjs.org/">Next.js</a> project bootstrapped with <a href="https://github.com/vercel/next.js/tree/canary/packages/create-next-app">create-next-app</a>.</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-15-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js 15"/>
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React 18"/>
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
+  <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS"/>
+  <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white" alt="Axios"/>
+  <img src="https://img.shields.io/badge/PWA-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white" alt="Progressive Web App"/>
+</p>
 
-<h2>Features</h2>
+The public web client for JNTUH Connect. It is a statically exported Next.js application that lets students view academic results, all exam attempts, backlogs, credits, class results, comparisons, notifications, calendars, syllabus documents, grace-marks information, and fresher jobs.
 
-<ul>
-  <li>Grades of All Semesters of Particular Student - Provide your roll number in the inbox and click on Results. The Results of all the semesters will be displayed. The Result of particular semester includes both regular and all suplementary exams.</li>
-  <li>Grades of All Students of Particular Semester - Provide the specific range of Roll Numbers and select the semester. Results of the Roll numbers of specific Range are displayed.</li>
-</ul>
+Production: [jntuhconnect.dhethi.com](https://jntuhconnect.dhethi.com)
 
-<h2>Running locally in development mode</h2>
+## Core features
 
-<p>To get started, just clone the repository and run <code>npm install && npm run dev</code>:</p>
+- Consolidated academic results with SGPA/CGPA and semester summaries.
+- Complete regular, supplementary, RCRV, and grace attempt history.
+- Backlog, credit, class, contrast, journey, wrapped, and Excel-oriented views.
+- Result notifications, academic calendars, syllabus links, channels, and help content.
+- Grace-marks eligibility/proof workflow and hidden admin review UI.
+- Fresher job and internship board.
+- Installable PWA metadata and optional browser push subscription.
+- MCP setup and educational content for the backend's read-only tools.
 
-<pre>
+## Architecture
+
+The project uses the Next.js App Router, React, TypeScript, Tailwind CSS, Radix-based components, and Axios. `next.config.js` sets `output: "export"`, so production output is static files in `out/`; there are no Next.js API routes or server-rendered runtime dependencies.
+
+Browser components call the JNTUH backend directly. `lib/apiClient.ts` owns the backend URL and the global Axios `X-Api-Key` interceptor. Result adapters in `components/api/fetchResults.tsx` translate HTTP pending/error responses into UI states. See [architecture.md](architecture.md) for the full component and data flow.
+
+## Environment
+
+Create `.env.local` from `.env.example` and configure:
+
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_URL` | Backend base URL, including a trailing slash. |
+| `NEXT_PUBLIC_API_KEY` | Public browser gateway value sent as `X-Api-Key`. |
+| `NEXT_PUBLIC_VAPID_PUBLIC_KEY` | Optional browser Web Push application-server public key. |
+| `NEXT_PUBLIC_GOOGLE_ANALYTICS` | Optional Google Analytics measurement ID. |
+
+All `NEXT_PUBLIC_*` values are embedded in the static client bundle and are not secrets. `REDIS_URL` remains in the example file but the current static application does not use Redis directly.
+
+## Local development
+
+```bash
 git clone https://github.com/ThilakReddyy/JNTUHRESULTS-WEB.git
-npm install
+cd JNTUHRESULTS-WEB
+npm ci
+cp .env.example .env.local
 npm run dev
-</pre>
+```
 
-<h2>Building and deploying in production</h2>
+Open [http://localhost:3000](http://localhost:3000). A local backend normally runs at `http://localhost:8000/` and must allow the web origin through CORS.
 
-<p>If you wanted to run this site in production, you should install modules then build the site with <code>npm run build</code> and run it with <code>npm start</code>:</p>
+## Validation
 
-<pre>
-npm install
+```bash
+npm run lint
 npm run build
-npm start
-</pre>
+```
 
-<p>You should run <code>npm run build</code> again any time you make changes to the site.</p>
+`npm run build` must create `out/`. GitHub Actions performs the static build on pushes and pull requests.
 
-<p>Open <a href="http://localhost:3000">http://localhost:3000</a> with your browser to see the result.</p>
+## Documentation
 
-<h2>Questions? Need Help? Found a bug?</h2>
+| Guide | Purpose |
+| --- | --- |
+| [Architecture](architecture.md) | Static application structure, backend integration, result flow, and browser state. |
+| [Contributing](CONTRIBUTING.md) | Setup, validation, code conventions, and pull request expectations. |
+| [Deployment](DEPLOYMENT.md) | Static build contract, environment injection, hosting, and rollback. |
+| [Security](SECURITY.md) | Reporting, public configuration, student data, admin UI, and dependency guidance. |
+| [Operations runbook](RUNBOOK.md) | Triage for build, hosting, backend, CORS, result, and push failures. |
 
-<p>If you've got questions about setup, deploying, special feature implementation, or just want to chat with the developer, please feel free to contact me on <a href="mailto:thilakreddypothuganti@gmail.com">email</a>.</p>
+## Related projects
 
-<p>Found a bug? Go ahead and <a href="https://github.com/ThilakReddyy/JNTUHRESULTS-SERVICE/issues">submit an issue</a>. And, of course, feel free to submit pull requests with bug fixes or changes to the dev branch.</p>
+- [Backend](https://github.com/ThilakReddyy/jntuh-backend)
+- [Android app](https://github.com/ThilakReddyy/jntuhconnect)
+- [iOS app](https://github.com/ThilakReddyy/jntuhconnect-ios)
 
-## Contact
+## Contributing
 
-For any questions, feedback, or inquiries, please contact:
+See [CONTRIBUTING.md](CONTRIBUTING.md). Do not commit `.env.local`, production tokens, student records, or generated `out/` content.
 
-- Name: Thilak Reddy
-- Email: <thilakreddypothuganti@gmail.com>
+## License
 
-<p>Also feel free to message me if you have any ideas for small website tools that you can't yet find online. Thanks!</p>
-<h2>Thanks</h2>
-<ul>
-  <li><a href="https://www.cloudflare.com/">▲ Cloudflare</a> for fast deployments served from the edge, hosting our website, downloads, and updates.</li>
-  <li><a href="https://nextjs.org/">Next.js</a> for development framework created by Vercel enabling React-based web applications with server-side rendering and generating static websites</li>
-</ul>
+Licensed under the [GNU General Public License v3.0](LICENSE).
