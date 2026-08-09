@@ -13,6 +13,7 @@ import { askNotificationPermission } from "../pushnotifications/notificationPerm
 const NotificationPopUp = () => {
   const [results, setResults] = useState<Result[]>([]);
   const [hidden, setHidden] = useState(false);
+  const [isReady, setIsReady] = useState(false);
   const pathname = usePathname();
   const path = "/" + pathname.split("/")[1];
 
@@ -24,7 +25,11 @@ const NotificationPopUp = () => {
   }
 
   useEffect(() => {
-    askNotificationPermission();
+    const popupTimer = window.setTimeout(() => {
+      setIsReady(true);
+      void askNotificationPermission();
+    }, 2000);
+
     const fetchData = async () => {
       try {
         //
@@ -50,7 +55,11 @@ const NotificationPopUp = () => {
       }
     };
     fetchData();
+
+    return () => window.clearTimeout(popupTimer);
   }, []);
+
+  if (!isReady) return null;
 
   return (
     <>
