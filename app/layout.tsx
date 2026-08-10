@@ -46,6 +46,11 @@ export const metadata: Metadata = {
       },
     ],
   },
+  appleWebApp: {
+    capable: true,
+    title: "JNTUH Connect",
+    statusBarStyle: "default",
+  },
   verification: {
     google: "0STTwkOucWr-pQpKmDmE6lqQHDvHaNaR7GzFNLxkMTg",
   },

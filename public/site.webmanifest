@@ -1,6 +1,10 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "JNTUH Connect",
+  "short_name": "JNTUH Connect",
+  "description": "Check JNTUH results, grades, CGPA, backlogs, credits, notifications, syllabi, and calendars.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
