@@ -31,12 +31,13 @@ export const metadata: Metadata = {
   authors: [{ name: "Thilak Reddy" }],
   creator: "Thilak Reddy",
   publisher: "JNTUH Connect",
-  manifest: "/manifest.json",
+  manifest: "/site.webmanifest",
   icons: {
     icon: [
-      { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
-      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
     ],
+    shortcut: "/favicon.ico",
     apple: [
       {
         url: "/apple-touch-icon.png",
