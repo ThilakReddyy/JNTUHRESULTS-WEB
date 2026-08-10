@@ -10,6 +10,24 @@ type PageMetadataDefinition = {
   noIndex?: boolean;
 };
 
+const siteKeywords = [
+  "JNTUH",
+  "JNTUH results",
+  "JNTUH Connect",
+  "JNTUH Vercel",
+  "Vercel JNTUH",
+  "JNTUH results Vercel",
+  "JNTUHResults",
+  "JNTUH notifications",
+  "JNTUH engineering results",
+  "JNTUH B.Pharmacy results",
+  "JNTUH B.Pharm results",
+  "JNTUH M.Tech results",
+  "JNTUH MBA results",
+  "JNTUH MCA results",
+  "JNTUH all semester results",
+] as const;
+
 export const pageMetadataDefinitions = {
   home: {
     title: "JNTUH Results and Student Tools",
@@ -230,7 +248,7 @@ export function createPageMetadata(
   return {
     title,
     description: page.description,
-    keywords: [...page.keywords, "JNTUH Connect"],
+    keywords: Array.from(new Set([...page.keywords, ...siteKeywords])),
     alternates: noIndex ? undefined : { canonical: path },
     robots: noIndex ? { index: false, follow: false } : undefined,
     openGraph: {
