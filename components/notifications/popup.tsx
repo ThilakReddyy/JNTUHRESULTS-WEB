@@ -34,7 +34,7 @@ const NotificationPopUp = () => {
     const popupTimer = window.setTimeout(() => {
       setIsReady(true);
       void askNotificationPermission();
-    }, 2000);
+    }, 700);
 
     const fetchData = async () => {
       try {
