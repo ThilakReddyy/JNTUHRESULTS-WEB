@@ -160,13 +160,10 @@ const NoticePopup = () => {
                     }
                     className="group relative flex w-full items-center justify-center gap-3 overflow-hidden border border-primary bg-primary px-6 py-4 font-bold uppercase tracking-[0.06em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary"
                   >
-                    {isIOS ? (
-                      <FaApple className="text-xl" />
-                    ) : (
-                      <FaGooglePlay className="text-xl" />
-                    )}
                     <span>
-                      {isIOS ? "Download on the App Store" : "Download App Now"}
+                      {isIOS
+                        ? "Download on the App Store"
+                        : "Download App on Play "}
                     </span>
                   </a>
                 </motion.div>
