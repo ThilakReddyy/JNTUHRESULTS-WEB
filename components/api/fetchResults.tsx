@@ -169,7 +169,6 @@ export const fetchAllResult = async (
       case 200: {
         if ("details" in response.data) {
           toast.dismiss();
-          toast.success("Result fetched successfully");
           return response.data;
         }
         break;
