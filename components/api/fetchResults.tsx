@@ -243,7 +243,19 @@ export const fetchBacklogReport = async (
     let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
     url = `${url}api/getBacklogs?rollNumber=${htno}`;
 
-    const response = await axios.get(url, { timeout: 20 * 1000 });
+    const response = await axios.get(url, {
+      timeout: 20 * 1000,
+      validateStatus: () => true,
+    });
+
+    if (response.status === 202) {
+      toast(
+        response.data?.message ||
+          "Result is being prepared. Please check again shortly.",
+      );
+      return null;
+    }
+
     if ("details" in response.data) {
       return response.data;
     }
@@ -269,7 +281,20 @@ export const fetchCreditsCheckerReport = async (
     url = `${url}api/getCreditsChecker?rollNumber=${htno}`;
 
     toast.loading("Result are been fetched");
-    const response = await axios.get(url, { timeout: 20 * 1000 });
+    const response = await axios.get(url, {
+      timeout: 20 * 1000,
+      validateStatus: () => true,
+    });
+
+    if (response.status === 202) {
+      toast.dismiss();
+      toast(
+        response.data?.message ||
+          "Result is being prepared. Please check again shortly.",
+      );
+      return null;
+    }
+
     if ("details" in response.data) {
       toast.dismiss();
       return response.data;
@@ -300,11 +325,31 @@ export const fetchCreditContrastReport = async (
     url = `${url}api/getResultContrast?rollNumber1=${htno1}&rollNumber2=${htno2}`;
 
     toast.loading("Result are been fetched");
-    response = await axios.get(url, { timeout: 20 * 1000 });
+    response = await axios.get(url, {
+      timeout: 20 * 1000,
+      validateStatus: () => true,
+    });
+
+    if (response.status === 202) {
+      toast.dismiss();
+      toast(
+        response.data?.message ||
+          "Result is being prepared. Please check again shortly.",
+      );
+      return null;
+    }
+
     if ("studentProfiles" in response.data) {
       toast.dismiss();
       return response.data;
     }
+
+    if (response.status === 400) {
+      toast.dismiss();
+      toast.error(response.data?.detail || "Invalid request.");
+      return null;
+    }
+
     if (response.data.status === "success") {
       toast.dismiss();
       toast(response.data.message);
@@ -314,13 +359,9 @@ export const fetchCreditContrastReport = async (
     }
 
     return null;
-  } catch (error: any) {
+  } catch {
     toast.dismiss();
-    if (error.response?.status == 400) {
-      toast.error(error.response.data.detail);
-    } else {
-      toast.error("SERVER ISSUE!!");
-    }
+    toast.error("SERVER ISSUE!!");
     return null;
   }
 };
@@ -953,7 +994,19 @@ export const fetchClassResult = async (
 
     toast.loading("Result are been fetched");
 
-    const response = await axios.get(url, { timeout: 20 * 1000 });
+    const response = await axios.get(url, {
+      timeout: 20 * 1000,
+      validateStatus: () => true,
+    });
+
+    if (response.status === 202) {
+      toast.dismiss();
+      toast(
+        response.data?.message ||
+          "Result is being prepared. Please check again shortly.",
+      );
+      return null;
+    }
 
     if (response.data && response.data.length > 0) {
       toast.dismiss();
