@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 const CONTACT_COLLAB = "https://dhethi.com/#contact?intent=collab";
-const CONTACT_SERVICE = "https://dhethi.com/#contact?intent=service";
+const CONTACT_SERVICE = "https://www.instagram.com/__thilak_reddy__/";
 
 const PROOF_POINTS = [
   { value: "4K+", label: "daily users" },
