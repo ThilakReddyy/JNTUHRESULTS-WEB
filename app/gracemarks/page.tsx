@@ -33,7 +33,7 @@ type Phase = "form" | "eligible" | "blocked" | "success" | "paused";
 // already awarded on the official college consolidated marksheet (CMM).
 const isBatchPaused = (roll: string) => {
   const batch = parseInt(roll.substring(0, 2), 10);
-  return !isNaN(batch) && batch >= 22;
+  return !isNaN(batch) && batch > 22;
 };
 
 const GraceMarksPage = () => {
@@ -154,8 +154,8 @@ const GraceMarksPage = () => {
             <p className="mt-4 text-sm lg:text-base text-gray-700 dark:text-gray-200 leading-relaxed">
               Grace marks uploads are temporarily disabled for batch{" "}
               {hallticketno.substring(0, 2)} and above because many students are
-              mistaking this as a way to <em>get</em> or{" "}
-              <em>apply for</em> grace marks — it is not.
+              mistaking this as a way to <em>get</em> or <em>apply for</em>{" "}
+              grace marks — it is not.
             </p>
             <p className="mt-3 text-sm lg:text-base text-gray-700 dark:text-gray-200 leading-relaxed">
               This feature is only meant for cases where your grace marks were{" "}
@@ -195,7 +195,8 @@ const GraceMarksPage = () => {
         <div className="mx-auto max-w-2xl px-4 mt-6 text-xs lg:text-sm text-gray-500 dark:text-gray-400 text-center leading-relaxed">
           Available for B.Tech and B.Pharm students. We will first check your
           eligible backlogs, then ask you to upload your official consolidated
-          marksheet issued by the university (PDF / PNG / JPEG, up to 5&nbsp;MB).
+          marksheet issued by the university (PDF / PNG / JPEG, up to
+          5&nbsp;MB).
         </div>
         <Footer />
       </>
@@ -419,7 +420,9 @@ const ProofUploader = ({
 
       {uncertain && (
         <div className="mt-3 rounded border border-amber-200 dark:border-amber-900/40 bg-amber-50/60 dark:bg-amber-900/20 px-3 py-2 text-xs text-amber-700 dark:text-amber-300">
-          <p className="font-semibold">We couldn&apos;t clearly verify this CMM.</p>
+          <p className="font-semibold">
+            We couldn&apos;t clearly verify this CMM.
+          </p>
           <p className="mt-1">{uncertain.message}</p>
           <p className="mt-1 font-medium">
             Choose a clearer, complete image or PDF to continue.
@@ -471,10 +474,10 @@ const ProofUploader = ({
               This is not an official JNTUH site
             </AlertDialogTitle>
             <AlertDialogDescription className="text-left leading-relaxed">
-              If you are applying for grace marks, please contact your college
-              — grace marks cannot be applied for or awarded here. This upload
-              is only for updating grace marks that have already been awarded
-              by the official JNTUH but are not yet reflected on this site.
+              If you are applying for grace marks, please contact your college —
+              grace marks cannot be applied for or awarded here. This upload is
+              only for updating grace marks that have already been awarded by
+              the official JNTUH but are not yet reflected on this site.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
