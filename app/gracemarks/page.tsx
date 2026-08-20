@@ -112,6 +112,10 @@ const GraceMarksPage = () => {
 
   const onUpload = async () => {
     if (uploading) return;
+    if (file && file.name.startsWith("CMM-")) {
+      setFileError("kindly upload a valid cmm");
+      return;
+    }
     const err = validateProofFile(file);
     if (err) {
       setFileError(err);
