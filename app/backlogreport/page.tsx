@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 
 import { useRouter } from "next/navigation";
 import Footer from "@/components/footer/footer";
+import { logger } from "@/lib/telemetry/logger";
 
 const BacklogReport = () => {
   const [hallticketno, sethallticketno] = useState("");
@@ -26,7 +27,7 @@ const BacklogReport = () => {
     try {
       router.push("/backlogreport/result?htno=" + hallticketno);
     } catch (error) {
-      console.log("Error while fetching the academic result :", error);
+      logger.error("backlogreport", error);
     }
     setLoading(false);
     toast.dismiss();

@@ -6,6 +6,7 @@ import Loading from "@/components/loading/loading";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { logger } from "@/lib/telemetry/logger";
 
 const CreditChecker = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -25,7 +26,7 @@ const CreditChecker = () => {
     try {
       router.push("/creditchecker/result?htno=" + hallticketno);
     } catch (error) {
-      console.log("Error while fetching the academic result :", error);
+      logger.error("creditchecker", error);
     }
     setLoading(false);
     setTimeout(() => {

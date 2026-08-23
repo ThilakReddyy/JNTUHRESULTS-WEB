@@ -4,10 +4,7 @@ import { useEffect, useState } from "react";
 
 export type MobilePlatform = "android" | "ios";
 
-export const PLAY_STORE_URL =
-  "https://play.google.com/store/apps/details?id=com.dhethi.jntuhconnect";
-export const APP_STORE_URL =
-  "https://apps.apple.com/in/app/jntuh-connect/id6790828236";
+export { PLAY_STORE_URL, APP_STORE_URL } from "@/lib/app-links";
 
 export const getMobilePlatform = (): MobilePlatform | null => {
   const userAgent = navigator.userAgent.toLowerCase();

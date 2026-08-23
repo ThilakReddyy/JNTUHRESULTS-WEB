@@ -8,12 +8,14 @@ import SideMenubar from "@/components/sidemenubar/sidemenubar";
 import { SidebarProvider } from "@/customhooks/sidebarhook";
 import { Toaster } from "react-hot-toast";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import WebVitals from "@/components/analytics/WebVitals";
 import { NavBarProvider } from "@/customhooks/navbarhook";
 import NotificationPopUp from "@/components/notifications/popup";
 import {
   createPageMetadata,
   pageMetadataDefinitions,
 } from "@/lib/page-metadata";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/app-links";
 
 const inter = Inter({ subsets: ["latin"] });
 const siteUrl = new URL("https://jntuhconnect.dhethi.com");
@@ -56,12 +58,60 @@ export const metadata: Metadata = {
   },
 };
 
+const siteOrigin = siteUrl.origin;
+const organizationId = `${siteOrigin}/#organization`;
+
+const mobileApp = (
+  id: string,
+  operatingSystem: string,
+  storeUrl: string,
+) => ({
+  "@type": "MobileApplication",
+  "@id": `${siteOrigin}/#${id}`,
+  name: "JNTUH Connect",
+  operatingSystem,
+  applicationCategory: "EducationalApplication",
+  description: siteDescription,
+  url: storeUrl,
+  installUrl: storeUrl,
+  downloadUrl: storeUrl,
+  publisher: { "@id": organizationId },
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "INR",
+  },
+});
+
 const websiteJsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "JNTUH Connect",
-  url: siteUrl.toString(),
-  description: siteDescription,
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": organizationId,
+      name: "JNTUH Connect",
+      url: `${siteOrigin}/`,
+      description: siteDescription,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteOrigin}/icon-512x512.png`,
+        width: 512,
+        height: 512,
+      },
+      // Tells Google the website and both store listings are the same entity.
+      sameAs: [PLAY_STORE_URL, APP_STORE_URL],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteOrigin}/#website`,
+      name: "JNTUH Connect",
+      url: `${siteOrigin}/`,
+      description: siteDescription,
+      publisher: { "@id": organizationId },
+    },
+    mobileApp("android-app", "Android", PLAY_STORE_URL),
+    mobileApp("ios-app", "iOS", APP_STORE_URL),
+  ],
 };
 
 export default function RootLayout({
@@ -73,6 +123,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <GoogleAnalytics />
+        <WebVitals />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}

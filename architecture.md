@@ -103,15 +103,29 @@ Push requires HTTPS in production (localhost is allowed for development), a matc
 
 - FastAPI backend: results, notifications, content, jobs, proofs, subscriptions.
 - Browser Push service: web notifications.
-- Google Analytics: optional measurement when configured.
+- Google Analytics: optional measurement when configured — also carries this app's telemetry events (see below), since there is no separate error-tracking/APM vendor.
 - External document/community/job links: opened from client navigation.
 - Static host/CDN: delivery, TLS, redirects, and cache behavior.
+
+## Observability
+
+No dedicated error-tracking service (no Sentry/etc.) — the static-export constraint (no server) and a deliberate choice to avoid adding self-hosted infrastructure ruled that out. Instead:
+
+- `lib/telemetry/logger.ts` wraps `console.*`; `warn`/`error` also fire a GA `client_error` event `{scope, message}` so error frequency is visible in aggregate. All call sites elsewhere use this instead of raw `console.*`.
+- `lib/telemetry/scrub.ts` redacts roll-number-shaped 10-character tokens and denylisted keys before anything is logged or tracked — enforced centrally so individual call sites can't leak student data by omission.
+- `lib/apiClient.ts`'s Axios response interceptor derives a `routeLabel` from the backend URL's *path* only (never the query string, where `rollNumber` lives) against a small allowlist, and fires a GA `api_failure` event on network errors and backend 5xx/429 responses. Expected states (`202` pending, `404`/`409`/etc.) are unaffected — those adapters already handle them via `validateStatus: () => true` and their own toast messaging.
+- `app/error.tsx` / `app/global-error.tsx` are route/root error boundaries — previously a render error showed nothing meaningful to the user.
+- `components/analytics/WebVitals.tsx` forwards Core Web Vitals to GA as a `web_vitals` event.
+- `customhooks/setupPush.ts` fires `push_subscription_success`/`push_subscription_failure` GA events.
+
+`components/api/fetchAcademicResult.tsx`, `fetchNotifications.tsx`, and `fetchClassResult.tsx` are pre-static-export legacy code (hardcoded external URLs, a `/api/redisdata` route that can't exist under `output: "export"`) — dead except for one `getLocalStoragedata` helper re-exported from `fetchAcademicResult.tsx`. The live adapters are all in `components/api/fetchResults.tsx`. Do not extend the dead files; if removing them, first confirm no re-export is still referenced.
 
 ## Architectural invariants
 
 - The backend remains authoritative for results and admin mutations.
 - All browser-visible environment configuration is public.
 - Every production route must survive a static export build.
+- No academic payload or identifier reaches logs or analytics — enforced by `lib/telemetry/scrub.ts` and the path-only `routeLabel` derivation in `lib/apiClient.ts`.
 - Pending `202` is a normal result state, not a generic failure.
 - API model changes require coordinated updates across adapters, types, and derived views.
 - Admin authorization must be enforced by the backend.

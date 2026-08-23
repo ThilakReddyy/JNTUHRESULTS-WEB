@@ -1,6 +1,9 @@
+import { logger } from "@/lib/telemetry/logger";
+
 export async function askNotificationPermission(): Promise<boolean> {
   if (typeof window === "undefined" || !("Notification" in window)) {
-    console.warn(
+    logger.warn(
+      "push",
       "Notification API not available on server or unsupported browser.",
     );
     return false;

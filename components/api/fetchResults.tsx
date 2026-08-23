@@ -1,6 +1,7 @@
 import axios from "axios";
 import "@/lib/apiClient"; // attaches X-Api-Key to backend requests
 import toast from "react-hot-toast";
+import { logger } from "@/lib/telemetry/logger";
 
 export const fetchAcademicResult = async (
   htno: string,
@@ -974,13 +975,11 @@ export const fetchNotifications = async (params: Params) => {
       }
       return response.data;
     } else {
-      console.error(
-        `Failed to fetch notifications. Status: ${response.status}`,
-      );
+      logger.error("notifications", `Failed to fetch. Status: ${response.status}`);
       return null;
     }
   } catch (error) {
-    console.error("An error occurred while fetching notifications:", error);
+    logger.error("notifications", error);
     return null;
   }
 };

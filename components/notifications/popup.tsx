@@ -14,6 +14,7 @@ import {
   PLAY_STORE_URL,
   useMobilePlatform,
 } from "@/customhooks/appdownloadhook";
+import { logger } from "@/lib/telemetry/logger";
 
 const NotificationPopUp = () => {
   const [results, setResults] = useState<Result[]>([]);
@@ -57,7 +58,7 @@ const NotificationPopUp = () => {
         );
         setResults(tempres);
       } catch (error) {
-        console.error("Error fetching notifications:", error);
+        logger.error("notification-popup", error);
       }
     };
     fetchData();

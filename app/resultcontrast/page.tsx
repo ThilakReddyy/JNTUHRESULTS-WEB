@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/loading/loading";
 import Footer from "@/components/footer/footer";
+import { logger } from "@/lib/telemetry/logger";
 
 const ResultContrast = () => {
   const router = useRouter();
@@ -29,7 +30,7 @@ const ResultContrast = () => {
         toast.dismiss();
       }, 2000);
     } catch (error) {
-      console.log("Error while fetching the academic result :", error);
+      logger.error("resultcontrast", error);
     }
     setLoading(false);
   };

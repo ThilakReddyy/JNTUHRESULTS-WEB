@@ -8,6 +8,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { fetchAcademicResult } from "@/components/api/fetchResults";
 import { setupPush } from "@/customhooks/setupPush";
+import { logger } from "@/lib/telemetry/logger";
 
 const AcademicResult = () => {
   const [hallticketno, sethallticketno] = useState<string>("");
@@ -31,7 +32,7 @@ const AcademicResult = () => {
       // if (result) {
       // }
     } catch (error) {
-      console.log("Error while fetching the academic result :", error);
+      logger.error("academicresult", error);
     }
     setLoading(false);
     setTimeout(() => {

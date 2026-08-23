@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { FaGooglePlay, FaWhatsapp } from "react-icons/fa";
 import Link from "next/link";
+import { logger } from "@/lib/telemetry/logger";
 
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: ReadonlyArray<string>;
@@ -19,7 +20,7 @@ const Pwa = () => {
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
-      console.log(e);
+      logger.debug("pwa", "beforeinstallprompt fired");
       setDeferredPrompt(e);
     };
 
@@ -43,11 +44,7 @@ const Pwa = () => {
       promptEvent.prompt();
 
       promptEvent.userChoice.then((choiceResult: any) => {
-        if (choiceResult.outcome === "accepted") {
-          console.log("User accepted the A2HS prompt");
-        } else {
-          console.log("User dismissed the A2HS prompt");
-        }
+        logger.debug("pwa", `A2HS prompt ${choiceResult.outcome}`);
         setDeferredPrompt(null);
       });
     }

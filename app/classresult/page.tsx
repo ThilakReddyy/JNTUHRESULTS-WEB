@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { setupPush } from "@/customhooks/setupPush";
+import { logger } from "@/lib/telemetry/logger";
 
 const AcademicResult = () => {
   const [hallticketno, sethallticketno] = useState<string>("");
@@ -26,7 +27,7 @@ const AcademicResult = () => {
       await setupPush(hallticketno);
       router.push("/classresult/result?htno=" + hallticketno);
     } catch (error) {
-      console.log("Error while fetching the academic result :", error);
+      logger.error("classresult", error);
     }
     setLoading(false);
     setTimeout(() => {

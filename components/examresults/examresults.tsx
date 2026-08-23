@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
 import { rollNumberEndings } from "@/constants/rollNumberendings";
+import { logger } from "@/lib/telemetry/logger";
 
 const ExamResults = ({ title, query }: { title: string; query: string }) => {
   const [singleHtno, setSingleHtno] = useState("");
@@ -22,7 +23,7 @@ const ExamResults = ({ title, query }: { title: string; query: string }) => {
 
       window.open(redirectUrl, "_blank");
     } catch (e: any) {
-      console.log(e);
+      logger.error("examresults", e);
       toast.error("Internal Server Error!!!");
     }
   };

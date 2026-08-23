@@ -33,8 +33,8 @@ The build must produce `out/`. Do not introduce middleware, runtime API routes, 
 
 - `NEXT_PUBLIC_URL`: backend base with trailing slash.
 - `NEXT_PUBLIC_API_KEY`: public gateway header value.
-- `NEXT_PUBLIC_VAPID_PUBLIC_KEY`: optional browser push public key (used by code even though the current example file may not list it).
-- `NEXT_PUBLIC_GOOGLE_ANALYTICS`: optional analytics ID.
+- `NEXT_PUBLIC_VAPID_PUBLIC_KEY`: optional browser push public key.
+- `NEXT_PUBLIC_GOOGLE_ANALYTICS`: optional analytics ID — also the sink for this app's telemetry events (`api_failure`, `client_error`, `push_subscription_*`, `web_vitals`; see `lib/telemetry/`). There is no separate error-tracking service.
 - `REDIS_URL`: currently unused by the static application.
 
 Every `NEXT_PUBLIC_*` value is public and build-time. Never place admin/provider/cloud secrets in it.
@@ -47,7 +47,7 @@ Every `NEXT_PUBLIC_*` value is public and build-time. Never place admin/provider
 - Update adapters, TypeScript types, derived Journey/Wrapped calculations, and renderers together when the API changes.
 - Raw backend `fetch()` calls must attach the API header explicitly; Axios calls should import/use the shared client configuration.
 - Validate external URLs and preserve React's default escaping.
-- Avoid logging hall-ticket numbers, marks, proof documents, subscriptions, or admin values.
+- Avoid logging hall-ticket numbers, marks, proof documents, subscriptions, or admin values. Use `lib/telemetry/logger.ts` (not raw `console.*`) — it scrubs via `lib/telemetry/scrub.ts` before printing/tracking.
 - Keep static route metadata, sitemap, and social content aligned when adding pages.
 
 ## Dirty worktrees

@@ -6,6 +6,7 @@ import Loading from "@/components/loading/loading";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { logger } from "@/lib/telemetry/logger";
 
 const AcademicAllResult = () => {
   const [hallticketno, sethallticketno] = useState<string>("");
@@ -27,7 +28,7 @@ const AcademicAllResult = () => {
     try {
       router.push("/academicallresult/result?htno=" + hallticketno);
     } catch (error) {
-      console.log("Error while fetching the academic result:", error);
+      logger.error("academicallresult", error);
     }
 
     setLoading(false);

@@ -3,6 +3,7 @@ import { fetchNotifications } from "@/components/api/fetchResults";
 import NotificationForm from "@/components/notifications/notificationForm";
 import NotificationResults from "@/components/notifications/notificationResults";
 import React, { useEffect, useState, useCallback } from "react";
+import { logger } from "@/lib/telemetry/logger";
 
 const Notification = () => {
   const [results, setResults] = useState<Result[]>([]);
@@ -27,7 +28,7 @@ const Notification = () => {
         }
       }
     } catch (error) {
-      console.error("Error fetching notifications:", error);
+      logger.error("notifications", error);
     }
     setLoading(false);
   }, [params]);

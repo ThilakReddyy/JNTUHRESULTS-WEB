@@ -1,5 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { API_KEY, API_KEY_HEADER } from "@/lib/apiClient";
+import { logger } from "@/lib/telemetry/logger";
+import { trackEvent } from "@/lib/telemetry/analytics";
 
 function urlBase64ToUint8Array(base64String: string): Uint8Array {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
@@ -17,29 +19,24 @@ export async function setupPush(rollNumber?: string) {
     const anonId = localStorage.getItem("anonId") || uuidv4();
     localStorage.setItem("anonId", anonId);
 
-    console.log("Registering SW...");
+    logger.debug("push", "Registering SW...");
     await navigator.serviceWorker.register("/sw.js");
 
-    console.log("Waiting for ready...");
+    logger.debug("push", "Waiting for ready...");
     const reg = await navigator.serviceWorker.ready;
 
     const key = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!;
-    console.log("Using VAPID Key:", key);
-
     const convertedKey = urlBase64ToUint8Array(key);
-    console.log("Converted key:", convertedKey);
 
-    console.log("Subscribing to pushManager...");
+    logger.debug("push", "Subscribing to pushManager...");
     const sub = await reg.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: convertedKey,
     });
 
-    console.log("Subscription success!", sub);
-
     let url: string = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
 
-    await fetch(`${url}save-subscription`, {
+    const response = await fetch(`${url}save-subscription`, {
       method: "POST",
       headers: { "Content-Type": "application/json", [API_KEY_HEADER]: API_KEY },
       body: JSON.stringify({
@@ -49,8 +46,14 @@ export async function setupPush(rollNumber?: string) {
       }),
     });
 
-    console.log("Subscription saved.");
+    if (!response.ok) {
+      throw new Error(`save-subscription responded ${response.status}`);
+    }
+
+    logger.debug("push", "Subscription saved.");
+    trackEvent("push_subscription_success", {});
   } catch (err) {
-    console.error("❌ Push setup failed:", err);
+    logger.error("push", err);
+    trackEvent("push_subscription_failure", {});
   }
 }
