@@ -106,8 +106,8 @@ const Hero = () => {
 
   return (
     <section className="border-b border-border bg-card">
-      <div className="home-container px-4 pb-10 pt-10 sm:px-6 md:pb-14 md:pt-14">
-        <p className="inline-flex border border-border bg-secondary px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.22em] text-secondary-foreground">
+      <div className="home-container px-4 pb-10 pt-6 sm:px-6 md:pb-14 md:pt-14">
+        <p className="md:inline-flex border border-border bg-secondary px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.22em] text-secondary-foreground  ">
           Jawaharlal Nehru Technological University, Hyderabad
         </p>
 
