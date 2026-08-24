@@ -65,7 +65,7 @@ const Form = ({
 
   return (
     <form
-      className="mx-auto mt-[6%] flex w-[calc(100%_-_1.5rem)] max-w-3xl justify-center border border-border bg-card px-4 shadow-[4px_4px_0_hsl(var(--border)/0.2)] sm:px-10"
+      className="mx-auto mt-[6%] flex w-[calc(100%_-_1.5rem)] max-w-3xl justify-center border border-border bg-card px-4 shadow-[4px_4px_0_hsl(var(--shadow))] sm:px-10"
       toolname={tool.name}
       tooldescription={tool.description}
       toolautosubmit=""

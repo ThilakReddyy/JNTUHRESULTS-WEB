@@ -7,6 +7,7 @@ import { socialMediaItems } from "@/constants/socialmediaitems";
 import { ModeToggleMobile } from "../ui/toggle";
 import { useState } from "react";
 import { FaApple, FaGooglePlay } from "react-icons/fa";
+import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import {
   APP_STORE_URL,
   PLAY_STORE_URL,
@@ -14,7 +15,8 @@ import {
 } from "@/customhooks/appdownloadhook";
 
 const SideMenubar = () => {
-  const { sidebar, toggleSidebar } = useSidebarContext();
+  const { sidebar, toggleSidebar, collapsed, toggleCollapsed, hydrated } =
+    useSidebarContext();
   const pathname = usePathname();
   const [toggleResult, setToggleResult] = useState(false);
   const isIOS = useMobilePlatform() === "ios";
@@ -24,18 +26,39 @@ const SideMenubar = () => {
 
     return `flex w-full border border-transparent text-sm items-center gap-4 py-3.5 px-3 hover:border-border hover:bg-muted transition-colors group ${
       href === path ? "border-border text-primary bg-muted" : "text-muted-foreground"
-    } font-medium`;
+    } sidebar-item font-medium`;
   };
 
   return (
     <nav
-      className={`fixed inset-y-0 flex h-full w-full flex-col bg-background pt-16 transition-all duration-150 ease-in lg:w-64 ${
+      id="app-sidebar"
+      className={`fixed inset-y-0 flex h-full w-full flex-col bg-background pt-16 transition-[left] duration-200 ease-out ${
         sidebar ? "left-0 " : "-left-full"
       } lg:left-0 z-40`}
     >
       <div className="overflow-y-auto h-full flex flex-col z-[99]  lg:border-r">
+        <div className="sidebar-section hidden lg:flex border-b border-border p-2">
+          <button
+            type="button"
+            onClick={toggleCollapsed}
+            aria-expanded={!collapsed}
+            aria-controls="app-sidebar"
+            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+            title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+            className="sidebar-item flex w-full items-center gap-3 border border-transparent px-3 py-2 text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:border-border hover:bg-muted hover:text-foreground"
+          >
+            <span className="sidebar-icon">
+              {collapsed ? (
+                <PanelLeftOpen size={18} aria-hidden="true" />
+              ) : (
+                <PanelLeftClose size={18} aria-hidden="true" />
+              )}
+            </span>
+            <span className="sidebar-label">Collapse</span>
+          </button>
+        </div>
         <div className="flex flex-col  lg:w-full  ">
-          <div className="flex flex-col w-full space-y-1.5 p-3">
+          <div className="sidebar-section flex flex-col w-full space-y-1.5 p-3">
             {navitems.map((navitem, index: number) => {
               const isArray = Array.isArray(navitem);
 
@@ -43,14 +66,24 @@ const SideMenubar = () => {
                 return (
                   <div className="" key={index}>
                     <div
-                      className="mb-1 flex w-full flex-1 cursor-pointer items-center gap-4 border border-transparent px-3 py-4 text-sm font-medium text-muted-foreground transition-colors hover:border-border hover:bg-muted"
+                      className="sidebar-item mb-1 flex w-full flex-1 cursor-pointer items-center gap-4 border border-transparent px-3 py-4 text-sm font-medium text-muted-foreground transition-colors hover:border-border hover:bg-muted"
+                      title={collapsed ? navitem[0].title : undefined}
                       onClick={() => {
+                        // On the rail there is nowhere to show the submenu, so
+                        // open the sidebar and reveal it in one click.
+                        if (collapsed) {
+                          toggleCollapsed();
+                          setToggleResult(true);
+                          return;
+                        }
                         setToggleResult(!toggleResult);
                       }}
                     >
-                      {navitem[0].image}
-                      <span className="flex-grow">{navitem[0].title}</span>
-                      <div className="">
+                      <span className="sidebar-icon">{navitem[0].image}</span>
+                      <span className="sidebar-label flex-grow">
+                        {navitem[0].title}
+                      </span>
+                      <div className="sidebar-label">
                         {toggleResult ? (
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +118,7 @@ const SideMenubar = () => {
                       </div>
                     </div>
                     <div
-                      className={`px-3 border-l-2  mx-5 ${toggleResult ? "block" : "hidden"}`}
+                      className={`sidebar-subnav px-3 border-l-2  mx-5 ${toggleResult ? "block" : "hidden"}`}
                     >
                       {navitem.map((item, index) => {
                         const path = "/" + pathname.split("/")[1];
@@ -123,9 +156,10 @@ const SideMenubar = () => {
                       }
                     }}
                     className={getButtonClass(navitem.href)}
+                    title={collapsed ? navitem.title : undefined}
                   >
-                    {navitem.image}
-                    {navitem.title}
+                    <span className="sidebar-icon">{navitem.image}</span>
+                    <span className="sidebar-label">{navitem.title}</span>
                   </Link>
                 );
               }
@@ -190,7 +224,7 @@ const SideMenubar = () => {
             ))}
           </div>
           <div className="flex justify-center m-2 text-xs text-muted-foreground">
-            © 2023 jntuhconnect.dhethi.com
+            © {new Date().getFullYear()} jntuhconnect.dhethi.com
           </div>
         </div>
       </footer>

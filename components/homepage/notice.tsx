@@ -89,7 +89,7 @@ const NoticePopup = () => {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-sm border border-border bg-card text-card-foreground shadow-[5px_5px_0_hsl(var(--border)/0.25)]"
+            className="relative w-full max-w-sm border border-border bg-card text-card-foreground shadow-[5px_5px_0_hsl(var(--shadow))]"
           >
             <div className="flex items-center justify-between border-b border-border bg-secondary px-4 py-3 text-secondary-foreground">
               <span className="text-[10px] font-extrabold uppercase tracking-[0.2em]">

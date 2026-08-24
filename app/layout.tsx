@@ -72,6 +72,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
+        {/* Runs before the sidebar is parsed so the stored rail width is in
+            effect on the first paint. Without it the page paints expanded and
+            then visibly animates to the collapsed width after hydration. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{document.documentElement.dataset.sidebar=localStorage.getItem('sidebarCollapsed')==='true'?'collapsed':'expanded'}catch(e){document.documentElement.dataset.sidebar='expanded'}",
+          }}
+        />
         <GoogleAnalytics />
         <script
           type="application/ld+json"
@@ -88,7 +97,7 @@ export default function RootLayout({
               <Navbar />
               <main className="min-h-screen pt-16">
                 <SideMenubar />
-                <div className="min-h-[calc(100vh-4rem)] lg:ml-64">
+                <div id="app-content" className="min-h-[calc(100vh-4rem)]">
                   <NotificationPopUp />
                   {/* <Pwa /> */}
                   {children}

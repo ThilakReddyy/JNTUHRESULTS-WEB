@@ -3,7 +3,7 @@
 import Link from "next/link";
 
 import React, { useEffect, useState } from "react";
-import { fetchNotifications } from "../api/fetchResults";
+import { useLatestNotifications } from "@/customhooks/uselatestnotifications";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import { FaApple, FaGooglePlay } from "react-icons/fa";
@@ -16,7 +16,7 @@ import {
 } from "@/customhooks/appdownloadhook";
 
 const NotificationPopUp = () => {
-  const [results, setResults] = useState<Result[]>([]);
+  const notifications = useLatestNotifications();
   const [hidden, setHidden] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const pathname = usePathname();
@@ -30,37 +30,16 @@ const NotificationPopUp = () => {
     releaseDate: string;
   }
 
+  const today = new Date().toISOString().split("T")[0];
+  const results = notifications.filter(
+    (result) => result.releaseDate === today,
+  );
+
   useEffect(() => {
     const popupTimer = window.setTimeout(() => {
       setIsReady(true);
       void askNotificationPermission();
     }, 700);
-
-    const fetchData = async () => {
-      try {
-        //
-        const notifications = await fetchNotifications({
-          title: "",
-          year: "",
-          degree: "",
-          regulation: "",
-          page: 1,
-        });
-
-        const today = new Date().toISOString().split("T")[0];
-
-        const validNotifications: Result[] = Array.isArray(notifications)
-          ? notifications
-          : [];
-        const tempres = validNotifications.filter(
-          (result) => result.releaseDate === today,
-        );
-        setResults(tempres);
-      } catch (error) {
-        console.error("Error fetching notifications:", error);
-      }
-    };
-    fetchData();
 
     return () => window.clearTimeout(popupTimer);
   }, []);
@@ -74,7 +53,7 @@ const NotificationPopUp = () => {
           className={`lg:hidden bg-opacity-50 backdrop-filter z-[999]   backdrop-blur-sm fixed h-full   my-5  w-full  justify-center ${path !== "/" || hidden || results.length === 0 ? "hidden" : ""}`}
         >
           <div className="flex justify-center items-center h-full">
-            <div className="m-2 flex w-full items-center justify-center border border-border bg-card p-2 text-center font-bold text-card-foreground shadow-[4px_4px_0_hsl(var(--border)/0.2)] md:w-[50%]">
+            <div className="m-2 flex w-full items-center justify-center border border-border bg-card p-2 text-center font-bold text-card-foreground shadow-[4px_4px_0_hsl(var(--shadow))] md:w-[50%]">
               <div className="text-center w-full">
                 <div className="py-2 flex justify-around ">
                   <div></div>

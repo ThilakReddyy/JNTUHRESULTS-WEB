@@ -32,6 +32,10 @@
     --input: 150 11% 31%;
     --ring: 40 68% 46%;
 
+    /* Ink for the hard offset shadows. Carries its own alpha so each theme can
+       tune both the colour and the strength. */
+    --shadow: 150 11% 31% / 0.18;
+
     --radius: 0rem;
   }
 
@@ -63,6 +67,8 @@
     --border: 215 15% 38%;
     --input: 215 15% 38%;
     --ring: 40 68% 55%;
+
+    --shadow: 215 15% 38% / 0.18;
   }
 }
 
@@ -179,37 +185,121 @@ td {
   border-radius: 0 !important;
 }
 
-.home-links > a > div {
-  color: hsl(var(--card-foreground)) !important;
-  background: hsl(var(--card)) !important;
-  border-color: hsl(var(--border)) !important;
-  box-shadow: 3px 3px 0 hsl(var(--border) / 0.18) !important;
-}
-
-.home-links > a > div:hover {
-  color: hsl(var(--foreground)) !important;
-  background: hsl(var(--secondary)) !important;
-  border-color: hsl(var(--foreground)) !important;
-  box-shadow: 5px 5px 0 hsl(var(--border) / 0.24) !important;
-  transform: translate(-2px, -2px) !important;
-}
-
-.home-links > a > div:hover h3,
-.home-links > a > div:hover p {
-  color: hsl(var(--foreground)) !important;
-}
-
 main h1 {
   color: hsl(var(--foreground)) !important;
   letter-spacing: 0.08em;
 }
 
 main :is(.shadow-sm, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl) {
-  box-shadow: 3px 3px 0 hsl(var(--border) / 0.14) !important;
+  box-shadow: 3px 3px 0 hsl(var(--shadow)) !important;
 }
 
 main :is(.rounded-lg, .rounded-xl, .rounded-2xl).bg-white {
   color: hsl(var(--card-foreground)) !important;
   background-color: hsl(var(--card)) !important;
   border-color: hsl(var(--border)) !important;
+}
+
+/* Desktop sidebar rail. Driven by the data-sidebar attribute that the inline
+   script in the root layout sets before first paint, so the collapsed width is
+   never corrected (and animated) after hydration. */
+@media (min-width: 1024px) {
+  #app-sidebar {
+    width: 16rem;
+  }
+
+  #app-content {
+    margin-left: 16rem;
+  }
+
+  html[data-sidebar="collapsed"] #app-sidebar {
+    width: 4rem;
+  }
+
+  html[data-sidebar="collapsed"] #app-content {
+    margin-left: 4rem;
+  }
+
+  /* The icon sits in a fixed 4rem box at all widths, so collapsing never
+     re-aligns it -- the rail simply narrows to the box and the label melts
+     away beside it. Nothing snaps to a new position mid-animation. */
+  /* The rail is 4rem, so the icon box must start at the rail edge to land on
+     its centre. These wrappers keep their vertical padding and lose only the
+     horizontal padding that was pushing every icon off-centre. */
+  #app-sidebar .sidebar-section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #app-sidebar .sidebar-icon {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    /* Less the 1px transparent border each item carries for its hover state. */
+    width: calc(4rem - 2px);
+  }
+
+  #app-sidebar .sidebar-item {
+    gap: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #app-sidebar,
+  #app-content {
+    transition:
+      width 0.24s ease,
+      margin-left 0.24s ease;
+  }
+
+  #app-sidebar .sidebar-label {
+    max-width: 12rem;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 1;
+    /* Expanding: widen first, then fade the text in. */
+    transition:
+      max-width 0.24s ease,
+      opacity 0.18s ease 0.06s;
+  }
+
+  html[data-sidebar="collapsed"] #app-sidebar .sidebar-label {
+    max-width: 0;
+    opacity: 0;
+    /* Collapsing: fade the text out ahead of the width. */
+    transition:
+      max-width 0.24s ease,
+      opacity 0.12s ease;
+  }
+
+  html[data-sidebar="collapsed"] #app-sidebar .sidebar-subnav {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
+  #app-sidebar,
+  #app-content,
+  #app-sidebar .sidebar-label,
+  .home-container {
+    transition: none;
+  }
+}
+
+/* Homepage measure. Widens when the desktop rail is collapsed so the page uses
+   the width the sidebar gave back instead of leaving it as gutter. The value is
+   already correct on first paint, so the transition only runs on a real toggle. */
+.home-container {
+  width: 100%;
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  transition: max-width 0.2s ease-out;
+}
+
+@media (min-width: 1280px) {
+  html[data-sidebar="collapsed"] .home-container {
+    max-width: 80rem;
+  }
 }

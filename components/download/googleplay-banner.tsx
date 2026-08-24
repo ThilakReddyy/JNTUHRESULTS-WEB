@@ -45,7 +45,7 @@ export const GooglePlayBanner = () => {
     const isIOS = useMobilePlatform() === "ios";
 
     return (
-        <div className="mx-4 my-8 flex flex-col items-center gap-4 border border-border bg-card px-6 py-8 text-center shadow-[3px_3px_0_hsl(var(--border)/0.16)] lg:mx-auto lg:max-w-2xl">
+        <div className="mx-4 my-8 flex flex-col items-center gap-4 border border-border bg-card px-6 py-8 text-center shadow-[3px_3px_0_hsl(var(--shadow))] lg:mx-auto lg:max-w-2xl">
             {/* Icon row */}
             <div className="flex h-14 w-14 items-center justify-center border border-green-600/40 bg-green-500/10 text-green-600 dark:text-green-400">
                 {isIOS ? <FaApple size={30} /> : <FaGooglePlay size={28} />}
