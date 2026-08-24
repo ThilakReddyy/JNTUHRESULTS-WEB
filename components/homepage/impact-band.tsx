@@ -1,4 +1,5 @@
 import { homeStats } from "@/constants/homestats";
+import { cn } from "@/lib/utils";
 
 const ImpactBand = () => {
   return (
@@ -14,9 +15,18 @@ const ImpactBand = () => {
           Where JNTUH Connect stands today
         </h2>
 
-        <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-          {homeStats.map(({ value, label, detail, icon: Icon }) => (
-            <li key={label} className="border border-border bg-card p-4">
+        <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          {homeStats.map(({ value, label, detail, icon: Icon }, index) => (
+            <li
+              key={label}
+              className={cn(
+                "border border-border bg-card p-4",
+                // The stat count leaves an odd card on the 2 and 4 column
+                // layouts, so the last tile stretches to close the row.
+                index === homeStats.length - 1 &&
+                  "col-span-2 sm:col-span-1 lg:col-span-2",
+              )}
+            >
               <Icon
                 size={16}
                 aria-hidden="true"

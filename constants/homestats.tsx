@@ -3,6 +3,8 @@ import {
   Activity,
   Gauge,
   Layers3,
+  ScanSearch,
+  Search,
   Smartphone,
   Users,
 } from "lucide-react";
@@ -27,6 +29,18 @@ export const homeStats: HomeStat[] = [
     label: "Students a day",
     detail: "Daily active students across web, Android and iOS.",
     icon: Users,
+  },
+  {
+    value: "100K+",
+    label: "Searches a month",
+    detail: "Result, backlog and credit lookups run every month.",
+    icon: Search,
+  },
+  {
+    value: "2.3L+",
+    label: "Roll numbers searched",
+    detail: "Student roll numbers looked up on the platform so far.",
+    icon: ScanSearch,
   },
   {
     value: "22K+",
