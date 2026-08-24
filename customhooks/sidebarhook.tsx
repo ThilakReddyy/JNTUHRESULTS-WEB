@@ -27,7 +27,9 @@ const SidebarContext = createContext<SidebarContextprops | undefined>(
 
 export const SidebarProvider = ({ children }: { children: ReactNode }) => {
   const [sidebar, setSidebar] = useState<boolean>(false);
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  // Collapsed is the default rail state, matching what the inline script in
+  // the root layout paints before hydration for a first-time visitor.
+  const [collapsed, setCollapsed] = useState<boolean>(true);
   const [hydrated, setHydrated] = useState<boolean>(false);
 
   // The inline script in the root layout has already applied the stored

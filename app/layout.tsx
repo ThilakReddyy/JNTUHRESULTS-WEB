@@ -73,12 +73,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         {/* Runs before the sidebar is parsed so the stored rail width is in
-            effect on the first paint. Without it the page paints expanded and
-            then visibly animates to the collapsed width after hydration. */}
+            effect on the first paint. The desktop rail starts collapsed unless
+            the visitor has explicitly expanded it before. */}
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "try{document.documentElement.dataset.sidebar=localStorage.getItem('sidebarCollapsed')==='true'?'collapsed':'expanded'}catch(e){document.documentElement.dataset.sidebar='expanded'}",
+              "try{document.documentElement.dataset.sidebar=localStorage.getItem('sidebarCollapsed')==='false'?'expanded':'collapsed'}catch(e){document.documentElement.dataset.sidebar='collapsed'}",
           }}
         />
         <GoogleAnalytics />
