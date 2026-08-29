@@ -24,8 +24,10 @@ const SideMenubar = () => {
   const getButtonClass = (href: string) => {
     const path = "/" + pathname.split("/")[1];
 
-    return `flex w-full border border-transparent text-sm items-center gap-4 py-3.5 px-3 hover:border-border hover:bg-muted transition-colors group ${
-      href === path ? "border-border text-primary bg-muted" : "text-muted-foreground"
+    return `flex w-full border border-transparent text-sm items-center gap-4 py-3.5 px-3 hover:border-border hover:border-x-0 hover:bg-muted transition-colors group ${
+      href === path
+        ? "border-border text-primary bg-muted"
+        : "text-muted-foreground"
     } sidebar-item font-medium`;
   };
 
@@ -57,7 +59,7 @@ const SideMenubar = () => {
             <span className="sidebar-label">Collapse</span>
           </button>
         </div>
-        <div className="flex flex-col  lg:w-full  ">
+        <div className="flex flex-col lg:w-full  ">
           <div className="sidebar-section flex flex-col w-full space-y-1.5 p-3">
             {navitems.map((navitem, index: number) => {
               const isArray = Array.isArray(navitem);
