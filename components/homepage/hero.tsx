@@ -71,16 +71,27 @@ const Hero = () => {
   const [hallticketno, setHallticketno] = useState("");
   const [destinationId, setDestinationId] = useState(destinations[0].id);
   const [isCooldown, setIsCooldown] = useState(false);
+  // Validation lives in the card rather than in a toast: the message has to sit
+  // next to the field it is about, including on mobile where a bottom-right
+  // toast is easy to miss.
+  const [error, setError] = useState<string | null>(null);
 
   const onSubmit = async () => {
     if (isCooldown) return;
 
     const htno = hallticketno.trim().toUpperCase();
 
-    if (!HALL_TICKET_PATTERN.test(htno)) {
-      toast.error("The hall ticket should be 10 characters");
+    if (htno.length === 0) {
+      setError("Enter a hall ticket number to continue.");
       return;
     }
+
+    if (!HALL_TICKET_PATTERN.test(htno)) {
+      setError("A hall ticket number is 10 letters and digits.");
+      return;
+    }
+
+    setError(null);
 
     const destination =
       destinations.find((entry) => entry.id === destinationId) ??
@@ -106,43 +117,51 @@ const Hero = () => {
 
   return (
     <section className="border-b border-border bg-card">
-      <div className="home-container px-4 pb-10 pt-6 sm:px-6 md:pb-14 md:pt-14">
-        <p className="md:inline-flex border border-border bg-secondary px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.22em] text-secondary-foreground  ">
-          Jawaharlal Nehru Technological University, Hyderabad
-        </p>
+      <div className="home-container grid gap-8 px-4 pb-10 pt-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,25rem)] lg:gap-x-12 lg:gap-y-10 lg:pb-16 lg:pt-16">
+        <div className="lg:col-start-1 lg:row-start-1 lg:self-end">
+          <p className="font-mono text-[10px] font-bold uppercase leading-relaxed tracking-[0.22em] text-muted-foreground sm:text-[11px] sm:tracking-[0.28em]">
+            Jawaharlal Nehru Technological University, Hyderabad
+          </p>
 
-        <h1 className="mt-6 max-w-4xl text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-          JNTUH results, read the way you
-          <span className="text-muted-foreground"> actually need them.</span>
-        </h1>
+          <h1 className="mt-5 max-w-[16ch] text-4xl font-extrabold leading-[1.03] tracking-tight sm:text-5xl lg:text-6xl xl:text-[4.25rem]">
+            JNTUH results, read the way you{" "}
+            <span className="text-highlight">actually</span> need them.
+          </h1>
 
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-          One hall ticket number gives you every semester, every attempt, your
-          SGPA and CGPA, pending backlogs and earned credits — merged,
-          calculated and cached so it loads instantly.
-        </p>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            One hall ticket number gives you every semester, every attempt, your
+            SGPA and CGPA, pending backlogs and earned credits — merged,
+            calculated and cached so it loads instantly.
+          </p>
+        </div>
 
         <form
-          className="mt-8 border border-border bg-background shadow-[4px_4px_0_hsl(var(--shadow))]"
+          className="border border-border bg-background shadow-[4px_4px_0_hsl(var(--shadow))] lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-center"
           toolname="check_jntuh_result"
           tooldescription="Look up a JNTUH result for a hall ticket number and open the selected result view."
           toolautosubmit=""
+          noValidate
           onSubmit={(event) => {
             event.preventDefault();
             void onSubmit();
           }}
         >
-          <div className="border-b border-border bg-secondary px-4 py-2 text-[10px] font-extrabold uppercase tracking-[0.2em] text-secondary-foreground">
-            Look up a result
+          <div className="flex items-center justify-between gap-3 border-b border-border bg-secondary px-4 py-2.5">
+            <h2 className="text-sm font-extrabold tracking-tight text-secondary-foreground">
+              Look up a result
+            </h2>
+            <span className="whitespace-nowrap font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+              &lt;40ms cached
+            </span>
           </div>
 
-          <div className="grid gap-3 p-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)_auto] md:items-end">
+          <div className="grid gap-4 p-4">
             <label className="block">
-              <span className="mb-1.5 block text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
+              <span className="mb-1.5 block font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
                 Hall ticket number
               </span>
               <input
-                className="h-12 w-full min-w-0 border border-input bg-background px-3 text-base uppercase tracking-[0.14em] outline-none placeholder:normal-case placeholder:tracking-normal focus:border-foreground focus:ring-1 focus:ring-ring"
+                className="h-12 w-full min-w-0 border border-input bg-background px-3 text-base uppercase tracking-[0.14em] outline-none placeholder:normal-case placeholder:tracking-normal focus:border-foreground focus:ring-1 focus:ring-ring aria-[invalid=true]:border-highlight"
                 name="htno1"
                 type="text"
                 required
@@ -152,17 +171,20 @@ const Hero = () => {
                 maxLength={10}
                 pattern="[A-Za-z0-9]{10}"
                 aria-label="Hall ticket number"
+                aria-invalid={error !== null}
+                aria-describedby={error ? "hero-lookup-error" : undefined}
                 toolparamdescription="A 10-character JNTUH student hall ticket number."
                 placeholder="e.g. 20XX1A0000"
                 value={hallticketno}
-                onChange={(event) =>
-                  setHallticketno(event.target.value.toUpperCase())
-                }
+                onChange={(event) => {
+                  setHallticketno(event.target.value.toUpperCase());
+                  if (error) setError(null);
+                }}
               />
             </label>
 
             <label className="block">
-              <span className="mb-1.5 block text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
+              <span className="mb-1.5 block font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
                 Show me
               </span>
               <select
@@ -184,22 +206,32 @@ const Hero = () => {
             <button
               type="submit"
               disabled={isCooldown}
-              className="inline-flex h-12 items-center justify-center gap-2 border border-primary bg-primary px-6 text-sm font-bold uppercase tracking-[0.14em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex h-12 w-full items-center justify-center gap-2 border border-primary bg-primary px-6 text-sm font-bold uppercase tracking-[0.14em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isCooldown ? "Fetching" : "Get result"}
               <ArrowRight size={16} aria-hidden="true" />
             </button>
+
+            {error ? (
+              <p
+                id="hero-lookup-error"
+                role="alert"
+                className="border-l-2 border-highlight bg-highlight/10 px-3 py-2.5 font-mono text-xs leading-relaxed text-highlight-ink"
+              >
+                {error}
+              </p>
+            ) : null}
           </div>
 
-          <p className="flex items-center gap-2 border-t border-border px-4 py-2.5 text-xs text-muted-foreground">
-            <Lock size={12} aria-hidden="true" className="shrink-0" />
+          <p className="flex items-start gap-2 border-t border-border px-4 py-3 text-xs leading-relaxed text-muted-foreground">
+            <Lock size={12} aria-hidden="true" className="mt-0.5 shrink-0" />
             No sign-in, no personal details stored. Your hall ticket number is
             only used to fetch the result you asked for.
           </p>
         </form>
 
-        <div className="mt-6 flex flex-wrap items-center gap-2">
-          <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
+        <div className="flex flex-wrap items-center gap-2 lg:col-start-1 lg:row-start-2 lg:self-start">
+          <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
             Also popular
           </span>
           {secondaryLinks.map((link) => (
