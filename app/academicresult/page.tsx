@@ -1,4 +1,6 @@
 "use client";
+import StudentGuide from "@/components/seo/student-guide";
+
 
 import Footer from "@/components/footer/footer";
 import Form from "@/components/forms/resulthtnoform";
@@ -51,6 +53,7 @@ const AcademicResult = () => {
         onSubmit={onSubmit}
         isDisabled={isCooldown}
       />
+      <StudentGuide topic="academicResult" />
       <Footer />
     </>
   );

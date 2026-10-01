@@ -1,4 +1,6 @@
 "use client";
+import StudentGuide from "@/components/seo/student-guide";
+
 
 import Footer from "@/components/footer/footer";
 import Form from "@/components/forms/resulthtnoform";
@@ -45,6 +47,7 @@ const CreditChecker = () => {
         onSubmit={onSubmit}
         isDisabled={false}
       />
+      <StudentGuide topic="creditChecker" />
       <Footer />
     </>
   );

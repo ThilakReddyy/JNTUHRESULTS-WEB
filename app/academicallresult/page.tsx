@@ -1,4 +1,6 @@
 "use client";
+import StudentGuide from "@/components/seo/student-guide";
+
 
 import Footer from "@/components/footer/footer";
 import Form from "@/components/forms/resulthtnoform";
@@ -50,6 +52,7 @@ const AcademicAllResult = () => {
         onSubmit={onSubmit}
         isDisabled={isCooldown} // Pass this prop to disable button
       />
+      <StudentGuide topic="allResults" />
       <Footer />
     </>
   );

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/site";
+import JsonLd from "@/components/seo/json-ld";
 
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -16,7 +18,7 @@ import {
 } from "@/lib/page-metadata";
 
 const inter = Inter({ subsets: ["latin"] });
-const siteUrl = new URL("https://jntuhconnect.dhethi.com");
+const siteUrl = new URL(SITE_URL);
 const siteDescription = pageMetadataDefinitions.home.description;
 const homeMetadata = createPageMetadata("home");
 
@@ -59,6 +61,8 @@ export const metadata: Metadata = {
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  inLanguage: "en-IN",
   name: "JNTUH Connect",
   url: siteUrl.toString(),
   description: siteDescription,
@@ -82,10 +86,7 @@ export default function RootLayout({
           }}
         />
         <GoogleAnalytics />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-        />
+        <JsonLd data={websiteJsonLd} />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

@@ -1,3 +1,4 @@
+import StudentGuide from "@/components/seo/student-guide";
 import FreshNotifications from "@/components/homepage/fresh-notifications";
 import Hero from "@/components/homepage/hero";
 import HomeFooter from "@/components/homepage/home-footer";
@@ -13,6 +14,7 @@ export default function Home() {
       <ImpactBand />
       <ToolGrid />
       <PlatformBand />
+      <StudentGuide topic="home" />
       <HomeFooter />
     </div>
   );
