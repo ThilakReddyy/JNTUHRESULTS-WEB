@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { SITE_URL as siteUrl } from "@/lib/site";
+const siteUrl = "https://jntuhconnect.dhethi.com";
 
 export const dynamic = "force-static";
 

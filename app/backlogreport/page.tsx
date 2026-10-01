@@ -1,6 +1,4 @@
 "use client";
-import StudentGuide from "@/components/seo/student-guide";
-
 
 import { useState } from "react";
 import Form from "@/components/forms/resulthtnoform";
@@ -48,7 +46,6 @@ const BacklogReport = () => {
         isDisabled={isCooldown}
       />
 
-      <StudentGuide topic="backlogReport" />
       <Footer />
     </>
   );

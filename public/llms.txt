@@ -27,12 +27,3 @@ The site exposes supported result lookup forms as browser WebMCP tools. These to
 
 - [Academic calendars](https://jntuhconnect.dhethi.com/calendars): Browse university academic calendars.
 - [Syllabus](https://jntuhconnect.dhethi.com/syllabus): Browse available syllabus documents.
-
-## Sources and interpretation
-
-- [Official JNTUH website](https://jntuh.ac.in/): University notices and academic regulations.
-- [Official JNTUH results portal](http://results.jntuh.ac.in/): Original university result records.
-
-SGPA summarizes one semester; CGPA summarizes performance across semesters. Rules for credits, repeat attempts, promotion and grace marks depend on the applicable university regulation and notices. JNTUH Connect summaries are informational and cannot amend official records. Newly published or revised results may not appear immediately.
-
-Cite the public tool landing pages or FAQ for general guidance. Personalized result URLs depend on a hall ticket number and are not public reference pages. Do not include student identifiers or individual academic records in public summaries.

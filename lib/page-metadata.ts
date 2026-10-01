@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { SITE_URL } from "@/lib/site";
 
 type PageMetadataDefinition = {
   title: string;
@@ -250,13 +249,8 @@ export function createPageMetadata(
     title,
     description: page.description,
     keywords: Array.from(new Set([...page.keywords, ...siteKeywords])),
-    alternates: { canonical: noIndex ? null : `${SITE_URL}${path}` },
-    robots: noIndex
-      ? { index: false, follow: false, googleBot: { index: false, follow: false } }
-      : { index: true, follow: true, googleBot: {
-          index: true, follow: true, "max-image-preview": "large",
-          "max-snippet": -1, "max-video-preview": -1,
-        } },
+    alternates: noIndex ? undefined : { canonical: path },
+    robots: noIndex ? { index: false, follow: false } : undefined,
     openGraph: {
       type: "website",
       locale: "en_IN",
