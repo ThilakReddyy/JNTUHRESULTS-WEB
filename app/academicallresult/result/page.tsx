@@ -4,7 +4,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import ResultDetails from "@/components/result/details";
 import AcademicAllResult from "@/components/result/academicallresult";
 import Print from "@/components/download/print";
-import { fetchAllResult } from "@/components/api/fetchResults";
+import { downloadAllResultsPDF, fetchAllResult } from "@/components/api/fetchResults";
 import ResultDetailsSkeleton from "@/components/skeleton/ResultDetailsSkeleton";
 import AcademicResultSkeleton from "@/components/skeleton/AcademicResultsSkeleton";
 
@@ -68,7 +68,12 @@ const AcademicAllResultResult = () => {
         </div>
       </div>
 
-      <Print componentRef={componentRef} />
+      {allResult && (
+        <Print
+          componentRef={componentRef}
+          onDownload={() => downloadAllResultsPDF(allResult.details.rollNumber)}
+        />
+      )}
     </>
   );
 };

@@ -35,7 +35,7 @@
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.12.0",
     "react-spinners": "^0.13.8",
-    "react-to-print": "^2.14.15",
+    "react-to-print": "^3.3.0",
     "read-excel-file": "^5.7.1",
     "redis": "^4.6.11",
     "sharp": "^0.35.3",

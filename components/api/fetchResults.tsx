@@ -104,24 +104,30 @@ export const fetchAcademicResult = async (
   }
 };
 
-export const downloadCMM = async (htno: string): Promise<void> => {
-  const toastId = toast.loading("Preparing CMM...");
+const downloadResultPDF = async (
+  htno: string,
+  endpoint: string,
+  filenamePrefix: string,
+  label: string,
+): Promise<void> => {
+  const toastId = toast.loading(`Preparing your ${label} PDF…`);
 
   try {
     const baseUrl = process.env.NEXT_PUBLIC_URL || "http://localhost:8000/";
-    const url = `${baseUrl}api/getCMM?rollNumber=${encodeURIComponent(htno)}`;
+    const url = `${baseUrl.replace(/\/$/, "")}/api/${endpoint}?rollNumber=${encodeURIComponent(htno)}`;
     const response = await axios.get<Blob>(url, {
       timeout: 30 * 1000,
       responseType: "blob",
       validateStatus: () => true,
     });
 
-    if (response.status !== 200) {
-      let message = "Unable to download the CMM. Please try again.";
+    if (response.status !== 200 || !response.data.type.includes("application/pdf")) {
+      let message = `Couldn’t download your ${label}. Please try again.`;
 
       try {
         const body = JSON.parse(await response.data.text());
-        message = body.message || body.detail || message;
+        const detail = body.message || body.detail;
+        if (typeof detail === "string") message = detail;
       } catch {
         // Keep the fallback when the backend does not return a JSON error body.
       }
@@ -137,20 +143,29 @@ export const downloadCMM = async (htno: string): Promise<void> => {
     const pdfUrl = window.URL.createObjectURL(response.data);
     const link = document.createElement("a");
     link.href = pdfUrl;
-    link.download = `CMM-${htno}.pdf`;
+    link.download = `${filenamePrefix}-${htno}.pdf`;
     document.body.appendChild(link);
     link.click();
     link.remove();
     window.URL.revokeObjectURL(pdfUrl);
-    toast.success("CMM downloaded successfully", { id: toastId });
+    toast.success("Download started. Check your downloads for the PDF.", {
+      id: toastId,
+    });
   } catch (error) {
     const message =
       axios.isAxiosError(error) && error.code === "ECONNABORTED"
-        ? "CMM download timed out. Please try again."
-        : "Unable to download the CMM. Check your connection and try again.";
+        ? "Download timed out. Please try again."
+        : `Couldn’t download your ${label}. Please try again.`;
     toast.error(message, { id: toastId });
   }
 };
+
+export const downloadCMM = (htno: string): Promise<void> =>
+  downloadResultPDF(htno, "getCMM", "CMM", "CMM");
+
+export const downloadAllResultsPDF = (htno: string): Promise<void> =>
+  downloadResultPDF(htno, "getAllResultPDF", "All-Results", "results");
+
 export const fetchAllResult = async (
   htno: string,
 ): Promise<AcademicAllResultResponse | null> => {

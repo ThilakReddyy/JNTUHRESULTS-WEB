@@ -11,7 +11,7 @@ interface PrintProps {
 const Print = ({ componentRef, onDownload }: PrintProps) => {
   const [isDownloading, setIsDownloading] = useState(false);
   const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
+    contentRef: componentRef,
   });
 
   const handleDownload = async () => {
