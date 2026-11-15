@@ -146,7 +146,7 @@ const NotificationPopUp = () => {
           </div>
         </div>
       ) : (
-        <NoticePopup />
+        <></>
       )}
     </>
   );
