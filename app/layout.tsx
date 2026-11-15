@@ -71,6 +71,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5512897194230969"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className={inter.className}>
         {/* Runs before the sidebar is parsed so the stored rail width is in
             effect on the first paint. The desktop rail starts collapsed unless
