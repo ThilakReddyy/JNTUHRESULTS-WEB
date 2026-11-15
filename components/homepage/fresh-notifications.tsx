@@ -49,7 +49,9 @@ const FreshNotifications = () => {
           label: freshnessLabel(notification.releaseDate),
         }))
         .filter(
-          (entry): entry is { notification: FreshNotification; label: string } =>
+          (
+            entry,
+          ): entry is { notification: FreshNotification; label: string } =>
             entry.label !== null,
         )
         .slice(0, MAX_ITEMS),

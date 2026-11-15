@@ -98,7 +98,7 @@ export default function RootLayout({
               <main className="min-h-screen pt-16">
                 <SideMenubar />
                 <div id="app-content" className="min-h-[calc(100vh-4rem)]">
-                  <NotificationPopUp />
+                  {/* <NotificationPopUp /> */}
                   {/* <Pwa /> */}
                   {children}
                 </div>
