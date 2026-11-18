@@ -132,7 +132,7 @@ export const homeToolGroups: HomeToolGroup[] = [
         title: "Important Questions",
         description:
           "Frequently repeated questions collected semester-wise to focus your revision.",
-        link: "https://jntuh-iq.vercel.app/",
+        link: "https://jntuhiq.com/",
         icon: HelpCircle,
         external: true,
       },

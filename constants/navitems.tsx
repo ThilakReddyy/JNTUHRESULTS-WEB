@@ -313,7 +313,7 @@ export const navitems = [
     title: "Notifications",
   },
   {
-    href: "https://jntuh-iq.vercel.app/",
+    href: "https://jntuhiq.com/",
     image: (
       <>
         <svg
